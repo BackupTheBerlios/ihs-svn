@@ -10,11 +10,11 @@ plików, otrzymamy spójne drzewo katalogów: [8]Figure 4-4.
 
 Figure 4-3. Trzy osobne systemy plików.
 
-https://foo-baz.com:8443/repos/subwiki/SAG/imgs/hd-mount-separate.png
+http://sag.foo-baz.com/repos/imgs/hd-mount-separate.png
 
 Figure 4-4. /home i /usr zostały zamontowane.
 
-https://foo-baz.com:8443/repos/subwiki/SAG/imgs/hd-mount-mounted.png
+http://sag.foo-baz.com/repos/imgs/hd-mount-mounted.png
 
 Montowań można dokonać w sposób następujący:
 {{{

@@ -13,7 +13,7 @@ uruchomi nowe getty dla terminala.
 Figure 8-1. Logowanie się poprzez terminale: interakcja pomiędzy:
 init, getty, login i powłoką.
 
-https://foo-baz.com:8443/repos/subwiki/SAG/imgs/logins-via-terminals.png
+http://sag.foo-baz.com/repos/imgs/logins-via-terminals.png
 
 Zauważ, że tylko init tworzy nowy proces (korzystają z wywołania
 systemowego fork); getty, login zamieniają program, z którego zostały

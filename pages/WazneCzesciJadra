@@ -4,7 +4,7 @@ zarządzanie siecią i wiele innych. [7]Figure 2-1 pokazuje je.
 
 Figure 2-1. Kilka z najważniejszych części Linuksa
 
-https://foo-baz.com:8443/repos/subwiki/SAG/imgs/overview-kernel.png
+http://sag.foo-baz.com/repos/imgs/overview-kernel.png
 
 Najprawdopodobniej najważniejszymi częściami jądra (bez nich nie
 działa nic) są moduły zarządzania pamięcią i procesami. Zarządzanie

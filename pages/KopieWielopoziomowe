@@ -26,7 +26,7 @@ oraz z których kopii można odzyskać dane pod koniec miesiąca.
 Figure 10-1. Przykładowy wielopoziomowy schemat tworzenia kopii
 zapasowych. 
 
-https://foo-baz.com:8443/repos/subwiki/SAG/imgs/backup-timeline.png
+http://sag.foo-baz.com/repos/imgs/backup-timeline.png
 
 Poziomy kopii mogą być również używane do utrzymywania czasu
 odzyskiwania danych do minimum. Jeżeli posiadasz wiele kopii

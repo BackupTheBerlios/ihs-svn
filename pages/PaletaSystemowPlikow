@@ -43,6 +43,10 @@ plików obcego pochodzenia. Systemom takim często brakuje pewnych cech
 znanych z rozwiązań rdzennych dla Unixa, czasami posiadają one dziwne
 ograniczenia.
 
+'''vfat'''
+       FAT32, używany przez system Windows od wersji 95 OSR2. Pozwala zapisywać
+       pliki z długimi nazwami, itp.
+
 '''msdos'''
 
        Kompatybliny z MS-DOS (OS/2 i Windows NT) system plików FAT.

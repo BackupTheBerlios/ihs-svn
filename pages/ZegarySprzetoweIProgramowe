@@ -1,6 +1,4 @@
-Komputer osobisty posiada podtrzymywany bateryjnie zegar sprzętowy.
-Bateria zapewnia ciągłość trwania takiego zegara; za pomocą BIOS-u lub
-systemu operacyjnego można go zmienić.
+
 
 Jądro Linuxa utrzymuje swój własny, niezależny zegar. Podczas startu
 systemu jest on ustawiany według wskazań zegara sprzętowego, po czym

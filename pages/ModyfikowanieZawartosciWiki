@@ -20,8 +20,6 @@ Sekcje można definiować w następujący sposób '''{{{=Rozdział 1=}}}'''.
 
 `SubWiki` posiada również możliwość korzystania z makr, używa się je w sposób następujący: '''{{{[makro]}}}''', przykładowym makrem jest TOC - wyświetla listę wszystkich stron w Wiki.
 
-Aby zaznaczyć, że dany fragment nie powinien być formatowany można posłużyć się '''{{{
-{{{tutaj mój kod}}}
-}}}'''.
+Aby zaznaczyć, że dany fragment nie powinien być formatowany można posłużyć się '''{{{''' {{{tutaj mój kod}}} '''}}}'''.
 
 Można również korzystać z '''{{{^[1]^}}}''' lub '''{{{,,[1],,}}}''' do zaznaczenia indeksu ^górnego^ i ,,dolnego,,.

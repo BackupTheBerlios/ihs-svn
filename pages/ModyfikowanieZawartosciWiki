@@ -6,7 +6,7 @@ Słowa kluczowe mają postać np. `ToJestSlowoKluczowe` - dokładnie mogą zawie
 
 Jeżeli słowo kluczowe posiada jakąś definicję pokazywane jest jako odnośnik np. TheLinuxSystemAdministratorsGuide.
  
-Jeżeli nie chcesz aby dany wyraz był traktowany jako słowo kluczowe musi on być zawarty pomiędzy znaki '''`ToNieJestSlowoKluczowe`'''.
+Jeżeli nie chcesz aby dany wyraz był traktowany jako słowo kluczowe musi on być zawarty pomiędzy znaki '''{{{`ToNieJestSlowoKluczowe`}}}'''.
 
 Tekst pogrubiony uzyskuje się w sposób następujący ''''''Ale jesteśmy grubi''''''.
 

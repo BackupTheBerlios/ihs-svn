@@ -8,18 +8,18 @@ Jeżeli słowo kluczowe posiada jakąś definicję pokazywane jest jako odnośni
  
 Jeżeli nie chcesz aby dany wyraz był traktowany jako słowo kluczowe musi on być zawarty pomiędzy znaki '''{{{`ToNieJestSlowoKluczowe`}}}'''.
 
-Tekst pogrubiony uzyskuje się w sposób następujący ''''''Ale jesteśmy grubi''''''.
+Tekst pogrubiony uzyskuje się w sposób następujący '''{{{'''Ale jesteśmy grubi'''}}}'''.
 
-Tekst podkreślony otrzymuje się w sposób następujący '''__Podkreślamy to__'''.
+Tekst podkreślony otrzymuje się w sposób następujący '''{{{__Podkreślamy to__}}}'''.
 
-Odnośniki definiuje się za pomocą '''[http://tojestmojastrona Moja Strona]''', można również użyć '''http://tojestmojastrona'''.
+Odnośniki definiuje się za pomocą '''{{{[http://tojestmojastrona Moja Strona]}}}''', można również użyć '''{{{http://tojestmojastrona}}}'''.
 
-Aby oddzielić fragmenty tekstu można stosować '''----'''.
+Aby oddzielić fragmenty tekstu można stosować '''{{{----}}}'''.
 
-Sekcje można definiować w następujący sposób '''=Rozdział 1='''.
+Sekcje można definiować w następujący sposób '''{{{=Rozdział 1=}}}'''.
 
-`SubWiki` posiada również możliwość korzystania z makr, używa się je w sposób następujący: '''[makro]''', przykładowym makrem jest TOC - wyświetla listę wszystkich stron w Wiki.
+`SubWiki` posiada również możliwość korzystania z makr, używa się je w sposób następujący: '''{{{[makro]}}}''', przykładowym makrem jest TOC - wyświetla listę wszystkich stron w Wiki.
 
-Aby zaznaczyć, że dany fragment nie powinien być formatowany można posłużyć się '''{{{tutaj mój kod}}}'''.
+Aby zaznaczyć, że dany fragment nie powinien być formatowany można posłużyć się '''{{{{{{tutaj mój kod}}}}}}'''.
 
 Można również korzystać z '''^[1]^''' lub ''',,[1],,''' do zaznaczenia indeksu górnego i dolnego.

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+>
+<book lang="pl">
+	<bookinfo>
+		<title>System hostingowy</title>
+		<authorgroup>
+			<author>
+				<firstname>Paweł</firstname>
+				<surname>Niewiadomski</surname>
+			</author>
+		</authorgroup>
+		<copyright>
+			<year>2005</year>
+			<holder><ulink url="http://foo-baz.com">foo-baz.com</ulink></holder>
+		</copyright>
+	</bookinfo>
+
+	<preface id="foreword">
+		<title>Słowo wstępne</title>
+
+		<para>
+		</para>
+	</preface>
+
+	<chapter id="intro">
+		<title>Wprowadzenie</title>
+
+		<para>
+		</para>
+	</chapter>
+	
+</book>
+

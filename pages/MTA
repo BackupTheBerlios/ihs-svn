@@ -1,2 +1,7 @@
-aaaaaaaaaaaa
+Ogólnie przyjęto, że jest to skrót od Mail Transfer Agent - agent transferu poczty. Innymi słowy jest to program rozsyłający pocztę. Przykładami takich programów są, m.in:
+    * sendmail
+    * exim
+    * postfix
+    * qmail
+    * courier-imap
 

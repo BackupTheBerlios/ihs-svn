@@ -44,12 +44,12 @@ znanych z rozwiązań rdzennych dla Unixa, czasami posiadają one dziwne
 ograniczenia.
 
 '''vfat'''
-       FAT32, używany przez system Windows od wersji 95 OSR2. Pozwala zapisywać
+       FAT32, używany przez system Windows od wersji `95 OSR2`. Pozwala zapisywać
        pliki z długimi nazwami, itp.
 
 '''msdos'''
 
-       Kompatybliny z MS-DOS (OS/2 i Windows NT) system plików FAT.
+       Kompatybliny z `MS-DOS` (`OS/2` i `Windows NT`) system plików FAT.
 
 '''usmdos'''
 
@@ -57,11 +57,11 @@ ograniczenia.
        długie nazwy plików, ustanawiać właścicieli, prawa dostępu,
        łącza, oraz pliki urządzeń. Dzięki niemu zwykły system plików
        msdos zyskuje cechy znane w środowisku Unix, oraz umożliwia
-       zainstalowanie Linuxa na partycji MS-DOS.
+       zainstalowanie Linuxa na partycji `MS-DOS`.
 
 '''iso9660'''
 
-       Statdardowy system plików płyt CD-ROM; popularne rozszerzenie
+       Statdardowy system plików płyt `CD-ROM`; popularne rozszerzenie
        "Rock Ridge" rozpoznawane jest automatycznie.
 
 '''nfs'''
@@ -71,11 +71,11 @@ ograniczenia.
 
 '''hpfs'''
 
-       System plików OS/2.
+       System plików `OS/2`.
 
 '''sysv'''
 
-       Używany przez SystemV/386, Coherenta i Xenixa.
+       Używany przez `SystemV/386`, Coherenta i Xenixa.
 
 Wybór systemu plików często podyktowany jest sprawą kompatybilności.
 Jeżeli musisz możesz wykorzystywać te systemy, jednak w przypadku gdy

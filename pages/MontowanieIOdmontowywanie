@@ -2,7 +2,12 @@ Przed użyciem systemu plików należy go zamountować. System operacyjny
 sprawdza, niektóre części systemu plików w celu upewnienia się, że
 działa. Ponieważ w Unixie pliki przechowywane w jednym drzewie nowy
 system plików będzie tworzył zawartość jakiegoś katalogu.
-srgf
+
+Dla przykładu: [7]Figure 4-3 pokazuje systemy plików, ich katalogi
+główne zostały zaznaczone. Montując ostatnie dwa systemy plików
+odpowiednio w katalogu /home i /usr, wszystko to na pierwszym systemie
+plików, otrzymamy spójne drzewo katalogów: [8]Figure 4-4.
+
 Figure 4-3. Trzy osobne systemy plików.
 
 http://sag.foo-baz.com/repos/imgs/hd-mount-separate.png

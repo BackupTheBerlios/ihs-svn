@@ -8,11 +8,11 @@ sprawdzany, przez to większość błędów powstaje z powodu użytkownika
 z zasilaniem).
 
 Większość systemów ma ustawione automatyczne uruchamianie fsck w
-czasie startu, dzięki czemu wykryte błędy są naprawiane przed użycie
+czasie startu, dzięki czemu wykryte błędy są naprawiane przed użyciem
 systemu plików. Pamiętaj, że używanie zepsutego systemu plików
 najczęściej powoduje powstanie nowych błędów. Ponieważ sprawdzanie
 dużego systemu plików może zająć fsck dużo czasu stosuje się pewne
-sztuczki. Po piewsze, jeżeli instnieje plik /etc/fastboot sprawdzanie
+sztuczki. Po piewsze, jeżeli istnieje plik /etc/fastboot sprawdzanie
 zostanie pominięte. Po drugie, ext2 posiada specjalne pole w
 superbloku mówiące czy dany system plików został poprawnie
 odmontowany. To umożliwia e2fsck (odmianie fsck dla systemu plików

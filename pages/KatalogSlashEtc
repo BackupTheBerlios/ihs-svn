@@ -78,6 +78,12 @@ Administrators' Guide.
 
        Plik konfiguracyjny programu login.
 
+'''/etc/nologin'''
+	
+	Plik ten, jeżeli istnieje blokuje mozliwość zalogowania wszystkim 
+	uzytkownikom oprócz root'a. Można w nim zapisać powód blokady.
+	Użyteczny przy większych zmianach w systemie.
+
 '''/etc/printcap'''
 
        Podobny do /etc/termcap, zawiera informacje na temat drukarek.

@@ -13,6 +13,7 @@ Tekst pogrubiony uzyskuje się w sposób następujący '''{{{'''Ale jesteśmy gr
 Tekst podkreślony otrzymuje się w sposób następujący '''{{{__Podkreślamy to__}}}'''.
 
 Odnośniki definiuje się za pomocą '''{{{[http://tojestmojastrona Moja Strona]}}}''', można również użyć '''{{{http://tojestmojastrona}}}'''.
+Aby wyświetlić obrazek na stronie należy wykorzystać drugą wersję.
 
 Aby oddzielić fragmenty tekstu można stosować '''{{{----}}}'''.
 

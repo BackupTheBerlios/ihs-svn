@@ -16,6 +16,9 @@ są:
        zbyt popularny, jednak istnieją dowody, iż działa całkiem
        dobrze.
 
+'''ext3'''
+       W skrócie jest to system plików ext2 wzbogacony o dziennik transakcji.
+
 '''ext2'''
 
        Najbogatszy w możliwości system plików Linuxa, aktualnie jest

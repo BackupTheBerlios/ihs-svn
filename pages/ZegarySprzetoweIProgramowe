@@ -16,8 +16,11 @@ rozprowadzanych wraz z informacjami o strefach).
 Sprzętowy zegar może być ustawiony według czasu lokalnego lub
 uniwersalnego. Lepiej jest ustawić go na czas uniwersalny, w ten
 sposób nie musisz przejmować się przejściami na czas letni, lub zimowy
-(UTC nie posiada podziału "Daylight Savings Time"). Niestety, niektóre
+(UTC nie posiada podziału "Daylight Savings Time" ^[1]^). Niestety, niektóre
 systemy operacyjne (MS-DOS, Windows, OS/2) zakładają, że czas
 przechowywany przez BIOS jest czasem lokalnym. Linux obsługuje oba
 przypadki, przy czym jeżeli zegar BIOS-u wskazuje czas lokalny musisz
 samodzielnie przechodzić z czasu letniego na zimowy (i odwrotnie).
+
+^[1]^
+W skrócie DST - w niektórych krajach (np. w Polsce) obowiązuje czas zimowy i letni. Zmiana czasu związana z porą roku ma na celu jak najdłuższe wykorzystanie światła słonecznego podczas pracy.

@@ -1,0 +1,15 @@
+Poczta elektroniczna jest najważniejszą metodą komunikacji za pomocą
+komputera. Elektroniczny list przechowywany jest za pomocą pliku o
+specjalnym formacie, a do jego przetwarzania służą specjalne programy.
+
+Każdy użytkownik posiada skrzynkę pocztową (plik lub katalog w
+odpowiednim formacie), w której umieszczane są pliki z pocztą. Kiedy
+ktoś wysyła pocztę program lokalizuje komputer zawierający skrzynkę
+odbiorcy, po czym przesyła wiadomość.
+
+System pocztowy składa się z wielu programów. Dołączaniem wiadomości
+do skrzynek użytkowników zajmuje się jeden program (agent transferu
+poczty, inaczej MTA, np. qmail, postfix), natomiast użytkownicy
+korzystają z wielu różnych programów do czytania (agentów poczty
+użytkownika, MUA, np. pine, mutt). Zazwyczaj poczta przychodząca
+przechowywana jest w /var/spool/mail.

@@ -1,0 +1,13 @@
+UNIX i Linux nie wbudowują interfejsu użytkownika w jądro; przeciwnie
+- interfejs dostarczany jest przez różne programy. Odnosi się to do
+trybu tekstowego i graficznego,
+
+Takie podejście czyni system bardziej elastycznym, posiada jednak
+również wadę - ułatwia to tworzenie różnorakich interfejsów, których
+mnogość stanowi barierę w poznawaniu systemu.
+
+Graficzne środowisko użytkownika dostępne w Linuksie nazywa się: X
+Window System (krótko: X). X nie implementuje interfejsu użytkownika;
+jest on odpowiedzialny za system okna, narzędzi, dzięki którym można
+opracować interfejs graficzny. Trzy najpopularniejsze style
+interfejsów to: Athena, Motif i Open Look.

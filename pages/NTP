@@ -1,0 +1,9 @@
+Czas można również synchronizować za pomocą polecenia ntpdate które jest jednym z wielu poleceń zaczynających się przedrostkiem 'ntp' (wpisz w powłoce 'ntp' i nacisnij TAB to otrzymasz wykaz wszystkich poleceń zaczynających się na 'ntp'). Aby zsynchronizować nasz komputerowy czas z jakimś serwerem czasu wystarczy wpisać polecenie:
+
+ntpdate ntp.certum.pl
+
+z poziomu root'a i nasz zegar systemowy zostanie ustawiony na odpowiedni dla naszej strefy czasowej czas. Można oczywiście wpisać polecenie w crontab'ie np:
+
+* 0 * * * /usr/sbin/ntpdate ntp.certum.pl >> /var/log/ntpdate
+
+co bedzie nam synchronizować czas co godzine i zapisywac to do logu.

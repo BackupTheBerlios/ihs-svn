@@ -1,0 +1,44 @@
+Istnieje wiele programów służących do tego celu. Większość systemów
+operacyjnych zawiera własne, których powinno się używać - mogą one
+robić coś niezwykłego, czego nie potrafią zrobić inne. Wiele z tych
+programów nazywa się fdisk, włączają program Linuxa - odmianę tegoż
+programu. Szczegóły dotyczące programu znajdują się w jego
+podręczniku. Istnieje również cfdisk, który jest 'ładniejszą' wersją
+fdiska.
+
+Używając dysków IDE musisz upewnić się, że partycja z obrazem jądra
+znajdzie się poniżej 1024 cylindra. Jest to wymagane ponieważ proces
+bootowania opiera się na działaniu BIOS-u, a ten nie potrafi obsłużyć
+więcej niż 1024 cylindrów. Możnaby stworzyć partycję zaczynającą się
+poniżej tej granicy, jednak nie jest to dobrym pomysłem - fragmentacja
+dysku, lub niefortunne umieszczenie pliku mogą spowodować, że nie
+będzie można uruchomić komputera. Dla świętego spokoju, upewnij się,
+że cała partycja znajduje się poniżej 1024 cylindra.
+
+Niektóre nowsze BIOS-y i dyski IDE potrafią obsłużyć więcej niż 1024
+cylindrów, jeżeli tak jest masz problem z głowy, jeżeli nie jesteś
+pewien załóż, że BIOS nie działa - oszczędzi Ci to kłopotów.
+
+Każda partycja powinna mieć parzystą liczbę sektorów - Linux używa
+systemu plików z blokiem o rozmiarze 1 kB - 2 sektory. Nieparzysta
+liczba sektorów powoduje, że ostatni z nich nie jest używany, niektóre
+wersje fdiska powiedzą Ci o tym.
+
+Zmiana rozmiaru partycji zazwyczaj wymaga utworzenia kopi zapasowej
+(najlepiej całego dysku), usunięcia partycji, utworzenia nowej i
+odtworzenia danych. Jeżeli powiększasz partycję powinieneś stworzyć
+kopie zapasowe usuwanych partycji (których miejsce użyjesz aby
+utworzyć większą partycję).
+
+Ponieważ zmiana rozmiaru partycji nie jest miłą czynnością powinieneś
+stworzyć odpowiednie za pierwszym razem - zastanów się przed
+założeniem partycji, pomyśl o przyszłości. Jeżeli instalujesz system z
+medium niewymagającego obecności człowieka (powiedzmy z CD-ROM-u, a
+nie dyskietek :-) warto najpierw przetestować kilka rozwiązań. Taki
+system można bez problemu usunąć - nie ma tam żadnych danych
+użytkowników, itd.
+
+Istnieje program dla MS-DOS, nazywający się fips, który zmienia
+rozmiar partycji MS-DOS bez potrzeby tworzenia kopii zapasowej i
+odtwarzania, w przypadku innych systemów plików musisz wykonać te
+kroki.

@@ -1,0 +1,27 @@
+Bazą użytkowników jest zazwyczaj plik /etc/passwd. Niektóre systemy
+posiadają dodatkowy plik /etc/shadow, który zawiera hasła. Istnieją
+również inne metody przechowywania informacji o użytkownikach, dla
+przykładu: NIS.
+
+Baza użytkowników zawiera nie tylko hasła, np.: imiona i nazwiska,
+katalogi domowe, powłoki logowania. Ponieważ dostęp to takiej bazy
+wymagany jest przez wszystkich użytkowników, hasła przechowywane są w
+postaci zakodowanej. Aby zapobiec brutalnym atakom mającym na celu
+złamanie haseł, z czasem zostały one przeniesione do innego pliku,
+który tylko root może czytać (choć kodowanie nadal pozostało).
+
+Ważne jest aby w systemie nie było żadnych słabych haseł, aby takie
+wyłapać można posłużyć się programem crack. Jest to dwusieczny miecz -
+jeżeli agresor będzie pierwszy uda mu się włamać do systemu. Można tak
+skonfigurować passwd aby odrzucał proste hasła - dzięki czemu
+oszczędzisz wiele cykli CPU - łamanie wymaga znacznie więcej mocy
+obliczeniowej.
+
+Baza grup użytkowników standardowo przechowywana jest w pliku
+/etc/group; 'ukrywane hasła' znajdują się w /etc/shadow.group.
+
+Zazwyczaj root może zalogować się tylko poprzez terminale wymienione w
+/etc/securetty. W ten sposób bezpośrednie zalogowanie się jako
+superużytkownik wymaga fizycznego dostępu. Jednocześnie, zwykły
+użytkownik, może zalogować się jako root za pomocą programu su (trzeba
+znać dwa hasła).

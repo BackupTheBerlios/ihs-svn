@@ -1,0 +1,291 @@
+https://foo-baz.com:8443/repos/subwiki/SAG/imgs/gwiazda.png
+
+The Linux System Administrators' Guide
+
+Wersja 0.6.2
+
+Lars Wirzenius (liw at iki kropka fi)
+
+Joanna Oja (viu at iki kropka fi)
+
+Wstęp do administracji systemem Linux.
+
+Copyright 1993--1998 Lars Wirzenius.
+
+Wszelkie znaki towarowe zastrzeżone dla ich właścicieli.
+
+Zezwala się na kopiowanie i rozprowadzanie całego podręcznika przy
+spełnionym warunku włączenia informacji o copyright i tego
+powiadomienia.
+
+Zezwala się na przetwarzanie następującego tekstu programem TeX, lub
+innym programem formatującym, na wydrukowanie rezultatu i dystrybucję
+wydrukowanego dokumentu pod warunkiem załączenia informacji o licencji
+w postaci niezmienionej, włączając informacje o położeniu kodu
+źródłowego i oficjalnej strony domowej.
+
+Zezwala się na kopiowanie i rozprowadzanie zmodyfikowanych wersji tego
+podręcznika pod warunkiem, że zmieniony produkt będzie rozprowadzany na
+tej samej licencji.
+
+Zezwala się na kopiowanie i rozprowadzanie tłumaczeń tego dokumentu
+pod warunkami dotyczącymi zmienionych wersji.
+
+Autor będzie wdzięczny za informacje na temat zmian, tłumaczeń, oraz
+wydrukowanych wersji. Dziękuję.
+
+----
+
+= Spis treści =
+
+    DedykacjaOdeMnie
+
+    OdTlumacza
+
+    ListaDyskusyjnaDotyczacaTlumaczenia
+
+    WersjeDwukropekZrodlowaIPreformatowane
+
+= Rozdział 1 =
+
+    WstepDoKsiazki
+
+      TheLinuxDocumentationProject
+
+= Rozdział 2 =
+
+    WprowadzenieDoLinuxa
+
+      RozneCzesciSystemuOperacyjnego
+
+      WazneCzesciJadra
+
+       PodstawoweUslugiWSystemieUNIX
+
+             KrotkiOpisInit
+
+             LogowanieZTerminala
+
+             KrotkiOpisSyslog
+
+             OkresoweWykonywaniePolecenDwukropekCronIAt
+
+             GraficznyInterfejsUzytkownika
+
+             SiecWUniksie
+
+             ZdalneLogowanieSie
+
+             SiecioweSystemyPlikow
+
+             SystemPoczty
+
+             DrukowanieWUniksie
+
+             StrukturaSystemuPlikow
+
+= Rozdział 3 =
+
+     PrzegladStrukturyKatalogow
+
+       WstepDoStrukturyKatalogow
+
+       GlownySystemPlikow
+
+       KatalogSlashEtc
+
+       KatalogSlashDev
+
+       SystemPlikowSlashUsr
+
+       SystemPlikowSlashVar
+
+       SystemPlikowSlashProc
+
+= Rozdział 4 =
+
+     KorzystanieZRoznychMediiPrzechowujacychDane
+
+       DwaTypyUrzadzen
+
+       DyskiTwarde
+
+       DyskietkiDyskietki
+
+       CDMyslnikROMMyslnikY
+
+       TasmyMagnetyczne
+
+       FormatowanieNosnikow
+
+       PartycjonowanieDyskow
+
+             MBRPrzecinekSektoryLadujaceITablicaPartycji
+
+             PartycjeRozszerzoneILogiczne
+
+             TypPartycji
+
+             DzielenieDyskuTwardego
+
+             PlikiUrzadzenIPartycje
+
+       SystemPlikow
+
+             CzymJestSystemPlikow?
+
+             PaletaSystemowPlikow
+
+             KtoreSystemyPlikowPowinnychBycUzywane?
+
+             TworzenieSystemuPlikow
+
+             MontowanieIOdmontowywanie
+
+             SprawdzanieIntegralnosciSystemuPlikowZaPomocaFsck
+
+             SprawdzanieBledowDyskuZaPomocaBadblocks
+
+             ZwalczanieFragmentacji
+
+             InneProgramyDlaWszystkichSystemowPlikow
+
+             InneNarzedziaDlaExt2
+
+       DyskiBezSystemuPlikow
+
+       AllokowaniePrzestrzeniDyskowej
+
+             SchematPartycjonowania
+
+             WymaganaPrzestrzen
+
+             PrzykladoweKonfiguracje
+
+             DodawanieNowychDyskow
+
+             JakOszczedacPowierzchnieDyskow
+
+= Rozdział 5 =
+
+     ZarzadzaniePamiecia
+
+       CzymJestPamiecWirtualna?
+
+       TworzenieObszaruWymiany
+
+       UzywanieObszaruWymiany
+
+       DzielenieObszaruWymianyMiedzySystemamiOperacyjnymi
+
+       AllokowanieObszaruWymiany
+
+       BuforowanieUrzadzenBlokowych
+
+= Rozdział 6 =
+
+     StartIStop
+
+       OgolneInformacje
+
+       ProcesStartowaniaMyslnikSzczegoly
+
+       WiecejOZamykaniuSystemu
+
+       RestartowanieSystemu
+
+       TrybJednegoUzytkownika
+
+       DyskietkiRatunkowe
+
+= Rozdział 7 =
+
+     ProcesInit
+
+       InitJestPierwszy
+
+       PlikSlashEtcSlashInittab
+
+       PoziomyPracy
+
+       SpecjalnaKonfiguracjaWSlashEtcSlashInittab
+
+       StartowanieWTrybieJednegoUzytkownika
+
+= Rozdział 8 =
+
+     LogowanieSie
+
+       LogowanieSieViaTerminal
+
+       LogowanieSiePoprzezSiec
+
+       CoRobiLogin?
+
+       XIXdm
+
+       KontrolaDostepu
+
+       StartPowloki
+
+= Rozdział 9 =
+
+     ZarzadzanieKontamiUzytkownikow
+
+       KontoMyslnikCoTo?
+
+       TworzenieUzytkownika
+
+             SlashEtcSlashPasswdIInnePliki
+
+             UzywanieNumerycznychIdentyfikatorow
+
+             ZarzadzanieGrupami
+
+             DomyslneSrodowiskoDwukropekSlashEtcSlashSkel
+
+             ReczneTworzenieUzytkownika
+
+       ZmianaUstawienUzytkownika
+
+       UsuwanieUzytkownika
+
+       TymczasoweBlokowanieUzytkownika
+
+= Rozdział 10 =
+
+    KopieZapasowe
+
+      PotrzebaKopiiZapasowych
+
+      WyborMediumNaKopieZapasowa
+
+      WyborProgramu
+
+      ProsteKopieZapasowe
+
+            TworzenieKopiiZaPomocaTara
+
+            OdtwarzaniePlikowZaPomocaTara
+
+      KopieWielopoziomowe
+
+      CoZachowywac
+
+      SkompresowaneKopieZapasowe
+
+= Rozdział 11 =
+
+    UtrzymywanieAktualnegoCzasu
+
+      StrefyCzasowe
+
+      ZegarySprzetoweIProgramowe
+
+      WyswietlanieIZmienianieCzasu
+
+      KiedyCzasJestNiepoprawny
+
+SlownikTerminow
+
+IndeksDokumentow

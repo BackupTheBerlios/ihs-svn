@@ -1,0 +1,67 @@
+tune2fs zmienia ustawienia systemu plików. Kilka najbardziej
+interesujących opcji:
+
+  * Maxymalna liczba montowań. e2fsck wymusza sprawdzenie dysku po
+    określonej liczbie montowań. W systemie służącym jako maszyna
+    testowa dobrym pomysłem może być zredukowanie tego limitu.
+
+  * Maxymalny okres między sprawdzeniami. e2fsck wymusza sprawdzenie
+    jeżeli czas ten został przekroczony. Można wyłączyć.
+
+  * Liczba bloków zarezerwowanych dla roota. Ext2 rezerwuje trochę
+    bloków dla roota - zapełnienie dysku przez użytkowników nie
+    uniemożliwia rootowi jego pracy. Domyślnie 5 procent powierzchni
+    systemu plików zarezerwowane jest dla roota. Na dyskietkach nie ma
+    sensu rezerwować miejsca dla roota.
+
+Zobacz stronę podręcznika dotyczącą tune2fs.
+
+dumpe2fs pokazuje informacje o systemie plików ext2, większość z nich
+odczytana zostaje z superbloku. [14]Figure 4-5 zawiera przykładowe
+wyjście programu. Niektóre informacje są techniczne i wymagają
+zrozumienia sposobu działania systemu plików (zobacz dodatek XXX
+ext2fspaper), jednak większość jest zrozumiała dla każdego (nawet
+adminlamera ;-).
+
+Figure 4-5. Przykładowe wyjście programu dumpe2fs
+{{{
+dumpe2fs 0.5b, 11-Mar-95 for EXT2 FS 0.5a, 94/10/23
+Filesystem magic number:  0xEF53
+Filesystem state:         clean
+Errors behavior:          Continue
+Inode count:              360
+Block count:              1440
+Reserved block count:     72
+Free blocks:              1133
+Free inodes:              326
+First block:              1
+Block size:               1024
+Fragment size:            1024
+Blocks per group:         8192
+Fragments per group:      8192
+Inodes per group:         360
+Last mount time:          Tue Aug  8 01:52:52 1995
+Last write time:          Tue Aug  8 01:53:28 1995
+Mount count:              3
+Maximum mount count:      20
+Last checked:             Tue Aug  8 01:06:31 1995
+Check interval:           0
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+Group 0:
+ Block bitmap at 3, Inode bitmap at 4, Inode table at 5
+ 1133 free blocks, 326 free inodes, 2 directories
+ Free blocks: 307-1439
+ Free inodes: 35-360
+}}}
+
+debugfs jest odpluskwiaczem systemu plików. Umożliwia bezpośredni
+dostęp do struktur danych tworzących system plików, przez co umożliwia
+naprawienie systemu plików w sytuacji nienaprawialnej przez fsck.
+Niektórzy używają tego programu do odkasowywania plików. debugfs
+wymaga abyś wiedział co robisz; w innym wypadku możesz sobie zrobić
+kuku.
+
+dump i restore mogą zostać użyte do utworzenia kopii zapasowej i
+odtworzenia systemu plików. Są to standardowe wersje znane z innych
+Unixów przeznaczone do współpracy z ext2. Zobacz [15]Chapter 10.

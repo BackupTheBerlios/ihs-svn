@@ -1,0 +1,32 @@
+Nie wszystkie dyski, lub partycje używane są jako systemy plików.
+Partycja swapu nie posiada systemu plików. Wiele dyskietek używanych w
+trybie emulacji taśmy używanym przez tar zawiera tylko zawartość
+pliku, bez żadnych dodatkowych informacji. Dyskietki bootujące Linuxa
+posiadają obraz jądra i nic poza nim.
+
+Używanie medium bez systemu plików zwiększa jego pojemność. Zwiększa
+kompatybilność z innymi systemami, np.: format tworzony przez tar jest
+taki sam dla wszystkich systemach, systemy plików najczęściej się
+różnią. W razie potrzeby szybko się przyzwyczaisz do takich dysków.
+Bootowalne dyskietki Linuxa nie muszą zawierać systemu plików, choć
+jest to możliwe.
+
+Kopiowanie zawartości dysku bez pośrednictwa systemu plików jest
+bardzo przydatne jeżeli doszło do uszkodzenia systemu plików. Po
+stworzeniu kopii możesz na różne sposoby próbować odratować dane, a w
+przypadku nie udanej próby zacząć od nowa. Można to osiągnąć za pomocą
+dd:
+{{{
+$ dd if=/dev/fd0H1440 of=floppy-image
+2880+0 records in
+2880+0 records out
+$ dd if=floppy-image of=/dev/fd0H1440
+2880+0 records in
+2880+0 records out
+$
+}}}
+
+Pierwsze wywołanie tworzy dokładną kopię dyskietki, zapisuje ją w
+pliku floppy-image, drugie zapisuje zachowany obraz na dyskietce
+(użytkownik powinien zamienić dyskietkę przed drugim poleceniem -
+inaczej polecenie stanie się bezsensowne).

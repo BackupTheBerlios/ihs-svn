@@ -1,0 +1,58 @@
+/var zawiera zmieniające się dane. Zawartość jest specyficzna dla
+danego systemu, nie powinna być dzielona między różnymi komputerami.
+
+'''/var/catman'''
+
+       Sformatowane strony. Źródło strony podręcznika jest zazwyczaj
+       przechowywane w /usr/man/man*; niektóre strony rozprowadzane są
+       w wersji preformatowanej, są one przechowywane w /usr/man/cat*.
+       Inne strony podręcznika muszą zostać sformatowane przed
+       wyświetleniem; przetworzone wersje, w celu przyśpieszenia
+       późniejszych odwołań, zapisywane są na dysku. (/var/catman jest
+       często czyszczony wraz z katalogami zawierającymi pliki
+       tymczasowe.)
+
+'''/var/lib'''
+
+       Zmieniające się podczas pracy systemu pliki.
+
+'''/var/local'''
+
+       Zmieniające się dane programów zainstalowanych w /usr/local.
+       Zauważ, że nawet lokalnie zainstalowane programy powinny się
+       odwoływać do /var.
+
+'''/var/lock'''
+
+       Blokady. Wiele programów przestrzega zasadę tworzenia pliku w
+       /var/lock aby wskazać swoje działanie. Inne programy sprawdzają
+       plik i odpowiednio działają (np. wstrzymują się z odwoływaniem
+       do danego urządzenia).
+
+'''/var/log'''
+
+       Logi różnych programów, baza programu login (/var/log/wtmp,
+       który zawiera informacje o wylogowywaniu się użytkowników) oraz
+       log demona syslog (/var/log/messages, w nim zapisywane są
+       wszystkie informacje jądra i innych programów). Zapomniane
+       pliki w /var/log mogą często znacząco przybrać na rozmiarze -
+       powinieneś w regularnych odstępach czasu usuwać stare wersje.
+
+'''/var/run'''
+
+       Pliki, które zawierają informacje o systemie, które są aktualne
+       podczas jego działania. Dla przykładu: /var/run/utmp zawiera
+       listę użytkowników aktualnie zalogowanych.
+
+'''/var/spool'''
+
+       Katalog zawierający kolejki: poczty, drukowania i inne. Każda
+       kolejka posiada własny podkatalog wewnątrz /var/spool, np.
+       często poczta przechowywana jest w katalogu /var/spool/mail
+       (nie jest to zalecane).
+
+'''/var/tmp'''
+
+       Tymczasowe pliki które są duże, lub mają istnieć przez dłuższy
+       czas niż byłoby to możliwe w katalogu /tmp (aczkolwiek
+       administrator może usuwać znacząco stare pliki).

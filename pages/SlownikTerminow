@@ -1,0 +1,56 @@
+" Bibliotekarz Niewidzianego Uniwersytetu jednostronnie zdecydował
+się poszerzyć wiedzę tworząc Orang-utano/Ludzki słownik. Pracował
+całe trzy miesiące. Nie było łatwo. Zaszedł tak daleko jak "Oook"."
+(Terry Pratchett, Men At Arms)
+
+Jest to krótka lista definicji, które są związane z Linuxem i
+administrowaniem systemami.
+
+'''ambicja'''
+
+       Akt tworzenia śmiesznych sentencji w nadziei, że znajdą się w
+       Linuxowym zbiorze fortunek.
+
+'''aplikacja'''
+
+       Oprogramowanie wykonujące pożyteczną czynność. Komputery kupuje
+       się po to aby otrzymywać rezultaty działania takich programów.
+       Zobacz również: program systemowy, system operacyjny.
+
+'''demon'''
+
+       Proces pracujący w tle, najczęściej niezauważalnie, aż do czasu
+       zbudzenia. Dla przykładu: demon update budzi się co 30 sekund i
+       zapisuje dane (z cache'u) na dysku; demon sendmail budzi się
+       gdy ktoś wysyła pocztę.
+
+'''system plików'''
+
+       Metody i struktury danych, które system operacyjny używa aby
+       przechowywać pliki na dysku. Często używane w znaczeniu
+       partycji lub dysku zawierającego pliki.
+
+'''jądro'''
+
+       Część systemu operacyjnego, która zapewnia współpracę ze
+       sprzętem i współdzielenie zasobów. Sprawdź hasło: program
+       systemowy.
+
+'''system operacyjny'''
+
+       Program, który rozdziela zasoby komputera (czas procesora,
+       pamięć, powierzchnię dysku, itd. ) pomiędzy użytkowników i ich
+       programy. W celu zachowania bezpieczeństwa kontroluje dostęp do
+       systemu. Zobacz: jądro, program systemowy, aplikacja.
+
+'''wywołanie systemowe'''
+
+       Usługa oferowana programom przez jądro. Zajrzyj do sekcji 2
+       podręcznika.
+
+'''program systemowy'''
+
+       Programy implementujące wysoki poziom funkcjonalności systemu
+       operacyjnego, np.: rzeczy, które są niezależne od sprzętu.
+       Często wymagają specjalnych przywilejów. Zobacz: aplikacja,
+       jądro, system operacyjny.

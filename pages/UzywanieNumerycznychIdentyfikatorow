@@ -1,0 +1,13 @@
+Najczęściej nie musisz znać numerycznych numerów identyfikacyjnych,
+jednak wiedza ta staje się potrzebna gdy używasz Sieciowego systemu
+plików (NFS) - na wszystkich komputerach identyfikatory muszą się
+zgadzać. Dzieje się tak ponieważ NFS rozróżnia użytkowników po ich
+identyfikatorach numerycznych.
+
+Chcąc używać NFS musisz wynaleźć mechanizm synchronizacji informacji o
+kontach. W tym celu można użyć systemu NIS (opis w
+network-admin-guide).
+
+Zasadniczo nie powinieneś używać starych identyfikatorów (textowych,
+czy numerycznych) - nowy użytkownik mógłby przejąć pliki starego
+użytkownika.

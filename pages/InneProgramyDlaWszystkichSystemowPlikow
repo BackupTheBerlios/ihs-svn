@@ -1,0 +1,10 @@
+Istnieje wiele przydatnych poleceń. df pokazuje ilość wolnego miejsca
+na jednym lub kilku systemach plików; du pokazuje ile dysku zajmuje
+zawartość katalogu.
+
+sync wymusza zapisanie buforowanych danych (zobacz [13]the section
+called Bufor in Chapter 5). Zazwyczaj nie trzeba go ręcznie uruchamiać
+- demon update robi to automatycznie. Program może być przydatny po
+katastrofie, w której poległ update, lub jego pomocnik bdflush, lub w
+sytuacji gdy musisz natychmiast wyłączyć komputer i nie możesz czekać
+na wywołanie update.

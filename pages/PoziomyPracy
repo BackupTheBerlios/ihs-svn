@@ -1,0 +1,45 @@
+Poziom pracy to stan programu init, oraz całego systemu definiujący
+działające usługi. Poziomy pracy identyfikowane są poprzez liczby,
+zobacz [7]Table 7-1. Nie istnieją definicje poziomów pracy
+konfigurowalnych przez użytkownika (2-5). Niektórzy administratorzy
+systemów używają ich do definiowania działających podsystemów, np.:
+działająca sieć, X, itd. Inni w razie potrzeby uruchamiają je ręcznie.
+Musisz sam zdecydować, choć łatwiej będzie podporządkować się
+podejściu twojej dystrybucji.
+
+{{{
+Table 7-1. Poziomy pracy w liczbach
+0   Zatrzymanie systemu.
+1   Tryb jednego użytkownika (dla specjalnej administracji).
+2-5 Normalne działanie (zdefiniowane przez użytkownika).
+6   Restart systemu.
+}}}
+
+Poziomy pracy zdefiniowane są w /etc/inittab poprzez następujące
+linie:
+{{{
+l2:2:wait:/etc/init.d/rc 2
+}}}
+
+Pierwsze pole jest identyfikatorem, drugie oznacza 2 poziom pracy.
+Następne pole oznacza, że init powinien uruchomić program raz i czekać
+na jego zakończenie. /etc/init.d/rc jest skryptem odpowiedzialnym za
+uruchomienie i zatrzymanie usług, które umożliwiają przejście na
+poziom 2.
+
+Polecenie z czwartego pola robi całą czarną robotę związaną ze zmianą
+poziomu pracy. Uruchamia usługi zdefiniowane dla poziomu 2 i
+zatrzymuje programy, które nie powinny na tym poziomie działać.
+Działanie tego skryptu zależne jest od dystrybucji i administratora.
+
+Podczas startu, init szuka linijki definiującej domyślny tryb pracy:
+{{{
+id:2:initdefault:
+}}}
+
+W czasie startu systemu (np. za pomocą LILO) można przekazać jądru
+argument ustanawiający inny początkowy poziom pracy, np.: single, lub
+emergency umożliwiają start systemy w trybie jednego użytkownika.
+
+W czasie pracy systemu poziom działania można zmienić za pomocą
+programu telinit.

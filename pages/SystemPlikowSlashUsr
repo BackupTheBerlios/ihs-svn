@@ -1,0 +1,50 @@
+System plików /usr jest zazwyczaj duży - większość programów znajduje
+się w jego podkatalogach. Zazwyczaj wszystkie pliki w katalogu /usr
+przyszły wraz z daną dystrybucją, programy instalowane ręcznie, z
+innych pakietów powinny być umieszczane w /usr/local. Dzięki temu po
+aktualizacji, zmianie systemu nie musimy instalować (a przed tym np.
+ściągać z sieci) dodatkowych programów. Niektóre z podkatalogów /usr
+opisane są poniżej (pełny opis i lista znajdują się w FSSTND).
+
+'''/usr/X11R6'''
+
+       X Window System, wszystkie pliki. Aby uprościć tworzenie i
+       instalację systemu X, wszelkie pliki umieszczane są w osobnym
+       katalogu. W /usr/X11R6 istnieje hierarchia podkatalogów podobna
+       do zawartości /usr.
+
+'''/usr/X386'''
+
+       To samo co /usr/X11R6, tylko dla wersji "X11 Release 5".
+
+'''/usr/bin'''
+
+       Prawie wszystkie polecenia użytkownika. Niektóre polecenia
+       znajdują się w /bin i /usr/local/bin.
+
+'''/usr/sbin'''
+
+       Programy administratora, które nie muszą znajdować się na
+       głównym systemie plików, np. większość serwerów.
+
+'''/usr/man, /usr/info, /usr/doc'''
+
+       Odpowiednio: strony podręcznika, dokumenty GNU Info i
+       dokumentacja w innych formatach.
+
+'''/usr/include'''
+
+       Pliki nagłowkowe dla języka C. Aktualnie powinny być w
+       /usr/lib, jednak tradycja jest silniejsza.
+
+'''/usr/lib'''
+
+       Niezmieniające się dane, zależne od architektury, niekiedy
+       pliki konfiguracyjne programów. Nazwa lib pochodzi od "library"
+       (biblioteka); oryginalnie biblioteki programistyczne były
+       przechowywane w /usr/lib.
+
+'''/usr/local'''
+
+       Miejsce składowania oprogramowania (i konfiguracji)
+       zainstalowanego niezależnie od dystrybucji.

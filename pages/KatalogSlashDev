@@ -1,0 +1,8 @@
+Katalog /dev zawiera pliki specjalne, które odpowiadają wszystkim
+urządzeniom. Nazwy plików tworzone są według specjalnej konwencji;
+opisana jest ona w dokumencie Device list (zobacz XXX). Pliki urządzeń
+tworzone są podczas instalacji, póżniej można je utworzyć za pomocą
+/dev/MAKEDEV, lub programu mknod. Skrypt /dev/MAKEDEV.local jest
+tworzony przez administratora w celu utworzenia urządzeń używanych
+lokalnie. (tych, które nie zawartych w skrypcie MAKEDEV, np. dla
+niestandardowych urządzeń).

@@ -1,0 +1,19 @@
+W danym momencie tylko jedna osoba może korzystać z drukarki, jednak
+nieekonomicznym jest przydzielanie jej użytkownikowi na wyłączność.
+Drukarką zarządza specjalne oprogramowanie implementujące kolejkę
+drukowania: wszystkie żądania wydruku umieszczane są w kolejce, po
+zakończeniu jednej pracy wykonywana jest następna. Dzięki temu
+użytkownicy nie muszą walczyć o dostęp do drukarki. ^[2]^
+
+Oprogramowanie kolejkujące buforuje na dysku gotowe do druku prace.
+Umożliwia to programom przekazanie dokumentu do programu
+odpowiedzialnego za drukowanie i powrót do pracy - aplikacja nie musi
+czekać na faktyczne zakończenie drukowania. Jest to naprawdę wygodne,
+gdyż pozwala wysłać do wydrukowania aktualną wersję dokumentu i nie
+czekając na zakończenie, rozpocząć tworzenie nowej wersji.
+
+^[2]^
+W zamian, tworzą kolejkę przy drukarce czekając na swój wydruk,
+ponieważ niewiele osób jest w stanie sprawdzić czy drukowanie zostało
+wykonane. Dzięki temu gwałtowanie wzrasta wewnątrz-firmowe życie
+towarzyskie.

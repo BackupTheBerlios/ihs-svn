@@ -1,0 +1,27 @@
+Tablica partycji zawiera, dla każdej, bajt oznaczający typ partycji.
+Ma to na celu zidentyfikowanie systemu używającego danej partycji, lub
+celu użycia. Celem było utrudnienie sytuacji, w której dwa systemy
+operacyjne używałyby tej samej partycji. Jednak, w rzeczywistości
+wiele systemów nie interesuje się zawartością tegoż bajtu (Linux ma go
+w nosie). Co gorzej, niektóre z nich interpretują go niepoprawnie -
+DR-DOS ignoruje najbardziej znaczący bit tegoż bajtu, przy czym inne
+systemy tego nie robią.
+
+Nie istnieje standard zawierający informacje o dokładnym znaczeniu
+poszczególnych wartości, część z powszechnie akceptowanych zawarta
+jest w [9]Table 4-1. Tą samą listą posługuje się program fdisk.
+
+{{{
+Table 4-1. Typy partycji (z Linuksowego programu fdisk).
+0 Pusta             40 Venix 80286          94 Amoeba BBT
+1 DOS 12-bit FAT    51 Novell?              a5 BSD/386
+2 XENIX root        52 Microport            b7 BSDI fs
+3 XENIX usr         63 GNU HURD             b8 BSDI swap
+4 DOS 16-bitf <32M  64 Novell               c7 Syrinx
+5 Rozszerzona       75 PC/IX                db CP/M
+6 DOS 16-bit >=32M  80 Old MINIX            e1 DOS access
+7 OS/2 HPFS         81 Linux/MINIX          e3 DOS R/O
+8 AIX               82 Linux swap           f2 DOS, druga
+9 AIX, startowalna  83 Naturalna dla Linuxa ff BBT
+a OS/2 Boot Manager 93 Amoeba               
+}}}

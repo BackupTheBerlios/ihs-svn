@@ -1,0 +1,7 @@
+Zazwyczaj powłoka logowania w czasie startu wykonuje kilka skryptów.
+Różne powłoki używają różnych plików; sprawdź dokumentację swojej.
+
+Zazwyczaj istnieje globalny plik (dla powłoki Bourne'a jest to
+/etc/profile), oraz plik użytkownika (.profile). Dzięki tym plikom
+odpowiednio administrator, użytkownik może ustawić różne zmienne (np.
+PATH), wykonać jakieś programy, itd.

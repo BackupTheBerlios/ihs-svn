@@ -1,0 +1,19 @@
+Przed usunięciem użytkownika usuń wszystkie jego pliki, skrzynki
+pocztowe, aliasy pocztowe, żądania drukowania, prace crona i at, oraz
+wszelkie inne odwołania do niego. Teraz możesz usunąć wpisy w
+/etc/passwd i /etc/group (pamiętaj o usunięciu nazwy użytkownika ze
+wszystkich grup, do których był dodany). Dobrym pomysłem jest
+zablokowanie konta (powyżej) przed powyższymi czynnościami.
+
+Pamiętaj, że użytkownicy mogą mieć jakieś pliki poza swoimi katalogami
+domowymi. Polecenie find pomoże Ci je znaleźć:
+{{{
+find / -user nazwa_użytkownika
+}}}
+
+Pamiętaj, że to wykonanie polecenia może zająć dużo czasu, zależnie od
+ilości danych. Jeżeli część dysków montowana jest przez sieć może to
+znacząco ją obciążyć (i serwer).
+
+Niektóre dystrybucje Linuxa posiadają program deluser, lub userdel,
+który służy do automatycznego usuwania użytkowników.

@@ -1,0 +1,71 @@
+Prosta metoda tworzenia kopii zapasowych jest dobra dla osobistych
+komputerów i małych serwerów. Przy dużej ilości danych należy
+zastosować inne metody.
+
+Prosta metoda ma dwa poziomy: pełny i różnicowa kopia. Można to
+uogólnić do kilku poziomów. Pełna kopia to poziom 0, kopie różnicowe
+to: 1, 2, 3, ... Na poszczególnym poziomie zachowujesz dane, które są
+zmienione względem niższego, lub równorzędnego poziomu.
+
+W ten sposób uzyskujemy dłuższą żywotność danej kopii danych,
+umożliwiając w ten sposób dostęp do kilku wersji plików, lub danych,
+które zostały usunięte dawno temu.
+
+Dla przykładu: posiadając 10 taśm, możemy 1 i 2 wykorzystywać na
+miesięczne kopie (robione w pierwszy piątek miesiąca), taśmy 3 - 6
+będą zawierać tygodniowe kopie (inne piątki, pamiętaj, że w miesiącu
+może być 5 piątków, więc potrzebujemy 4 taśmy), taśmy 7 - 10 będą
+kopiami dziennymi (poniedziałek do czwartku). Za pomocą dodatkowych 4
+taśm wydłużyliśmy sesję z 2 tygodni do dwóch miesięcy. Prawdą jest, iż
+nie możemy odzyskać wszystkich wersji wszystkich plików, jednak to co
+możemy odzyskać jest często wystarczające.
+
+[7]Figure 10-1 pokazuje, który poziom powinien być użyty w danym dniu,
+oraz z których kopii można odzyskać dane pod koniec miesiąca.
+
+Figure 10-1. Przykładowy wielopoziomowy schemat tworzenia kopii
+zapasowych. 
+
+https://foo-baz.com:8443/repos/subwiki/SAG/imgs/backup-timeline.png
+
+Poziomy kopii mogą być również używane do utrzymywania czasu
+odzyskiwania danych do minimum. Jeżeli posiadasz wiele kopii
+różnicowych o coraz rosnącym jednostajnie poziomie, aby odzyskać
+wszystkie dane musisz je wszystkie odczytać. Możesz jednak tworzyć
+kopie o niekolejnych poziomach ograniczając liczbę taśm niezbędnych do
+odtworzenia systemu.
+
+Aby uzyskać taki efekt, możesz używać niższego poziomu dla każdej
+następnej kopii różnicowej. Jednakże, w ten sposób wydłużasz również
+czas tworzenia kopii (każda kopia zawiera wszystko od poprzedniej
+pełnej kopii). Lepszy schemat jest sugerowany przez podręcznik
+programu dump. W skrócie wykonuj kolejno kopie o poziomach: 3, 2, 5,
+4, 7, 6, 9, 8, 9, itd. W ten sposób tworzenie kopii i odzyskiwanie
+danych trwa krótko. Liczba niezbędnych taśm zależy od tego jak długie
+przerwy będziesz czynił między pełnymi kopiami, jednak i tak będzie
+niższa niż w przypadku prostego schematu.
+
+Table 10-1. Efektywny schemat tworzenia wielopoziomowych kopii
+zapasowych
+{{{
+Taśma Poziom Kopiowanie (dni) Ilość taśm niezbędnych do odtworzenia
+1     0      n/a              1
+2     3      1                1, 2
+3     2      2                1, 3
+4     5      1                1, 2, 4
+5     4      2                1, 2, 5
+6     7      1                1, 2, 5, 6
+7     6      2                1, 2, 5, 7
+8     9      1                1, 2, 5, 7, 8
+9     8      2                1, 2, 5, 7, 9
+10    9      1                1, 2, 5, 7, 9, 10
+11    9      1                1, 2, 5, 7, 9, 10, 11
+...   9      1                1, 2, 5, 7, 9, 10, 11, ...
+}}}
+
+Wymyślny schemat może zredukować liczbę pracy, jednak może zwiększyć
+ilość czynników, na które trzeba zwracać uwagę. Musisz zadecydować czy
+warto.
+
+dump ma wbudowaną obsługę poziomów, dla tara i cpio musisz to
+zaimplementować za pomocą odpowiednich skryptów.

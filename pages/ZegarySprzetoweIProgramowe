@@ -1,0 +1,23 @@
+Komputer osobisty posiada podtrzymywany bateryjnie zegar sprzętowy.
+Bateria zapewnia ciągłość trwania takiego zegara; za pomocą BIOS-u lub
+systemu operacyjnego można go zmienić.
+
+Jądro Linuxa utrzymuje swój własny, niezależny zegar. Podczas startu
+systemu jest on ustawiany według wskazań zegara sprzętowego, po czym
+oba zegary działają niezależnie. Linux utrzymuje swój własny zegar
+ponieważ ciągłe odpytywanie sprzętu jest wolne i skomplikowane.
+
+Zegar jądra zawsze wskazuje uniwersalny czas. W ten sposób jądro nie
+musi wiedzieć co to strefa czasowa. Zwiększa to pewność działania
+zegara i upraszcza zmianę strefy czasowej. Każdy proces zajmuje się
+osobno konwersją czasu (używając standardowych narzędzi
+rozprowadzanych wraz z informacjami o strefach).
+
+Sprzętowy zegar może być ustawiony według czasu lokalnego lub
+uniwersalnego. Lepiej jest ustawić go na czas uniwersalny, w ten
+sposób nie musisz przejmować się przejściami na czas letni, lub zimowy
+(UTC nie posiada podziału "Daylight Savings Time"). Niestety, niektóre
+systemy operacyjne (MS-DOS, Windows, OS/2) zakładają, że czas
+przechowywany przez BIOS jest czasem lokalnym. Linux obsługuje oba
+przypadki, przy czym jeżeli zegar BIOS-u wskazuje czas lokalny musisz
+samodzielnie przechodzić z czasu letniego na zimowy (i odwrotnie).

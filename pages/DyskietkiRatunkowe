@@ -1,0 +1,8 @@
+Czasami może się zdarzyć, iż komputer nie może wystartować korzystając
+z dysku twardego (np. błąd podczas konfiguracji LILO). W takiej
+sytuacji dyskietki stają się bardzo przydatne.
+
+W większości dystrybucji istnieją specjalne programy służące do
+tworzenia dyskietek startowych. Jeżeli takie 'ogólne' dyskietki nie
+wystarczają można stworzyć własne - Bootdisk HOWTO Grahama Chapmana
+opisuje proces ich tworzenia.

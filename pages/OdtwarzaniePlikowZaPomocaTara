@@ -1,0 +1,45 @@
+Opcja --extract (-x) pomoże Ci odzyskać twoje dane:
+{{{
+# tar --extract --same-permissions --verbose --file /dev/fd0H1440
+usr/src/
+usr/src/linux
+usr/src/linux-1.2.10-includes/
+usr/src/linux-1.2.10-includes/include/
+usr/src/linux-1.2.10-includes/include/linux/
+usr/src/linux-1.2.10-includes/include/linux/hdreg.h
+usr/src/linux-1.2.10-includes/include/linux/kernel.h
+...
+#
+}}}
+
+Możesz również wyciągnąć specyficzny plik, lub katalog (wraz z
+podkatalogami i zawartymi w nich plikami):
+{{{
+# tar xpvf /dev/fd0H1440 usr/src/linux-1.2.10-includes/include/linux/hdreg.h
+usr/src/linux-1.2.10-includes/include/linux/hdreg.h
+#
+}}}
+
+Za pomocą opcji --list (-t) możesz sprawdzić zawartość kopii
+zapasowej:
+{{{
+# tar --list --file /dev/fd0H1440
+usr/src/
+usr/src/linux
+usr/src/linux-1.2.10-includes/
+usr/src/linux-1.2.10-includes/include/
+usr/src/linux-1.2.10-includes/include/linux/
+usr/src/linux-1.2.10-includes/include/linux/hdreg.h
+usr/src/linux-1.2.10-includes/include/linux/kernel.h
+...
+#
+}}}
+
+Pamiętaj, że tar odczytuje dane sekwencyjnie co przy dużych archiwach
+jest wolne. Taka metoda działania wynika z budowy taśm ( i innych
+mediów sekwencyjnych ).
+
+tar nie obsługuje skasowanych plików: jeżeli pełna kopia zawiera plik,
+natomiast kopia różnicowa nie, plik po odtworzeniu danych będzie
+istniał. W przypadku niektórych plików może to stanowić poważny
+problem.

@@ -1,0 +1,29 @@
+Miałem kiedyś dysk o pojemności 109 MB. Aktualnie używam dysku o
+pojemności 330 MB. Wytłumaczę jak i dlaczego podzieliłem te dyski.
+
+Dysk 109 MB dzieliłem na wiele różnych sposobów, zależnie od potrzeb.
+Wytłumaczę dwa typowe podziały. Pierwszy: MS-DOS razem z Linuxem.
+Część dla DOS-a zajmowała 20 MB, zawierała kompilator C, edytor, kilka
+narzędzi, program, na którym pracowałem, oraz trochę wolnego miejsca
+aby zmieścić wyniki. Dla Linuxa przeznaczyłem: 10 MB na swap, resztę
+(79 MB) na jedną partycję. Eksperymentowałem z rozdzieleniem głównego
+systemu plików, /usr i /home na kilka partycji, jednak nigdy nie
+miałem wystarczającej ilości miejsca aby zrobić coś ciekawego.
+
+Gdy przestałem potrzebować MS-DOS-a, przepartycjonowałem dysk tak, że
+12 MB zajmował swap, resztę miejsca zużywała jedna partycja dla
+Linuxa.
+
+Dysk 330 MB podzieliłem na kilka partycji w następujący sposób:
+{{{
+5 MB   główny system plików
+10 MB  swap
+180 MB /usr
+120 MB /home
+15 MB  pusta partycja
+}}}
+
+Pusta partycja używana była do testowania rzeczy wymagających jej -
+różnych dystrybucji Linuxa, porównywania wydajności różnych systemów
+plików, itp. W czasie pomiędzy testami służyła jako druga partycja
+swap.

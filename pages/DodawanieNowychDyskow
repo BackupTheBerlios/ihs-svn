@@ -1,0 +1,4 @@
+Dodanie nowego dysku nie nastręcza żadnych problemów, oprócz poprawnej
+konfiguracji sprzętu. Formatujesz dysk (jeżeli musisz), tworzysz
+partycje, systemy plików, dodajesz odpowiednie wpisy w /etc/fstab i po
+kłopocie.

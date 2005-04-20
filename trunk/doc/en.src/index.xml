@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+>
+<book lang="en">
+	<bookinfo>
+		<title>Incredible hosting system</title>
+		<authorgroup>
+			<author>
+				<firstname>Paweł</firstname>
+				<surname>Niewiadomski</surname>
+			</author>
+		</authorgroup>
+		<copyright>
+			<year>2005</year>
+			<holder><ulink url="http://foo-baz.com">foo-baz.com</ulink></holder>
+		</copyright>
+	</bookinfo>
+
+	<preface id="foreword">
+		<title>Foreword</title>
+
+		<para>
+		</para>
+	</preface>
+
+	<chapter id="intro">
+		<title>Introduction</title>
+
+		<para>
+		</para>
+	</chapter>
+
+	<chapter id="current">
+		<title>Current system, requirements analize</title>
+
+		<para>
+			Because thesis subject is a modernization of existing system
+			current system should be described first. System was created
+			as a bachelor thesis, subject was "Free mail system".
+			During that project software was created that 
+			
+			Ponieważ celem pracy jest modernizacja istniejącego systemu
+			należy zastanowić się nad aktualnym stanem rzeczy. Poprzedni
+			system powstawał w ramach pracy dyplomowej inżynierskiej, której
+			temat brzmiał "System poczty darmowej". W wyniku przeprowadzonych
+			prac stworzone zostało oprogramowanie udostępniające
+			podstawowe cechy takiego systemu.
+		</para>
+
+		<para>
+			System oferował możliwość zakładania, usuwania, oraz modyfikacji
+			podstawowych ustawień za pośrednictwem stron <glossterm>WWW</glossterm>. 
+			Użytkownicy
+			mieli możliwość konfiguracji opcji dostępnych na innych podobnych
+			systemach, czyli np. przekierowania poczty, automatycznej
+			odpowiedzi. Dostęp do poczty przechowywanej na serwerze dostępny
+			był za pomocą standardowego protokołu <glossterm>POP3</glossterm>
+			oraz stron WWW.
+		</para>
+
+		<para>
+			Administrator miał możliwość, za pośrednictwem stron WWW, obejrzenia
+			podstawowych statystyk serwera, modyfikacji istniejących kont.
+			Projekt nie obejmował zaawansowanych opcji konfiguracyjnych.
+			Skoncentrowano się przede wszystkim na użytkownikach. W wyniku
+			tego powstał system, który mógł być nadzorowany tylko przez
+			osoby posiadające dużą wiedzę na temat udostępnianych narzędzi.
+		</para>
+
+		<para>
+			Na bazie systemu pocztowego zaprojektowany i utworzony został
+			serwis hostingowy, który posiadał dodatkowe funkcje takie
+			jak zarządzanie stronami użytkowników, konfiguracja serwisów WWW.
+			Użytkownicy uzyskali również dostęp do statystyk określających
+			popularność serwisów, możliwość zarządzania własną bazą danych.
+			Możliwości administrowania systemem za pomocą stron WWW również
+			zostały rozszerzone, jednak nadal były one zaprojektowane
+			z myślą o doświadczonych użytkownikach. Część opcji pominięto
+			ze względów czasowych oraz z uwagi na redukcję kosztów systemu.
+		</para>
+
+		<para>
+			Podstawowe dane techniczne dotyczące poprzedniego systemu:
+			<itemizedlist>
+				<listitem>
+					<para>
+						System operacyjny: Linux, dystrybucja Slackware
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Serwer WWW: Apache 1.3
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Serwer <glossterm>FTP</glossterm>: ProFTPD
+					</para>
+				</listitem>
+				<listitem><para><glossterm>MTA</glossterm>: Qmail+Virtual Qmail</para></listitem>
+				<listitem><para>Główna baza danych: PostgreSQL</para></listitem>
+				<listitem><para>Bazy danych dostępne dla użytkowników: MySQL, PostgreSQL</para></listitem>
+			</itemizedlist>
+			Program zarządzający systemem napisany został w większości
+			w C++, wykorzystan również PHP, PERL, skrypty powłoki. 
+			Szczegółowe informacje oraz motywy wyboru przedstawionych programów
+			opisane są w NIE-2002.
+		</para>
+
+		<para>
+			Istotnym minusem utworzonego systemu było również to, że stanowił
+			on pojedyncze wdrożenie, nie był wystarczająco elastyczny
+			aby móc sprostać różnym oczekiwaniom. Instalacja była
+			trudnym przedśięwzięciem. Dlatego głównym celem tej pracy
+			jest modernizacja istniejącego systemu tak aby spełniał
+			poniższe wymagania.
+		</para>
+	</chapter>
+	
+</book>
+

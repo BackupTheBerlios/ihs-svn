@@ -1,5 +1,5 @@
 BASE=..
-LANGS=pl
+LANGS=pl en
 JADE?=openjade
 
 .PHONY: all all-doc clean subdirs

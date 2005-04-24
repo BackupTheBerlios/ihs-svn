@@ -42,4 +42,4 @@ mediów sekwencyjnych ).
 tar nie obsługuje skasowanych plików: jeżeli pełna kopia zawiera plik,
 natomiast kopia różnicowa nie, plik po odtworzeniu danych będzie
 istniał. W przypadku niektórych plików może to stanowić poważny
-problem.
+problem. To jest zmodyfikowane...

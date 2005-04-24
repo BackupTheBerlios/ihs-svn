@@ -1,3 +1,58 @@
+<<<<<<< .mine
+KLOP
+Niektórzy twierdzą, iż powinieneś zaallokować dwa razy wielkość ramu,
+nie jest to prawidłowe podejście. Oto jak to zrobić poprawnie:
+
+  * Określ całkowite zapotrzebowanie na pamięć. Jest to największa
+    ilość pamięci, którą będziesz jednocześnie potrzebował, suma
+    zapotrzebowań wszystkich programów. Możesz to zrobić uruchamiając
+    wszystkie programy z twojej listy. (jeżeli nie masz dostatecznej
+    ilość pamięci prawdopodobnie część z nich się wywali).
+    Dla przykładu: jeżeli chcesz uruchamiać X, powinieneś zaallokować
+    dla niego około 8 MB, gcc potrzebuje kilka megabajtów ( niektóre
+    pliki potrzebują niezwykle dużo pamięci - około 10 MB, jednak
+    zazwyczaj wystarczają 4 MB ), itd. Jądro zużyje około megabajta
+    dla siebie, zazwyczaj powłoka i kilka potrzebnych narzędzi razem
+    da nam zapotrzebowanie na 1 MB. Nie musisz być dokładnym, jednak
+    powinieneś podchodzić do sprawy pesymistycznie.
+    Pamiętaj, że należy brać również liczbę osób pracujących na
+    komputerze. Jednakże, jeżeli dwaj użytkownicy uruchomią ten sam
+    program zużycie nie podwoi się - część programu, oraz biblioteki
+    będą dzielone między procesami.
+    Polecenia: free i ps przydadzą Ci się do oszacowania
+    zapotrzebowania.
+
+  * Podczas szacowania pamięci w kroku 1 musisz pamiętać o bezpiecznej
+    granicy - prawdopodobnie zapomnisz o kilku programach, albo
+    zmienisz swoje wymagania. Musisz odłożyć trochę pamięci na czarną
+    godzinę. (Lepiej zaallokować zbyt dużo niż zbyt mało swapu, jednak
+    nie ma sensu aby miejsce się marnowało - musisz wybrać dla siebie
+    optimum). Ponieważ lepiej jest pracować z okrągłymi liczbami
+    możesz zaokrąglić rozmiar do pełnych megabajtów.
+
+  * Opierając się na powyższych obliczeniach powinieneś oszacować
+    twoje potrzeby. Aby wyznaczyć rozmiar obszaru wymiany powinieneś
+    od obliczonej liczby odjąć rozmiar fizycznej pamięci. (Na
+    niektórych Unixach musisz zaallokować obszar licząc również pamięć
+    fizyczną - w tym wypadku nie odejmuj jej rozmiaru).
+
+  * Jeżeli twój wyliczony rozmiar swapu jest znacznie większy niż
+    twoja fizyczna pamięć (kilkakrotnie więcej) powinieneś
+    zainwestować pieniądze w zakup większej ilość pamięci, w innym
+    wypadku odczujesz spadek wydajności.
+
+Dobrym pomysłem jest utworzenie swapu nawet jeżeli go nie
+potrzebujesz. Linux agresywnie korzysta ze swapu, tak aby jak
+najwięcej fizycznej pamięci pozostało wolną. Linux zapisze na dysku
+wszelkie nie używane dane. W ten sposób mamy więcej pamięci dostępnej
+od ręki.
+
+Obszar wymiany może być rozdzielony na kilka dysków. W ten sposób
+można poprawić wydajność. Możesz popróbować kilku schematów, jednak
+pamiętaj, że robienie takich eksperymentów jest trudne. Nie powinieneś
+wierzyć w wyższość jednego schematu nad drugim, zależy to od wielu
+czynników i w twoim wypadku może być kłamstwem.
+=======
 To jest moja pierwsza linia
 Niektórzy twierdzą, iż powinieneś zaallokować dwa razy wielkość ramu,
 nie jest to prawidłowe podejście. Oto jak to zrobić poprawnie:
@@ -51,3 +106,4 @@ można poprawić wydajność. Możesz popróbować kilku schematów, jednak
 pamiętaj, że robienie takich eksperymentów jest trudne. Nie powinieneś
 wierzyć w wyższość jednego schematu nad drugim, zależy to od wielu
 czynników i w twoim wypadku może być kłamstwem.
+>>>>>>> .r64

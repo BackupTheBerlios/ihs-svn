@@ -1,4 +1,4 @@
-Podczas zapisu pliku na dysku często zdarza się, że nie można go
+Podczas bleble zdzis często zdarza się, że nie można go
 zapisać w jednym miejscu. Plik, który nie jest przechowywany w
 kolejnych blokach nazywa się sfragmentowanym. Odczytanie takiego pliku
 trwa dłużej ponieważ głowica musi przemieścić się więcej razy.

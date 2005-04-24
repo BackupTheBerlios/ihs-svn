@@ -1,0 +1,15 @@
+Sieć jest to połączenie co najmniej dwóch komputerów w sposób
+umożliwiający ich wzajemną komunikację. Aktualne metody łączenia i
+komunikacji są wewnętrznie skomplikowane, jednak użytkownikowi
+dostarczona jest użyteczna otoczka.
+
+Unix jest systemem sieciowym. Większość podstawowych usług (systemy
+plików, drukowanie, kopie zapasowe) może być wykonywana przez sieć.
+Ułatwia to administrację systemem, gdyż pozwala na scentralizowaną
+administrację, przy równoczesnym korzystaniu z dobrodziejstw
+mikroprzetwarzania i rozproszonego przetwarzania, jak niższe koszty
+czy lepsza odporność na błędy.
+
+Książka zawiera tylko podstawowe wiadomości na temat sieci; zobacz
+Linux Network Administrators' Guide, który zawiera więcej informacji,
+włączając zasady działania sieci.

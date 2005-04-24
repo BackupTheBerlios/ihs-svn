@@ -1,0 +1,69 @@
+Odczytywanie dysku ^[1]^ jest bardzo wolne w porównaniu z odczytem
+prawdziwej pamięci. Do tego, najczęściej ten sam obszar dysku
+odczytywany jest w małych odstępach czasu. Dla przykładu: ktoś może
+odczytać list e-mail chcąc na niego odpowiedzieć, po czym odczytać go
+ponownie aby przenieść go do innego folderu. Lub, pomyśl ile razy ls
+może zostać uruchomiony na systemie z wieloma użytkownikami.
+Zapisywanie danych odczytanych z dysku przyśpiesza kolejne odwołania.
+Proces taki zwany jest buforowaniem dysków .
+
+Ponieważ pamięć jest, niestety, skończona bufor musi mieć ograniczoną
+wielkość (czasami nie może pomieścić na raz wymaganych danych). Gdy
+dochodzi do zapełnienia bufora dane, które nie były używane przez
+najdłuższy czas są usuwane z bufora, powstaje miejsce na nowe.
+
+Buforowanie dysków działa również dla operacji zapisu. Często świeżo
+zapisane są odczytywane ponownie, w krótkim odstępie czasu (np. zmiana
+kodu źródłowego i ponowna kompilacja). Dlatego umieszczanie
+zapisywanych danych w buforze jest dobrą praktyką. Odkładanie
+zapisania na dysk również przyśpiesza programy.
+
+Większość systemów operacyjnych posiada bufory mechanizm buforowania
+operacji dyskowych, jednak nie wszystkie z nich działają według
+powyższego opisu. Niektóre z nich działają wdg zasady zapisuj-poprzez:
+dane zapisywane są na dysku i odkładane w buforze. Istnieje również
+metoda zapisz-i-powróć - dane są umieszczane w pamięci, aktualizacja
+dysku dokonywana jest co pewien okres. Druga metoda jest wydajniejsza
+jednak czyni system bardziej podatnym na zdarzenia losowe - odcięcie
+zasilania powoduje utratę danych znajdujących się w pamięci, może to
+również doprowadzić do uszkodzenia systemu plików - struktury systemu
+plików mogą nie zostać uaktualnione.
+
+Dlatego, nigdy nie powinieneś wyłączać komputera przed poprawnym
+wykonaniem procedury wyłączenia systemu operacyjnego (zobacz
+[8]Chapter 6), oraz zmieniać dyskietek przed ich odmontowaniem.
+Program sync flushes (opróżnia) bufor - wymusza zapisanie wszelkich
+danych znajdujących się w nim. W tradycyjnych odmianach Unixa istnieje
+polecenie update, które co 30 sekund uruchamia sync, Linux posiada
+demona bdflush, który wykonuje pobieżną synchronizację danych aby
+uniknąć ogromnej ilości operacji we/wy na dysk powodowanych, czasami,
+przez sync.
+
+W Linuksie bdflush uruchamiany jest przez update. Jeżeli coś się
+przydarzy bdflush jądro Cię o tym poinformuje i będziesz musiał
+ręcznie uruchomić opróżnianie buforów (/sbin/update).
+
+Aktualnie buforowaniu podlegają bloki (nie pliki), które są
+najmniejsza jednostką operacji dyskowych. (pod Linuxem są one
+zazwyczaj wielkości 1 kB). Dzięki temu katalogi, superbloki i inne
+struktury systemu plików, oraz dane niezależne od systemu plików są
+buforowane.
+
+Efektywność bufora jest najczęściej podyktowana jego rozmiarem. Mały
+bufor jest prawie bezużyteczny - dane znikną z niego przed ponownym
+odwołaniem się do nich.
+
+Jeżeli bufor posiada stały rozmiar nie powinien być zbyt duży,
+ponieważ aplikacje nie będą miały miejsca do działania i będą musiały
+być zapisywane w swapie (co jest powolnym procesem). Aby jak
+najefektywniej wykorzystać fizyczną pamięć Linux automatycznie
+wykorzystuję wszelkie nieużywane zakamarki jako bufor operacji
+blokowych, jednocześnie automatycznie zwalnia pamięć w przypadku
+zapotrzebowania na nią.
+
+W Linuksie nie musisz robić nic aby wykorzystywać dobrodziejstwa
+bufora, wszystko zachodzi automatycznie. Jedyne co musisz robić to
+poprawnie uruchamiać i zamykać system.
+
+^[1]^
+Pomijając RAM-dysk, z przyczyn oczywistych.

@@ -1,0 +1,39 @@
+Systemy plików to złożone stworzonka i jako takie mają skłonności do
+psucia się. Poprawność systemu plików można sprawdzić za pomocą
+programu fsck. Można go ustawić tak aby naprawiał automatycznie drobne
+błędy, oraz powiadamiał użytkownika w przypadku nienaprawialnych
+usterek. Na szczęście, kod implementujący systemy plików był bacznie
+sprawdzany, przez to większość błędów powstaje z powodu użytkownika
+(niepoprawne zamknięcie systemu), sprzętu lub wypadki losowe (problemy
+z zasilaniem).
+
+Większość systemów ma ustawione automatyczne uruchamianie fsck w
+czasie startu, dzięki czemu wykryte błędy są naprawiane przed użyciem
+systemu plików. Pamiętaj, że używanie zepsutego systemu plików
+najczęściej powoduje powstanie nowych błędów. Ponieważ sprawdzanie
+dużego systemu plików może zająć fsck dużo czasu stosuje się pewne
+sztuczki. Po piewsze, jeżeli istnieje plik /etc/fastboot sprawdzanie
+zostanie pominięte. Po drugie, ext2 posiada specjalne pole w
+superbloku mówiące czy dany system plików został poprawnie
+odmontowany. To umożliwia e2fsck (odmianie fsck dla systemu plików
+ext2) pominąć sprawdzanie poprawnie odmontowanych (zakłada się, że
+poprawnie odmontowany system plików nie powinien zawierać błędów).
+Trik z /etc/fastboot opiera się na działaniu skryptów startowych.
+
+Automatyczne sprawdzanie działa tylko dla systemów automatycznie
+montowanych podczas startu. Aby sprawdzić inne musisz ręcznie
+uruchomić fsck.
+
+Jeżeli fsck znajdzie nienaprawialne błędy potrzebujesz głębokiej
+wiedzy o systemie plików, lub dobrej kopii zapasowej. Druga opcja
+wydaje się być łatwiejsza (za to nudna), pierwsza natomiast wymaga
+dobrego znajomego, grupy dyskusyjnej (lub listy), lub innego źródła
+informacji jeżeli nie wiesz jak się do tego zabrać. Chciałbym o tym
+napisać więcej jednak brakuje mi wiedzy i doświadczenia, program
+debugfs może okazać się pożyteczny.
+
+Za pomocą fsck powinieneś sprawdzać tylko odmontowane systemy plików
+(wyjątkiem jest sprawdzanie zmontowanego w trybie tylko-do-odczytu
+głównego systemu plików). Jest to spowodowane tym, że program
+modyfikuje system plików bezpośrednio, bez wiedzy systemu
+operacyjnego.

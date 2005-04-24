@@ -1,0 +1,5 @@
+LInux LOader - bootmenager, umożliwia startowanie linuksa i innych systemów operacyjnych. Innym programem tego typu jest GRUB (GRand Unified Bootloader).
+
+plik konfiguracjny ''/etc/lilo.conf''
+
+więcej man lilo i man lilo.conf

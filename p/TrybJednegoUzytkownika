@@ -1,0 +1,2 @@
+Polecenie shutdown może służyć do przejścia w tryb jednego
+użytkownika, w którym tylko root ma prawo się zalogować.

@@ -1,0 +1,10 @@
+Kopie zapasowe zajmują dużo miejsca, które przecież kosztuje. Aby zredukować objętość kopii można je kompresować. Istnieje kilka sposobów. Niektóre programy mają obsługę kompresji wbudowaną, np. opcja --gzip (-z) tara  przepuszcza archiwum przez gzipa.
+
+Niestety skompresowane archiwa mogą czasami przysporzyć kłopotów. Z powodu działania kompresji uszkodzenie jednego bitu może spowodować utratę wszystkich danych. Niektóre programy posiadają możliwość naprawy, jednak metody te są zawodne przy dużej ilości błędów. Kopie zapasowe muszą być godne zaufania, a taka metoda kompresji naraża twoje dane.
+
+Alternatywnie, można kompresować każdy plik z osobna. W najgorszym wypadku stracisz jeden plik, co przy nieskompresowanej kopii bezpieczeństwa jest również możliwe - to samo bezpieczeństwo. Program afio (odmiana cpio) potrafi tworzyć takie kopie zapasowe.
+
+Kompresja zajmuje czas, przez co może spowodować zatrzymanie taśmy. ^[1]^ Można to ominąć poprzez buforowanie wyjścia (wewnętrznie, jeżeli program jest na tyle sprytny, lub zewnętrznie - za pomocą innych programów). Może to stanowić duże utrudnienie na wolnych komputerach.
+
+^[1]^	
+Jeżeli dane nie są zapisywane w odpowiednim tempie taśma zostaje zatrzymana, czyniąc proces kopiowania jeszcze wolniejszym. 

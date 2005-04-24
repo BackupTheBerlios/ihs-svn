@@ -1,0 +1,11 @@
+Jedną z bardziej użytecznych rzeczy, które można zrobić przez sieć
+jest udostępnianie dysków za pośrednictwem sieciowego systemu plików.
+Najczęściej używa się protokołu Network File System (NFS), stworzonego
+przez Sun-a.
+
+Za pomocą takiego systemu plików wszelkie operacje plikowe wykonywane
+przez program na jednym komputerze przesyłane są przez sieć i
+wykonywane na innym. Oszukanemu programowi wydaje się, że wszystkie
+pliki obcego komputera znajdują się na tej maszynie, na której go
+uruchomiono. Powoduje to, że współdzielenie danych jest niezwykle
+łatwe, gdyż nie trzeba w ogóle zmieniać programów.

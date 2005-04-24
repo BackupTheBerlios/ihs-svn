@@ -1,0 +1,32 @@
+Aby ręcznie stworzyć konto wykonaj następujące kroki:
+
+  * Zmień /etc/passwd za pomocą vipw, dodaj odpowiednią linię dla
+    nowego użytkownika. Nie zmieniaj tego pliku bezpośrednio za pomocą
+    edytora! vipw blokuje plik, co uniemożliwia innym programom jego
+    zmiany. Jako hasło powinieneś wstawić `*' - blokując konto.
+
+  * Zmień /etc/group za pomocą vigr.
+
+  * Utwórz katalog domowy użytkownika.
+
+  * Skopiuj pliki z /etc/skel do utworzonego katalogu.
+
+  * Ustaw właściciela i prawa dostępu za pomocą chown i chmod.
+    Przydatną jest opcja -R. Poprawne prawa dostępu są różne na
+    różnych systemach, jednak polecenia wyglądać powinny podobnie:
+{{{
+cd /home/nazwa_użytkownika
+chown -R nazwa.grupa .
+chmod -R go=u,go-w .
+chmod go= .
+}}}
+
+  * Ustaw hasło za pomocą passwd.
+
+Po ustawieniu hasła użytkownik może się zalogować, więc powinno to być
+ostatnim krokiem.
+
+Czasami trzeba utworzyć bezużytkownikowe konto, dla przykładu:
+anonimowy serwer FTP potrzebuje użytkownika ftp. W takim wypadku
+powinieneś blokować takie konta - w ten sposób tylko root może stać
+się takim użytkownikiem, nikt się nie może zalogować.

@@ -1,0 +1,21 @@
+" Dwa dni później Kubuś Puchatek siedział na swej gałęzi i machał nóżkami,
+obok niego stały cztery garnki pełne miodu... " (A.A. Milne)
+
+Rozdział opisuje ważniejsze części standardowej hierarchii katalogów,
+która oparta jest na standardzie FSSTND. Opisuje normalny sposób
+podziału na oddzielne systemy plików oraz cel takiego podziału. Różne
+alternatywy są omówione.
+
+WstepDoStrukturyKatalogow 
+
+GlownySystemPlikow 
+
+KatalogSlashEtc 
+
+KatalogSlashDev 
+
+SystemPlikowSlashUsr 
+
+SystemPlikowSlashVar 
+
+SystemPlikowSlashProc 

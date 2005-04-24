@@ -1,0 +1,50 @@
+Jądro postrzega swap jako normalny plik, liczy się jedynie brak dziur
+i specjalna sygnatura utworzona za pomocą mkswap. Plik musi znajdować
+się na lokalnym systemie plików, NFS nie wchodzi w grę.
+
+Informacja o dziurach jest ważna. Plik wymiany powinien mieć
+zarezerwowaną objętość, tak aby jądro zapisując dane nie musiało
+allokować sektorów dla pliku. Dziura w pliku oznacza, że nie ma
+zaallokowanych sektorów, a to powoduje drastyczny spadek wydajności.
+
+Dobrym sposobem na utworzenie odpowiedniego pliku wymiany jest
+następujące polecenie:
+{{{
+$ dd if=/dev/zero of=/extra-swap bs=1024 count=1024
+1024+0 records in
+1024+0 records out
+$
+}}}
+
+gdzie /extra-swap jest nazwą pliku wymiany, rozmiar pliku podawany
+jest za pomocą opcji count=. Rozmiar powinien być podzielny przez 4 -
+jądro zapisuje strony pamięci w blokach po 4 kB.
+
+Partycja wymiany nie jest niczym specjalnym. Tworzysz ją jak normalną
+partycję, jedyną różnicą jest to, że nie zawiera systemu plików.
+Dobrym pomysłem jest ustawienie typu partycji na 82 (Linux Swap),
+dzięki temu lista partycji stanie się czytelniejsza.
+
+Po stworzeniu pliku lub partycji musisz stworzyć odpowiednią
+sygnaturę. Służy do tego mkswap, np.:
+{{{
+$ mkswap /extra-swap 1024
+Setting up swapspace, size = 1044480 bytes
+$
+}}}
+
+Zauważ, że taki obszar wymiany nie zostanie użyty - instnieje, jednak
+jądro o nim nic nie wie.
+
+Posługując się mkswap powinieneś być ostrożny - program nie wykonuje
+żadnych testów przed stworzeniem sygnatury. Może łatwo nadpisać ważne
+dane za pomocą mkswap!
+
+Mechanizm zarządzania pamięcią limituje rozmiar pojedynczego obszaru
+wymiany do 127 MB, oraz może ich być maxymalnie 8 (co daje 1 GB).
+(przyp. tłum.: w którejś wersji jądra usunięto ten limit, nie pamiętam
+w której). ^[1]^
+
+^[1]^
+Gigabajt w tą, gigabajt we wtą, niedługo rzeczywista pamięć będzie
+miała taką pojemność.

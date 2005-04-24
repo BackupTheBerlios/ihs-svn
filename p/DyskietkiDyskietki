@@ -1,0 +1,42 @@
+Dyskietka składa się z elastycznej membrany pokrytej z jednej lub obu
+stron materiałem magnetycznie aktywnym. Dyskietka nie zawiera żadnych
+mechanizmów - wszystko to znajduje się w odpowiednim napędzie.
+Dyskietka odpowiada jednemu talerzowi dysku, twardego, przy czym jest
+wymienna - jeden napęd może odczytywać kilka dyskietek po kolei, dysk
+twardy jest niepodzielny.
+
+Tak jak dysk twardy dyskietka podzielona jest na ścieżki, sektory
+(dwie odpowiadające sobie ścieżki po dwóch stronach tworzą cylinder),
+przy czym jest ich znacznie mniej niż na dysku twardym.
+
+Napęd dyskietek może odczytywać kilka różnych formatów; dla przykładu:
+istnieją 3,5 calowe dyskietki 720 kB i 1,44 MB. Do prawidłowego
+obsłużenia napędu system operacyjny musi znać rozmiar dyskietki;
+istnieje kilka plików dyskietek: /dev/fd0H1440 jest pierwszym napędem
+zawierającym 3,5 calową, podwójną (D) dyskietkę o wysokiej gęstości
+(H), o pojemności 1440 kB, innymi słowy normalna dyskietka 3.5 calowa
+HD. Aby dowiedzieć się więcej o nazewnictwie zajrzyj do listy
+urządzeń.
+
+Nazewnictwo napędu dyskietek jest skomplikowane, jednak istnieje w
+Linuksie specjalne urządzenie wykrywające typ dyskietki. Działa na
+zasadzie odczytu pierwszego sektora i wyszukiwania pasującego wzorca.
+Wymaga to preformatowanie dyskietki. Urządzenia takie nazywają się:
+/dev/fd0, /dev/fd1, itd.
+
+Parametry używane do sprawdzenia formatu dyskietki mogą zostać
+ustawione za pomocą setfdprm. Dzięki temu programowi można używać
+dyskietek o niestandardowym rozmiarze (można sobie tworzyć takie
+dyskietki :-).
+
+Linux może odczytywać niestandardowe formaty dyskietek, niektóre z
+nich wymagają specjalnych programów formatujących. Ominiemy je na
+razie, abyś w międzyczasie zdążył zajrzeć do pliku /etc/fdprm, który
+to zawiera ustawienia programu setfdprm.
+
+System operacyjny musi wiedzieć czy dyskietka została zmieniona, np.
+aby uniknąć używania zbuforowanych danych w przypadku zamiany
+dyskietek. Niestety linia sygnału, która jest do tego używana, w
+niektórych napędach jest zepsuta - nie można tego zauważyć pod MS-DOS,
+jednak pod Linuxem staje się to ważne. W takim wypadku niezbędna jest
+naprawa napędu.

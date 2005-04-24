@@ -1,0 +1,23 @@
+Zegar systemowy utrzymywany jest za pomocą okresowego przerwania
+zegarowego PC. Jeżeli system operacyjny wykonuje zbyt wiele zadań
+obsłużenie przerwania może mu zająć zbyt dużo czasu (zegar zaczyna się
+późnić). Zegar sprzętowy działa niezależnie, dlatego zazwyczaj
+wskazuje poprawniejszy czas. Jeżeli często uruchamiasz komputer (co
+dotyczy większości komputerów nie będących serwerami) nie masz po co
+się martwić poprawnością zegara systemowego.
+
+Jeżeli musisz zmienić zegar sprzętowy możesz: zrestartować komputer i
+zmienić ustawienia BIOS-u (w ten sposób unikniesz wszystkich kłopotów
+związanych z nagłą zmianą czasu), zrobić to za pomocą date i clock (w
+tej kolejności), w tym wypadku powinieneś być gotowy do restartu
+jeżeli coś zacznie się dziwnie zachowywać.
+
+Sieciowy komputer (nawet w przypadku modemu) może porównywać swój
+zegar z zegarem komputera utrzymującego bardzo aktualny czasu. Można
+to osiągnąć przy użyciu rdate, lub netdate. Oba programy sprawdzają
+czas zdalnego komputera (netdate może sprawdzać czas na kilku z nich)
+i ustawiają odpowiednio czas lokalny. Używając regularnie jednego z
+tych poleceń zapewnisz sobie aktualny czas.
+
+XXX napisz coś mądrego o NTP.
+

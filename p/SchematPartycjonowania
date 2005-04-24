@@ -1,0 +1,29 @@
+Bardzo trudno jest dokonać optymalnego podziału. Gorzej - nie istnieje
+ogólna metoda - za dużo czynników należy brać pod uwagę.
+
+Tradycyjnie należy mieć mały główny system plików, który zawierał
+będzie /bin, /etc, /dev, /lib, /tmp i inne potrzebne do startu rzeczy.
+Podział taki powoduje, że główny system plików jest w mniejszym
+stopniu narażony podczas padu systemu, umożliwia szybsze i łatwiejsze
+naprawienie wszelkich błędów wywołanych katastrofą. Dla katalogów:
+/usr, /home, oraz swapu tworzysz osobne partycje, lub używasz osobnych
+dysków. Dzięki temu tworzenie kopii zapasowych staje się łatwiejsze.
+Czasami można uczynić katalog /usr dzielonym poprzez sieć i dzięki
+temu zaoszczędzić powierzchnię dysków stacji roboczych.
+
+Podział dysku na wiele partycji powoduje, że wolne miejsce rozbite
+zostaje na małe, zależne od dysku, obszary. Aktualnie, dyski i systemy
+operacyjne działają pewnie, więc w większości wypadków wystarczy jedna
+partycja, taki podział czyni tworzenie kopii zapasowych (i ich
+używanie w razie potrzeby) mniej bolesnym.
+
+W przypadku małych dysków (zakładając, że nie modyfikujesz jądra)
+najlepszym wyjściem pozostaje utworzenie jednej partycji. Natomiast
+posiadacze dużych dysków powinny utworzyć kilka partycji. (Zauważ, że
+słowa "mały" i "duży" używane są w znaczeniu relatywnym, twoje
+potrzeby decydują o ich dokładnym znaczeniu).
+
+Dobrym pomysłem jest bycie przygotowanym na eksperymentowanie i zmiany
+w razie potrzeby (nie tylko przy instalacji, ale w późniejszym
+okresie). Wymaga to odrobiny pracy, kilku reinstalacji systemu, ale
+tylko w ten sposób dojdziesz do optymalnego podziału.

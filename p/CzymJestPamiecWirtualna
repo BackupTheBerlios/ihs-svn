@@ -1,0 +1,33 @@
+Linux obsługuje pamięć wirtualną - wykorzystuje cześć dysku jako
+rozszerzenie fizycznej pamięci. Jądro zapisuje zawartość nieużywanych
+bloków pamięci fizycznej na dysku, umożliwiając tym samym
+wykorzystanie ich do innych celów. Jeżeli oryginalna zawartość jest
+potrzebna następuje proces odwrotny. Wszystko to odbywa się
+niewidocznie dla użytkownika; działające programy również nie
+dostrzegają różnicy. Oczywiście operacje dyskowe są znacznie
+wolniejsze (tysiące razy) niż analogiczne działania na fizycznej
+pamięci, programy zwalniają. Część dysku twardego wykorzystywana jako
+pamięć wirtualna nosi nazwę obszaru wymiany.
+
+Linux potrafi wykorzystywać zwykły plik na systemie plików, lub
+oddzielną partycję jako obszar wymiany. Partycja wymiany jest szybsza,
+jednak trudniej zmienić jej rozmiar, niż w wypadku pliku. Możesz w
+celach testowych stworzyć plik wymiany, a gdy już będziesz pewnien co
+do potrzebnego rozmiaru stworzyć osobną partycję.
+
+Powinieneś wiedzieć, że Linux pozwala używać kilku partycji/plików
+wymiany jednocześnie. Dzięki temu możesz dynamicznie regulować
+wielkość swapu, np. stworzyć partycję o odpowiednim rozmiarze (takim
+aby się nie marnowała), a przy specjalnych okazjach wykorzystywać
+dodatkową partycję/plik, itp.
+
+Krótka lekcja z terminologii komputerowej: komputerowi naukowcy
+najczęściej rozróżniają miedzy swapowaniem (zapisywaniem całego
+procesu na dysku) a stronicowaniem (zapisywaniem części o stałym
+rozmiarze, zazwyczaj kilku kilobajtów). Stronicowanie jest zazwyczaj
+szybsze, dlatego Linux go używa, pomimo tego tradycyjna terminiologia
+Linuxa mówi o swapowaniu. ^[1]^
+
+^[1]^
+Zatem całkiem niepotrzebnie denerwująca rzesza komputerowych naukowców
+jest straszna.

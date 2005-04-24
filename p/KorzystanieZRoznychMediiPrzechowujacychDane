@@ -1,0 +1,54 @@
+"Czysty dysk możesz przeszukiwać wiecznie. "
+
+Instalując lub uaktualniając system musisz dokonać wiele operacji
+dyskowych. Musisz stworzyć systemy plików, zarezerwować odpowiednią
+ilość miejsca dla poszczególnych części.
+
+Rozdział omawia wszystkie te czynności. Zazwyczaj etap ten jest
+jednokrotny, za wyjątkiem pracy z dyskietkami. Będziesz musiał
+powrócić do tego rozdziału w przypadku nowego dysku lub optymalizacji
+operacji dyskowych.
+
+Podstawowe obowiązki:
+
+  * Sformatować dysk. Oznacza to wszelkie rzeczy przygotowujące dysk
+    do pracy, sprawdzenie występowania złych sektorów (aktualnie
+    formatowanie nie jest konieczne).
+
+  * Stworzyć partycje. Może to być nieuniknione w przypadku chęci
+    posiadania kilku odmiennych systemów operacyjnych. Rozmieszczenie
+    drzewa katalogów na kilku dyskach czyni część z nich bardziej
+    odpornymi na błędy - niektóre z nich można zamontować jako
+    wyłącznie do odczytu, często plików użytkowników umieszcza się na
+    innej partycji w celu uproszczenia tworzenia kopii zapasowych.
+
+  * Stworzyć system plików (odpowiedniego typu) na każdej partycji.
+    Linux nie może działać bez systemu plików - tylko w oparciu o
+    niego można tworzyć/kasować pliki, itd.
+
+  * Zamontować różne systemu plików w odpowiedniej hierarchi -
+    automatczynie lub ręcznie (ręcznie montowane systemy plików są
+    zazwyczaj odmontowywane, ale powinieneś się upewnić).
+
+[16]Chapter 5 zawiera informacje o wirtualnej pamięci i buforowaniu
+operacji dyskowych - o czym powinieneś pomyśleć.
+
+DwaTypyUrzadzen
+
+DyskiTwarde
+
+DyskietkiDyskietki
+
+CDMyslnikROMMyslnikY
+
+TasmyMagnetyczne
+
+FormatowanieNosnikow
+
+PartycjonowanieDyskow
+
+SystemPlikow
+
+DyskiBezSystemuPlikow
+
+AllokowaniePrzestrzeniDyskowej

@@ -1,0 +1,25 @@
+Oryginalny schemat partycjonowania szybko okazał się niewystarczający.
+Wielu ludzi chciało mieć więcej niż cztery systemy operacyjne na
+jednym dysku (Linux, MS-DOS, OS/2, Minix, FreeBSD, NetBSD, Windows/NT,
+itp.), również część ludzi chciała rozmieścić jeden system na kilku
+partycjach. Dla przykładu: w Linuksie swap ze względu wydajności
+umieszcza się na osobnej partycji (więcej poniżej).
+
+Aby ominąć te ograniczenia wymyślono partycje rozszerzone. Trik ten
+umożliwia dzielenie podstawowej partycji na podpartycje. Podstawowa
+partycja, która jest podzielona nazywa się partycją rozszerzoną;
+podpartycja nazywa się partycją logiczną . Zachowują się ^[1]^ jak
+zwykłe partycje, ale tworzone są w odmienny sposób. Nie istnieje
+różnica w prędkości.
+
+Struktura partycji mogłaby wyglądać następująco [8]Figure 4-2. Dysk
+podzielony jest na trzy partycje podstawowe, druga partycja jest
+podzielona na dwa dyski logiczne. Część dysku nie jest podzielona.
+Dysk oraz każda z partycji posiada rekord ładujący.
+
+Figure 4-2. Przykładowy podział dysku.
+
+http://sag.foo-baz.com/repos/imgs/hd-layout.png
+
+^[1]^
+Nie logicznie?

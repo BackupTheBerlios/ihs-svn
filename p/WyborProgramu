@@ -1,0 +1,28 @@
+Istnieje wiele programów do tworzenia kopii zapasowych. Tradycyjnymi
+programami do tego przeznaczonymi są: tar, cpio, dump. Wybór narzędzia
+może być podyktowany wybranym medium.
+
+tar i cpio są podobne. Oba programy potrafią zapisywać i odczytywać
+dane z taśm, do tego potrafią obsłużyć każde medium, z którym potrafi
+sobie poradzić jądro. Niektóre Unixowe wersje tara i cpio mogą mieć
+problemy z dziwnymi plikami ( dowiązaniami symbolicznymi, plikami
+urządzeń, itp. ), jednak Linuxowe wersje poradzą sobie z każdym
+plikiem.
+
+dump pracuje w sposób nieco odmienny niż powyższe programy - odczytuje
+pliki bezpośrednio z urządzenia, bez pośrednictwa systemu plików.
+Program został specjalnie napisany do tworzenia kopii zapasowych, tar
+i cpio powstały w celu archiwizowania danych.
+
+Bezpośrednie odczytywanie systemu plików ma pewne zalety - umożliwia
+odczytywanie plików bez zmiany ich znaczników czasowych; używając
+tara, lub cpio musiałbyś zamontować system w trybie wyłącznie do
+odczytu. Bezpośrednie odczytywanie systemu plików jest wydajniejsze
+przy kopiowaniu wszystkiego. Główną wadą takiego podejścia jest
+ograniczenie programu do jednego systemu plików; Linuxowy dump rozumie
+tylko i wyłącznie ext2.
+
+dump ma wbudowaną obsługę poziomów kopiowania (omówimy je w dalszej
+części); tar i cpio wymagają do tego dodatkowych narzędzi.
+
+Porównanie niestandardowych programów przekracza ramy tej książki.

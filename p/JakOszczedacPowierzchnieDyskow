@@ -1,0 +1,10 @@
+Najważniejsze jest aby nie instalować niepotrzebnych programów.
+Niektóre z pakietów da się okroić do danych potrzeb.
+
+Jeżeli nie możesz odinstalować programu rozwiązaniem może być
+kompresja. Programami do tego służącymi są np.: gzip, zip, bzip2.
+Program gzexe umożliwia kompresję programów i ich automatyczną
+dekompresję w razie potrzeby. System DouBle (w fazie tworzenia)
+kompresuje wszystkie pliki na danym systemie plików, czyni to w sposób
+niewidzialny dla użytkownika. (podstawa działania jest taka sama jak w
+programie Stacker dla MS-DOS)

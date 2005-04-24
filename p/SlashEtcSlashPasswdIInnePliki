@@ -1,0 +1,35 @@
+Podstawową bazą użytkowników w Uniksach jest plik textowy /etc/passwd
+(nazywany plikiem haseł), który zawiera wszystkich poprawnych
+użytkowników, oraz niektóre informacje o nich. Na jednego użytkownika
+przypada jedna linia zawierająca siedem, oddzielonych dwukropkami,
+pól:
+
+  * Nazwa użytkownika.
+  * Hasło w postaci zakodowanej.
+  * Numeryczny identyfikator użytkownika.
+  * Numeryczny identyfikator grupy.
+  * Imię i nazwisko, oraz dodatkowy opis użytkownika.
+  * Katalog domowy.
+  * Powłoka logowania (program uruchamiany po zalogowaniu się).
+
+Strona podręcznika dotycząca passwd zawiera więcej informacji.
+
+Każdy z użytkowników może odczytać plik haseł, a w ten sposób poznać
+nazwy innych użytkowników. Oznacza to, że hasła (w postaci
+zakodowanej) są dostępne dla wszystkich; teoretycznie nie powinno być
+to groźne. Niestety kodowanie można złamać, zwłaszcza gdy hasło jest
+słabe (jest zbyt krótkie, można je znaleźć w słowniku, lub, co gorsza,
+domyśleć się go). Dlatego, z czasem, hasła zostały przeniesione do
+osobnego pliku.
+
+Wiele systemów zaimplementowało system ukrytych haseł . Jest to
+alternatywna metoda przechowywania zakodowanych haseł, która używa
+plik /etc/shadow, który odczytywalny jest tylko przez roota.
+/etc/passwd zawiera specjalny znacznik oznaczający, że hasło znajduje
+się gdzieś indziej. Każdy program dokonujący autoryzacji użytkowników
+musi mieć ustawiony bit setuid. Normalne programy, które potrzebują
+innych pól, działają bez zmian. ^[1]^
+
+^[1]^
+Wszystkie informacje o użytkowniku znajdują się w pliku haseł, za
+wyjątkiem hasła :-)

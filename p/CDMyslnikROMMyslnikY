@@ -1,0 +1,42 @@
+Napęd CD-ROM opiera się na optycznym odczytywaniu nośnika, który
+najczęściej utworzony jest z plastyku, ^[1]^ w którym znajdują się
+małe zagłębienia, są one umieszczone na spirali zaczynającej się w
+środku płyty. Promień lasera trafiając na zagłębienie zostaje odbity w
+innym kierunku - w ten sposób rozpoznaje się bity. Reszta jest łatwa -
+zwykła mechanika.
+
+Napędy CD-ROM w porównaniu z dyskami twardymi są wolne. Przeciętny
+dysk twardy ma czas przeszukiwania wynoszący około 15 ms, szybki
+CD-ROM może potrzebować dziesiątych części sekundy aby odnaleźć
+informacje. Transfer jest na całkiem przyzwoitym poziomie, przy czym
+aktualnie spotyka się napędy z podaną maxymalną prędkością odczytu -
+np. 50x nie oznacza, że napęd uzyskuje taki wynik, jest to maxymalna
+wydajność napędu w sprzyjających warunkach - w określonej strefie
+płyty i przez określony czas. Powolność napędu oznacza, że zasadniczo
+nie może on zastąpić dysku twardego, jednakże jako medium instalacyjne
+ze 'startowalnym' systemem plików spisują się bardzo dobrze.
+
+Istnieje kilka sposobów organizacji danych na CD-ROM-ie. Najbardziej
+popularnym jest międzynarodowy standard ISO 9660. Standard ten opisuje
+system plików z ograniczeniami większymi niż w systemie FAT, z drugiej
+strony dzięki swej prostocie może być użyty przez każdy system
+operacyjny i przemapowany na dowolny system plików.
+
+Dla normalnego Unixowego wykorzystania ISO 9660 nie nadaje się,
+dlatego powstało rozszerzenie nazywane Rock Ridge. Format ten zezwala
+tworzyć pliki o długich nazwach, łącza symboliczne, i inne elementy
+spotykane na innych systemach plików używanych w Uniksie. Do tego Rock
+Ridge jest zgodny w dół - zawiera on poprawną strukturę ISO 9660.
+Linux obsługuje oba formaty, rozpoznaje je automatycznie.
+
+System plików to dopiero połowa sukcesu. Większość CD-ROM-ów zawiera
+dane wymagające specjalnych programów, przy czym większość z takich
+programów nie posiada odpowiedników Linuxowych - pozostaje dosemu
+(emulator DOS-a).
+
+Napęd CD-ROM posiada odpowiedni plik urządzenia, jego nazwa zależy od
+sposobu podłączenia np. via SCSI, kartę muzyczną czy EIDE. Więcej
+informacji znajduje się w liście sterowników
+
+^[1]^
+Wewnątrz plastyku znajduje się metalowy dysk.

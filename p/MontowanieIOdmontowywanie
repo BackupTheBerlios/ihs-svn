@@ -1,0 +1,166 @@
+Przed użyciem systemu plików należy go zamountować. System operacyjny
+sprawdza, niektóre części systemu plików w celu upewnienia się, że
+działa. Ponieważ w Unixie pliki przechowywane w jednym drzewie nowy
+system plików będzie tworzył zawartość jakiegoś katalogu.
+
+Dla przykładu: [7]Figure 4-3 pokazuje systemy plików, ich katalogi
+główne zostały zaznaczone. Montując ostatnie dwa systemy plików
+odpowiednio w katalogu /home i /usr, wszystko to na pierwszym systemie
+plików, otrzymamy spójne drzewo katalogów: [8]Figure 4-4.
+
+Figure 4-3. Trzy osobne systemy plików.
+
+http://sag.foo-baz.com/repos/imgs/hd-mount-separate.png
+
+Figure 4-4. /home i /usr zostały zamontowane.
+
+http://sag.foo-baz.com/repos/imgs/hd-mount-mounted.png
+
+Montowań można dokonać w sposób następujący:
+{{{
+$ mount /dev/hda2 /home
+$ mount /dev/hda3 /usr
+$
+}}}
+
+Pierwszy argument oznacza plik urządzenia zawierający system plików.
+Drugi argument to katalog, w którym należy zamontować zawartość
+urządzenia. Po zamontowaniu zawartość systemu plików podanego
+urządzenia staje się zawartością katalogu. Zauważ różnicę między
+urządzeniem /dev/hda2, a /home. Plik urządzenia umożliwia dostęp do
+surowych danych, natomiast, po zamontowaniu, katalog udostępnia te
+dane w postaci plików i katalogów. Katalog, do którego montujemy
+system plików nazywany jest punktem montowania.
+
+Linux obsługuje wiele systemów plików. mount próbuje odgadnąć typ
+systemu (co może mu się nie udać). Aby jawnie podać system plików
+należy posłużyć się opcją -t typ; Aby zamontować dyskietkę MS-DOS:
+{{{
+$ mount -t msdos /dev/fd0 /floppy
+$
+}}}
+
+Punkt montowania nie powinien zawierać plików - będą one niedostępne
+aż do odmontowania systemu plików (otwarte pliki będą nadal dostępne).
+Nie czyni to szkody, a czasami może być pożyteczne: załóżmy, że /tmp i
+/var/tmp są synonimami, niech /tmp będzie łączem symbolicznym do
+/var/tmp. Podczas startu systemu, przed zamontowaniem /var, katalog
+/var/tmp znajdujący się na głównym systemie plików jest używany.
+Montując /var przesłaniamy /var/tmp. Jeżeli /var/tmp nie istniałby na
+głównym systemie plików nie możnaby tworzyć plików tymczasowych przez
+zamontowaniem /var.
+
+Jeżeli nie zamierzasz zmieniać systemu plików użyj opcji -r - w ten
+sposób zamontujesz go w trybie wyłącznie do odczytu. Jądro odrzuci
+wszelkie próby zapisu , oraz nie będzię aktualizować czasu dostępu do
+iwęzłów. Montowanie w trybie wyłącznie-do-odczytu jest niezbędne dla
+niezapisywalnych mediów (np. CD-ROM-ów).
+
+Uważny czytelnik zapewne zauważył pewnien logiczny problem. Jak można
+zamontować pierwszy system plików (nazywany głównym, skoro nie można
+go zamontować jako podkatalog innego? Cóż, dzieje się tak za sprawą
+magii. ^[1]^ Główny system plików jest magicznie montowany w czasie
+starty systemu. Jeżeli nie może zostać zamontowany system nie uruchomi
+się. Nazwa pierwszego systemu plików jest albo wkompilowana w jądro,
+albo ustawiona za pomocą LILO, lub rdev.
+
+Główny system plików jest najczęściej montowany jako
+wyłącznie-do-odczytu. Później skrypt startowy uruchamia fsck w celu
+walidacji poprawności, jeżeli nie wykryto błędów system plików zostaje
+przemontowany do trybu zapisywalnego. fsck nie może być uruchamiany na
+zamontowanym systemie plików ponieważ wszelkie poczynione zmiany
+spowodowałyby wadliwą pracę tego programu i prawdopodobną utratę
+danych. Jednakże system plików znajduje się w trybie tylko-do-odczytu
+i fsck może go zmieniać, operacja przemontowywania usunie z pamięci
+wszelkie poczynione zmiany i nie dojdzie do uszkodzenia systemu
+plików.
+
+W wielu systemach używa się kilku systemów plików, które powinny
+zostać zamontowane automatycznie podczas startu systemu. Podaje je się
+w pliku /etc/fstab (zobacz stronę odpowiednią stronę podręcznika).
+Dokładne szczegóły dotyczące tego procesu mogą się różnić - są zależne
+od administratora, zobacz sekcję [10]Chapter 6.
+
+Jeżeli system plików nie jest już potrzeby należy go odmontować
+poleceniem umount. ^[2]^ umount potrzebuje jednego argumentu -
+systemu plików. Oto jak odmontować systemu plików zamontowane w
+poprzednim przykładzie:
+{{{
+$ umount /dev/hda2
+$ umount /usr
+$
+}}}
+
+Zobacz odpowiednią stronę podręcznika. Należy pamiętam, że należy
+odmontować system plików przed wyciągnięciem jego nośnika (np.
+dyskietki). Nie wyciągaj dyskietki bez jej odmontowania! Informacje
+zapisywane są w odpowiednich buforach, w pamięci i tylko co jakiś czas
+następuje aktualizacja, wyciągając dyskietkę w najlepszym przypadku
+stracisz dane, w najgorszym zniszczysz system plików.
+
+Montowanie i odmontowywanie wymaga przywilejów superużytkownika. W ten
+sposób użytkownik nie może wprowadzić 'brzydkiego' programu. Zdarza
+się, że niektórym użytkownikom należy udostępnić napęd dyskietek,
+istnieje na to kilka sposobów:
+
+  * Dać im hasło roota. Oczywiście stanowi to zagrożenie
+    bezpieczeństwa systemu, ale jest nałatwiejszym wyjściem. Jest to
+    dobre wyjście na domowych komputerach.
+
+  * Skorzystać z programu sudo aby umożliwić użytkownikom uruchamianie
+    programu mount. Ciągle jest dziura w bezpieczeństwie, choć nie
+    daje bezpośredniego dostępu do roota. ^[3]^
+
+  * Pozwolić użytkownikom korzystać z pakietu mtools(programy
+    manipulujące dyskietkami MS-DOS bez potrzeby montowania).
+
+  * Wstawić odpowiednie wpisy do pliku /etc/fstab.
+
+Ostatnia alternatywa może zostać zaimplementowana poprzez wstawienie
+następującej linijki do pliku /etc/fstab:
+{{{
+/dev/fd0            /floppy      msdos   user,noauto      0     0
+}}}
+
+Kolumny oznaczają: plik urządzenia, punkt montowania, typ systemu
+plików, opcje, częstotliwość tworzenia kopii bezpieczeństwa (używane
+przez dump) i numer dla fsck oznaczający kolejność sprawdzania (aby
+podać kolejność sprawdzania, 0 oznacza jego brak).
+
+Opcja noauto powstrzymuje mount od automatycznego montowania podczas
+startu systemu (wykonywania mount -a). Opcja user oznacza, że każdy
+użytkownik ma prawo zamontować system plików oraz, że użytkownik nie
+ma prawa uruchamiać programów znajdujących się na tym systemie plików,
+oraz wyłącza interpretacje plików urządzeń. Po takich zmianach każdy
+użytkownik może zamontować dyskietkę zawierającą system plików FAT:
+{{{
+$ mount /floppy
+$
+}}}
+
+Dyskietka musi zostać odmontowana za pomocą polecenia umount.
+
+Jeżeli chcesz udostępnić możliwość korzystania z dyskietek różnych
+typów musisz wstawić odpowiednie linijki, oraz stworzyć kilka puntków
+montowania. Dla przykładu:
+{{{
+/dev/fd0    /mnt/dosfloppy    msdos   user,noauto  0  0
+/dev/fd0    /mnt/ext2floppy   ext2    user,noauto  0  0
+}}}
+
+Dla systemu plików MS-DOS-a zapewne chcesz zablokować pozostałym
+dostęp do dyskietki - umożliwia to połączenie opcji: uid, gid i umask
+(więcej znajduje się w podręczniku dotyczącym mount). Jeżeli jesteś
+nieostrożny, zamontowanie takiej dyskietki umożliwi skorzystanie z
+niej każdemu, co nie jest dobrym pomysłem.
+
+^[1]^
+Więcej informacji znajdziesz w Kernel Hacker's Guide.
+
+^[2]^
+Oczywiście powinno być unmount, jednakże n zniknęło w latach 70 i nie
+powróciło od tamtego czasu. Znalezione proszę zwrócić Laboratoriom
+Bella, NJ.
+
+^[3]^
+Musisz zastanowić się co mógłbyś zrobić będąc użytkownikiem.

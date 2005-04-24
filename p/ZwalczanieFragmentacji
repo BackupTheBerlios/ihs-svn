@@ -1,4 +1,5 @@
 ........Podczas bleble zdzis często zdarza się, że nie można go
+Podczas zapisu pliku na dysku często zdarza się, że nie można go
 zapisać w jednym miejscu. Plik, który nie jest przechowywany w
 kolejnych blokach nazywa się sfragmentowanym. Odczytanie takiego pliku
 trwa dłużej ponieważ głowica musi przemieścić się więcej razy.
@@ -19,4 +20,3 @@ stworzyć kopię zapasową systemu plików, stworzyć nowy, po czym
 odtworzyć dane z kopii zapasowej. Dobrze jest tworzyć kopie zapasowe
 przed defragmentacją   - nie wiadomo czy coś nie pójdzie źle.
 
-TARATATATATATATA

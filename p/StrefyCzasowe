@@ -1,3 +1,5 @@
+<<<<<<< .mine
+Zmiana #1
 Mierzenie czasu opiera się na, zasadniczo regularnym, fenomenie
 przyrody - dniu i nocy. Totalny czas trwania obu jest stały, jednakże
 poszczególne okresy mają zmienną długość. Jedną z prostych stałych
@@ -42,4 +44,49 @@ tym nie trzeba przejmować się czasem.
 
 ^[1]^
 Według najnowszych odkryć.
-test
+=======
+Mierzenie czasu opiera się na, zasadniczo regularnym, fenomenie
+przyrody - dniu i nocy. Totalny czas trwania obu jest stały, jednakże
+poszczególne okresy mają zmienną długość. Jedną z prostych stałych
+jest południe.
+
+Południe to czas dnia, w którym Słońce jest w najwyższej pozycji.
+Ponieważ Ziemia jest okrągła, ^[1]^ południe następuje w różnych
+miejscach o różnych porach. To doprowadziło do powstania lokalnego
+czasu. Ludzie mierzą czas w wielu jednostkach, z których większość
+podporządkowana jest naturalnym zjawiskom, np. takim jak południe.
+Pozostając w jednym miejscu nie zauważasz różnicy lokalnego czasu.
+
+Chcąc porozumiewać się na duże odległości musisz ustalić wspólny czas.
+Czas ten nazywa się uniwersalnym (UT, lub UTC, właściwe Czas
+Greenwich, lub GMT, ponieważ był to czas lokalny Greenwich w Anglii).
+W ten sposób ludzie mogą wyrażać czas we wspólnej jednostce
+niezależnej od ich położenia.
+
+Każdy lokalny czas nazywany jest strefą czasową. Geograficy mogliby
+ustalić południe we wszystkich miejscach o tej samej porze, jednak
+politycy nie. Z wielu powodów w wielu krajach używa się czasu letniego
+i zimowego, co oznacza, że w określonym momencie przestawia się zegary
+aby pracować przy świetle dziennym (robi się to na wiosnę i zimę).
+Niektóre kraje nie przyjęły takiego schematu, do tego te które go
+przyjęły zmieniają zasady przesuwania z roku na rok, w ten sposób
+czyniąc konwersję stref trudnym zadaniem.
+
+Strefy czasowe określa się nazwą położenia lub różnicą od czasu GMT. W
+USA i innych krajach lokalne strefy posiadają nazwy i 3 literowe
+skróty. Skróty nie są unikalne, więc nie powinny być używane bez nazwy
+kraju. Lepiej określać czas jako, powiedzmy, Helsiński, niż Europy
+zachodniej, gdyż nie wszystkie kraje w Europie zachodniej
+przestrzegają te same reguły.
+
+Linux ma specjalny pakiet znający wszystkie istniejące strefy, który
+może być łatwo zaktualizowany. Każdy administrator musi wybrać
+odpowiednią strefę czasową. Do tego, każdy użytkownik może ustawić
+swoją własną strefę; jest to ważne gdyż poprzez sieci rozległe na
+jednym komputerze mogą pracować ludzie z różnych zakątków świata. W
+przypadku zmiany ustawień stref należy zaktualizować swój zestaw, poza
+tym nie trzeba przejmować się czasem.
+
+^[1]^
+Według najnowszych odkryć.
+test>>>>>>> .r61

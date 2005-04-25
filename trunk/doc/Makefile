@@ -21,13 +21,16 @@ doc-html:
 	done
 
 doc-rtf:
-	cp -f src/arch.en.png rtf
-	cp -f src/GPL.txt rtf
-	cp -f src/stylesheet.css rtf
-	(cd rtf/ && env SGML_CATALOG_FILES=/usr/local/share/sgml/catalog \
-	openjade -t rtf -i output-print -d ../src/stylesheet.dsl \
-	/usr/local/share/sgml/docbook/dsssl/modular/dtds/decls/xml.dcl \
-	../src/index.xml ) || exit 1
+	for l in $(LANGS) ; do \
+		./insert_code.pl $$l.src .xml ; \
+		cp -f $$l.src/stylesheet.css $$l.rtf ; \
+		(cd $$l.rtf/ && env SP_ENCODING=ISO-8859-2 \
+		SGML_CATALOG_FILES=/usr/local/share/sgml/catalog \
+		openjade -t rtf -i output-print -d ../$$l.src/stylesheet.dsl \
+		/usr/local/share/sgml/docbook/dsssl/modular/dtds/decls/xml.dcl \
+		../$$l.src/index.xml ) || exit 1 ; \
+		mv $$l.src/index.rtf $$l.rtf/ ; \
+	done
 
 all: 
 

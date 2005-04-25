@@ -73,6 +73,7 @@
 
 (define (biblioentry-inline-elements)
   (list
+   (normalize "abbrev")
    (normalize "author")
    (normalize "authorgroup")
    (normalize "title")

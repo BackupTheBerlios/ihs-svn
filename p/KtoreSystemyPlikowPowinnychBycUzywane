@@ -1,6 +1,0 @@
-Zazwyczaj bezsensownym jest używanie kilku typów systemów plików.
-Aktualnie ext3 jest najpopularniejszym i prawdopodobnie stanowi
-najlepszy wybór. Zależnie od miejsca zużywanego przez sam system
-plików, prędkości, pewności działania, kompatybilności i innych
-powodów można wybrać inny system plików. Każdy przypadek wymaga
-oddzielnego podejścia.

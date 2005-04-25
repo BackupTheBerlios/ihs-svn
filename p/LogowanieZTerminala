@@ -1,9 +1,0 @@
-Logowanie z terminala (via łącza szeregowe) oraz konsolę (jeżeli X nie
-działa) obsługiwane jest przez program getty. init dla każdego z
-terminali uruchamia osobny proces getty. getty odczytuje nazwę
-użytkownika po czym uruchamia program login, który odczytuje hasło.
-Jeżeli nazwa użytkownika i hasło są poprawne, login uruchomi powłokę.
-Po zakończeniu pracy powłoki (wylogowaniu się użytkownika), lub w
-przypadku niezgadzającego się hasła init uruchomi nowy proces getty.
-Jądro nie wie co to "logowanie się", jest to zależne od programów
-systemowych.

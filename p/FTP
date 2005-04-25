@@ -1,1 +1,0 @@
-Protokół służący do transferu plików. Mało bezpieczny ze względu na to, że wysyła hasło uzywając czystego tekstu łatwego do przechwycenia.

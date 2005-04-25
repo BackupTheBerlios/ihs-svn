@@ -1,5 +1,0 @@
-Pamięć wirtualna wbudowana jest w wiele systemów operacyjnych.
-Ponieważ jest ona potrzebna tylko w czasie ich pracy (nigdy w tym
-samym czasie) możnaby ją współdzielić. Jest to możliwe, jednak wymaga
-pewnych specjalnych zabiegów. Więcej informacji znajduje się w
-Tips-HOWTO.

@@ -1,7 +1,7 @@
 <HTML
 ><HEAD
 ><TITLE
->Current system, requirements analize</TITLE
+>User requirements</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.72
@@ -9,12 +9,15 @@ CONTENT="Modular DocBook HTML Stylesheet Version 1.72
 REL="HOME"
 TITLE="Incredible hosting system"
 HREF="index.html"><LINK
+REL="UP"
+TITLE="Current system, requirements analize"
+HREF="current.html"><LINK
 REL="PREVIOUS"
-TITLE="Introduction"
-HREF="intro.html"><LINK
+TITLE="Current system, requirements analize"
+HREF="current.html"><LINK
 REL="NEXT"
-TITLE="User requirements"
-HREF="current.req.user.html"><LINK
+TITLE="Bibliography"
+HREF="biblio.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
@@ -23,7 +26,7 @@ CONTENT="2005-05-10T00:33:32"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
-CLASS="chapter"
+CLASS="section"
 BGCOLOR="#FFFFFF"
 TEXT="#000000"
 LINK="#0000FF"
@@ -49,7 +52,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="intro.html"
+HREF="current.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -57,13 +60,13 @@ ACCESSKEY="P"
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
-></TD
+>Chapter 2. Current system, requirements analize</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="current.req.user.html"
+HREF="biblio.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
@@ -73,139 +76,21 @@ ACCESSKEY="N"
 ALIGN="LEFT"
 WIDTH="100%"></DIV
 ><DIV
-CLASS="chapter"
-><H1
-><A
-NAME="current"
->Chapter 2. Current system, requirements analize</A
-></H1
-><DIV
-CLASS="TOC"
-><DL
-><DT
-><B
->Table of Contents</B
-></DT
-><DT
->2.1. <A
-HREF="current.html#current.req.biz"
->Buissines requirements</A
-></DT
-><DT
->2.2. <A
-HREF="current.req.user.html"
->User requirements</A
-></DT
-></DL
-></DIV
-><P
->&#13;			Because thesis subject is a modernization of existing system
-			current system should be described first. System was created
-			as a bachelor thesis of Pawe³ Niewiadomski, subject was 
-			"Free e-mail hosting". During that project software was 
-			created that offered users basic functionality of such system. 
-		</P
-><P
->&#13;			Users were able to create, remove and configure basic 
-			options throught <I
-CLASS="glossterm"
->WWW</I
-> pages.
-			Options offered were comparable to other similar systems,
-			ie. it was possible to setup mail redirection, automatic
-			responses. Access to e-mails stored within server
-			was possible througth standard <I
-CLASS="glossterm"
->POP3</I
-> protocol
-			and WWW site.
-		</P
-><P
->&#13;			Administrator was able, throught WWW, to see basic
-			statistics, to modify existing accounts. Project didn't
-			include advanced configuration options for administrators. Main 
-			aim was to create system that users were able to use.
-			This way system created could be maintained only by
-			experienced administrators.
-		</P
-><P
->&#13;			On a base of e-mail system there was designed and created 
-			hosting system with additional functions as managing
-			users' WWW sites, configuration of those sites via WWW.
-			Users gained also an ability to see statistics of their
-			own sites registered within system. There was still lack
-			of tools for administrators. Some options were not implemented
-			because of short time and costs reduction.
-		</P
-><P
->&#13;			Basic technical informations about previous system:
-			<P
-></P
-></P><UL
-><LI
-><P
->&#13;						Operating system: Linux, Slackware distribution
-					</P
-></LI
-><LI
-><P
->&#13;						WWW server: Apache 1.3
-					</P
-></LI
-><LI
-><P
->&#13;						<I
-CLASS="glossterm"
->FTP</I
-> server: ProFTPD
-					</P
-></LI
-><LI
-><P
-><I
-CLASS="glossterm"
->MTA</I
->: Qmail+Virtual Qmail</P
-></LI
-><LI
-><P
->Main database: PostgreSQL</P
-></LI
-><LI
-><P
->Databases for users: MySQL, PostgreSQL</P
-></LI
-></UL
-><P>
-			Main application was written mainly in C++, some parts also
-			in PHP and PERL, shell scripts. For full description 
-			see NIE-2002.
-		</P
-><P
->&#13;			One of major drawbacks of created system was that it was
-			only a single setup, it was not flexible enough.
-			to support different needs of administrators. Installation
-			process was really hard. That's why main goal of this 
-			thesis is a modernization of existing system to comply with
-			following requirements. Some requirements are already
-			implemented, they are marked.
-		</P
-><DIV
 CLASS="section"
 ><H1
 CLASS="section"
 ><A
-NAME="current.req.biz"
->2.1. Buissines requirements</A
+NAME="current.req.user"
+>2.2. User requirements</A
 ></H1
 ><DIV
 CLASS="table"
 ><A
-NAME="tab.req.biz"
+NAME="tab.req.user"
 ></A
 ><P
 ><B
->Table 2-1. Buissines requirements</B
+>Table 2-2. User requirements</B
 ></P
 ><TABLE
 BORDER="1"
@@ -240,56 +125,12 @@ VALIGN="MIDDLE"
 WIDTH="9%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->WB-1</TD
+>WU-1</TD
 ><TD
 WIDTH="64%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->Mailbox for users</TD
-><TD
-WIDTH="18%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->1</TD
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->1</TD
-></TR
-><TR
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->WB-2</TD
-><TD
-WIDTH="64%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->Users' WWW sites</TD
-><TD
-WIDTH="18%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->1</TD
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->1</TD
-></TR
-><TR
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->WB-3</TD
-><TD
-WIDTH="64%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->Free and comercials accounts can coexist at the same time</TD
+>User may register an account for himself (depends on system's configuration)</TD
 ><TD
 WIDTH="18%"
 ALIGN="LEFT"
@@ -306,100 +147,12 @@ VALIGN="MIDDLE"
 WIDTH="9%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->WB-4</TD
+>WU-2</TD
 ><TD
 WIDTH="64%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->Payments throught Internet</TD
-><TD
-WIDTH="18%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->0</TD
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->1</TD
-></TR
-><TR
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->WB-5</TD
-><TD
-WIDTH="64%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->Commercial accounts which users didn't pay for must be removed after trial period (or validity period)</TD
-><TD
-WIDTH="18%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->0</TD
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->1</TD
-></TR
-><TR
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->WB-6</TD
-><TD
-WIDTH="64%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->Payments are not only for creating accounts but also for extending limits such as: transfer limit, quota, etc.</TD
-><TD
-WIDTH="18%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->0</TD
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->1</TD
-></TR
-><TR
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->WB-7</TD
-><TD
-WIDTH="64%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->For all commercial services there is 14 days trial period</TD
-><TD
-WIDTH="18%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->0</TD
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->1</TD
-></TR
-><TR
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->WB-8</TD
-><TD
-WIDTH="64%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->Commerial users have money back guarantee within 30 days after first payment (quality or money back guarantee).</TD
+>It's possible to limit services that user can use</TD
 ><TD
 WIDTH="18%"
 ALIGN="LEFT"
@@ -416,12 +169,34 @@ VALIGN="MIDDLE"
 WIDTH="9%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->WB-9</TD
+>WU-3</TD
 ><TD
 WIDTH="64%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->For all payments there is a possibility to order tax document</TD
+>User may remove his/her account</TD
+><TD
+WIDTH="18%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>0</TD
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>1</TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>WU-4</TD
+><TD
+WIDTH="64%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>User may resign from services that he/she used (ie. remove WWW site)</TD
 ><TD
 WIDTH="18%"
 ALIGN="LEFT"
@@ -438,12 +213,144 @@ VALIGN="MIDDLE"
 WIDTH="9%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->WB-10</TD
+>WU-5</TD
 ><TD
 WIDTH="64%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->For commercial accounts removed after 30 days of trial period money are not returned</TD
+>User has access to statistics for services he/she uses</TD
+><TD
+WIDTH="18%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>1</TD
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>1</TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>WU-6</TD
+><TD
+WIDTH="64%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>User is allowed to configure services related to his/her account</TD
+><TD
+WIDTH="18%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>1</TD
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>1</TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>WU-7</TD
+><TD
+WIDTH="64%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>User's account can be registered without any services connected to it</TD
+><TD
+WIDTH="18%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>0</TD
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>1</TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>WU-8</TD
+><TD
+WIDTH="64%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>English and Polish interface will be registered</TD
+><TD
+WIDTH="18%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>0</TD
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>1</TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>WU-10</TD
+><TD
+WIDTH="64%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>E-mail service allows users to send and receive e-mails, user's e-mail address is given by user</TD
+><TD
+WIDTH="18%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>0</TD
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>1</TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>WU-11</TD
+><TD
+WIDTH="64%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>WWW service means virtual server for WWW pages that is maintained by user</TD
+><TD
+WIDTH="18%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>0</TD
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>1</TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>WU-12</TD
+><TD
+WIDTH="64%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>Subversion service means Subversion repository created for user</TD
 ><TD
 WIDTH="18%"
 ALIGN="LEFT"
@@ -460,12 +367,34 @@ VALIGN="MIDDLE"
 WIDTH="9%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->WB-11</TD
+>WU-13</TD
 ><TD
 WIDTH="64%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->Interface language can be chosen</TD
+>It is possible to recover lost password for an account or a service</TD
+><TD
+WIDTH="18%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>0</TD
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>2</TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>WU-14</TD
+><TD
+WIDTH="64%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>User may use many services of the same type</TD
 ><TD
 WIDTH="18%"
 ALIGN="LEFT"
@@ -482,12 +411,12 @@ VALIGN="MIDDLE"
 WIDTH="9%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->WB-12</TD
+>WU-15</TD
 ><TD
 WIDTH="64%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->E-mail is user's identificator</TD
+>Database service means separate database created for user</TD
 ><TD
 WIDTH="18%"
 ALIGN="LEFT"
@@ -497,33 +426,10 @@ VALIGN="MIDDLE"
 WIDTH="9%"
 ALIGN="LEFT"
 VALIGN="MIDDLE"
->1</TD
-></TR
-><TR
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->WB-13</TD
-><TD
-WIDTH="64%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->When user creates account in system without creating e-mail service given address must be verified</TD
-><TD
-WIDTH="18%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->0</TD
-><TD
-WIDTH="9%"
-ALIGN="LEFT"
-VALIGN="MIDDLE"
->1</TD
+>2</TD
 ></TR
 ></TBODY
 ></TABLE
-></DIV
 ></DIV
 ></DIV
 ><DIV
@@ -542,7 +448,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="intro.html"
+HREF="current.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -560,7 +466,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="current.req.user.html"
+HREF="biblio.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
@@ -570,17 +476,21 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Introduction</TD
+>Current system, requirements analize</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="current.html"
+ACCESSKEY="U"
+>Up</A
+></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->User requirements</TD
+>Bibliography</TD
 ></TR
 ></TABLE
 ></DIV

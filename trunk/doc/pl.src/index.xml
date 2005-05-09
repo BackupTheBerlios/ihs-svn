@@ -120,7 +120,11 @@
 
 			<table frame="all" id="tab.req.biz">
 				<title>Wymagania biznesowe</title>
-				<tgroup cols="3">
+				<tgroup cols="4">
+					<colspec colwidth="1*"/>
+					<colspec colwidth="7*"/>
+					<colspec colwidth="2*"/>
+					<colspec colwidth="1*"/>
 					<thead>
 						<row>
 							<entry>Id.</entry>
@@ -218,7 +222,11 @@
 
 			<table frame="all" id="tab.req.user">
 				<title>Wymagania u¿ytkownika</title>
-				<tgroup cols="3">
+				<tgroup cols="4">
+					<colspec colwidth="1*"/>
+					<colspec colwidth="7*"/>
+					<colspec colwidth="2*"/>
+					<colspec colwidth="1*"/>
 					<thead>
 						<row>
 							<entry>Id.</entry>
@@ -305,6 +313,12 @@
 							<entry>U¿ytkownik mo¿e korzystaæ z wielu us³ug tego samego typu</entry>
 							<entry>0</entry>
 							<entry>1</entry>
+						</row>
+						<row>
+							<entry>WU-15</entry>
+							<entry>Us³uga baza danych polega na za³o¿eniu dla u¿ytkownika bazy danych</entry>
+							<entry>0</entry>
+							<entry>2</entry>
 						</row>
 					</tbody>
 				</tgroup>

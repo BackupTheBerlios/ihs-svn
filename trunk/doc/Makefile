@@ -1,6 +1,5 @@
 BASE=..
 LANGS=pl en
-JADE?=openjade
 
 .PHONY: all all-doc clean subdirs
 
@@ -12,21 +11,26 @@ include $(BASE)/Makefile.common
 doc-html:
 	for l in $(LANGS) ; do \
 		./insert_code.pl $$l.src .xml ; \
-		(cd $$l.html/ && env SGML_CATALOG_FILES=/usr/local/share/sgml/catalog \
+		(cd $$l.html/ && env SGML_CATALOG_FILES=$(JADE_CATALOG) \
 		openjade -t sgml -i output-html -d ../$$l.src/stylesheet.dsl \
-		/usr/local/share/sgml/docbook/dsssl/modular/dtds/decls/xml.dcl \
+		$(JADE_XML_DCL) \
 		../$$l.src/index.xml ) || exit 1 ; \
 		cp -f $$l.src/stylesheet.css $$l.html ; \
 		(cd $$l.html && ../mime-type.sh) || exit 1; \
 	done
+	(cd desspec/ && env SGML_CATALOG_FILES=$(JADE_CATALOG) \
+	openjade -t sgml -i output-html -d ../en.src/stylesheet.dsl \
+	$(JADE_XML_DCL) \
+	desspec.xml ) || exit 1 ;
+	(cd desspec && ../mime-type.sh) || exit 1;
 
 doc-rtf:
 	for l in $(LANGS) ; do \
 		./insert_code.pl $$l.src .xml ; \
 		(cd $$l.rtf/ && env SP_ENCODING=ISO-8859-2 \
-		SGML_CATALOG_FILES=/usr/local/share/sgml/catalog \
+		SGML_CATALOG_FILES=$(JADE_CATALOG) \
 		openjade -t rtf -i output-print -d ../$$l.src/stylesheet.dsl \
-		/usr/local/share/sgml/docbook/dsssl/modular/dtds/decls/xml.dcl \
+		$(JADE_XML_DCL) \
 		../$$l.src/index.xml ) || exit 1 ; \
 		mv $$l.src/index.rtf $$l.rtf/ ; \
 	done

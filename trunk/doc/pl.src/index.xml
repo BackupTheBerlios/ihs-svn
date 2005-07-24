@@ -84,9 +84,9 @@
 		<para>
 			IHS stanowiæ ma platformê do implementacji i 
 			wdra¿ania systemów pocztowych czy hostingowych w ró¿nych
-			¶rodowiskach - ma³ych i ¶rednich firm potrzebuj±cych
+			¶rodowiskach - ma³ych i ¶rednich firmach potrzebuj±cych
 			¶rodowiska do zarz±dzania kontami dla swoich pracowników,
-			do firm realizuj±cych us³ugi oparte na systemie dla
+			firmach realizuj±cych us³ugi oparte na systemie dla
 			wszystkich zainteresowanych - niezale¿nie czy to bêd±
 			us³ugi p³atne czy darmowe.
 		</para>
@@ -96,7 +96,7 @@
 			i integracji wielu istniej±cych programów, nale¿y m.in.
 			po³±czyæ takie systemy jak: serwer WWW, agent pocztowy,
 			serwer FTP, bazy danych. Zale¿nie od wymagañ musi istnieæ
-			mo¿liwo¶æ integracji systemu z innych aplikacjami
+			mo¿liwo¶æ integracji systemu z innymi aplikacjami
 			dzia³aj±cymi w ¶rodowisku, w którym bêdzie on wdra¿any.
 		</para>
 
@@ -154,7 +154,7 @@
 
 		<para>
 			Wykorzystywane bêd± równie¿ inne aplikacje
-			bez których realizacja projektu by³aby mo¿liwa,
+			bez których realizacja projektu by³aby niemo¿liwa,
 			powy¿sza lista zawiera te najwa¿niejsze, tworz±ce
 			j±dro systemu.
 		</para>
@@ -173,12 +173,169 @@
 		</para>
 	</chapter>
 
-	<chapter>
+	<chapter id="considerations">
 		<title>Rozwa¿ania projektowe</title>
 
 		<para>
+			Rozdzia³ zawiera istotne decyzje, sprawy do rozwi±zania
+			w trakcie realizacji projektu.
 		</para>
+
+		<section id="cons.rel">
+			<title>Oprogramowanie i sprzêt</title>
+			<para>
+				Podstaw± IHS bêdzie stanowi³ system operacyjny kompatybilny
+				z Uniksem, w tym wypadku domy¶lnie bêdzie to Linux. Docelowo
+				wspierane bêd± równie¿ takie systemy jak OpenBSD (rodzina *BSD),
+				Solaris. Wykorzystywane bêd± dwie dystrybucje Linuksa - SuSe
+				oraz Fedora Core. S± to jedna z najpopularniejszych
+				dystrybucji, czêsto u¿ywane s± na serwerach.
+			</para>
+
+			<para>
+				IHS opiera³ siê bêdzie o takie elementy jak serwer WWW,
+				serwer aplikacji J2EE, MTA, serwer FTP. Zak³adana jest 
+				mo¿liwo¶æ wymiany ka¿dej z aplikacji odpowiedzialnych
+				za poszczególne funkcje - dlatego projekt bêdzie musia³
+				byæ modularny, z wymiennymi, kompatybilnymi ze sob±
+				czê¶ciami.
+			</para>
+			
+			<para>
+				Poniewa¿ jedyn± dostêpn± w czasie realizacji projektu,
+				platform± sprzêtow± jest x86 projekt bêdzie realizowany w oparciu o ni±.
+				Nie wykluczone jest natomiast u¿ywanie systemu na
+				innych architekturach. Poniewa¿ na serwerach coraz
+				czê¶ciej wykorzystywane s± procesory IA-64 warto by³oby
+				jak najszybciej przygotowywaæ system w wersji na t±
+				architekturê.
+			</para>
+		</section>
+
+		<section id="cons.users">
+			<title>U¿ytkownicy docelowi</title>
+
+			<para>
+				Docelowymi grupami u¿ytkowników s±:
+				<itemizedlist>
+					<listitem>
+						<para>
+							normalni u¿ytkownicy - nie posiadaj±, lub posiadaj±
+							znikom± wiedzê na temat funkcjonowania systemu, 
+							zainteresoany s± tylko wykorzystaniem
+							¶wiadczonych przez system us³ug, wiedza
+							informatyczna nie jest od nich wymagana; najmniejsze
+							uprawnienia;
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							administratorzy domen - posiadaj± wiedzê
+							na temat opcji oferowanych przez system,
+							ich wykorzystywania w zakresie prowadzonej
+							przez nich dzia³alno¶ci, zainteresowani
+							s± wykorzystywaniem us³ug udostêpnianych przez
+							serwer oraz ich podstawow± konfiguracj± (w³±czanie,
+							wy³±czanie, itp.), wiedza informatyczna nie jest
+							od nich wymagana; uprawnienia poszerzone o zarz±dzanie
+							us³ugami zwi±zanymi z zarz±dzan± domen±;
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							administratorzy systemu - posiadaj± wiedzê
+							na temat ¶rodowiska w jakim pracuje
+							IHS,  instalacji oraz konfiguracji
+							oprogramowania w tym ¶rodowisku, wymagana
+							jest podstawowa znajomo¶æ wykorzystywanego
+							przez IHS oprogramowania (np. instalacja
+							wymaganych programów), znajomo¶æ systemu IHS;
+							posiadaj± nieograniczone prawa;
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							programi¶ci - posiadaj± wiedzê na temat
+							funkcji oferowanych przez IHS, 
+							architektury systemu, wykorzystywanych
+							baz danych, opcji konfiguracyjnych, protoko³ó³
+							komunikacyjnych, udostêpnianego API; znajomo¶æ
+							informacji takich jak system operacyjny danej
+							instalacji, wykorzystywane programy powinny
+							byæ dla nich bez znaczenia; nie stanowi± bezpo¶rednich
+							u¿ytkowników systemu;
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
+
+			<para>
+				Ka¿da z grup u¿ytkowników musi byæ dynamicznie
+				rozpoznawana. Jedna instalacja IHS musi byæ
+				w stanie obs³u¿yæ ka¿dy rodzaj u¿ytkownika, na podstawie
+				informacji przekazywanych od niego ustalana jest
+				przynale¼no¶æ do danej grupy oraz adaptowane s± 
+				udostêpniane funkcje. Powinna istnieæ równie¿ mo¿liwo¶æ
+				limitowania dostêpu do danej instalacji tylko do
+				u¿ytkowników wybranej grupy.
+			</para>
+		</section>
+
+		<section id="cons.constraints">
+			<title>Podstawowe za³o¿enia</title>
+
+			<para>
+			</para>
+		</section>
+
+		<section id="cons.todo">
+			<title>???</title>
+		<para>
+			Najwa¿niejsz± kwesti± pozostaje projet integracji wszystkich
+			systemów, wspó³zale¿no¶ci miêdzy nimi. Nale¿y opracowaæ
+			zakres opcji mo¿liwych do wykonania za pomoc±
+			panelu administracyjnego.
+		</para>
+
+		<para>
+			Rozwi±zaæ nale¿y równie¿ problem domy¶lnej implementacji
+			J2EE, która bêdzie u¿ywana w czasie realizacji projektu.
+			Jednym z popularniejszych serwerów aplikacji jest JBoss, z kolei
+			serwer Suna posiada lepsz± darmow± dokumentacjê. Co w przypadku
+			tak z³o¿onego systemu mo¿e byæ bardzo przydatne. Istnieje
+			równie¿ mo¿liwo¶æ wykorzystania innych serwerów aplikacji.
+		</para>
+
+		<para>
+			Wa¿nym aspektem systemu dla administratorów, którzy bêd±
+			stanowiæ grupê docelow± jest sposób instalacji. Powinna ona
+			byæ elastyczna i ³atwa. Prawdopodobnie wykorzystany
+			zostanie program RPM, jednak¿e istniej± alternatywy, które
+			warto sprawdziæ.
+		</para>
+
+		<para>
+			Pozostaje do rozwi±zania kwestia ³±czenia panelu administracyjnego
+			z istniej±c± infrastruktur± - czyli serwisami czy aplikacjami WWW,
+			do których zostanie panel do³±czony.
+		</para>
+
+		<para>
+			Kolejn± kwesti± do rozwi±zania jest ilo¶æ opcji dostêpnych
+			w pierwszej wersji systemu - nale¿y umiejêtnie dobraæ
+			zakres funkcji oferowanych tak aby mo¿liwie szybko by³o mo¿na
+			udostêpniæ u¿yteczn± wersjê systemu. Powodzenie projektu
+			zale¿y znacz±co od uzyskania wsparcia ¶rodowiska
+			administratorów i programistów w dalszej fazie realizacji
+			projektu. Podyktowane jest to z³o¿ono¶ci± projektu.
+		</para>
+		</section>
 	</chapter>
+	
 	<chapter id="current">
 		<title>Aktualny system, analiza wymagañ</title>
 

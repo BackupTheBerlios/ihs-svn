@@ -30,6 +30,128 @@
 		<title>Introduction</title>
 
 		<para>
+			This chapter includes short description of this project. 
+			List of the most important requirements and limitations.
+			Environment which project will be implemented in. 
+			Description of the most important terms.
+		</para>
+
+		<para>
+			Following document represents design documentation related
+			with project. It includes following chapters: introduction
+			to the system, design considerations, system architecture,
+			policies and strategies, detailed system design, glossary,
+			bibliography.
+		</para>
+		
+		<para>
+			To fully undestand this work some IT knowledge is required,
+			there are many terms and acronyms related with this area
+			that may not be explained because they are very common
+			and known. Audience are system administrators that will
+			use this system and developers that would want to extend it.
+			Some parts may be usefull to the users.
+		</para>
+
+		<para>
+			Project described in this document will be released
+			under Incredible Hosting System name or shorter as
+			<glossterm>IHS</glossterm>. Those names will be often used as
+			a relation to the whole work. Some part of the IHS is
+			administrators web interface that will be presented as
+			my master thesis. Because this element can't exist without
+			some other elements following work includes information about all
+			of them.
+		</para>
+
+		<para>
+			To become more familiar with project's goals, 
+			desicions made the reader should also check
+			my previous thesis titled "Free E-Mail System" - NIE-2003 
+			(only in Polish). IHS is based on an experience gained during
+			realization of the previous project. It is a new step
+			forward in creating integrated environment for managing 
+			e-mail and hosting systems.
+		</para>
+	</chapter>
+
+	<chapter id="overview">
+		<title>Introduction to the system</title>
+
+		<para>
+			IHS will be a platform for e-mail and hosting systems
+			for different environments - small and medium companies for
+			their employees or service providers offering free or
+			paid services.
+		</para>
+
+		<para>
+			It's a complicated task to build such system - it requires
+			integration of many existing applications, i.e. - following
+			systems must be glued together - WWW server, MTA,
+			FTP server, database. It must be also possible to integrate
+			system with some other applications that are specific
+			to client's environment.
+		</para>
+
+		<para>
+			Framework must be build that will allow to administrate
+			all those applications throught one, unified interface.
+			It will be a centralized environment for users, administrators
+			and developers. Offering common functions independently
+			of elements used, also API should be generic and flexible
+			enough to allow sophisticated software to be build on a base
+			of created system.
+		</para>
+
+		<para>
+			IHS will be based on following applications and technologies:
+			<itemizedlist>
+				<listitem>
+					<para>	
+						Apache as a WWW server;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						PostgreSQL as a default database;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						ProFTPD as a default FTP server;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						qmail and Virtual Qmail as MTA;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						CORBA as a services' communication protocol;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						J2EE for the integrated management system.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+
+		<para>
+			Many other applications will be used to build the system. List 
+			is very long, only the most important were listed above.
+		</para>
+
+		<para>
+			Implementation is based only on an open source or free
+			software, all created artefacts will be released
+			also as the source code. This will guarantee maximum
+			of flexibility for users. <ulink url="http://foo-baz.com/">foo-baz.com</ulink>
+			company offers services related with installation, integration
+			or maitenance of IHS in client's environment.
 		</para>
 	</chapter>
 

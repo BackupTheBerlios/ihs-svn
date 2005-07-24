@@ -78,7 +78,7 @@
 		</para>
 	</chapter>
 
-	<chapter id="overwiev">
+	<chapter id="overview">
 		<title>Wprowadzenie do systemu</title>
 
 		<para>
@@ -149,27 +149,27 @@
 						zintegrowany system zarz±dzania us³ugami.
 					</para>
 				</listitem>
-
-				<para>
-					Wykorzystywane bêd± równie¿ inne aplikacje
-					bez których realizacja projektu by³aby mo¿liwa,
-					powy¿sza lista zawiera te najwa¿niejsze, tworz±ce
-					j±dro systemu.
-				</para>
-
-				<para>
-					Realizacja oparta jest wy³±cznie na otwartym
-					lub bezp³atny oprogramowaniu, wszelkie utworzone
-					oprogramowanie bêdzie rozprowadzane wraz z
-					kodem ¼ród³owym. Podej¶cie takie gwarantuje 
-					maksymaln± elastyczno¶æ systemu oraz mo¿liwo¶æ
-					dopasowywania go do potrzeb danego ¶rodowiska, w którym
-					system bêdzie wdra¿any. Firma 
-					<ulink href="http://foo-baz.com/">foo-baz.com</ulink>
-					¶wiadczy us³ugi zwi±zane z instalacj±, integracj±
-					oraz utrzymaniem IHS w ¶rodowisku klienta.
-				</para>
 			</itemizedlist>
+		</para>
+
+		<para>
+			Wykorzystywane bêd± równie¿ inne aplikacje
+			bez których realizacja projektu by³aby mo¿liwa,
+			powy¿sza lista zawiera te najwa¿niejsze, tworz±ce
+			j±dro systemu.
+		</para>
+
+		<para>
+			Realizacja oparta jest wy³±cznie na otwartym
+			lub bezp³atny oprogramowaniu, wszelkie utworzone
+			oprogramowanie bêdzie rozprowadzane wraz z
+			kodem ¼ród³owym. Podej¶cie takie gwarantuje 
+			maksymaln± elastyczno¶æ systemu oraz mo¿liwo¶æ
+			dopasowywania go do potrzeb danego ¶rodowiska, w którym
+			system bêdzie wdra¿any. Firma 
+			<ulink url="http://foo-baz.com/">foo-baz.com</ulink>
+			¶wiadczy us³ugi zwi±zane z instalacj±, integracj±
+			oraz utrzymaniem IHS w ¶rodowisku klienta.
 		</para>
 	</chapter>
 

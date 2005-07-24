@@ -41,3 +41,10 @@ clean:
 	for l in $(LANGS) ; do \
 		rm -rf $$l.html/* ; \
 	done
+
+upload:
+	find *.html/ -type f -exec chmod a+r {} \; -o -type d -exec chmod a+rx {} \;
+	rsync -vCr --delete --rsh "ssh -l rsync" *.html foo-baz.com::foo-baz.com/www/foo-baz.com/ihs/
+	for l in $(LANGS) ; do \
+		rsync -vCr --delete --rsh "ssh -l paweln" $$l.html/ shell.sourceforge.net:/home/groups/i/ih/ihs/htdocs/$$l.html ; \
+	done

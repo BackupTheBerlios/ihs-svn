@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<section id="cons.req">
+	<title>Analiza wymagań</title>
+
+	<para>
+		Ponieważ celem pracy jest modernizacja istniejącego systemu
+		należy zastanowić się nad aktualnym stanem rzeczy. Poprzedni
+		system powstawał w ramach pracy dyplomowej inżynierskiej, której
+		temat brzmiał "System poczty darmowej". W wyniku przeprowadzonych
+		prac stworzone zostało oprogramowanie udostępniające
+		podstawowe cechy takiego systemu.
+	</para>
+
+	<para>
+		System oferował możliwość zakładania, usuwania, oraz modyfikacji
+		podstawowych ustawień za pośrednictwem stron <glossterm>WWW</glossterm>. 
+		Użytkownicy
+		mieli możliwość konfiguracji opcji dostępnych na innych podobnych
+		systemach, czyli np. przekierowania poczty, automatycznej
+		odpowiedzi. Dostęp do poczty przechowywanej na serwerze dostępny
+		był za pomocą standardowego protokołu <glossterm>POP3</glossterm>
+		oraz stron WWW.
+	</para>
+
+	<para>
+		Administrator miał możliwość, za pośrednictwem stron WWW, obejrzenia
+		podstawowych statystyk serwera, modyfikacji istniejących kont.
+		Projekt nie obejmował zaawansowanych opcji konfiguracyjnych.
+		Skoncentrowano się przede wszystkim na użytkownikach. W wyniku
+		tego powstał system, który mógł być nadzorowany tylko przez
+		osoby posiadające dużą wiedzę na temat udostępnianych narzędzi.
+	</para>
+
+	<para>
+		Na bazie systemu pocztowego zaprojektowany i utworzony został
+		serwis hostingowy, który posiadał dodatkowe funkcje takie
+		jak zarządzanie stronami użytkowników, konfiguracja serwisów WWW.
+		Użytkownicy uzyskali również dostęp do statystyk określających
+		popularność serwisów, możliwość zarządzania własną bazą danych.
+		Możliwości administrowania systemem za pomocą stron WWW również
+		zostały rozszerzone, jednak nadal były one zaprojektowane
+		z myślą o doświadczonych użytkownikach. Część opcji pominięto
+		ze względów czasowych oraz z uwagi na redukcję kosztów systemu.
+	</para>
+
+	<para>
+		Podstawowe dane techniczne dotyczące poprzedniego systemu:
+		<itemizedlist>
+			<listitem>
+				<para>
+					System operacyjny: Linux, dystrybucja Slackware
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Serwer WWW: Apache 1.3
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Serwer <glossterm>FTP</glossterm>: ProFTPD
+				</para>
+			</listitem>
+			<listitem><para><glossterm>MTA</glossterm>: Qmail+Virtual Qmail</para></listitem>
+			<listitem><para>Główna baza danych: PostgreSQL</para></listitem>
+			<listitem><para>Bazy danych dostępne dla użytkowników: MySQL, PostgreSQL</para></listitem>
+		</itemizedlist>
+		Program zarządzający systemem napisany został w większości
+		w C++, wykorzystan również PHP, PERL, skrypty powłoki. 
+		Szczegółowe informacje oraz motywy wyboru przedstawionych programów
+		opisane są w NIE-2002.
+	</para>
+
+	<para>
+		Istotnym minusem utworzonego systemu było również to, że stanowił
+		on pojedyncze wdrożenie, nie był wystarczająco elastyczny
+		aby móc sprostać różnym oczekiwaniom. Instalacja była
+		trudnym przedśięwzięciem. Dlatego głównym celem tej pracy
+		jest modernizacja istniejącego systemu tak aby spełniał
+		poniższe wymagania. Zaznaczono również wymagania aktualnie 
+		spełniane.
+	</para>
+
+	<section id="cons.req.biz">
+		<title>Wymagania biznesowe</title>
+
+		<table frame="all" id="tab.req.biz">
+			<title>Wymagania biznesowe</title>
+			<tgroup cols="4">
+				<colspec colwidth="1*"/>
+				<colspec colwidth="7*"/>
+				<colspec colwidth="2*"/>
+				<colspec colwidth="1*"/>
+				<thead>
+					<row>
+						<entry>Id.</entry>
+						<entry>Wymaganie</entry>
+						<entry>Spełnione</entry>
+						<entry>Priorytet</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>WB-1</entry>
+						<entry>Udostępnianie użytkownikom skrzynki pocztowej</entry>
+						<entry>1</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WB-2</entry>
+						<entry>Udostępnianie użytkownikom możliwości udostępniania stron WWW</entry>
+						<entry>1</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WB-3</entry>
+						<entry>Jednoczesna obsługa kont darmowych i płatnych</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WB-4</entry>
+						<entry>Obsługa płatności przez Internet</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WB-5</entry>
+						<entry>W przypadku kont płatnych nieopłaconych muszą one być automatycznie blokowane po okresie próbnym lub okresie ważności</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WB-6</entry>
+						<entry>Za pomocą płatności można nie tylko aktywywać konta ale również zwiększać limity np. przesyłanych bajtów, dostępnej przestrzeni dyskowej, itp.</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WB-7</entry>
+						<entry>W przypadku kont płatnych użytkownicy mają 14 dni okresu próbnego</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WB-8</entry>
+						<entry>Użytkownicy kont płatnych mają prawo zwrotu gotówki przez 30 dni od daty pierwszej płatności (gwarancja jakości lub zwrot pieniędzy)</entry>
+						<entry>0</entry>
+						<entry>2</entry>
+					</row>
+					<row>
+						<entry>WB-9</entry>
+						<entry>W przypadku płatności użytkownicy mają możliwość otrzymania faktury</entry>
+						<entry>0</entry>
+						<entry>2</entry>
+					</row>
+					<row>
+						<entry>WB-10</entry>
+						<entry>W przypadku kont płatnych, które zostały usunięte po okresie 30 dni od daty zapłaty zwrot gotówki nie występuje</entry>
+						<entry>0</entry>
+						<entry>2</entry>
+					</row>
+					<row>
+						<entry>WB-11</entry>
+						<entry>Istnieje możliwość wyboru języka, za pomocą którego komunikujemy się z serwisem</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WB-12</entry>
+						<entry>Identyfikatorem użytkownika jest jego adres e-mail</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WB-13</entry>
+						<entry>W przypadku gdy użytkownik zakłada konto, bez jednoczesnego zakładania usługi e-mail podany adres musi być zweryfikowany</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</section>
+
+	<section id="cons.req.user">
+		<title>Wymagania użytkownika</title>
+
+		<table frame="all" id="tab.req.user">
+			<title>Wymagania użytkownika</title>
+			<tgroup cols="4">
+				<colspec colwidth="1*"/>
+				<colspec colwidth="7*"/>
+				<colspec colwidth="2*"/>
+				<colspec colwidth="1*"/>
+				<thead>
+					<row>
+						<entry>Id.</entry>
+						<entry>Wymaganie</entry>
+						<entry>Spełnione</entry>
+						<entry>Priorytet</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>WU-1</entry>
+						<entry>Użytkownik może zarejestrować dla siebie konto (zależy od ustawień)</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WU-2</entry>
+						<entry>Istnieje możliwość ograniczania usług, z których może korzystać użytkownik</entry>
+						<entry>0</entry>
+						<entry>2</entry>
+					</row>
+					<row>
+						<entry>WU-3</entry>
+						<entry>Użytkownik może usunąć swoje konto</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WU-4</entry>
+						<entry>Użytkownik może zrezygnować z usług, które wykorzystywał (np. użytkownik może zrezygnować ze strony WWW)</entry>
+						<entry>0</entry>
+						<entry>2</entry>
+					</row>
+					<row>
+						<entry>WU-5</entry>
+						<entry>Użytkownik ma dostęp do statystyk wykorzystania poszczególnych usług</entry>
+						<entry>1</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WU-6</entry>
+						<entry>Użytkownik ma możliwość konfigurowania usług przypisanych do swojego konta</entry>
+						<entry>1</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WU-7</entry>
+						<entry>Konto użytkownika może być zarejestrowane w systemie bez żadnych usług mu przypisanych</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WU-8</entry>
+						<entry>Zostanie utworzony polski i angielski interfejs użytkownika</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WU-10</entry>
+						<entry>Usługa e-mail polega na zalożeniu dla użytkownika konta e-mail na serwerze, adres e-mail podaje użytkownik</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WU-11</entry>
+						<entry>Usługa WWW polega na zalożeniu dla użytkownika wirtualnego serwera WWW</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WU-12</entry>
+						<entry>Usługa Subversion polega na założeniu dla użytkownika repozytorium Subversion</entry>
+						<entry>0</entry>
+						<entry>2</entry>
+					</row>
+					<row>
+						<entry>WU-13</entry>
+						<entry>Istnieje możliwość przypomnienia hasła do konta lub usługi</entry>
+						<entry>0</entry>
+						<entry>2</entry>
+					</row>
+					<row>
+						<entry>WU-14</entry>
+						<entry>Użytkownik może korzystać z wielu usług tego samego typu</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</row>
+					<row>
+						<entry>WU-15</entry>
+						<entry>Usługa baza danych polega na założeniu dla użytkownika bazy danych</entry>
+						<entry>0</entry>
+						<entry>2</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</section>
+</section>
+

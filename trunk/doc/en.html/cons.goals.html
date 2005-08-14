@@ -2,14 +2,20 @@
 <HTML
 ><HEAD
 ><TITLE
->Bibliography</TITLE
+>Goals and guidelines</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
 REL="HOME"
 TITLE="Incredible hosting system"
 HREF="index.html"><LINK
+REL="UP"
+TITLE="Design considerations"
+HREF="considerations.html"><LINK
 REL="PREVIOUS"
+TITLE="Basic constraints"
+HREF="cons.constraints.html"><LINK
+REL="NEXT"
 TITLE="Requirements analize"
 HREF="cons.req.html"><LINK
 REL="STYLESHEET"
@@ -20,7 +26,7 @@ CONTENT="2005-08-13T22:11:20"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
-CLASS="bibliography"
+CLASS="section"
 BGCOLOR="#FFFFFF"
 TEXT="#000000"
 LINK="#0000FF"
@@ -46,7 +52,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="cons.req.html"
+HREF="cons.constraints.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -54,53 +60,54 @@ ACCESSKEY="P"
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
-></TD
+>Chapter 3. Design considerations</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
->&nbsp;</TD
+><A
+HREF="cons.req.html"
+ACCESSKEY="N"
+>Next</A
+></TD
 ></TR
 ></TABLE
 ><HR
 ALIGN="LEFT"
 WIDTH="100%"></DIV
-><A
-NAME="biblio"
-></A
+><DIV
+CLASS="section"
 ><H1
+CLASS="section"
 ><A
-NAME="biblio"
-></A
->Bibliography</H1
-><H2
-CLASS="bibliodiv"
-><A
-NAME="AEN273"
->Internet</A
-></H2
-><DIV
-CLASS="biblioentry"
-><A
-NAME="NIE-2002"
-></A
+NAME="cons.goals"
+>3.4. Goals and guidelines</A
+></H1
 ><P
->[NIE-2002]&nbsp;<SPAN
-CLASS="AUTHOR"
->Pawe³ Niewiadomski</SPAN
->, <I
->Free e-mail hosting</I
->, 
-				<A
-HREF="http://new.foo-baz.com/me/engineer_work/"
-TARGET="_top"
->http://new.foo-baz.com/me/engineer_work/</A
->
-			.</P
-><DIV
-CLASS="BIBLIOENTRYBLOCK"
-STYLE="margin-left: 0.5in"
-></DIV
+>&#13;				Following is a list of the most important goals and
+				guidelines than must be ensured during implementation.
+			</P
+><P
+>&#13;				The KISS principle (keep it simple stupid!) - 
+				architecture, algorithms, mechanism used during
+				implementation should be as simple as possible.
+				This way product easy to maintenance and extension will be 
+				created.
+			</P
+><P
+>&#13;				Don't early optimize - optimalization can be done
+				only in case that it's really needed (it must be proved
+				in tests). Implementation should focus on correctness of
+				working and easines of reading the code. Speed is not
+				important.
+			</P
+><P
+>&#13;				Look and feel are very important - there should be a 
+				possibility to modify theme. Operations done
+				with user interaction should work as fast as possible.
+				User should not have to wait for results. Time from
+				event to first results should be minimized.
+			</P
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"
@@ -118,7 +125,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="cons.req.html"
+HREF="cons.constraints.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -135,24 +142,32 @@ ACCESSKEY="H"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="cons.req.html"
+ACCESSKEY="N"
+>Next</A
+></TD
 ></TR
 ><TR
 ><TD
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Requirements analize</TD
+>Basic constraints</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="considerations.html"
+ACCESSKEY="U"
+>Up</A
+></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->&nbsp;</TD
+>Requirements analize</TD
 ></TR
 ></TABLE
 ></DIV

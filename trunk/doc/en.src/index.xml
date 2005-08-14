@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="iso-8859-2"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
 	[
-	<!ENTITY biblio SYSTEM "biblio.xml"> 	
+	<!ENTITY biblio SYSTEM "biblio.xml">
+	<!ENTITY cons.req SYSTEM "cons.req.xml">
 	]
 >
 <book lang="en">
@@ -300,296 +301,55 @@
 				time as the development or even before it as test driven
 				development says.
 			</para>
+
+			<para>
+				Quality of documentation is also very important.
+				It can not be accepted that system is extended without
+				documentation being updated. All modification should
+				be documented upwards than implemented. This way
+				it will be easier to keep documentation up to date -
+				documentation created after implementation is usually
+				worse than documentation created before it. Two
+				language version are maintained at the same time - Polish
+				and English. Comments in code are made only in English.
+			</para>
 		</section>
+
+		<section id="cons.goals">
+			<title>Goals and guidelines</title>
+
+			<para>
+				Following is a list of the most important goals and
+				guidelines than must be ensured during implementation.
+			</para>
+
+			<para>
+				The KISS principle (keep it simple stupid!) - 
+				architecture, algorithms, mechanism used during
+				implementation should be as simple as possible.
+				This way product easy to maintenance and extension will be 
+				created.
+			</para>
+
+			<para>
+				Don't early optimize - optimalization can be done
+				only in case that it's really needed (it must be proved
+				in tests). Implementation should focus on correctness of
+				working and easines of reading the code. Speed is not
+				important.
+			</para>
+
+			<para>
+				Look and feel are very important - there should be a 
+				possibility to modify theme. Operations done
+				with user interaction should work as fast as possible.
+				User should not have to wait for results. Time from
+				event to first results should be minimized.
+			</para>
+		</section>
+
+		&cons.req;
  	</chapter>
-
-	<chapter id="current">
-		<title>Current system, requirements analize</title>
-
-		<para>
-			Because thesis subject is a modernization of existing system
-			current system should be described first. System was created
-			as a bachelor thesis of Paweł Niewiadomski, subject was 
-			"Free e-mail hosting". During that project software was 
-			created that offered users basic functionality of such system. 
-		</para>
-
-		<para>
-			Users were able to create, remove and configure basic 
-			options throught <glossterm>WWW</glossterm> pages.
-			Options offered were comparable to other similar systems,
-			ie. it was possible to setup mail redirection, automatic
-			responses. Access to e-mails stored within server
-			was possible througth standard <glossterm>POP3</glossterm> protocol
-			and WWW site.
-		</para>
-
-		<para>
-			Administrator was able, throught WWW, to see basic
-			statistics, to modify existing accounts. Project didn't
-			include advanced configuration options for administrators. Main 
-			aim was to create system that users were able to use.
-			This way system created could be maintained only by
-			experienced administrators.
-		</para>
-
-		<para>
-			On a base of e-mail system there was designed and created 
-			hosting system with additional functions as managing
-			users' WWW sites, configuration of those sites via WWW.
-			Users gained also an ability to see statistics of their
-			own sites registered within system. There was still lack
-			of tools for administrators. Some options were not implemented
-			because of short time and costs reduction.
-		</para>
-
-		<para>
-			Basic technical informations about previous system:
-			<itemizedlist>
-				<listitem>
-					<para>
-						Operating system: Linux, Slackware distribution
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						WWW server: Apache 1.3
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						<glossterm>FTP</glossterm> server: ProFTPD
-					</para>
-				</listitem>
-				<listitem><para><glossterm>MTA</glossterm>: Qmail+Virtual Qmail</para></listitem>
-				<listitem><para>Main database: PostgreSQL</para></listitem>
-				<listitem><para>Databases for users: MySQL, PostgreSQL</para></listitem>
-			</itemizedlist>
-			Main application was written mainly in C++, some parts also
-			in PHP and PERL, shell scripts. For full description 
-			see NIE-2002.
-		</para>
-
-		<para>
-			One of major drawbacks of created system was that it was
-			only a single setup, it was not flexible enough.
-			to support different needs of administrators. Installation
-			process was really hard. That's why main goal of this 
-			thesis is a modernization of existing system to comply with
-			following requirements. Some requirements are already
-			implemented, they are marked.
-		</para>
-
-		<section id="current.req.biz">
-			<title>Buissines requirements</title>
-
-			<table frame="all" id="tab.req.biz">
-				<title>Buissines requirements</title>
-				<tgroup cols="4">
-					<colspec colwidth="1*"/>
-					<colspec colwidth="7*"/>
-					<colspec colwidth="2*"/>
-					<colspec colwidth="1*"/>
-					<thead>
-						<row>
-							<entry>Id.</entry>
-							<entry>Requirement</entry>
-							<entry>Already implemented</entry>
-							<entry>Priority</entry>
-						</row>
-					</thead>
-					<tbody>
-						<row>
-							<entry>WB-1</entry>
-							<entry>Mailbox for users</entry>
-							<entry>1</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WB-2</entry>
-							<entry>Users' WWW sites</entry>
-							<entry>1</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WB-3</entry>
-							<entry>Free and comercials accounts can coexist at the same time</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WB-4</entry>
-							<entry>Payments throught Internet</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WB-5</entry>
-							<entry>Commercial accounts which users didn't pay for must be removed after trial period (or validity period)</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WB-6</entry>
-							<entry>Payments are not only for creating accounts but also for extending limits such as: transfer limit, quota, etc.</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WB-7</entry>
-							<entry>For all commercial services there is 14 days trial period</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WB-8</entry>
-							<entry>Commerial users have money back guarantee within 30 days after first payment (quality or money back guarantee).</entry>
-							<entry>0</entry>
-							<entry>2</entry>
-						</row>
-						<row>
-							<entry>WB-9</entry>
-							<entry>For all payments there is a possibility to order tax document</entry>
-							<entry>0</entry>
-							<entry>2</entry>
-						</row>
-						<row>
-							<entry>WB-10</entry>
-							<entry>For commercial accounts removed after 30 days of trial period money are not returned</entry>
-							<entry>0</entry>
-							<entry>2</entry>
-						</row>
-						<row>
-							<entry>WB-11</entry>
-							<entry>Interface language can be chosen</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WB-12</entry>
-							<entry>E-mail is user's identificator</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WB-13</entry>
-							<entry>When user creates account in system without creating e-mail service given address must be verified</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-					</tbody>
-				</tgroup>
-			</table>
-		</section>
-
-		<section id="current.req.user">
-			<title>User requirements</title>
-
-			<table frame="all" id="tab.req.user">
-				<title>User requirements</title>
-				<tgroup cols="4">
-					<colspec colwidth="1*"/>
-					<colspec colwidth="7*"/>
-					<colspec colwidth="2*"/>
-					<colspec colwidth="1*"/>
-					<thead>
-						<row>
-							<entry>Id.</entry>
-							<entry>Requirement</entry>
-							<entry>Already implemented</entry>
-							<entry>Priority</entry>
-						</row>
-					</thead>
-					<tbody>
-						<row>
-							<entry>WU-1</entry>
-							<entry>User may register an account for himself (depends on system's configuration)</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WU-2</entry>
-							<entry>It's possible to limit services that user can use</entry>
-							<entry>0</entry>
-							<entry>2</entry>
-						</row>
-						<row>
-							<entry>WU-3</entry>
-							<entry>User may remove his/her account</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WU-4</entry>
-							<entry>User may resign from services that he/she used (ie. remove WWW site)</entry>
-							<entry>0</entry>
-							<entry>2</entry>
-						</row>
-						<row>
-							<entry>WU-5</entry>
-							<entry>User has access to statistics for services he/she uses</entry>
-							<entry>1</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WU-6</entry>
-							<entry>User is allowed to configure services related to his/her account</entry>
-							<entry>1</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WU-7</entry>
-							<entry>User's account can be registered without any services connected to it</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WU-8</entry>
-							<entry>English and Polish interface will be registered</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WU-10</entry>
-							<entry>E-mail service allows users to send and receive e-mails, user's e-mail address is given by user</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WU-11</entry>
-							<entry>WWW service means virtual server for WWW pages that is maintained by user</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WU-12</entry>
-							<entry>Subversion service means Subversion repository created for user</entry>
-							<entry>0</entry>
-							<entry>2</entry>
-						</row>
-						<row>
-							<entry>WU-13</entry>
-							<entry>It is possible to recover lost password for an account or a service</entry>
-							<entry>0</entry>
-							<entry>2</entry>
-						</row>
-						<row>
-							<entry>WU-14</entry>
-							<entry>User may use many services of the same type</entry>
-							<entry>0</entry>
-							<entry>1</entry>
-						</row>
-						<row>
-							<entry>WU-15</entry>
-							<entry>Database service means separate database created for user</entry>
-							<entry>0</entry>
-							<entry>2</entry>
-						</row>
-					</tbody>
-				</tgroup>
-			</table>
-		</section>
-	</chapter>
 
 	&biblio;
 

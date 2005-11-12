@@ -1,0 +1,132 @@
+<project name="ihs" basedir="." default="redeploy">
+	<taskdef name="idlcheck" classname="idldepend.IDLCheckerTask" classpath="idldepend-0-8-1.jar"/>
+
+    <!-- Project settings -->
+    <property name="project.distname" value="ihs"/>
+
+    <!-- Local system paths -->
+    <property file="${basedir}/build.properties"/>
+    <property name="webroot.dir" value="${basedir}/WebContent"/>
+    <property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
+    <property name="build.dir" value="build"/>
+
+    <!-- classpath for JSF 1.0 -->
+    <path id="compile.classpath">
+        <pathelement path ="${webinf.dir}/lib/commons-beanutils.jar"/>
+        <pathelement path ="${webinf.dir}/lib/commons-collections.jar"/>
+        <pathelement path ="${webinf.dir}/lib/commons-digester.jar"/>
+        <pathelement path ="${webinf.dir}/lib/commons-logging.jar"/>
+        <pathelement path ="${webinf.dir}/lib/jsf-api.jar"/>
+        <pathelement path ="${webinf.dir}/lib/jsf-impl.jar"/>
+        <pathelement path ="${webinf.dir}/lib/jstl.jar"/>
+        <pathelement path ="${webinf.dir}/lib/standard.jar"/>
+        <pathelement path ="${webinf.dir}/classes"/>
+        <pathelement path ="${classpath.external}"/>
+        <pathelement path ="${classpath}"/>
+    </path>
+
+    <!-- define your folder for deployment -->
+    <property name="deploy.dir" value="deploy"/>
+
+    <!-- Local system paths -->
+    <property file="${basedir}/build.properties"/>
+    <property name="webroot.dir" value="${basedir}/WebContent"/>
+    <property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
+    <property name="build.dir" value="build"/>
+
+    <!-- Check timestamp on files -->
+    <target name="prepare">
+        <tstamp/>
+    </target>
+
+    <!-- Copy any resource or configuration files -->
+    <target name="resources">
+        <copy todir="${webinf.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="src">
+            <patternset>
+                <include name="**/*.conf"/>
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+            </patternset>
+            </fileset>
+        </copy>
+    </target>
+	
+	<!-- Generate Java source from IDL -->
+	<target name="idl">
+		<idlcheck compiler="jdk" force="false" checkAll="true" verbose="basic"
+			targetDir="src">
+			<fileset dir=".">
+				<include name="*.idl"/>
+			</fileset>
+			<translate module="vq" package="com.foo_baz.v_q"/>
+		</idlcheck>
+	</target>
+
+    <!-- Normal build of application -->
+    <target name="compile" depends="prepare,resources,idl">
+        <javac srcdir="src" destdir="${webinf.dir}/classes">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <!-- Remove classes directory for clean build -->
+    <target name="clean"
+      description="Prepare for clean build">
+      <delete dir="${webinf.dir}/classes"/>
+      <mkdir  dir="${webinf.dir}/classes"/>
+      <delete dir="${build.dir}"/>
+      <mkdir  dir="${build.dir}"/>
+    </target>
+
+    <!-- Build entire project -->
+    <target name="build" depends="prepare,compile"/>
+    <target name="rebuild" depends="clean,prepare,compile"/>
+
+    <!-- Create binary distribution -->
+    <target name="war" depends="build">
+      <mkdir dir="${build.dir}"/>
+      <war
+        basedir="${webroot.dir}"
+        warfile="${build.dir}/${project.distname}.war"
+        webxml="${webinf.dir}/web.xml">
+        <exclude name="WEB-INF/${build.dir}/**"/>
+        <exclude name="WEB-INF/src/**"/>
+        <exclude name="WEB-INF/web.xml"/>
+       </war>
+    </target>
+
+    <target name="deploy-to-dir" depends="war">
+       <delete file="${deploy.dir}/${project.distname}.war"/>
+       <delete dir="${deploy.dir}/${project.distname}"/>
+       <copy file="${build.dir}/${project.distname}.war" todir="${deploy.dir}"/>
+    </target>
+
+    <target name="deploy" depends="war" description="Deploy to a server">
+    	<taskdef name="deploy"
+    		classname="org.apache.catalina.ant.DeployTask"/>
+    	<deploy url="${manager.url}" username="${username}"
+    		password="${password}" path="/${project.distname}"
+    		war="file:${build.dir}/${project.distname}.war"/>
+    </target>
+	
+    <target name="undeploy" description="Undeploy from a server">
+    	<taskdef name="undeploy"
+    		classname="org.apache.catalina.ant.UndeployTask"/>
+    	<undeploy url="${manager.url}" username="${username}"
+    		password="${password}" path="/${project.distname}"/>
+    </target>
+	
+	<target name="try.undeploy" description="Call the undeploy task (which may fail).">
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+		<trycatch>
+			<try>
+				<ant target="undeploy"/>
+			</try>
+			<catch/>
+		</trycatch>
+	</target>
+	
+	<target name="redeploy" depends="try.undeploy,deploy"
+		description="Undeploy and deploy web application"></target>
+</project>

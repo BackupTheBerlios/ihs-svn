@@ -1,0 +1,38 @@
+<Context path="/ihs">
+	<Resource name="jdbc/ihsDB" auth="Container"
+		type="javax.sql.DataSource"/>
+	<ResourceParams name="jdbc/ihsDB">
+		<parameter>
+			<name>factory</name>
+			<value>org.apache.commons.dbcp.BasicDataSourceFactory</value>
+		</parameter>
+		<parameter>
+			<name>driverClassName</name>
+			<value>org.postgresql.Driver</value>
+		</parameter>
+		<parameter>
+			<name>url</name>
+			<value>jdbc:postgresql://localhost/ihs</value>
+		</parameter>
+		<parameter>
+			<name>username</name>
+			<value>ihs</value>
+		</parameter>
+		<parameter>
+			<name>password</name>
+			<value>ihs</value>
+		</parameter>
+		<parameter>
+			<name>maxActive</name>
+			<value>20</value>
+		</parameter>
+		<parameter>
+			<name>maxIdle</name>
+			<value>10</value>
+		</parameter>
+		<parameter>
+			<name>poolPreparedStatements</name>
+			<value>true</value>
+		</parameter>		
+	</ResourceParams>
+</Context>

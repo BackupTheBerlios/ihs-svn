@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE faces-config PUBLIC
+          "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+          "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<faces-config>
+	<navigation-rule>
+		<from-view-id>/administrators.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>addAdministrator</from-outcome>
+			<to-view-id>/addAdministrator.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>reload</from-outcome>
+			<to-view-id>/administrators.jsp</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editAdministrator</from-outcome>
+			<to-view-id>/addAdministrator.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/domains.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>addDomain</from-outcome>
+			<to-view-id>/addDomain.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>reload</from-outcome>
+			<to-view-id>/domains.jsp</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editDomain</from-outcome>
+			<to-view-id>/addDomain.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<managed-bean>
+		<managed-bean-name>backing_administrators</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.Administrators</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backing_addAdministrator</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.AddAdministrator</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<from-view-id>/addAdministrator.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/administrators.jsp</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/addDomain.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/domains.jsp</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<application>
+		<message-bundle>com.foo_baz.ihs.application</message-bundle>
+	</application>
+	<managed-bean>
+		<managed-bean-name>backing_domains</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.Domains</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backing_addDomain</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.AddDomain</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backing_addUser</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.AddUser</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+</faces-config>

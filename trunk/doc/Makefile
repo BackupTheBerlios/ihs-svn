@@ -22,6 +22,7 @@ doc-html:
 	openjade -t sgml -i output-html -d ../en.src/stylesheet.dsl \
 	$(JADE_XML_DCL) \
 	desspec.xml ) || exit 1 ;
+	./logo-add.pl `find *.html/ -type f -name "*.html"`
 	(cd desspec && ../mime-type.sh) || exit 1;
 
 doc-rtf:
@@ -42,9 +43,13 @@ clean:
 		rm -rf $$l.html/* ; \
 	done
 
-mirrors-put:
+mirrors-put: mirrors-put-berlios.de
 	find *.html/ -type f -exec chmod a+r {} \; -o -type d -exec chmod a+rx {} \;
 	rsync -vCr --delete --rsh "ssh -l rsync" *.html foo-baz.com::foo-baz.com/www/foo-baz.com/ihs/
 	for l in $(LANGS) ; do \
 		rsync -vCr --delete --rsh "ssh -l paweln" $$l.html/ shell.sourceforge.net:/home/groups/i/ih/ihs/htdocs/$$l.html ; \
 	done
+
+mirrors-put-berlios.de:
+	rsync -vCr --delete --rsh "ssh -l paweln" *.html shell.berlios.de:/home/groups/ihs/htdocs/
+

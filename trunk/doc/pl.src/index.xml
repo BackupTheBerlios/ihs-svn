@@ -3,7 +3,6 @@
 	[
 	<!ENTITY biblio SYSTEM "biblio.xml">
 	<!ENTITY cons.req SYSTEM "cons.req.xml">
-	<!ENTITY guide SYSTEM "guide.xml">
 	]
 >
 <book lang="pl">
@@ -520,7 +519,6 @@
 		</section>
 	</chapter>
 
-	&guide;
 	&biblio;
 </book>
 

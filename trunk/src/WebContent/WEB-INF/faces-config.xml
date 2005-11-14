@@ -22,19 +22,19 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/domains.jsp</from-view-id>
+		<from-view-id>/mailservice/domains.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>addDomain</from-outcome>
-			<to-view-id>/addDomain.jsp</to-view-id>
+			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
-			<to-view-id>/domains.jsp</to-view-id>
+			<to-view-id>/mailservice/domains.jsp</to-view-id>
 			<redirect/>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editDomain</from-outcome>
-			<to-view-id>/addDomain.jsp</to-view-id>
+			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<managed-bean>
@@ -56,10 +56,10 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/addDomain.jsp</from-view-id>
+		<from-view-id>/mailservice/addDomain.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/domains.jsp</to-view-id>
+			<to-view-id>/mailservice/domains.jsp</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>

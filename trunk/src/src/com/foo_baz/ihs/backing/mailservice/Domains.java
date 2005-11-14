@@ -81,7 +81,9 @@ public class Domains {
 	 * @return Returns the result.
 	 */
 	public String getResult() {
-		return result;
+		String temp = result;
+		result = "";
+		return temp;
 	}
 	/**
 	 * @param result The result to set.
@@ -95,22 +97,23 @@ public class Domains {
 	 * @throws Exception
 	 */
 	public String removeDomains() throws Exception {
-/*		int count = getNumberOfDomainsSelectedForDeletion();
+		int count = getNumberOfDomainsSelectedForDeletion();
 		if( count == 0 ) {
 			return null; // finito, nothing to do
 		}
-		logger.info("Administrators.removeAdministrators: " +
-			"number of administrators selected for deletion: " +
+		logger.info(this.getClass().getName()+".removeDomains: " +
+			"number of elements selected for deletion: " +
 			Integer.toString(count) );
 
 		ArrayList domains = (ArrayList) domainsModel.getWrappedData();
 		int ret = 0;
 		
 		IncredibleHostingSystem domainsDB = null;
-		
 		try {
 			domainsDB = new IncredibleHostingSystem();
 			domainsDB.open();
+			
+			MailService mailService = domainsDB.getMailService();
 			
 			int res;
 			boolean partial = false;
@@ -121,25 +124,27 @@ public class Domains {
 				if(! curDomain.isSelected())
 					continue;
 				
-				res = domainsDB.deleteAdministrator(curDomain).errorCode.value;
+				res = mailService.removeDomain(
+					new Integer(curDomain.getIdDomain())).errorCode.value;
 				
 				if ( res == ErrorCode.ERR_NO) {
 					this.setResult(
 						Messages.getString(
 							"com.foo_baz.ihs.messages", 
-							"administratorsRemoved", null));
+							"mailServiceDomainsRemoved", null));
 				} else {
 					logger.info(this.getClass().getName()
-						+".removeAdministrators: Returned code: "+Integer.toString(res)
-						+" for user: "+curDomain.getLogin());
+						+".removeDomains: Returned code: "+Integer.toString(res)
+						+" for element: "+curDomain.getDomain());
 				}	
 			}
 			if( partial ) {
 				this.setResult(
 					Messages.getString(
-						"com.foo_baz.ihs.messages", "administratorsRemovePartial", null));
+						"com.foo_baz.ihs.messages", "mailServiceDomainsRemovePartial", null));
 			}
- 		} catch (SQLException e) {
+
+		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQL error", e);
 			throw e;
 		} catch (NamingException e) {
@@ -148,7 +153,6 @@ public class Domains {
 		} finally {
 			try { domainsDB.close(); } catch (Exception e) {};
 		}
-*/		
 		return "reload";
 	}
 	//@}
@@ -156,7 +160,7 @@ public class Domains {
 	/**
 	 * 
 	 */
-	public String addAdministrator() {
+	public String addDomain() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
 		ValueBinding binding = app.createValueBinding("#{backing_addDomain}");
@@ -170,7 +174,7 @@ public class Domains {
 	 * 
 	 * @return
 	 */
-	public String editAdministrator() {
+	public String editDomain() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
 		ValueBinding binding = app.createValueBinding("#{backing_addDomain}");

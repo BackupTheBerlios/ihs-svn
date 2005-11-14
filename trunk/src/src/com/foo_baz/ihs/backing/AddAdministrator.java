@@ -141,7 +141,9 @@ public class AddAdministrator extends Administrator {
 	 * @return Returns the addAdministratorResult.
 	 */
 	public String getResult() {
-		return result;
+		String temp = result;
+		result = "";
+		return temp;
 	}
 	/**
 	 * @param addAdministratorResult The addAdministratorResult to set.

@@ -43,6 +43,18 @@ public class ErrorCode
    * Service has problems with its internal logic
    */
   public final static int ERR_SERVICE_INTERNAL = 6;
+  /**
+   * Function not implemented
+   */
+  public final static int ERR_FUNC_NI = 7;
+  /**
+   * Unknown error, description included 
+   */
+  public final static int ERR_DESC = 8;
+  /**
+   * Invalid value
+   */
+  public final static int ERR_INV = 9;
   /**@}*/
 
   /**

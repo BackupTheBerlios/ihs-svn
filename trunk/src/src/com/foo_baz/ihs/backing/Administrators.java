@@ -83,7 +83,9 @@ public class Administrators {
 	 * @return Returns the removeAdministratorsResult.
 	 */
 	public String getResult() {
-		return result;
+		String temp = result;
+		result = "";
+		return temp;
 	}
 	/**
 	 * @param removeAdministratorsResult The removeAdministratorsResult to set.

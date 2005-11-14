@@ -13,6 +13,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.omg.CORBA.IntHolder;
+import org.omg.CORBA.StringHolder;
+
 import com.foo_baz.ihs.mailservice.Domain;
 import com.foo_baz.v_q.db_error;
 import com.foo_baz.v_q.except;
@@ -22,9 +25,6 @@ import com.foo_baz.v_q.null_error;
 import com.foo_baz.v_q.ivqPackage.domain_info_listHolder;
 import com.foo_baz.v_q.ivqPackage.err_code;
 import com.foo_baz.v_q.ivqPackage.error;
-
-//import com.foo_baz.v_q.*;
-//import com.foo_baz.v_q.ivqPackage.*;
 
 /**
  * @author new
@@ -48,6 +48,7 @@ public class VirtualQmailMailService extends MailService {
 		org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init();
 		if( orb != null ) {
 			Hashtable env = new Hashtable();
+			env.put("org.omg.CORBA.ORBInitRef", "NameService=corbaloc::localhost:2809/NameService");
 			env.put("java.naming.corba.orb", orb);
 			env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.cosnaming.CNCtxFactory");
 			env.put(Context.PROVIDER_URL, "iiop://localhost:2809");
@@ -57,10 +58,14 @@ public class VirtualQmailMailService extends MailService {
 			return null;
 	}
 	
+	private ivq vqo = null;
+	
 	protected ivq getVirtualQmail() throws NamingException {
-		Context ic = getNamingContext();
-		ivq vqo = ivqHelper.narrow((org.omg.CORBA.Object) ic.lookup("VQ.ivq"));
-		return vqo;
+		if( vqo == null ) {
+			Context ic = getNamingContext();
+			this.vqo = ivqHelper.narrow((org.omg.CORBA.Object) ic.lookup("VQ.ivq"));
+		}
+		return this.vqo;
 	}
 	
 	/**
@@ -70,7 +75,7 @@ public class VirtualQmailMailService extends MailService {
 	public Error getDomains( ArrayList domains ) throws NamingException {
 		ivq vq = getVirtualQmail();
 		
-		domain_info_listHolder diList = null;
+		domain_info_listHolder diList = new domain_info_listHolder();
 		error err;
 		try {
 			err = vq.dom_ls(diList);
@@ -86,7 +91,7 @@ public class VirtualQmailMailService extends MailService {
 		}
 
 		Error ret = new Error(ErrorCode.ERR_NO, "");
-		if( err.ec == err_code.err_no ) {
+		if( err != null && err.ec == err_code.err_no ) {
 			domains.clear();
 			for( int i=0, s = diList.value.length; i<s; ++i ) {
 				domains.add(new Domain(diList.value[i]));
@@ -115,5 +120,139 @@ public class VirtualQmailMailService extends MailService {
 	
 	public boolean isOpen() {
 		return open;
+	}
+	
+	/// Add domain
+	public Error addDomain( Domain dom ) throws Exception {
+		ivq vq = getVirtualQmail();
+		
+		error err;
+		IntHolder domId = new IntHolder();
+		try {
+			err = vq.dom_add(dom.getDomain(), domId);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_DB, "");
+		}
+
+		Error ret = new Error(ErrorCode.ERR_NO, "");
+		if( err != null && err.ec == err_code.err_no ) {
+			dom.setIdDomain(domId.value);
+		} else {
+			ret = new Error(ErrorCode.ERR_SERVICE_INTERNAL, err.toString());
+		}
+		return ret;
+	}
+	/// Removes domain
+	public Error removeDomain( Integer domId ) throws Exception {
+		ivq vq = getVirtualQmail();
+		
+		error err;
+		try {
+			err = vq.dom_rm(domId.intValue());
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_DB, "");
+		}
+
+		Error ret = new Error(ErrorCode.ERR_SERVICE_INTERNAL, err.toString());
+		if( err != null && err.ec == err_code.err_no ) {
+			ret = new Error(ErrorCode.ERR_NO, "");
+		}
+		return ret;
+	}
+	/// Validates domain name
+	public Error validateDomain( String dom ) throws Exception {
+		ivq vq = getVirtualQmail();
+		
+		error err;
+		try {
+			err = vq.dom_val(dom);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_DB, "");
+		}
+
+		Error ret = new Error(ErrorCode.ERR_SERVICE_INTERNAL, err.toString());
+		if( err != null ) {
+			if( err.ec == err_code.err_no ) {
+				ret = new Error(ErrorCode.ERR_NO, "");
+			} else if( err.ec == err_code.err_dom_inv ) {
+				ret = new Error(ErrorCode.ERR_INV, "");
+			}
+		}
+		return ret;
+	}
+	/// Gets ID of domain
+	public Error getIdOfDomain( Domain dom ) throws Exception {
+		ivq vq = getVirtualQmail();
+		
+		error err;
+		IntHolder domId = new IntHolder();
+		try {
+			err = vq.dom_id(dom.getDomain(), domId);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_DB, "");
+		}
+
+		Error ret = new Error(ErrorCode.ERR_NO, "");
+		if( err != null && err.ec == err_code.err_no ) {
+			dom.setIdDomain(domId.value);
+		} else {
+			ret = new Error(ErrorCode.ERR_SERVICE_INTERNAL, err.toString());
+		}
+		return ret;
+	}
+	/// Gets name of a domain
+	public Error getNameOfDomain( Domain dom ) throws Exception {
+		ivq vq = getVirtualQmail();
+		
+		error err;
+		StringHolder domName = new StringHolder();
+		try {
+			err = vq.dom_name(dom.getIdDomain(), domName);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new Error(ErrorCode.ERR_SERVICE_INTERNAL, "");
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new Error(ErrorCode.ERR_SERVICE_DB, "");
+		}
+
+		Error ret = new Error(ErrorCode.ERR_NO, "");
+		if( err != null && err.ec == err_code.err_no ) {
+			dom.setDomain(domName.value);
+		} else {
+			ret = new Error(ErrorCode.ERR_SERVICE_INTERNAL, err.toString());
+		}
+		return ret;
 	}
 }

@@ -1,9 +1,0 @@
-Jądro oraz programy systemowe produkują błędy, ostrzeżenia i inne
-wiadomości. Czasami wymaga się aby była możliwość późniejszego
-przeglądu tych wiadomości, więc powinny być zapisywane do pliku.
-Troszczy się o to syslog. Można go skonfigurować do sortowania
-wiadomości, odrzucania, lub zapisywania wymaganych, zapisywania
-wiadomości do kilku plików ze względu na ważność, itp. Np. wiadomości
-wysyłane przez jądro są najczęściej zapisywane do osobnego pliku,
-ponieważ są one często ważniejsze i powinny być regularnie czytane, by
-dostrzec kłopoty.

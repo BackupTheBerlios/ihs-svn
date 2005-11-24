@@ -1,8 +1,0 @@
-Restartowanie oznacza uruchamianie systemu od nowa. Uzyskiwane jest
-poprzez poprawne zamknięcie systemu i zresetowanie komputera. Można je
-uzyskać za pomocą opcji -r shutdown
-
-W większości systemów wywołanie shutdown -r now następuje po
-naciśnięciu ctrl-alt-del. Akcja wywoływana ctrl-alt-del jest
-konfigurowalna (zobacz inittab). W systemach publicznie dostępnych
-takie działanie powinno być zablokowane.

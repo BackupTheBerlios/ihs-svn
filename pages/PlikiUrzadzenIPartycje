@@ -1,8 +1,0 @@
-Każda z partycji posiada swój plik urządzenia. Plik taki ma część
-wskazującą na dysk (innymi słowy nazwa dysku), zakończoną numerem.
-Liczby 1-4 wskazują na partycje podstawowe (obojętnie od liczby
-partycji - możesz mieć partycje 2, 4, itp. ), 5-8 oznaczają dyski
-logiczne ( niezależnie od partycji podstawowej, na której się
-znajdują). Dla przykładu: /dev/hda1 oznacza pierwszą podstawową
-partycję na dysku hda, /dev/sdb7 jest trzecią partycją rozszerzoną na
-drugim dysku SCSI. Lista urządzeń zawiera więcej szczegółów.

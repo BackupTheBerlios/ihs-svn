@@ -1,9 +1,0 @@
-System plików podzielony jest na wiele części; najczęściej główny
-system plików zawiera /bin, /lib, /etc, /dev i kilka innych; katalog
-/usr z niezmiennymi danymi i programami; katalog /var z często
-zmienianymi plikami (np. logi) oraz /home zawierający katalogi domowe
-użytkowników. Zależnie od decyzji administratora struktura może być
-różna, wszystko może znajdować się jednej partycji, lub wielu, itd.
-
-Rozdział 3 zawiera więcej szczegółów; wyczerpujące informacje
-znajdują się w: Linux Filesystem Standard.

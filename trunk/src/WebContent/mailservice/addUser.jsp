@@ -45,6 +45,8 @@
 									disabled="#{backing_addUser.updating}">
 									<f:validateLength minimum="1" maximum="512"/>
 								</h:inputText>
+								<f:verbatim> @ </f:verbatim>
+								<h:outputText value="#{backing_addUser.domain}"/>
 							</td>
 							<td colspan="2">
 								<h:message styleClass="error" for="login"/>
@@ -77,6 +79,43 @@
 							</td>
 							<td colspan="2">
 								<h:message styleClass="error" for="passwordConfirm"/>
+							</td>
+						</tr>
+						<tr class="even">
+							<th>
+								<h:outputText value="#{msgs.mailServiceAddUserFlags}"/>
+							</th>
+							<td>
+								<h:inputSecret size="25" id="flags" required="true"/>
+							</td>
+							<td colspan="2">
+								<h:message styleClass="error" for="flags"/>
+							</td>
+						</tr>
+						<tr class="odd">
+							<th>
+								<h:outputText value="#{msgs.mailServiceAddUserHomeDir}"/>
+							</th>
+							<td>
+								<h:selectBooleanCheckbox id="defaultDir" immediate="true">
+									<h:outputText value="#{msgs.mailServiceAddUserHomeDirDefault}"/>
+								</h:selectBooleanCheckbox>
+							</td>
+							<td colspan="2">
+								<h:message styleClass="error" for="defaultDir"/>
+							</td>
+						</tr>
+						<tr class="even">
+							<th>
+								<h:outputText value="#{msgs.mailServiceAddUserHomeDirOther}"/>
+							</th>
+							<td>
+								<h:inputText size="25" id="dir" 
+									disabled="#{backing_addUser.defaultDir}" required="#{!backing_addUser.defaultDir}"
+									value="#{backing_addUser.dir}"/>
+							</td>
+							<td colspan="2">
+								<h:message styleClass="error" for="dir"/>
 							</td>
 						</tr>
 					</tbody>

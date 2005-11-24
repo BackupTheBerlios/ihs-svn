@@ -12,9 +12,9 @@ import javax.faces.validator.ValidatorException;
 import javax.naming.NamingException;
 
 import com.foo_baz.ihs.Administrator;
-import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.util.faces.Messages;
+import com.foo_baz.ihs.ErrorCode;
 
 public class AddAdministrator extends Administrator {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");

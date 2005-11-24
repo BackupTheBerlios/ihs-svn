@@ -12,6 +12,8 @@ public class User implements Cloneable
 	
 	private int idDomain;
 	
+	private String domain;
+	
 	private short flags;
 	
 	private short gid;
@@ -131,6 +133,19 @@ public class User implements Cloneable
 		item.setUid(this.getUid());
 		item.setGid(this.getGid());
 		return item;
+	}
+	
+	/**
+	 * @return Returns the domain.
+	 */
+	public String getDomain() {
+		return domain;
+	}
+	/**
+	 * @param domain The domain to set.
+	 */
+	public void setDomain(String domain) {
+		this.domain = domain;
 	}
 }
 

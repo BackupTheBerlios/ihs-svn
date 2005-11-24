@@ -33,38 +33,25 @@
 						<h:messages styleClass="error" globalOnly="true" layout="table"/>
 						<h:outputText styleClass="message" value="#{backing_addDomain.result}"/>
 					<f:verbatim>&lt;/p&gt;</f:verbatim>
-					<table class="editing">
-						<tbody>
-							<tr class="odd">
-								<th>
-									<h:outputText value="#{msgs.mailServiceAddDomainDomain}"/>
-								</th>
-								<td>
-									<h:inputText size="25" required="true" id="domain"
-										value="#{backing_addDomain.domain}"
-										disabled="#{backing_addDomain.updating}"
-										validator="#{backing_addDomain.validateDomain}">
-										<f:validateLength minimum="1" maximum="512"/>
-									</h:inputText>
-								</td>
-								<td>
-									<h:message styleClass="error" for="domain"/>
-								</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td>
-								</td>
-								<td>
-									<h:commandButton value="#{msgs.commonCancel}"
-										action="#{backing_addDomain.cancel}" immediate="true"/>
-									<h:commandButton value="#{backing_addDomain.updating ? msgs.commonUpdate : msgs.commonAdd}"
-										immediate="false" action="#{backing_addDomain.addDomain}"/>
-								</td>
-							</tr>
-						</tfoot>
-					</table>
+					<h:panelGrid styleClass="editing" rowClasses="odd,even" columns="3">
+						<h:outputText value="#{msgs.mailServiceAddDomainDomain}"/>
+						<h:inputText size="25" required="true" id="domain"
+							value="#{backing_addDomain.domain}"
+							disabled="#{backing_addDomain.updating}"
+							validator="#{backing_addDomain.validateDomain}">
+							<f:validateLength minimum="1" maximum="512"/>
+						</h:inputText>
+						<h:message styleClass="error" for="domain"/>
+
+						<f:facet name="footer">
+							<h:panelGroup>
+								<h:commandButton value="#{msgs.commonCancel}"
+									action="#{backing_addDomain.cancel}" immediate="true"/>
+								<h:commandButton value="#{backing_addDomain.updating ? msgs.commonUpdate : msgs.commonAdd}"
+									immediate="false" action="#{backing_addDomain.addDomain}"/>
+							</h:panelGroup>
+						</f:facet>
+					</h:panelGrid>
 				</h:form>
 			</div>
 			<f:subview id="footer">

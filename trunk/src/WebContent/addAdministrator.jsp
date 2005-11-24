@@ -33,66 +33,39 @@
 						<h:messages styleClass="error" globalOnly="true" layout="table"/>
 						<h:outputText styleClass="message" value="#{backing_addAdministrator.result}"/>
 					<f:verbatim>&lt;/p&gt;</f:verbatim>
-					<table class="editing">
-						<tbody>
-							<tr class="odd">
-								<th>
-									<h:outputText value="#{msgs.addAdministratorLogin}"/>
-								</th>
-								<td>
-									<h:inputText size="25" required="true" id="login"
-										value="#{backing_addAdministrator.login}"
-										disabled="#{backing_addAdministrator.updating}">
-										<f:validateLength minimum="1" maximum="512"/>
-									</h:inputText>
-								</td>
-								<td>
-									<h:message styleClass="error" for="login"/>
-								</td>
-							</tr>
-							<tr class="even">
-								<th>
-									<h:outputText value="#{msgs.addAdministratorPassword}"/>
-								</th>
-								<td>
-									<h:inputSecret binding="#{backing_addAdministrator.addAdministratorPasswordInput}"
-										size="25" required="true" id="password"
-										value="#{backing_addAdministrator.password}">
-										<f:validateLength minimum="1" maximum="512"/>
-									</h:inputSecret>
-								</td>
-								<td>
-									<h:message styleClass="error" for="password"/>
-								</td>
-							</tr>
-							<tr class="odd">
-								<th>
-									<h:outputText value="#{msgs.addAdministratorPasswordConfirm}"/>
-								</th>
-								<td>
-									<h:inputSecret binding="#{backing_addAdministrator.addAdministratorPasswordConfirmInput}"
-										size="25" id="passwordConfirm" required="true" validator="#{backing_addAdministrator.validatePasswordConfirm}">
-										<f:validateLength minimum="1" maximum="512"/>
-									</h:inputSecret>
-								</td>
-								<td>
-									<h:message styleClass="error" for="passwordConfirm"/>
-								</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td>
-								</td>
-								<td>
-									<h:commandButton value="#{msgs.commonCancel}"
-										action="#{backing_addAdministrator.cancel}" immediate="true"/>
-									<h:commandButton value="#{backing_addAdministrator.updating ? msgs.commonUpdate : msgs.commonAdd}"
-										immediate="false" action="#{backing_addAdministrator.addAdministrator}"/>
-								</td>
-							</tr>
-						</tfoot>
-					</table>
+					<h:panelGrid styleClass="editing" columns="3" rowClasses="odd,even">
+						<h:outputText value="#{msgs.addAdministratorLogin}"/>
+						<h:inputText size="25" required="true" id="login"
+							value="#{backing_addAdministrator.login}"
+							disabled="#{backing_addAdministrator.updating}">
+							<f:validateLength minimum="1" maximum="512"/>
+						</h:inputText>
+						<h:message styleClass="error" for="login"/>
+
+						<h:outputText value="#{msgs.addAdministratorPassword}"/>
+						<h:inputSecret binding="#{backing_addAdministrator.addAdministratorPasswordInput}"
+							size="25" required="true" id="password"
+							value="#{backing_addAdministrator.password}">
+							<f:validateLength minimum="1" maximum="512"/>
+						</h:inputSecret>
+						<h:message styleClass="error" for="password"/>
+						
+						<h:outputText value="#{msgs.addAdministratorPasswordConfirm}"/>
+						<h:inputSecret binding="#{backing_addAdministrator.addAdministratorPasswordConfirmInput}"
+							size="25" id="passwordConfirm" required="true" validator="#{backing_addAdministrator.validatePasswordConfirm}">
+							<f:validateLength minimum="1" maximum="512"/>
+						</h:inputSecret>
+						<h:message styleClass="error" for="passwordConfirm"/>
+
+						<f:facet name="footer">	
+							<h:panelGroup>
+								<h:commandButton value="#{msgs.commonCancel}"
+									action="#{backing_addAdministrator.cancel}" immediate="true"/>
+								<h:commandButton value="#{backing_addAdministrator.updating ? msgs.commonUpdate : msgs.commonAdd}"
+									immediate="false" action="#{backing_addAdministrator.addAdministrator}"/>
+							</h:panelGroup>
+						</f:facet>
+					</h:panelGrid>
 				</h:form>
 			</div>
 			<f:subview id="footer">

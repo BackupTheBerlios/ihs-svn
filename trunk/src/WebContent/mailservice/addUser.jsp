@@ -33,105 +33,62 @@
 					<h:messages styleClass="error" globalOnly="true" layout="table"/>
 					<h:outputText value="#{backing_addUser.result}"/>
 				<f:verbatim>&lt;/p&gt;</f:verbatim>
-				<table class="editing">
-					<tbody>
-						<tr class="odd">
-							<th>
-								<h:outputText value="#{msgs.mailServiceAddUserLogin}"/>
-							</th>
-							<td>
-								<h:inputText size="25" required="true" id="login"
-									value="#{backing_addUser.login}"
-									disabled="#{backing_addUser.updating}">
-									<f:validateLength minimum="1" maximum="512"/>
-								</h:inputText>
-								<f:verbatim> @ </f:verbatim>
-								<h:outputText value="#{backing_addUser.domain}"/>
-							</td>
-							<td colspan="2">
-								<h:message styleClass="error" for="login"/>
-							</td>
-						</tr>
-						<tr class="even">
-							<th>
-								<h:outputText value="#{msgs.mailServiceAddUserPassword}"/>
-							</th>
-							<td>
-								<h:inputSecret binding="#{backing_addUser.passwordInput}"
-									size="25" required="true" id="password"
-									value="#{backing_addUser.password}">
-									<f:validateLength minimum="1" maximum="512"/>
-								</h:inputSecret>
-							</td>
-							<td colspan="2">
-								<h:message styleClass="error" for="password"/>
-							</td>
-						</tr>
-						<tr class="odd">
-							<th>
-								<h:outputText value="#{msgs.mailServiceAddUserPasswordConfirm}"/>
-							</th>
-							<td>
-								<h:inputSecret binding="#{backing_addUser.passwordConfirmInput}"
-									size="25" id="passwordConfirm" required="true" validator="#{backing_addUser.validatePasswordConfirm}">
-									<f:validateLength minimum="1" maximum="512"/>
-								</h:inputSecret>
-							</td>
-							<td colspan="2">
-								<h:message styleClass="error" for="passwordConfirm"/>
-							</td>
-						</tr>
-						<tr class="even">
-							<th>
-								<h:outputText value="#{msgs.mailServiceAddUserFlags}"/>
-							</th>
-							<td>
-								<h:inputSecret size="25" id="flags" required="true"/>
-							</td>
-							<td colspan="2">
-								<h:message styleClass="error" for="flags"/>
-							</td>
-						</tr>
-						<tr class="odd">
-							<th>
-								<h:outputText value="#{msgs.mailServiceAddUserHomeDir}"/>
-							</th>
-							<td>
-								<h:selectBooleanCheckbox id="defaultDir" immediate="true">
-									<h:outputText value="#{msgs.mailServiceAddUserHomeDirDefault}"/>
-								</h:selectBooleanCheckbox>
-							</td>
-							<td colspan="2">
-								<h:message styleClass="error" for="defaultDir"/>
-							</td>
-						</tr>
-						<tr class="even">
-							<th>
-								<h:outputText value="#{msgs.mailServiceAddUserHomeDirOther}"/>
-							</th>
-							<td>
-								<h:inputText size="25" id="dir" 
-									disabled="#{backing_addUser.defaultDir}" required="#{!backing_addUser.defaultDir}"
-									value="#{backing_addUser.dir}"/>
-							</td>
-							<td colspan="2">
-								<h:message styleClass="error" for="dir"/>
-							</td>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<td>
-							</td>
-							<td>
-								<h:commandButton value="#{msgs.commonCancel}"
-									action="#{backing_addUser.cancel}" immediate="true"/>
-								<h:commandButton value="#{backing_addUser.updating ? msgs.commonUpdate : msgs.commonAdd}"
-									immediate="false" action="#{backing_addUser.addUser}"/>
-							</td>
-						</tr>
-					</tfoot>
-				</table>
+				<h:panelGrid styleClass="editing" rowClasses="odd,even" columns="3">
+					<h:outputText value="#{msgs.mailServiceAddUserDomain}"/>
+					<h:outputText value="#{backing_addUser.domain}"/>
+					<f:verbatim/>
+					
+					<h:outputText value="#{msgs.mailServiceAddUserLogin}"/>
+					<h:inputText size="25" required="true" id="login"
+						value="#{backing_addUser.login}"
+						disabled="#{backing_addUser.updating}">
+						<f:validateLength minimum="1" maximum="512"/>
+					</h:inputText>
+					<h:message styleClass="error" for="login"/>
+
+					<h:outputText value="#{msgs.mailServiceAddUserPassword}"/>
+					<h:inputSecret binding="#{backing_addUser.passwordInput}"
+						size="25" required="true" id="password"
+						value="#{backing_addUser.password}">
+						<f:validateLength minimum="1" maximum="512"/>
+					</h:inputSecret>
+					<h:message styleClass="error" for="password"/>
+
+					<h:outputText value="#{msgs.mailServiceAddUserPasswordConfirm}"/>
+					<h:inputSecret binding="#{backing_addUser.passwordConfirmInput}"
+						size="25" id="passwordConfirm" required="true" validator="#{backing_addUser.validatePasswordConfirm}">
+						<f:validateLength minimum="1" maximum="512"/>
+					</h:inputSecret>
+					<h:message styleClass="error" for="passwordConfirm"/>
+
+					<h:outputText value="#{msgs.mailServiceAddUserFlags}"/>
+					<h:inputSecret size="25" id="flags" required="true"/>
+					<h:message styleClass="error" for="flags"/>
+
+					<h:outputText value="#{msgs.mailServiceAddUserHomeDir}"/>
+					<h:panelGroup>
+						<h:selectBooleanCheckbox id="defaultDir" value="defaultDir"
+							onclick="submit()"/>
+						<f:verbatim>&amp;nbsp;</f:verbatim>
+						<h:outputText value="#{msgs.mailServiceAddUserHomeDirDefault}"/>
+					</h:panelGroup>
+					<h:message styleClass="error" for="defaultDir"/>
+
+					<h:outputText value="#{msgs.mailServiceAddUserHomeDirOther}"/>
+					<h:inputText size="25" id="dir" 
+						disabled="#{backing_addUser.defaultDir}" required="#{!backing_addUser.defaultDir}"
+						value="#{backing_addUser.dir}"/>
+					<h:message styleClass="error" for="dir"/>
+
+					<f:facet name="footer">
+						<h:panelGroup>
+							<h:commandButton value="#{msgs.commonCancel}"
+								action="#{backing_addUser.cancel}" immediate="true"/>
+							<h:commandButton value="#{backing_addUser.updating ? msgs.commonUpdate : msgs.commonAdd}"
+								immediate="false" action="#{backing_addUser.addUser}"/>
+						</h:panelGroup>
+					</f:facet>
+				</h:panelGrid>
 			</h:form>
 		</div>
 		<f:subview id="footer">

@@ -36,6 +36,26 @@
 			<from-outcome>editDomain</from-outcome>
 			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>listUsers</from-outcome>
+			<to-view-id>/mailservice/users.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		<navigation-rule>
+		<from-view-id>/mailservice/users.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>addUser</from-outcome>
+			<to-view-id>/mailservice/addUser.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>reload</from-outcome>
+			<to-view-id>/mailservice/users.jsp</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editUser</from-outcome>
+			<to-view-id>/mailservice/addUser.jsp</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	<managed-bean>
 		<managed-bean-name>backing_administrators</managed-bean-name>
@@ -79,6 +99,11 @@
 	<managed-bean>
 		<managed-bean-name>backing_addUser</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.AddUser</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backing_users</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.Users</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 </faces-config>

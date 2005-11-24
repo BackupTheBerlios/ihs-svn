@@ -26,48 +26,63 @@
 			</f:subview>
 			<div id="main">
 				<div id="content">
-					<h2><h:outputText value="#{msgs.mailServiceDomainsTitle}"/></h2>
+					<h2><h:outputText value="#{msgs.mailServiceUsersTitle}"/></h2>
 				</div>
-				<h:form id="domains">
+				<h:form id="users">
 					<!-- result messages -->
 					<f:verbatim>&lt;p&gt;</f:verbatim>
 						<h:messages styleClass="error" globalOnly="false" layout="table"/>
-						<h:outputText styleClass="message" value="#{backing_domains.result}"/>
+						<h:outputText styleClass="message" value="#{backing_users.result}"/>
 					<f:verbatim>&lt;/p&gt;</f:verbatim>
 		
-					<h:dataTable rows="0" var="curDomain"
-						value="#{backing_domains.domains}" styleClass="listing">
+					<h:dataTable rows="0" var="curUser"
+						value="#{backing_users.users}" styleClass="listing">
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="#{msgs.commonSelectHeader}"/>
 							</f:facet>
 							<h:selectBooleanCheckbox 
-								value="#{curDomain.selected}" id="selected"/>
+								value="#{curUser.selected}" id="selected"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="#{msgs.mailServiceDomainsDomainHeader}"/>
+								<h:outputText value="#{msgs.mailServiceUsersLoginHeader}"/>
 							</f:facet>
-							<h:commandLink action="#{backing_domains.editDomain}" value="#{curDomain.domain}">
-								<f:param name="domain" value="#{curDomain.domain}"/>
-								<f:param name="idDomain" value="#{curDomain.idDomain}"/>
+							<h:commandLink action="#{backing_users.editUser}" value="#{curUser.login}">
+								<f:param name="login" value="#{curUser.login}"/>
+								<f:param name="idDomain" value="#{curUser.idDomain}"/>
 							</h:commandLink>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="#{msgs.mailServiceDomainsUsersHeader}"/>
+								<h:outputText value="#{msgs.mailServiceUsersFlagsHeader}"/>
 							</f:facet>
-							<h:commandLink action="#{backing_domains.listUsers}">
-								<h:outputText value="#{curDomain.numberOfUsers}"/>
-								<f:param name="idDomain" value="#{curDomain.idDomain}"/>
-							</h:commandLink>
+							<h:outputText value="#{curUser.flags}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{msgs.mailServiceUsersDirectoryHeader}"/>
+							</f:facet>
+							<h:outputText value="#{curUser.dir}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{msgs.mailServiceUsersUidHeader}"/>
+							</f:facet>
+							<h:outputText value="#{curUser.uid}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{msgs.mailServiceUsersGidHeader}"/>
+							</f:facet>
+							<h:outputText value="#{curUser.gid}"/>
 						</h:column>
 					</h:dataTable>
 
 					<h:commandButton value="#{msgs.commonAdd}"
-						action="#{backing_domains.addDomain}"/>
+						action="#{backing_users.addUser}"/>
 					<h:commandButton value="#{msgs.commonRemove}"
-						action="#{backing_domains.removeDomains}"/>
+						action="#{backing_users.removeUsers}"/>
 				</h:form>
 			</div>
 			<f:subview id="footer">

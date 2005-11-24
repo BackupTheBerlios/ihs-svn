@@ -5,25 +5,18 @@
  */
 package com.foo_baz.ihs.backing.mailservice;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
-import javax.faces.component.html.HtmlInputSecret;
 import javax.faces.component.html.HtmlInputText;
-import javax.faces.component.html.HtmlMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.model.ListDataModel;
 import javax.faces.validator.ValidatorException;
 import javax.naming.NamingException;
 
 import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
-import com.foo_baz.ihs.mailservice.Domain;
 import com.foo_baz.ihs.mailservice.ExtendedDomain;
 import com.foo_baz.util.faces.Messages;
 ;

@@ -16,7 +16,6 @@ import javax.naming.NamingException;
 import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
-import com.foo_baz.ihs.mailservice.Domain;
 import com.foo_baz.ihs.mailservice.ExtendedDomain;
 import com.foo_baz.ihs.mailservice.ExtendedUser;
 import com.foo_baz.ihs.mailservice.User;

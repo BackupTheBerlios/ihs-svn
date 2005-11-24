@@ -4,8 +4,6 @@
  * @author new
  */
 package com.foo_baz.ihs;
-import java.lang.ref.Reference;
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.logging.Level;

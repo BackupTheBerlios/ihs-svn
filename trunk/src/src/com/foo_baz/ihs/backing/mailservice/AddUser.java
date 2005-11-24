@@ -12,7 +12,6 @@ import javax.faces.validator.ValidatorException;
 import javax.naming.NamingException;
 
 import com.foo_baz.ihs.mailservice.User;
-import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.util.faces.Messages;
 
@@ -157,5 +156,20 @@ public class AddUser extends User {
 		setLogin("");
 		setUpdating(false);
 		return "cancel";
+	}
+	
+	private boolean defaultDir = true;
+	
+	/**
+	 * @return Returns the defaultDir.
+	 */
+	public boolean isDefaultDir() {
+		return defaultDir;
+	}
+	/**
+	 * @param defaultDir The defaultDir to set.
+	 */
+	public void setDefaultDir(boolean defaultDir) {
+		this.defaultDir = defaultDir;
 	}
 }

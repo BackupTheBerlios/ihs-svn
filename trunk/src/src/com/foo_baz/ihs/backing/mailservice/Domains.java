@@ -185,15 +185,20 @@ public class Domains {
 	 * 
 	 * @return
 	 */
-	public String editDomain() {
+	public String editDomain() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
 		ValueBinding binding = app.createValueBinding("#{backing_addDomain}");
-		ValueBinding domain = app.createValueBinding("#{param.domain}");
 		ValueBinding idDomain = app.createValueBinding("#{param.idDomain}");
+		
+		Domain dom = new Domain();
+		dom.setIdDomain(Integer.parseInt((String) idDomain.getValue(context)));
+		String act = fillNameOfDomain(dom);
+		if( ! act.equals("") ) return act;
+		
 		AddDomain aa = (AddDomain) binding.getValue(context);
-		aa.setDomain((String) domain.getValue(context));
-		aa.setIdDomain(Integer.parseInt((String) idDomain.getValue(context)));
+		aa.setDomain(dom.getDomain());
+		aa.setIdDomain(dom.getIdDomain());
 		aa.setUpdating(true);
 		return "editDomain";
 	}
@@ -202,13 +207,50 @@ public class Domains {
 	 * 
 	 * @return
 	 */
-	public String listUsers() {
+	public String listUsers() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
 		ValueBinding binding = app.createValueBinding("#{backing_users}");
 		ValueBinding idDomain = app.createValueBinding("#{param.idDomain}");
+		Domain dom = new Domain();
+		dom.setIdDomain(Integer.parseInt((String) idDomain.getValue(context)));
+		String act = fillNameOfDomain(dom);
+		if( ! act.equals("") ) return act;
+		
 		Users aa = (Users) binding.getValue(context);
-		aa.setIdDomain(Integer.parseInt((String) idDomain.getValue(context)));
+		aa.setIdDomain(dom.getIdDomain());
+		aa.setDomain(dom.getDomain());
 		return "listUsers";
 	}
+	
+	/**
+	 * @throws Exception
+	 */
+	public String fillNameOfDomain( Domain dom ) throws Exception {
+		IncredibleHostingSystem domainsDB = null;
+		try {
+			domainsDB = new IncredibleHostingSystem();
+			domainsDB.open();
+			
+			MailService mailService = domainsDB.getMailService();
+			
+			int res = mailService.getNameOfDomain( dom ).errorCode.value;
+				
+			if ( res != ErrorCode.ERR_NO) {
+				logger.info(this.getClass().getName()
+					+".fillNameOfDomain: Returned code: "+Integer.toString(res)
+					+" for element: "+dom.getIdDomain());
+			}	
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, "SQL error", e);
+			throw e;
+		} catch (NamingException e) {
+			logger.log(Level.SEVERE, "JNDI error", e);
+			throw e;
+		} finally {
+			try { domainsDB.close(); } catch (Exception e) {};
+		}
+		return "";
+	}
+
 }

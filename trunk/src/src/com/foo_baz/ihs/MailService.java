@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.omg.CORBA.IntHolder;
 
 import com.foo_baz.ihs.mailservice.Domain;
+import com.foo_baz.ihs.mailservice.User;
 
 /**
  * @author new
@@ -46,4 +47,10 @@ public abstract class MailService implements Service {
 	abstract public Error getUsersInDomain( int dom_id, int start, int cnt, ArrayList users ) throws Exception;
 	/// Get number of users in domain
 	abstract public Error getNumberOfUsersInDomain( int dom_id, IntHolder cnt ) throws Exception;
+	/// Add user
+	abstract public Error addUser( User user ) throws Exception;
+	/// Update user
+	abstract public Error updateUser( User user ) throws Exception;
+	/// Removes user
+	abstract public Error removeUser( int dom_id, String user ) throws Exception;
 }

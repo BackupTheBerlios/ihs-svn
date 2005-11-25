@@ -26,7 +26,10 @@
 			</f:subview>
 			<div id="main">
 				<div id="content">
-					<h2><h:outputText value="#{msgs.addAdministratorTitle}"/></h2>
+					<h2>
+						<h:outputText rendered="#{!backing_addAdministrator.updating}" value="#{msgs.addAdministratorTitle}"/>
+						<h:outputText rendered="#{backing_addAdministrator.updating}" value="#{msgs.editAdministratorTitle}"/>
+					</h2>
 				</div>
 				<h:form id="addAdministrator">
 					<f:verbatim>&lt;p&gt;</f:verbatim>

@@ -50,7 +50,6 @@
 							</f:facet>
 							<h:commandLink action="#{backing_users.editUser}" value="#{curUser.login}">
 								<f:param name="login" value="#{curUser.login}"/>
-								<f:param name="idDomain" value="#{curUser.idDomain}"/>
 							</h:commandLink>
 						</h:column>
 						<h:column>

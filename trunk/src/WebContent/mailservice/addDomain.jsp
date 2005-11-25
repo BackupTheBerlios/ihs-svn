@@ -26,7 +26,10 @@
 			</f:subview>
 			<div id="main">
 				<div id="content">
-					<h2><h:outputText value="#{msgs.mailServiceAddDomainTitle}"/></h2>
+					<h2>
+						<h:outputText rendered="#{!backing_addDomain.updating}" value="#{msgs.mailServiceAddDomainTitle}"/>
+						<h:outputText rendered="#{backing_addDomain.updating}" value="#{msgs.mailServiceEditDomainTitle}"/>
+					</h2>
 				</div>
 				<h:form id="addDomain">
 					<f:verbatim>&lt;p&gt;</f:verbatim>

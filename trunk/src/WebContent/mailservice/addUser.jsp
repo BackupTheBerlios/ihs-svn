@@ -26,7 +26,10 @@
 			</f:subview>
 			<div id="main">
 				<div id="content">
-					<h2><h:outputText value="#{msgs.mailServiceAddUserTitle}"/></h2>
+					<h2>
+						<h:outputText rendered="#{!backing_addUser.updating}" value="#{msgs.mailServiceAddUserTitle}"/>
+						<h:outputText rendered="#{backing_addUser.updating}" value="#{msgs.mailServiceEditUserTitle}"/>
+					</h2>
 				</div>
 				<h:form id="addUser">
 				<f:verbatim>&lt;p&gt;</f:verbatim>
@@ -67,8 +70,8 @@
 
 					<h:outputText value="#{msgs.mailServiceAddUserHomeDir}"/>
 					<h:panelGroup>
-						<h:selectBooleanCheckbox id="defaultDir" value="defaultDir"
-							onclick="submit()"/>
+						<h:selectBooleanCheckbox id="defaultDir" value="#{backing_addUser.defaultDir}"
+							onchange="submit()" immediate="true" valueChangeListener="#{backing_addUser.defaultDirChanged}"/>
 						<f:verbatim>&amp;nbsp;</f:verbatim>
 						<h:outputText value="#{msgs.mailServiceAddUserHomeDirDefault}"/>
 					</h:panelGroup>

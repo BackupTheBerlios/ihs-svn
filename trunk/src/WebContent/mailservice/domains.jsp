@@ -49,7 +49,6 @@
 								<h:outputText value="#{msgs.mailServiceDomainsDomainHeader}"/>
 							</f:facet>
 							<h:commandLink action="#{backing_domains.editDomain}" value="#{curDomain.domain}">
-								<f:param name="domain" value="#{curDomain.domain}"/>
 								<f:param name="idDomain" value="#{curDomain.idDomain}"/>
 							</h:commandLink>
 						</h:column>

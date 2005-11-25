@@ -6,13 +6,16 @@ import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
-import javax.faces.component.html.*;
+import javax.faces.component.html.HtmlInputSecret;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 import javax.naming.NamingException;
 
-import com.foo_baz.ihs.mailservice.User;
+import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
+import com.foo_baz.ihs.MailService;
+import com.foo_baz.ihs.mailservice.User;
 import com.foo_baz.util.faces.Messages;
 
 public class AddUser extends User {
@@ -68,25 +71,31 @@ public class AddUser extends User {
 	
 	//@{
 	protected String commonAddUpdate( boolean updating ) throws Exception {
-		IncredibleHostingSystem adminsDB = null;
+		IncredibleHostingSystem usersDB = null;
 		
 		String ret = "success";
 		
 		try {
-			adminsDB = new IncredibleHostingSystem();
-			adminsDB.open();
-			/*
+			usersDB = new IncredibleHostingSystem();
+			usersDB.open();
+			
+			MailService mailService = usersDB.getMailService();
+
 			logger.info(this.getClass().getName()
 					+".addUser: going to: "+(updating ? "update" : "add"));
 			
+			if( defaultDir ) {
+				setDir("");
+			}
+			
 			int res = updating ? 
-				adminsDB.updateAdministrator(this).errorCode.value
-				: adminsDB.addUser(this).errorCode.value; 
+				mailService.updateUser(this).errorCode.value
+				: mailService.addUser(this).errorCode.value; 
 			if ( res == ErrorCode.ERR_NO ) {
 				this.setResult(
-						Messages.getString(
-							"com.foo_baz.ihs.messages", 
-							updating ? "addUserUpdated" : "addUserAdded", null));
+					Messages.getString(
+						"com.foo_baz.ihs.messages", 
+						updating ? "addUserUpdated" : "addUserAdded", null));
 				if( ! updating )
 					this.setLogin("");
 			} else {
@@ -97,7 +106,7 @@ public class AddUser extends User {
 						"com.foo_baz.ihs.errors", 
 						"error_"+Integer.toString(res), null));
 				ret = "error";
-			}*/
+			}
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQL error", e);
 			throw e;
@@ -105,7 +114,7 @@ public class AddUser extends User {
 			logger.log(Level.SEVERE, "JNDI error", e);
 			throw e;
 		} finally {
-			try { adminsDB.close(); } catch (Exception e) {};
+			try { usersDB.close(); } catch (Exception e) {};
 		}
 		return ret;
 	}
@@ -171,5 +180,13 @@ public class AddUser extends User {
 	 */
 	public void setDefaultDir(boolean defaultDir) {
 		this.defaultDir = defaultDir;
+	}
+	
+	/**
+	 * 
+	 */
+	public void defaultDirChanged( ValueChangeEvent event ) {
+		defaultDir = ((Boolean)event.getNewValue()).booleanValue();
+		FacesContext.getCurrentInstance().renderResponse();
 	}
 }

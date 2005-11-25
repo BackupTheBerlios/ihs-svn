@@ -16,7 +16,6 @@ import javax.naming.NamingException;
 import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
-import com.foo_baz.ihs.mailservice.ExtendedDomain;
 import com.foo_baz.ihs.mailservice.ExtendedUser;
 import com.foo_baz.ihs.mailservice.User;
 import com.foo_baz.util.faces.Messages;
@@ -120,14 +119,14 @@ public class Users {
 			int res;
 			boolean partial = false;
 			Iterator usersIter = users.iterator();
-			ExtendedDomain curDomain;
+			ExtendedUser curUser;
 			while( usersIter.hasNext() ) {
-				curDomain = (ExtendedDomain)usersIter.next();
-				if(! curDomain.isSelected())
+				curUser = (ExtendedUser)usersIter.next();
+				if(! curUser.isSelected())
 					continue;
 				
-				res = mailService.removeDomain(
-					curDomain.getIdDomain()).errorCode.value;
+				res = mailService.removeUser(
+					curUser.getIdDomain(), curUser.getLogin()).errorCode.value;
 				
 				if ( res == ErrorCode.ERR_NO) {
 					this.setResult(
@@ -137,7 +136,7 @@ public class Users {
 				} else {
 					logger.info(this.getClass().getName()
 						+".removeUsers: Returned code: "+Integer.toString(res)
-						+" for element: "+curDomain.getDomain());
+						+" for element: "+curUser.getDomain());
 				}	
 			}
 			if( partial ) {
@@ -169,6 +168,7 @@ public class Users {
 		AddUser aa = (AddUser) binding.getValue(context);
 		aa.setLogin("");
 		aa.setIdDomain(getIdDomain());
+		aa.setDomain(getDomain());
 		aa.setUpdating(false);
 		return "addUser";
 	}
@@ -182,10 +182,10 @@ public class Users {
 		Application app = context.getApplication();
 		ValueBinding binding = app.createValueBinding("#{backing_addUser}");
 		ValueBinding login = app.createValueBinding("#{param.login}");
-		ValueBinding idDomain = app.createValueBinding("#{param.idDomain}");
 		AddUser aa = (AddUser) binding.getValue(context);
 		aa.setLogin((String) login.getValue(context));
-		aa.setIdDomain(Integer.parseInt((String) idDomain.getValue(context)));
+		aa.setIdDomain(getIdDomain());
+		aa.setDomain(getDomain());
 		aa.setUpdating(true);
 		return "editUser";
 	}
@@ -203,5 +203,20 @@ public class Users {
 	 */
 	public void setIdDomain(int idDomain) {
 		this.idDomain = idDomain;
+	}
+	
+	String domain;
+	
+	/**
+	 * @return Returns the domain.
+	 */
+	public String getDomain() {
+		return domain;
+	}
+	/**
+	 * @param domain The domain to set.
+	 */
+	public void setDomain(String domain) {
+		this.domain = domain;
 	}
 }

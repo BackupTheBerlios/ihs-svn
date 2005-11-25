@@ -318,4 +318,17 @@ public class VirtualQmailMailService extends MailService {
 		}
 		return ret;
 	}
+	
+	/// Add user
+	public Error addUser( User user ) throws Exception {
+		return new Error(ErrorCode.ERR_FUNC_NI, "");
+	}
+	/// Update user
+	public Error updateUser( User user ) throws Exception {
+		return new Error(ErrorCode.ERR_FUNC_NI, "");
+	}
+	/// Removes user
+	public Error removeUser( int dom_id, String user ) throws Exception {
+		return new Error(ErrorCode.ERR_FUNC_NI, "");		
+	}
 }

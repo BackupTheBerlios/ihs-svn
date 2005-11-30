@@ -14,10 +14,10 @@ import javax.faces.model.ListDataModel;
 import javax.naming.NamingException;
 
 import com.foo_baz.ihs.Administrator;
-import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.ExtendedAdministrator;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.util.faces.Messages;
+import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class Administrators {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -35,10 +35,10 @@ public class Administrators {
 		try {
 			adminsDB = new IncredibleHostingSystem();
 			adminsDB.open();
-			int res = adminsDB.getAdministrators(admins).errorCode.value;
-			if ( res != ErrorCode.ERR_NO) {
+			err_code res = adminsDB.getAdministrators(admins).ec;
+			if ( res != err_code.err_no ) {
 				logger.info(this.getClass().getName()
-					+".getAdministrators: Returned code: "+Integer.toString(res));
+					+".getAdministrators: Returned code: "+Integer.toString(res.value()));
 			} else {
 				Iterator eaIter = admins.iterator();
 				for( int i=0; eaIter.hasNext(); ++i ) {
@@ -116,7 +116,7 @@ public class Administrators {
 			adminsDB = new IncredibleHostingSystem();
 			adminsDB.open();
 			
-			int res;
+			err_code res;
 			boolean partial = false;
 			Iterator adminsIter = admins.iterator();
 			ExtendedAdministrator curAdmin;
@@ -125,16 +125,16 @@ public class Administrators {
 				if(! curAdmin.isSelected())
 					continue;
 				
-				res = adminsDB.deleteAdministrator(curAdmin).errorCode.value;
+				res = adminsDB.deleteAdministrator(curAdmin).ec;
 				
-				if ( res == ErrorCode.ERR_NO) {
+				if ( res == err_code.err_no ) {
 					this.setResult(
 						Messages.getString(
 							"com.foo_baz.ihs.messages", 
 							"administratorsRemoved", null));
 				} else {
 					logger.info(this.getClass().getName()
-						+".removeAdministrators: Returned code: "+Integer.toString(res)
+						+".removeAdministrators: Returned code: "+Integer.toString(res.value())
 						+" for user: "+curAdmin.getLogin());
 				}	
 			}
@@ -166,7 +166,7 @@ public class Administrators {
 		Application app = context.getApplication();
 		ValueBinding binding = app.createValueBinding("#{backing_addAdministrator}");
 		AddAdministrator aa = (AddAdministrator) binding.getValue(context);
-		aa.setLogin("");
+		aa.clear();
 		aa.setUpdating(false);
 		return "addAdministrator";
 	}
@@ -181,6 +181,7 @@ public class Administrators {
 		ValueBinding binding = app.createValueBinding("#{backing_addAdministrator}");
 		ValueBinding login = app.createValueBinding("#{param.login}");
 		AddAdministrator aa = (AddAdministrator) binding.getValue(context);
+		aa.clear();
 		aa.setLogin((String) login.getValue(context));
 		aa.setUpdating(true);
 		return "editAdministrator";

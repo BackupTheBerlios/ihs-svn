@@ -9,19 +9,16 @@ import com.foo_baz.v_q.ivqPackage.domain_info;
 
 /**
  * @author new
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 public class Domain implements Cloneable {
-	int idDomain;
-	String domain;
+	private domain_info di = null;
 
 	/**
 	 * 
 	 */
 	public Domain() {
 		super();
+		clear();
 	}
 	
 	/**
@@ -37,25 +34,25 @@ public class Domain implements Cloneable {
 	 * @return Returns the domain.
 	 */
 	public String getDomain() {
-		return domain;
+		return di.domain;
 	}
 	/**
 	 * @param domain The domain to set.
 	 */
 	public void setDomain(String domain) {
-		this.domain = domain;
+		this.di.domain = domain;
 	}
 	/**
 	 * @return Returns the idDomain.
 	 */
 	public int getIdDomain() {
-		return idDomain;
+		return di.id_domain;
 	}
 	/**
 	 * @param idDomain The idDomain to set.
 	 */
 	public void setIdDomain(int idDomain) {
-		this.idDomain = idDomain;
+		this.di.id_domain = idDomain;
 	}
 	
 	/**
@@ -66,5 +63,9 @@ public class Domain implements Cloneable {
 		domain.setDomain(this.getDomain());
 		domain.setIdDomain(this.getIdDomain());
 		return domain;
+	}
+	
+	public void clear() {
+		di = new domain_info();
 	}
 }

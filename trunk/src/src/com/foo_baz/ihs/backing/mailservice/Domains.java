@@ -15,12 +15,12 @@ import javax.naming.NamingException;
 
 import org.omg.CORBA.IntHolder;
 
-import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
 import com.foo_baz.ihs.mailservice.Domain;
 import com.foo_baz.ihs.mailservice.ExtendedDomain;
 import com.foo_baz.util.faces.Messages;
+import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class Domains {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -41,10 +41,10 @@ public class Domains {
 			
 			MailService mailService = domainsDB.getMailService();
 			
-			int res = mailService.getDomains(domains).errorCode.value;
-			if ( res != ErrorCode.ERR_NO) {
+			err_code res = mailService.getDomains(domains).ec;
+			if ( res != err_code.err_no ) {
 				logger.info(this.getClass().getName()
-					+".getDomains: Returned code: "+Integer.toString(res));
+					+".getDomains: Returned code: "+Integer.toString(res.value()));
 			} else {
 				Iterator eaIter = domains.iterator();
 				
@@ -54,8 +54,8 @@ public class Domains {
 				
 					IntHolder cnt = new IntHolder(0);
 					res = mailService.getNumberOfUsersInDomain(
-						ea.getIdDomain(), cnt).errorCode.value;
-					if( res == ErrorCode.ERR_NO ) {
+						ea.getIdDomain(), cnt).ec;
+					if( res == err_code.err_no ) {
 						ea.setNumberOfUsers(cnt.value);
 					}
 					
@@ -126,7 +126,7 @@ public class Domains {
 			
 			MailService mailService = domainsDB.getMailService();
 			
-			int res;
+			err_code res;
 			boolean partial = false;
 			Iterator domainsIter = domains.iterator();
 			ExtendedDomain curDomain;
@@ -136,16 +136,16 @@ public class Domains {
 					continue;
 				
 				res = mailService.removeDomain(
-					curDomain.getIdDomain()).errorCode.value;
+					curDomain.getIdDomain()).ec;
 				
-				if ( res == ErrorCode.ERR_NO) {
+				if ( res == err_code.err_no ) {
 					this.setResult(
 						Messages.getString(
 							"com.foo_baz.ihs.messages", 
 							"mailServiceDomainsRemoved", null));
 				} else {
 					logger.info(this.getClass().getName()
-						+".removeDomains: Returned code: "+Integer.toString(res)
+						+".removeDomains: Returned code: "+Integer.toString(res.value())
 						+" for element: "+curDomain.getDomain());
 				}	
 			}
@@ -176,7 +176,7 @@ public class Domains {
 		Application app = context.getApplication();
 		ValueBinding binding = app.createValueBinding("#{backing_addDomain}");
 		AddDomain aa = (AddDomain) binding.getValue(context);
-		aa.setDomain("");
+		aa.clear();
 		aa.setUpdating(false);
 		return "addDomain";
 	}
@@ -197,6 +197,7 @@ public class Domains {
 		if( ! act.equals("") ) return act;
 		
 		AddDomain aa = (AddDomain) binding.getValue(context);
+		aa.clear();
 		aa.setDomain(dom.getDomain());
 		aa.setIdDomain(dom.getIdDomain());
 		aa.setUpdating(true);
@@ -234,11 +235,11 @@ public class Domains {
 			
 			MailService mailService = domainsDB.getMailService();
 			
-			int res = mailService.getNameOfDomain( dom ).errorCode.value;
+			err_code res = mailService.getNameOfDomain( dom ).ec;
 				
-			if ( res != ErrorCode.ERR_NO) {
+			if ( res != err_code.err_no ) {
 				logger.info(this.getClass().getName()
-					+".fillNameOfDomain: Returned code: "+Integer.toString(res)
+					+".fillNameOfDomain: Returned code: "+Integer.toString(res.value())
 					+" for element: "+dom.getIdDomain());
 			}	
 		} catch (SQLException e) {

@@ -4,24 +4,12 @@ import com.foo_baz.v_q.ivqPackage.user_info;
 
 public class User implements Cloneable
 {
-	private String password;
-	
-	private String login;
-	
-	private String dir;
-	
-	private int idDomain;
-	
+	private user_info ui = null;
 	private String domain;
-	
-	private short flags;
-	
-	private short gid;
-	
-	private short uid;
 	
 	public User() {
 		super();
+		clear();
 	}
 	
 	public User( user_info ui ) {
@@ -41,90 +29,92 @@ public class User implements Cloneable
 	 */
 	public void setLogin(String login)
 	{
-		this.login = login;
+		this.ui.login = login;
 	}
 	
 	public String getLogin()
 	{
-		return login;
+		return ui.login;
 	}
 	
 	public java.lang.String getPassword()
 	{
-		return password;
+		return ui.pass;
 	}
 	
 	public void setPassword(String password)
 	{
-		this.password = password;
+		this.ui.pass = password;
 	}
 	
 	/**
 	 * @return Returns the dir.
 	 */
 	public String getDir() {
-		return dir;
+		return ui.dir;
 	}
 	/**
 	 * @param dir The dir to set.
 	 */
 	public void setDir(String dir) {
-		this.dir = dir;
+		this.ui.dir = dir;
 	}
 	/**
 	 * @return Returns the flags.
 	 */
 	public short getFlags() {
-		return flags;
+		return ui.flags;
 	}
 	/**
 	 * @param flags The flags to set.
 	 */
 	public void setFlags(short flags) {
-		this.flags = flags;
+		this.ui.flags = flags;
 	}
 	/**
 	 * @return Returns the idDomain.
 	 */
 	public int getIdDomain() {
-		return idDomain;
+		return ui.id_domain;
 	}
 	/**
 	 * @param idDomain The idDomain to set.
 	 */
 	public void setIdDomain(int idDomain) {
-		this.idDomain = idDomain;
+		this.ui.id_domain = idDomain;
 	}
 		
 	/**
 	 * @return Returns the gid.
 	 */
 	public short getGid() {
-		return gid;
+		return ui.gid;
 	}
 	/**
 	 * @param gid The gid to set.
 	 */
 	public void setGid(short gid) {
-		this.gid = gid;
+		this.ui.gid = gid;
 	}
 	/**
 	 * @return Returns the uid.
 	 */
 	public short getUid() {
-		return uid;
+		return ui.uid;
 	}
 	/**
 	 * @param uid The uid to set.
 	 */
 	public void setUid(short uid) {
-		this.uid = uid;
+		this.ui.uid = uid;
 	}
+	
 	/**
 	 * Performs deep copy of the object
 	 */
 	public Object clone() {
 		User item = new User();
+		item.setDomain(this.getDomain());
 		item.setIdDomain(this.getIdDomain());
 		item.setLogin(this.getLogin());
 		item.setPassword(this.getPassword());
@@ -146,6 +136,11 @@ public class User implements Cloneable
 	 */
 	public void setDomain(String domain) {
 		this.domain = domain;
+	}
+	
+	public void clear() {
+		ui = new user_info();
+		domain = "";
 	}
 }
 

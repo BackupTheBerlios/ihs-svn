@@ -6,6 +6,10 @@ public class Administrator implements Cloneable
 	
 	private java.lang.String login;
 	
+	public void clear() {
+		setLogin("");
+		setPassword("");
+	}
 	/**
 	 * Set login. Login is a primary key for this object.
 	 * @param login Login

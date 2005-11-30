@@ -13,12 +13,12 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.naming.NamingException;
 
-import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
 import com.foo_baz.ihs.mailservice.ExtendedUser;
 import com.foo_baz.ihs.mailservice.User;
 import com.foo_baz.util.faces.Messages;
+import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class Users {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -39,11 +39,11 @@ public class Users {
 			
 			MailService mailService = usersDB.getMailService();
 			
-			int res = mailService.getUsersInDomain(getIdDomain(), 
-				0, 0, users).errorCode.value;
-			if ( res != ErrorCode.ERR_NO) {
+			err_code res = mailService.getUsersInDomain(getIdDomain(), 
+				0, 0, users).ec;
+			if ( res != err_code.err_no ) {
 				logger.info(this.getClass().getName()
-					+".getUsers: Returned code: "+Integer.toString(res));
+					+".getUsers: Returned code: "+Integer.toString(res.value()));
 			} else {
 				Iterator eaIter = users.iterator();
 				
@@ -116,7 +116,7 @@ public class Users {
 			
 			MailService mailService = usersDB.getMailService();
 			
-			int res;
+			err_code res;
 			boolean partial = false;
 			Iterator usersIter = users.iterator();
 			ExtendedUser curUser;
@@ -126,16 +126,16 @@ public class Users {
 					continue;
 				
 				res = mailService.removeUser(
-					curUser.getIdDomain(), curUser.getLogin()).errorCode.value;
+					curUser.getIdDomain(), curUser.getLogin()).ec;
 				
-				if ( res == ErrorCode.ERR_NO) {
+				if ( res == err_code.err_no ) {
 					this.setResult(
 						Messages.getString(
 							"com.foo_baz.ihs.messages", 
 							"mailServiceUsersRemoved", null));
 				} else {
 					logger.info(this.getClass().getName()
-						+".removeUsers: Returned code: "+Integer.toString(res)
+						+".removeUsers: Returned code: "+Integer.toString(res.value())
 						+" for element: "+curUser.getDomain());
 				}	
 			}
@@ -166,7 +166,7 @@ public class Users {
 		Application app = context.getApplication();
 		ValueBinding binding = app.createValueBinding("#{backing_addUser}");
 		AddUser aa = (AddUser) binding.getValue(context);
-		aa.setLogin("");
+		aa.clear();
 		aa.setIdDomain(getIdDomain());
 		aa.setDomain(getDomain());
 		aa.setUpdating(false);
@@ -183,6 +183,7 @@ public class Users {
 		ValueBinding binding = app.createValueBinding("#{backing_addUser}");
 		ValueBinding login = app.createValueBinding("#{param.login}");
 		AddUser aa = (AddUser) binding.getValue(context);
+		aa.clear();
 		aa.setLogin((String) login.getValue(context));
 		aa.setIdDomain(getIdDomain());
 		aa.setDomain(getDomain());

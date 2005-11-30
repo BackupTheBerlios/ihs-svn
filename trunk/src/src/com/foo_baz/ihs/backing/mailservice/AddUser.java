@@ -12,11 +12,11 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 import javax.naming.NamingException;
 
-import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
 import com.foo_baz.ihs.mailservice.User;
 import com.foo_baz.util.faces.Messages;
+import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class AddUser extends User {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -88,23 +88,27 @@ public class AddUser extends User {
 				setDir("");
 			}
 			
-			int res = updating ? 
-				mailService.updateUser(this).errorCode.value
-				: mailService.addUser(this).errorCode.value; 
-			if ( res == ErrorCode.ERR_NO ) {
+			err_code res = updating ? 
+				mailService.updateUser(this).ec
+				: mailService.addUser(this).ec; 
+			if ( res == err_code.err_no ) {
 				this.setResult(
 					Messages.getString(
 						"com.foo_baz.ihs.messages", 
-						updating ? "addUserUpdated" : "addUserAdded", null));
-				if( ! updating )
-					this.setLogin("");
+						updating ? "mailServiceAddUserUpdated" : "mailServiceAddUserAdded", null));
+				if( ! updating ) {
+					User au = (User) this.clone();
+					this.clear();
+					this.setDomain(au.getDomain());
+					this.setIdDomain(au.getIdDomain());
+				}
 			} else {
 				logger.info(this.getClass().getName()
-					+".addUser: Returned code: "+Integer.toString(res));
+					+".addUser: Returned code: "+Integer.toString(res.value()));
 				this.setResult(
 					Messages.getString(
 						"com.foo_baz.ihs.errors", 
-						"error_"+Integer.toString(res), null));
+						"error_"+Integer.toString(res.value()), null));
 				ret = "error";
 			}
 		} catch (SQLException e) {
@@ -129,7 +133,9 @@ public class AddUser extends User {
 	 * @return Returns the addUserResult.
 	 */
 	public String getResult() {
-		return result;
+		String temp = result;
+		result = "";
+		return temp;
 	}
 	/**
 	 * @param addUserResult The addUserResult to set.
@@ -162,7 +168,7 @@ public class AddUser extends User {
 	 * @return action to perform
 	 */
 	public String cancel() {
-		setLogin("");
+		clear();
 		setUpdating(false);
 		return "cancel";
 	}

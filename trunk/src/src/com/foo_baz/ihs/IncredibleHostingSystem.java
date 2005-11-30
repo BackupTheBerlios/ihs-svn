@@ -1,5 +1,7 @@
 package com.foo_baz.ihs;
 import com.foo_baz.util.faces.Messages;
+import com.foo_baz.v_q.ivqPackage.err_code;
+import com.foo_baz.v_q.ivqPackage.error;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -99,10 +101,10 @@ implements com.foo_baz.ihs.Administrators {
 	 * @return Error
 	 * @throws SQLException When SQL fails
 	 */
-	public com.foo_baz.ihs.Error addAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
+	public error addAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
 		String func = "IHS_ADMINISTRATOR_ADD";
 		CallableStatement call = null;
-		Error ret = new Error(ErrorCode.ERR_NO, "");
+		error ret = new error(err_code.err_no, "", "", 0, false);
 		
 		try {
 			call = dbCon.prepareCall("{? = call "+ func +"(?, ?)}");
@@ -116,16 +118,16 @@ implements com.foo_baz.ihs.Administrators {
 			boolean wasNull = call.wasNull();
 			
 			if( wasNull ) {
-				return new Error(ErrorCode.ERR_FUNC_RES, func);
+				return new error(err_code.err_func_res, func, "", 0, false);
 			}
 			
 			if( res < 0 ) {
 				switch( res ) {
 				case -1:
-					ret = new Error(ErrorCode.ERR_EXISTS, "");
+					ret = new error(err_code.err_exists, "", "", 0, false);
 				break;
 				default:
-					ret = new Error(ErrorCode.ERR_FUNC_RES, func);
+					ret = new error(err_code.err_func_res, func, "", 0, false);
 				}
 			}
 		} finally {
@@ -138,12 +140,12 @@ implements com.foo_baz.ihs.Administrators {
 	 * Calls function that removes entry.
 	 * @param func function's name
 	 * @param id identifier
-	 * @return Error
+	 * @return error
 	 * @throws SQLException when SQL fails
 	 */
-	public com.foo_baz.ihs.Error removeByFunctionAndString( String func, String id ) throws SQLException {
+	public error removeByFunctionAndString( String func, String id ) throws SQLException {
 		CallableStatement call = null;
-		Error ret = new Error(ErrorCode.ERR_NO, "");
+		error ret = new error(err_code.err_no, "", "", 0, false);
 		
 		try {
 			call = dbCon.prepareCall("{? = call "+ func +"(?)}");
@@ -156,16 +158,16 @@ implements com.foo_baz.ihs.Administrators {
 			boolean wasNull = call.wasNull();
 			
 			if( wasNull ) {
-				return new Error(ErrorCode.ERR_FUNC_RES, func);
+				return new error(err_code.err_func_res, func, "", 0, false);
 			}
 			
 			if( res != 0 ) {
 				switch( res ) {
 				case -1:
-					ret = new Error(ErrorCode.ERR_NOENT, "");
+					ret = new error(err_code.err_noent, "", "", 0, false);
 				break;
 				default:
-					ret = new Error(ErrorCode.ERR_FUNC_RES, func);
+					ret = new error(err_code.err_func_res, func, "", 0, false);
 				}
 			}
 		} finally {
@@ -174,14 +176,14 @@ implements com.foo_baz.ihs.Administrators {
 		return ret;
 	}
 	
-	public com.foo_baz.ihs.Error deleteAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
+	public error deleteAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
 		return removeByFunctionAndString( "IHS_ADMINISTRATOR_RM", administrator.getLogin());
 	}
 	
-	public com.foo_baz.ihs.Error updateAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
+	public error updateAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
 		String func = "IHS_ADMINISTRATOR_CHANGE";
 		CallableStatement call = null;
-		Error ret = new Error(ErrorCode.ERR_NO, "");
+		error ret = new error(err_code.err_no, "", "", 0, false);
 		
 		try {
 			call = dbCon.prepareCall("{? = call "+ func +"(?, ?)}");
@@ -195,16 +197,16 @@ implements com.foo_baz.ihs.Administrators {
 			boolean wasNull = call.wasNull();
 			
 			if( wasNull ) {
-				return new Error(ErrorCode.ERR_FUNC_RES, func);
+				return new error(err_code.err_func_res, func, "", 0, false);
 			}
 			
 			if( res < 0 ) {
 				switch( res ) {
 				case -1:
-					ret = new Error(ErrorCode.ERR_NOENT, "");
+					ret = new error(err_code.err_noent, "", "", 0, false);
 				break;
 				default:
-					ret = new Error(ErrorCode.ERR_FUNC_RES, func);
+					ret = new error(err_code.err_func_res, func, "", 0, false);
 				}
 			}
 		} finally {
@@ -216,10 +218,10 @@ implements com.foo_baz.ihs.Administrators {
 	/**
 	 * Read administrators from storage medium.
 	 * @param administrators List of administrators read
-	 * @return Error
+	 * @return error
 	 * @throws SQLException When SQL query fails
 	 */
-	public com.foo_baz.ihs.Error getAdministrators(java.util.ArrayList administrators) throws SQLException {
+	public error getAdministrators(java.util.ArrayList administrators) throws SQLException {
 		PreparedStatement st = null;
 		ResultSet res = null;
 		
@@ -243,19 +245,19 @@ implements com.foo_baz.ihs.Administrators {
 			try { if( res!=null ) res.close(); } catch( Exception e ) {};
 			try { if( st!= null) st.close(); } catch( Exception e ) {};
 		}
-		return new Error(ErrorCode.ERR_NO, "");
+		return new error(err_code.err_no, "", "", 0, false);
 	}
 	
 	/**
 	 * Read administrator from storage medium.
 	 * @param administrator Administrator, login must be set
-	 * @return Error
+	 * @return error
 	 * @throws SQLException When SQL query fails
 	 */
-	public com.foo_baz.ihs.Error getAdministrator(Administrator administrator) throws SQLException {
+	public error getAdministrator(Administrator administrator) throws SQLException {
 		PreparedStatement st = null;
 		ResultSet res = null;
-		Error ret = new Error(ErrorCode.ERR_NO, "");
+		error ret = new error(err_code.err_no, "", "", 0, false);
 		
 		try {
 			int idx = 1;
@@ -267,7 +269,7 @@ implements com.foo_baz.ihs.Administrators {
 				administrator.setPassword( res.getString(idx++) );
 				if( res.wasNull() ) administrator.setPassword("");
 			} else {
-				ret = new Error(ErrorCode.ERR_NOENT, "");
+				ret = new error(err_code.err_noent, "", "", 0, false);
 			}
 		} finally {
 			try { if( res!=null ) res.close(); } catch( Exception e ) {};

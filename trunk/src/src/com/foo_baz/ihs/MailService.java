@@ -11,6 +11,7 @@ import org.omg.CORBA.IntHolder;
 
 import com.foo_baz.ihs.mailservice.Domain;
 import com.foo_baz.ihs.mailservice.User;
+import com.foo_baz.v_q.ivqPackage.error;
 
 /**
  * @author new
@@ -31,26 +32,26 @@ public abstract class MailService implements Service {
 		return Service.MAIL_SERVICE;
 	}
 
-	abstract public Error getDomains( ArrayList domains ) throws Exception;
+	abstract public error getDomains( ArrayList domains ) throws Exception;
 
 	/// Add domain
-	abstract public Error addDomain( Domain dom ) throws Exception; 
+	abstract public error addDomain( Domain dom ) throws Exception; 
 	/// Removes domain
-	abstract public Error removeDomain( int dom_id ) throws Exception;
+	abstract public error removeDomain( int dom_id ) throws Exception;
 	/// Validates domain name
-	abstract public Error validateDomain( String dom ) throws Exception;
+	abstract public error validateDomain( String dom ) throws Exception;
 	/// Gets ID of domain
-	abstract public Error getIdOfDomain( Domain dom ) throws Exception;
+	abstract public error getIdOfDomain( Domain dom ) throws Exception;
 	/// Gets name of a domain
-	abstract public Error getNameOfDomain( Domain dom ) throws Exception;
+	abstract public error getNameOfDomain( Domain dom ) throws Exception;
 	/// Gets users in domain
-	abstract public Error getUsersInDomain( int dom_id, int start, int cnt, ArrayList users ) throws Exception;
+	abstract public error getUsersInDomain( int dom_id, int start, int cnt, ArrayList users ) throws Exception;
 	/// Get number of users in domain
-	abstract public Error getNumberOfUsersInDomain( int dom_id, IntHolder cnt ) throws Exception;
+	abstract public error getNumberOfUsersInDomain( int dom_id, IntHolder cnt ) throws Exception;
 	/// Add user
-	abstract public Error addUser( User user ) throws Exception;
+	abstract public error addUser( User user ) throws Exception;
 	/// Update user
-	abstract public Error updateUser( User user ) throws Exception;
+	abstract public error updateUser( User user ) throws Exception;
 	/// Removes user
-	abstract public Error removeUser( int dom_id, String user ) throws Exception;
+	abstract public error removeUser( int dom_id, String user ) throws Exception;
 }

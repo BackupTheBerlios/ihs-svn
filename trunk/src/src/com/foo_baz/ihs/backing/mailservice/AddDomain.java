@@ -14,11 +14,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.naming.NamingException;
 
-import com.foo_baz.ihs.ErrorCode;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
 import com.foo_baz.ihs.mailservice.ExtendedDomain;
 import com.foo_baz.util.faces.Messages;
+import com.foo_baz.v_q.ivqPackage.err_code;
 ;
 
 /**
@@ -74,23 +74,23 @@ public class AddDomain extends ExtendedDomain {
 			logger.info(this.getClass().getName()
 				+".addDomain: going to: "+(updating ? "update" : "add"));
 			
-			int res = updating ? 
-				ErrorCode.ERR_FUNC_NI
-				: mailService.addDomain(this).errorCode.value; 
-			if ( res == ErrorCode.ERR_NO ) {
+			err_code res = updating ? 
+				err_code.err_func_ni
+				: mailService.addDomain(this).ec; 
+			if ( res == err_code.err_no ) {
 				this.setResult(
 						Messages.getString(
 							"com.foo_baz.ihs.messages", 
 							updating ? "mailServiceAddDomainUpdated" : "mailServiceAddDomainAdded", null));
 				if( ! updating )
-					this.setDomain("");
+					this.clear();
 			} else {
 				logger.info(this.getClass().getName()
-					+".addDomain: Returned code: "+Integer.toString(res));
+					+".addDomain: Returned code: "+Integer.toString(res.value()));
 				this.setResult(
 					Messages.getString(
 						"com.foo_baz.ihs.errors", 
-						"error_"+Integer.toString(res), null));
+						"error_"+Integer.toString(res.value()), null));
 				ret = "error";
 			}
 		} catch (SQLException e) {
@@ -149,7 +149,7 @@ public class AddDomain extends ExtendedDomain {
 	 * @return action to perform
 	 */
 	public String cancel() {
-		setDomain("");
+		clear();
 		setUpdating(false);
 		return "cancel";
 	}}

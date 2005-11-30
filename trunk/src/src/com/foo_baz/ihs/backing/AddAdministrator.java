@@ -14,7 +14,7 @@ import javax.naming.NamingException;
 import com.foo_baz.ihs.Administrator;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.util.faces.Messages;
-import com.foo_baz.ihs.ErrorCode;
+import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class AddAdministrator extends Administrator {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -100,23 +100,23 @@ public class AddAdministrator extends Administrator {
 			logger.info(this.getClass().getName()
 					+".addAdministrator: going to: "+(updating ? "update" : "add"));
 			
-			int res = updating ? 
-				adminsDB.updateAdministrator(this).errorCode.value
-				: adminsDB.addAdministrator(this).errorCode.value; 
-			if ( res == ErrorCode.ERR_NO ) {
+			err_code res = updating ? 
+				adminsDB.updateAdministrator(this).ec
+				: adminsDB.addAdministrator(this).ec; 
+			if ( res == err_code.err_no ) {
 				this.setResult(
 						Messages.getString(
 							"com.foo_baz.ihs.messages", 
 							updating ? "addAdministratorUpdated" : "addAdministratorAdded", null));
 				if( ! updating )
-					this.setLogin("");
+					this.clear();
 			} else {
 				logger.info(this.getClass().getName()
-					+".addAdministrator: Returned code: "+Integer.toString(res));
+					+".addAdministrator: Returned code: "+Integer.toString(res.value()));
 				this.setResult(
 					Messages.getString(
 						"com.foo_baz.ihs.errors", 
-						"error_"+Integer.toString(res), null));
+						"error_"+Integer.toString(res.value()), null));
 				ret = "error";
 			}
 		} catch (SQLException e) {
@@ -175,7 +175,7 @@ public class AddAdministrator extends Administrator {
 	 * @return action to perform
 	 */
 	public String cancel() {
-		setLogin("");
+		clear();
 		setUpdating(false);
 		return "cancel";
 	}

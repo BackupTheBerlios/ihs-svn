@@ -156,8 +156,7 @@ public class Administrators {
 			try { adminsDB.close(); } catch (Exception e) {};
 		}
 		
-		//adminsModel = (ListDataModel)getAdministrators();
-		return "reload";
+		return "";
 	}
 	//@}
 	

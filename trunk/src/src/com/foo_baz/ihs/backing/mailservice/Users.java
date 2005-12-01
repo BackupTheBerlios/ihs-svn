@@ -157,7 +157,7 @@ public class Users {
 		} finally {
 			try { usersDB.close(); } catch (Exception e) {};
 		}
-		return "reload";
+		return "";
 	}
 	//@}
 	

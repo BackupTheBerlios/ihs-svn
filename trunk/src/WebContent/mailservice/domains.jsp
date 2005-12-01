@@ -67,6 +67,8 @@
 						action="#{backing_domains.addDomain}"/>
 					<h:commandButton value="#{msgs.commonRemove}"
 						action="#{backing_domains.removeDomains}"/>
+					<h:commandButton value="#{msgs.commonReload}"
+						action="reload"/>
 				</h:form>
 			</div>
 			<f:subview id="footer">

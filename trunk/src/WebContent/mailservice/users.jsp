@@ -82,6 +82,8 @@
 						action="#{backing_users.addUser}"/>
 					<h:commandButton value="#{msgs.commonRemove}"
 						action="#{backing_users.removeUsers}"/>
+					<h:commandButton value="#{msgs.commonReload}"
+						action="reload"/>
 				</h:form>
 			</div>
 			<f:subview id="footer">

@@ -51,16 +51,14 @@
 							<h:commandLink action="#{backing_administrators.editAdministrator}" value="#{curAdmin.login}">
 								<f:param name="login" value="#{curAdmin.login}"/>
 							</h:commandLink>
-							<f:facet name="footer">
-								<h:panelGrid columns="2" styleClass="buttons">
-									<h:commandButton value="#{msgs.commonAdd}"
-										action="#{backing_administrators.addAdministrator}"/>
-									<h:commandButton value="#{msgs.commonRemove}"
-										action="#{backing_administrators.removeAdministrators}"/>
-								</h:panelGrid>
-							</f:facet>
 						</h:column>
 					</h:dataTable>
+					<h:commandButton value="#{msgs.commonAdd}"
+						action="#{backing_administrators.addAdministrator}"/>
+					<h:commandButton value="#{msgs.commonRemove}"
+						action="#{backing_administrators.removeAdministrators}"/>
+					<h:commandButton value="#{msgs.commonReload}"
+						action="reload"/>
 				</h:form>
 			</div>
 			<f:subview id="footer">

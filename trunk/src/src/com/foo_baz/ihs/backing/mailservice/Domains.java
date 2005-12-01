@@ -167,7 +167,7 @@ public class Domains {
 		} finally {
 			try { domainsDB.close(); } catch (Exception e) {};
 		}
-		return "reload";
+		return "";
 	}
 	//@}
 	

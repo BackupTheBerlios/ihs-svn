@@ -18,6 +18,8 @@ import org.omg.CORBA.StringHolder;
 
 import com.foo_baz.ihs.mailservice.Domain;
 import com.foo_baz.ihs.mailservice.User;
+import com.foo_baz.util.OperationStatus;
+import com.foo_baz.util.faces.Messages;
 import com.foo_baz.v_q.db_error;
 import com.foo_baz.v_q.except;
 import com.foo_baz.v_q.ivq;
@@ -28,7 +30,6 @@ import com.foo_baz.v_q.ivqPackage.err_code;
 import com.foo_baz.v_q.ivqPackage.error;
 import com.foo_baz.v_q.ivqPackage.user_info;
 import com.foo_baz.v_q.ivqPackage.user_info_listHolder;
-import com.sun.rsasign.e;
 
 /**
  * @author new
@@ -76,22 +77,23 @@ public class VirtualQmailMailService extends MailService {
 	 * @param domains Array of Domain objects
 	 * @see com.foo_baz.ihs.mailservice.Domain
 	 */
-	public error getDomains( ArrayList domains ) throws NamingException {
+	public OperationStatus getDomains( ArrayList domains ) throws NamingException {
 		ivq vq = getVirtualQmail();
 		
 		domain_info_listHolder diList = new domain_info_listHolder();
+
 		error err;
 		try {
 			err = vq.dom_ls(diList);
 		} catch (null_error e) {
 			logger.log(Level.SEVERE, "null_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus(OperationStatus.FAILURE, e.toString());
 		} catch (except e) {
 			logger.log(Level.SEVERE, "except", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus(OperationStatus.FAILURE, e.toString());
 		} catch (db_error e) {
 			logger.log(Level.SEVERE, "db_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus(OperationStatus.FAILURE, e.toString());
 		}
 
 		if( err != null && err.ec == err_code.err_no ) {
@@ -99,8 +101,23 @@ public class VirtualQmailMailService extends MailService {
 			for( int i=0, s = diList.value.length; i<s; ++i ) {
 				domains.add(new Domain(diList.value[i]));
 			}
+			return OperationStatus.SUCCESS;
 		}
-		return err;
+		return new OperationStatus(OperationStatus.FAILURE, toString(err));
+	}
+	
+	/**
+	 * 
+	 */
+	protected String toString( error err ) {
+		Object[] args = {
+				err.what,
+				err.file,
+				new Integer(err.line)
+		};
+		return Messages.getString(
+			"com.foo_baz.ihs.errors", 
+			"virtualQmailError_"+Integer.toString(err.ec.value()), args); 
 	}
 
 	boolean open = false;
@@ -122,9 +139,14 @@ public class VirtualQmailMailService extends MailService {
 	public boolean isOpen() {
 		return open;
 	}
+
+	/// Update domain
+	public OperationStatus updateDomain( Domain dom ) throws Exception {
+		return OperationStatus.FAILURE;
+	}
 	
 	/// Add domain
-	public error addDomain( Domain dom ) throws Exception {
+	public OperationStatus addDomain( Domain dom ) throws Exception {
 		ivq vq = getVirtualQmail();
 		
 		error err;
@@ -133,22 +155,23 @@ public class VirtualQmailMailService extends MailService {
 			err = vq.dom_add(dom.getDomain(), domId);
 		} catch (null_error e) {
 			logger.log(Level.SEVERE, "null_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus(OperationStatus.FAILURE, e.toString());
 		} catch (except e) {
 			logger.log(Level.SEVERE, "except", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (db_error e) {
 			logger.log(Level.SEVERE, "db_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		}
 
 		if( err != null && err.ec == err_code.err_no ) {
 			dom.setIdDomain(domId.value);
+			return OperationStatus.SUCCESS;
 		}
-		return err;
+		return new OperationStatus(OperationStatus.FAILURE, toString(err));
 	}
 	/// Removes domain
-	public error removeDomain( int domId ) throws Exception {
+	public OperationStatus removeDomain( int domId ) throws Exception {
 		ivq vq = getVirtualQmail();
 		
 		error err;
@@ -156,18 +179,19 @@ public class VirtualQmailMailService extends MailService {
 			err = vq.dom_rm(domId);
 		} catch (null_error e) {
 			logger.log(Level.SEVERE, "null_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (except e) {
 			logger.log(Level.SEVERE, "except", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (db_error e) {
 			logger.log(Level.SEVERE, "db_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		}
-		return err;
+		return err.ec == err_code.err_no ? OperationStatus.SUCCESS
+			: new OperationStatus(OperationStatus.FAILURE, toString(err));
 	}
 	/// Validates domain name
-	public error validateDomain( String dom ) throws Exception {
+	public OperationStatus validateDomain( String dom ) throws Exception {
 		ivq vq = getVirtualQmail();
 		
 		error err;
@@ -175,18 +199,19 @@ public class VirtualQmailMailService extends MailService {
 			err = vq.dom_val(dom);
 		} catch (null_error e) {
 			logger.log(Level.SEVERE, "null_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (except e) {
 			logger.log(Level.SEVERE, "except", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (db_error e) {
 			logger.log(Level.SEVERE, "db_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		}
-		return err;
+		return err.ec == err_code.err_no ? OperationStatus.SUCCESS
+			: new OperationStatus(OperationStatus.FAILURE, toString(err));
 	}
 	/// Gets ID of domain
-	public error getIdOfDomain( Domain dom ) throws Exception {
+	public OperationStatus getIdOfDomain( Domain dom ) throws Exception {
 		ivq vq = getVirtualQmail();
 		
 		error err;
@@ -195,22 +220,24 @@ public class VirtualQmailMailService extends MailService {
 			err = vq.dom_id(dom.getDomain(), domId);
 		} catch (null_error e) {
 			logger.log(Level.SEVERE, "null_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (except e) {
 			logger.log(Level.SEVERE, "except", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (db_error e) {
 			logger.log(Level.SEVERE, "db_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		}
 
 		if( err != null && err.ec == err_code.err_no ) {
 			dom.setIdDomain(domId.value);
+			return OperationStatus.SUCCESS;
 		}
-		return err;
+		return new OperationStatus(OperationStatus.FAILURE, toString(err));
 	}
+	
 	/// Gets name of a domain
-	public error getNameOfDomain( Domain dom ) throws Exception {
+	public OperationStatus getNameOfDomain( Domain dom ) throws Exception {
 		ivq vq = getVirtualQmail();
 		
 		error err;
@@ -219,25 +246,26 @@ public class VirtualQmailMailService extends MailService {
 			err = vq.dom_name(dom.getIdDomain(), domName);
 		} catch (null_error e) {
 			logger.log(Level.SEVERE, "null_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (except e) {
 			logger.log(Level.SEVERE, "except", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (db_error e) {
 			logger.log(Level.SEVERE, "db_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		}
 
 		if( err != null && err.ec == err_code.err_no ) {
 			dom.setDomain(domName.value);
+			return OperationStatus.SUCCESS;
 		}
-		return err;
+		return new OperationStatus(OperationStatus.FAILURE, toString(err));
 	}
 	
 	/**
 	 * 
 	 */
-	public error getUsersInDomain( int domId, int start, int cnt,
+	public OperationStatus getUsersInDomain( int domId, int start, int cnt,
 			ArrayList users ) throws Exception {
 		ivq vq = getVirtualQmail();
 		
@@ -247,13 +275,13 @@ public class VirtualQmailMailService extends MailService {
 			err = vq.user_ls_by_dom(domId, start, cnt, uiList);
 		} catch (null_error e) {
 			logger.log(Level.SEVERE, "null_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (except e) {
 			logger.log(Level.SEVERE, "except", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (db_error e) {
 			logger.log(Level.SEVERE, "db_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		}
 
 		if( err != null && err.ec == err_code.err_no ) {
@@ -261,12 +289,13 @@ public class VirtualQmailMailService extends MailService {
 			for( int i=0, s = uiList.value.length; i<s; ++i ) {
 				users.add(new User(uiList.value[i]));
 			}
+			return OperationStatus.SUCCESS;
 		}
-		return err;
+		return new OperationStatus( OperationStatus.FAILURE, toString(err));
 	}
 	
 	/// Get number of users in domain
-	public error getNumberOfUsersInDomain( int dom_id, IntHolder cnt ) throws Exception {
+	public OperationStatus getNumberOfUsersInDomain( int dom_id, IntHolder cnt ) throws Exception {
 		ivq vq = getVirtualQmail();
 		
 		error err;
@@ -275,22 +304,23 @@ public class VirtualQmailMailService extends MailService {
 			err = vq.user_cnt_by_dom(dom_id, cntHold);
 		} catch (null_error e) {
 			logger.log(Level.SEVERE, "null_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (except e) {
 			logger.log(Level.SEVERE, "except", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (db_error e) {
 			logger.log(Level.SEVERE, "db_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		}
 		if( err != null && err.ec == err_code.err_no ) {
 			cnt.value = cntHold.value;
+			return OperationStatus.SUCCESS;
 		}
-		return err;
+		return new OperationStatus( OperationStatus.FAILURE, toString(err));
 	}
 	
 	/// Add user
-	public error addUser( User user ) throws Exception {
+	public OperationStatus addUser( User user ) throws Exception {
 		ivq vq = getVirtualQmail();
 		
 		error err;
@@ -301,23 +331,26 @@ public class VirtualQmailMailService extends MailService {
 			err = vq.user_add(ui, false);
 		} catch (null_error e) {
 			logger.log(Level.SEVERE, "null_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (except e) {
 			logger.log(Level.SEVERE, "except", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		} catch (db_error e) {
 			logger.log(Level.SEVERE, "db_error", e);
-			return new error(err_code.err_temp, e.toString(), "", 0, false);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
 		}
 
-		return err;
+		return err.ec == err_code.err_no ? OperationStatus.SUCCESS
+			: new OperationStatus(OperationStatus.FAILURE, toString(err));
 	}
+	
 	/// Update user
-	public error updateUser( User user ) throws Exception {
-		return new error(err_code.err_func_ni, "", "", 0, false);
+	public OperationStatus updateUser( User user ) throws Exception {
+		return OperationStatus.FAILURE;
 	}
+	
 	/// Removes user
-	public error removeUser( int dom_id, String user ) throws Exception {
-		return new error(err_code.err_func_ni, "", "", 0, false);
+	public OperationStatus removeUser( int dom_id, String user ) throws Exception {
+		return OperationStatus.FAILURE;
 	}
 }

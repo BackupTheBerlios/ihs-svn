@@ -16,8 +16,8 @@ import javax.naming.NamingException;
 import com.foo_baz.ihs.Administrator;
 import com.foo_baz.ihs.ExtendedAdministrator;
 import com.foo_baz.ihs.IncredibleHostingSystem;
+import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
-import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class Administrators {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -35,10 +35,11 @@ public class Administrators {
 		try {
 			adminsDB = new IncredibleHostingSystem();
 			adminsDB.open();
-			err_code res = adminsDB.getAdministrators(admins).ec;
-			if ( res != err_code.err_no ) {
+			OperationStatus stat = adminsDB.getAdministrators(admins);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 				logger.info(this.getClass().getName()
-					+".getAdministrators: Returned code: "+Integer.toString(res.value()));
+					+".getAdministrators: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
 			} else {
 				Iterator eaIter = admins.iterator();
 				for( int i=0; eaIter.hasNext(); ++i ) {
@@ -116,7 +117,7 @@ public class Administrators {
 			adminsDB = new IncredibleHostingSystem();
 			adminsDB.open();
 			
-			err_code res;
+			OperationStatus stat;
 			boolean partial = false;
 			Iterator adminsIter = admins.iterator();
 			ExtendedAdministrator curAdmin;
@@ -125,23 +126,25 @@ public class Administrators {
 				if(! curAdmin.isSelected())
 					continue;
 				
-				res = adminsDB.deleteAdministrator(curAdmin).ec;
+				stat = adminsDB.deleteAdministrator(curAdmin);
 				
-				if ( res == err_code.err_no ) {
-					this.setResult(
-						Messages.getString(
-							"com.foo_baz.ihs.messages", 
-							"administratorsRemoved", null));
-				} else {
+				if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 					logger.info(this.getClass().getName()
-						+".removeAdministrators: Returned code: "+Integer.toString(res.value())
+						+".removeAdministrators: Error: "+stat.getDescription()
 						+" for user: "+curAdmin.getLogin());
+					partial = true;
 				}	
 			}
 			if( partial ) {
 				this.setResult(
 					Messages.getString(
-						"com.foo_baz.ihs.messages", "administratorsRemovePartial", null));
+						"com.foo_baz.ihs.messages", 
+						"administratorsRemovePartial", null));
+			} else {
+				this.setResult(
+					Messages.getString(
+						"com.foo_baz.ihs.messages", 
+						"administratorsRemoved", null));
 			}
  		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQL error", e);

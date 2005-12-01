@@ -65,7 +65,7 @@
 					<h:message styleClass="error" for="passwordConfirm"/>
 
 					<h:outputText value="#{msgs.mailServiceAddUserFlags}"/>
-					<h:inputSecret size="25" id="flags" required="true"/>
+					<h:inputText size="25" id="flags" required="true"/>
 					<h:message styleClass="error" for="flags"/>
 
 					<h:outputText value="#{msgs.mailServiceAddUserHomeDir}"/>

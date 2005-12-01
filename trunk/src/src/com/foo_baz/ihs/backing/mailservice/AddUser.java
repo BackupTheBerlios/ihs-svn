@@ -15,8 +15,8 @@ import javax.naming.NamingException;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
 import com.foo_baz.ihs.mailservice.User;
+import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
-import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class AddUser extends User {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -88,10 +88,10 @@ public class AddUser extends User {
 				setDir("");
 			}
 			
-			err_code res = updating ? 
-				mailService.updateUser(this).ec
-				: mailService.addUser(this).ec; 
-			if ( res == err_code.err_no ) {
+			OperationStatus stat = updating ? 
+				mailService.updateUser(this)
+				: mailService.addUser(this); 
+			if ( OperationStatus.SUCCESS.equals(stat) ) {
 				this.setResult(
 					Messages.getString(
 						"com.foo_baz.ihs.messages", 
@@ -104,11 +104,8 @@ public class AddUser extends User {
 				}
 			} else {
 				logger.info(this.getClass().getName()
-					+".addUser: Returned code: "+Integer.toString(res.value()));
-				this.setResult(
-					Messages.getString(
-						"com.foo_baz.ihs.errors", 
-						"error_"+Integer.toString(res.value()), null));
+					+".addUser: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
 				ret = "error";
 			}
 		} catch (SQLException e) {

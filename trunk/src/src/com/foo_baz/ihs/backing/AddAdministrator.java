@@ -13,8 +13,8 @@ import javax.naming.NamingException;
 
 import com.foo_baz.ihs.Administrator;
 import com.foo_baz.ihs.IncredibleHostingSystem;
+import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
-import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class AddAdministrator extends Administrator {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -100,23 +100,17 @@ public class AddAdministrator extends Administrator {
 			logger.info(this.getClass().getName()
 					+".addAdministrator: going to: "+(updating ? "update" : "add"));
 			
-			err_code res = updating ? 
-				adminsDB.updateAdministrator(this).ec
-				: adminsDB.addAdministrator(this).ec; 
-			if ( res == err_code.err_no ) {
-				this.setResult(
-						Messages.getString(
-							"com.foo_baz.ihs.messages", 
-							updating ? "addAdministratorUpdated" : "addAdministratorAdded", null));
+			OperationStatus stat = updating ? 
+				adminsDB.updateAdministrator(this)
+				: adminsDB.addAdministrator(this); 
+			if ( OperationStatus.SUCCESS.equals(stat) ) {
+				this.setResult(stat.getDescription());
 				if( ! updating )
 					this.clear();
 			} else {
 				logger.info(this.getClass().getName()
-					+".addAdministrator: Returned code: "+Integer.toString(res.value()));
-				this.setResult(
-					Messages.getString(
-						"com.foo_baz.ihs.errors", 
-						"error_"+Integer.toString(res.value()), null));
+					+".addAdministrator: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
 				ret = "error";
 			}
 		} catch (SQLException e) {

@@ -17,9 +17,8 @@ import javax.naming.NamingException;
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
 import com.foo_baz.ihs.mailservice.ExtendedDomain;
+import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
-import com.foo_baz.v_q.ivqPackage.err_code;
-;
 
 /**
  * @author new
@@ -74,10 +73,10 @@ public class AddDomain extends ExtendedDomain {
 			logger.info(this.getClass().getName()
 				+".addDomain: going to: "+(updating ? "update" : "add"));
 			
-			err_code res = updating ? 
-				err_code.err_func_ni
-				: mailService.addDomain(this).ec; 
-			if ( res == err_code.err_no ) {
+			OperationStatus stat = updating ? 
+				mailService.updateDomain(this)
+				: mailService.addDomain(this); 
+			if ( OperationStatus.SUCCESS.equals(stat) ) {
 				this.setResult(
 						Messages.getString(
 							"com.foo_baz.ihs.messages", 
@@ -86,11 +85,8 @@ public class AddDomain extends ExtendedDomain {
 					this.clear();
 			} else {
 				logger.info(this.getClass().getName()
-					+".addDomain: Returned code: "+Integer.toString(res.value()));
-				this.setResult(
-					Messages.getString(
-						"com.foo_baz.ihs.errors", 
-						"error_"+Integer.toString(res.value()), null));
+					+".addDomain: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
 				ret = "error";
 			}
 		} catch (SQLException e) {

@@ -1,7 +1,6 @@
 package com.foo_baz.ihs;
+import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
-import com.foo_baz.v_q.ivqPackage.err_code;
-import com.foo_baz.v_q.ivqPackage.error;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -101,11 +100,12 @@ implements com.foo_baz.ihs.Administrators {
 	 * @return Error
 	 * @throws SQLException When SQL fails
 	 */
-	public error addAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
+	public OperationStatus addAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
 		String func = "IHS_ADMINISTRATOR_ADD";
 		CallableStatement call = null;
-		error ret = new error(err_code.err_no, "", "", 0, false);
 		
+		OperationStatus stat = OperationStatus.SUCCESS;
+			
 		try {
 			call = dbCon.prepareCall("{? = call "+ func +"(?, ?)}");
 			int idx = 1;
@@ -118,22 +118,34 @@ implements com.foo_baz.ihs.Administrators {
 			boolean wasNull = call.wasNull();
 			
 			if( wasNull ) {
-				return new error(err_code.err_func_res, func, "", 0, false);
-			}
-			
-			if( res < 0 ) {
-				switch( res ) {
-				case -1:
-					ret = new error(err_code.err_exists, "", "", 0, false);
-				break;
-				default:
-					ret = new error(err_code.err_func_res, func, "", 0, false);
+				stat = new OperationStatus( 
+					OperationStatus.FAILURE,
+					Messages.getString(
+						"com.foo_baz.ihs.errors", 
+						"ihsFuncRes", new Object[] {func}) );
+			} else {		
+				if( res < 0 ) {
+					switch( res ) {
+					case -1:
+						stat = new OperationStatus(
+							OperationStatus.FAILURE,
+							Messages.getString(
+								"com.foo_baz.ihs.errors", 
+								"ihsElementExists", new Object[] {administrator.getLogin()}));
+						break;
+					default:
+						stat = new OperationStatus( 
+							OperationStatus.FAILURE,
+							Messages.getString(
+								"com.foo_baz.ihs.errors", 
+								"ihsFuncRes", new Object[] {func}) );
+					}
 				}
 			}
 		} finally {
 			try { if( call!= null) call.close(); } catch( Exception e ) {};
 		}
-		return ret;
+		return stat;
 	}
 	
 	/**
@@ -143,9 +155,9 @@ implements com.foo_baz.ihs.Administrators {
 	 * @return error
 	 * @throws SQLException when SQL fails
 	 */
-	public error removeByFunctionAndString( String func, String id ) throws SQLException {
+	public OperationStatus removeByFunctionAndString( String func, String id ) throws SQLException {
 		CallableStatement call = null;
-		error ret = new error(err_code.err_no, "", "", 0, false);
+		OperationStatus stat = OperationStatus.SUCCESS;
 		
 		try {
 			call = dbCon.prepareCall("{? = call "+ func +"(?)}");
@@ -158,32 +170,44 @@ implements com.foo_baz.ihs.Administrators {
 			boolean wasNull = call.wasNull();
 			
 			if( wasNull ) {
-				return new error(err_code.err_func_res, func, "", 0, false);
-			}
-			
-			if( res != 0 ) {
-				switch( res ) {
-				case -1:
-					ret = new error(err_code.err_noent, "", "", 0, false);
-				break;
-				default:
-					ret = new error(err_code.err_func_res, func, "", 0, false);
+				stat = new OperationStatus( 
+					OperationStatus.FAILURE,
+					Messages.getString(
+						"com.foo_baz.ihs.errors", 
+						"ihsFuncRes", new Object[] {func}) );
+			} else {
+				if( res != 0 ) {
+					switch( res ) {
+					case -1:
+						stat = new OperationStatus( 
+							OperationStatus.FAILURE,
+							Messages.getString(
+								"com.foo_baz.ihs.errors", 
+								"ihsElementMissing", new Object[] {id}) );
+						break;
+					default:
+						stat = new OperationStatus( 
+							OperationStatus.FAILURE,
+							Messages.getString(
+								"com.foo_baz.ihs.errors", 
+								"ihsFuncRes", new Object[] {func}) );
+					}
 				}
 			}
 		} finally {
 			try { if( call!= null) call.close(); } catch( Exception e ) {};
 		}
-		return ret;
+		return stat;
 	}
 	
-	public error deleteAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
+	public OperationStatus deleteAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
 		return removeByFunctionAndString( "IHS_ADMINISTRATOR_RM", administrator.getLogin());
 	}
 	
-	public error updateAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
+	public OperationStatus updateAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
 		String func = "IHS_ADMINISTRATOR_CHANGE";
 		CallableStatement call = null;
-		error ret = new error(err_code.err_no, "", "", 0, false);
+		OperationStatus stat = OperationStatus.SUCCESS;
 		
 		try {
 			call = dbCon.prepareCall("{? = call "+ func +"(?, ?)}");
@@ -197,22 +221,34 @@ implements com.foo_baz.ihs.Administrators {
 			boolean wasNull = call.wasNull();
 			
 			if( wasNull ) {
-				return new error(err_code.err_func_res, func, "", 0, false);
-			}
-			
-			if( res < 0 ) {
-				switch( res ) {
-				case -1:
-					ret = new error(err_code.err_noent, "", "", 0, false);
-				break;
-				default:
-					ret = new error(err_code.err_func_res, func, "", 0, false);
+				stat = new OperationStatus( 
+					OperationStatus.FAILURE,
+					Messages.getString(
+						"com.foo_baz.ihs.errors", 
+						"ihsFuncRes", new Object[] {func}) );
+			} else {
+				if( res < 0 ) {
+					switch( res ) {
+					case -1:
+						stat = new OperationStatus( 
+							OperationStatus.FAILURE,
+							Messages.getString(
+								"com.foo_baz.ihs.errors", 
+								"ihsElementMissing", new Object[] {administrator.getLogin()}) );
+						break;
+					default:
+						stat = new OperationStatus( 
+							OperationStatus.FAILURE,
+							Messages.getString(
+								"com.foo_baz.ihs.errors", 
+								"ihsFuncRes", new Object[] {func}) );
+					}
 				}
 			}
 		} finally {
 			try { if( call!= null) call.close(); } catch( Exception e ) {};
 		}
-		return ret;
+		return stat;
 	}
 	
 	/**
@@ -221,7 +257,7 @@ implements com.foo_baz.ihs.Administrators {
 	 * @return error
 	 * @throws SQLException When SQL query fails
 	 */
-	public error getAdministrators(java.util.ArrayList administrators) throws SQLException {
+	public OperationStatus getAdministrators(java.util.ArrayList administrators) throws SQLException {
 		PreparedStatement st = null;
 		ResultSet res = null;
 		
@@ -245,7 +281,7 @@ implements com.foo_baz.ihs.Administrators {
 			try { if( res!=null ) res.close(); } catch( Exception e ) {};
 			try { if( st!= null) st.close(); } catch( Exception e ) {};
 		}
-		return new error(err_code.err_no, "", "", 0, false);
+		return OperationStatus.SUCCESS;
 	}
 	
 	/**
@@ -254,10 +290,10 @@ implements com.foo_baz.ihs.Administrators {
 	 * @return error
 	 * @throws SQLException When SQL query fails
 	 */
-	public error getAdministrator(Administrator administrator) throws SQLException {
+	public OperationStatus getAdministrator(Administrator administrator) throws SQLException {
 		PreparedStatement st = null;
 		ResultSet res = null;
-		error ret = new error(err_code.err_no, "", "", 0, false);
+		OperationStatus stat = OperationStatus.SUCCESS;
 		
 		try {
 			int idx = 1;
@@ -269,13 +305,17 @@ implements com.foo_baz.ihs.Administrators {
 				administrator.setPassword( res.getString(idx++) );
 				if( res.wasNull() ) administrator.setPassword("");
 			} else {
-				ret = new error(err_code.err_noent, "", "", 0, false);
+				stat = new OperationStatus( 
+					OperationStatus.FAILURE,
+					Messages.getString(
+						"com.foo_baz.ihs.errors", 
+						"ihsElementMissing", new Object[] {administrator.getLogin()}) );
 			}
 		} finally {
 			try { if( res!=null ) res.close(); } catch( Exception e ) {};
 			try { if( st!= null) st.close(); } catch( Exception e ) {};
 		}
-		return ret;
+		return stat;
 	}
 
 	Hashtable services = new Hashtable();

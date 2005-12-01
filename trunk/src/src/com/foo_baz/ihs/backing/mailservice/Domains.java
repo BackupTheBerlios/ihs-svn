@@ -19,6 +19,7 @@ import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
 import com.foo_baz.ihs.mailservice.Domain;
 import com.foo_baz.ihs.mailservice.ExtendedDomain;
+import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
 import com.foo_baz.v_q.ivqPackage.err_code;
 
@@ -41,10 +42,11 @@ public class Domains {
 			
 			MailService mailService = domainsDB.getMailService();
 			
-			err_code res = mailService.getDomains(domains).ec;
-			if ( res != err_code.err_no ) {
+			OperationStatus stat = mailService.getDomains(domains);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 				logger.info(this.getClass().getName()
-					+".getDomains: Returned code: "+Integer.toString(res.value()));
+					+".getDomains: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
 			} else {
 				Iterator eaIter = domains.iterator();
 				
@@ -53,9 +55,9 @@ public class Domains {
 					ea.setOrder(i);
 				
 					IntHolder cnt = new IntHolder(0);
-					res = mailService.getNumberOfUsersInDomain(
-						ea.getIdDomain(), cnt).ec;
-					if( res == err_code.err_no ) {
+					stat = mailService.getNumberOfUsersInDomain(
+						ea.getIdDomain(), cnt);
+					if( OperationStatus.SUCCESS.equals(stat) ) {
 						ea.setNumberOfUsers(cnt.value);
 					}
 					
@@ -135,26 +137,27 @@ public class Domains {
 				if(! curDomain.isSelected())
 					continue;
 				
-				res = mailService.removeDomain(
-					curDomain.getIdDomain()).ec;
+				OperationStatus stat = mailService.removeDomain(
+					curDomain.getIdDomain());
 				
-				if ( res == err_code.err_no ) {
-					this.setResult(
-						Messages.getString(
-							"com.foo_baz.ihs.messages", 
-							"mailServiceDomainsRemoved", null));
-				} else {
+				if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 					logger.info(this.getClass().getName()
-						+".removeDomains: Returned code: "+Integer.toString(res.value())
+						+".removeDomains: Error: "+stat.getDescription()
 						+" for element: "+curDomain.getDomain());
+					partial = true;
 				}	
 			}
 			if( partial ) {
 				this.setResult(
 					Messages.getString(
-						"com.foo_baz.ihs.messages", "mailServiceDomainsRemovePartial", null));
+						"com.foo_baz.ihs.messages", 
+						"mailServiceDomainsRemovePartial", null));
+			} else {
+				this.setResult(
+					Messages.getString(
+						"com.foo_baz.ihs.messages", 
+						"mailServiceDomainsRemoved", null));
 			}
-
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQL error", e);
 			throw e;
@@ -235,11 +238,11 @@ public class Domains {
 			
 			MailService mailService = domainsDB.getMailService();
 			
-			err_code res = mailService.getNameOfDomain( dom ).ec;
+			OperationStatus stat = mailService.getNameOfDomain( dom );
 				
-			if ( res != err_code.err_no ) {
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 				logger.info(this.getClass().getName()
-					+".fillNameOfDomain: Returned code: "+Integer.toString(res.value())
+					+".fillNameOfDomain: Error: "+stat.getDescription()
 					+" for element: "+dom.getIdDomain());
 			}	
 		} catch (SQLException e) {

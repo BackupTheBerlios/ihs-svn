@@ -11,7 +11,7 @@ import org.omg.CORBA.IntHolder;
 
 import com.foo_baz.ihs.mailservice.Domain;
 import com.foo_baz.ihs.mailservice.User;
-import com.foo_baz.v_q.ivqPackage.error;
+import com.foo_baz.util.OperationStatus;
 
 /**
  * @author new
@@ -32,26 +32,28 @@ public abstract class MailService implements Service {
 		return Service.MAIL_SERVICE;
 	}
 
-	abstract public error getDomains( ArrayList domains ) throws Exception;
+	abstract public OperationStatus getDomains( ArrayList domains ) throws Exception;
 
 	/// Add domain
-	abstract public error addDomain( Domain dom ) throws Exception; 
+	abstract public OperationStatus addDomain( Domain dom ) throws Exception;
+	/// Update domain
+	abstract public OperationStatus updateDomain( Domain dom ) throws Exception;
 	/// Removes domain
-	abstract public error removeDomain( int dom_id ) throws Exception;
+	abstract public OperationStatus removeDomain( int dom_id ) throws Exception;
 	/// Validates domain name
-	abstract public error validateDomain( String dom ) throws Exception;
+	abstract public OperationStatus validateDomain( String dom ) throws Exception;
 	/// Gets ID of domain
-	abstract public error getIdOfDomain( Domain dom ) throws Exception;
+	abstract public OperationStatus getIdOfDomain( Domain dom ) throws Exception;
 	/// Gets name of a domain
-	abstract public error getNameOfDomain( Domain dom ) throws Exception;
+	abstract public OperationStatus getNameOfDomain( Domain dom ) throws Exception;
 	/// Gets users in domain
-	abstract public error getUsersInDomain( int dom_id, int start, int cnt, ArrayList users ) throws Exception;
+	abstract public OperationStatus getUsersInDomain( int dom_id, int start, int cnt, ArrayList users ) throws Exception;
 	/// Get number of users in domain
-	abstract public error getNumberOfUsersInDomain( int dom_id, IntHolder cnt ) throws Exception;
+	abstract public OperationStatus getNumberOfUsersInDomain( int dom_id, IntHolder cnt ) throws Exception;
 	/// Add user
-	abstract public error addUser( User user ) throws Exception;
+	abstract public OperationStatus addUser( User user ) throws Exception;
 	/// Update user
-	abstract public error updateUser( User user ) throws Exception;
+	abstract public OperationStatus updateUser( User user ) throws Exception;
 	/// Removes user
-	abstract public error removeUser( int dom_id, String user ) throws Exception;
+	abstract public OperationStatus removeUser( int dom_id, String user ) throws Exception;
 }

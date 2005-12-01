@@ -17,8 +17,8 @@ import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
 import com.foo_baz.ihs.mailservice.ExtendedUser;
 import com.foo_baz.ihs.mailservice.User;
+import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
-import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class Users {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -39,11 +39,12 @@ public class Users {
 			
 			MailService mailService = usersDB.getMailService();
 			
-			err_code res = mailService.getUsersInDomain(getIdDomain(), 
-				0, 0, users).ec;
-			if ( res != err_code.err_no ) {
+			OperationStatus stat = mailService.getUsersInDomain(getIdDomain(), 
+				0, 0, users);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 				logger.info(this.getClass().getName()
-					+".getUsers: Returned code: "+Integer.toString(res.value()));
+					+".getUsers: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
 			} else {
 				Iterator eaIter = users.iterator();
 				
@@ -116,7 +117,7 @@ public class Users {
 			
 			MailService mailService = usersDB.getMailService();
 			
-			err_code res;
+			OperationStatus stat;
 			boolean partial = false;
 			Iterator usersIter = users.iterator();
 			ExtendedUser curUser;
@@ -125,24 +126,26 @@ public class Users {
 				if(! curUser.isSelected())
 					continue;
 				
-				res = mailService.removeUser(
-					curUser.getIdDomain(), curUser.getLogin()).ec;
+				stat = mailService.removeUser(
+					curUser.getIdDomain(), curUser.getLogin());
 				
-				if ( res == err_code.err_no ) {
-					this.setResult(
-						Messages.getString(
-							"com.foo_baz.ihs.messages", 
-							"mailServiceUsersRemoved", null));
-				} else {
+				if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 					logger.info(this.getClass().getName()
-						+".removeUsers: Returned code: "+Integer.toString(res.value())
+						+".removeUsers: Error: "+stat.getDescription()
 						+" for element: "+curUser.getDomain());
+					partial = true;
 				}	
 			}
 			if( partial ) {
 				this.setResult(
 					Messages.getString(
-						"com.foo_baz.ihs.messages", "mailServiceUsersRemovePartial", null));
+						"com.foo_baz.ihs.messages", 
+						"mailServiceUsersRemovePartial", null));
+			} else {
+				this.setResult(
+					Messages.getString(
+						"com.foo_baz.ihs.messages", 
+						"mailServiceUsersRemoved", null));
 			}
 
 		} catch (SQLException e) {

@@ -1,17 +1,18 @@
 package com.foo_baz.ihs;
-import com.foo_baz.v_q.ivqPackage.error;
+
+import com.foo_baz.util.OperationStatus;
 
 public interface Administrators
 {
-  public abstract error addAdministrator(com.foo_baz.ihs.Administrator administrator) throws Exception;
+  public abstract OperationStatus addAdministrator(com.foo_baz.ihs.Administrator administrator) throws Exception;
 
-  public abstract error deleteAdministrator(com.foo_baz.ihs.Administrator administrator) throws Exception;
+  public abstract OperationStatus deleteAdministrator(com.foo_baz.ihs.Administrator administrator) throws Exception;
 
-  public abstract error updateAdministrator(com.foo_baz.ihs.Administrator administrator) throws Exception;
+  public abstract OperationStatus updateAdministrator(com.foo_baz.ihs.Administrator administrator) throws Exception;
   
-  public abstract error getAdministrator(com.foo_baz.ihs.Administrator administrator) throws Exception;
+  public abstract OperationStatus getAdministrator(com.foo_baz.ihs.Administrator administrator) throws Exception;
 
-  public abstract error getAdministrators(java.util.ArrayList administrators) throws Exception;
+  public abstract OperationStatus getAdministrators(java.util.ArrayList administrators) throws Exception;
 
 }
 

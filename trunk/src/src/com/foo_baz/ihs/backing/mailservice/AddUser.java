@@ -89,7 +89,7 @@ public class AddUser extends User {
 			}
 			
 			OperationStatus stat = updating ? 
-				mailService.updateUser(this)
+				mailService.updateUser(this, ! getPassword().equals(""), true)
 				: mailService.addUser(this); 
 			if ( OperationStatus.SUCCESS.equals(stat) ) {
 				this.setResult(

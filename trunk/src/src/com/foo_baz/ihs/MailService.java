@@ -53,7 +53,7 @@ public abstract class MailService implements Service {
 	/// Add user
 	abstract public OperationStatus addUser( User user ) throws Exception;
 	/// Update user
-	abstract public OperationStatus updateUser( User user ) throws Exception;
+	abstract public OperationStatus updateUser( User user, boolean pass, boolean dir ) throws Exception;
 	/// Removes user
 	abstract public OperationStatus removeUser( int dom_id, String user ) throws Exception;
 }

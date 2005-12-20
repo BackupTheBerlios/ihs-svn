@@ -51,7 +51,7 @@
 
 					<h:outputText value="#{msgs.mailServiceAddUserPassword}"/>
 					<h:inputSecret binding="#{backing_addUser.passwordInput}"
-						size="25" required="true" id="password"
+						size="25" id="password"
 						value="#{backing_addUser.password}">
 						<f:validateLength minimum="1" maximum="512"/>
 					</h:inputSecret>
@@ -59,13 +59,13 @@
 
 					<h:outputText value="#{msgs.mailServiceAddUserPasswordConfirm}"/>
 					<h:inputSecret binding="#{backing_addUser.passwordConfirmInput}"
-						size="25" id="passwordConfirm" required="true" validator="#{backing_addUser.validatePasswordConfirm}">
+						size="25" id="passwordConfirm" validator="#{backing_addUser.validatePasswordConfirm}">
 						<f:validateLength minimum="1" maximum="512"/>
 					</h:inputSecret>
 					<h:message styleClass="error" for="passwordConfirm"/>
 
 					<h:outputText value="#{msgs.mailServiceAddUserFlags}"/>
-					<h:inputText size="25" id="flags" required="true"/>
+					<h:inputText size="25" id="flags" value="#{backing_addUser.flags}" required="true"/>
 					<h:message styleClass="error" for="flags"/>
 
 					<h:outputText value="#{msgs.mailServiceAddUserHomeDir}"/>

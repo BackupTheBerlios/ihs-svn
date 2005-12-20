@@ -345,8 +345,28 @@ public class VirtualQmailMailService extends MailService {
 	}
 	
 	/// Update user
-	public OperationStatus updateUser( User user ) throws Exception {
-		return OperationStatus.FAILURE;
+	public OperationStatus updateUser( User user, boolean pass, boolean dir ) throws Exception {
+		ivq vq = getVirtualQmail();
+		
+		error err;
+		user_info ui = new user_info( user.getIdDomain(), user.getLogin(), 
+			user.getPassword(), user.getDir(), user.getFlags(), 
+			user.getGid(), user.getUid());
+		try {
+			err = vq.user_rep(ui, pass, dir);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		}
+
+		return err.ec == err_code.err_no ? OperationStatus.SUCCESS
+			: new OperationStatus(OperationStatus.FAILURE, toString(err));
 	}
 	
 	/// Removes user

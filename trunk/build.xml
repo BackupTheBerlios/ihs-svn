@@ -134,6 +134,13 @@
 			destfile="${tmp.dir}/${project.distname}-${project.version}.tar.gz"/>
 	</target>
 
+	<target name="pkg-rpm" depends="pkg-tgz">
+		<exec executable="rpmbuild">
+			<arg value="-ta"/>
+			<arg value="${tmp.dir}/${project.distname}-${project.version}.tar.gz"/>
+		</exec>
+	</target>
+
     <target name="deploy" depends="war" description="Deploy to a server">
     	<taskdef name="deploy"
     		classname="org.apache.catalina.ant.DeployTask"/>

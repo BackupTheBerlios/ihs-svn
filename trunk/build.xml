@@ -9,6 +9,12 @@
     <property name="webroot.dir" value="${basedir}/WebContent"/>
     <property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
     <property name="build.dir" value="build"/>
+    <property name="tmp.dir" value="tmp"/>
+	<loadfile property="project.version" srcFile="VERSION">
+		<filterchain>
+			<striplinebreaks/>
+		</filterchain>
+	</loadfile>
 
     <!-- classpath for JSF 1.0 -->
     <path id="compile.classpath">
@@ -97,10 +103,36 @@
     </target>
 
     <target name="deploy-to-dir" depends="war">
-       <delete file="${deploy.dir}/${project.distname}.war"/>
-       <delete dir="${deploy.dir}/${project.distname}"/>
-       <copy file="${build.dir}/${project.distname}.war" todir="${deploy.dir}"/>
+       <delete file="${distdir}${deploy.dir}/${project.distname}.war"/>
+       <delete dir="${distdir}${deploy.dir}/${project.distname}"/>
+       <copy file="${build.dir}/${project.distname}.war" todir="${distdir}${deploy.dir}"/>
     </target>
+
+	<target name="install" depends="deploy-to-dir">
+	</target>
+
+	<target name="pkg-tar">
+		<delete dir="${tmp.dir}"/>
+		<mkdir dir="${tmp.dir}"/>
+		<exec executable="svn">
+			<arg value="export"/>
+			<arg value="."/>
+			<arg value="${tmp.dir}/${project.distname}-${project.version}"/>
+		</exec>
+		<exec executable="sed" 
+			input="${tmp.dir}/${project.distname}-${project.version}/pkg/rpm/${project.distname}.spec.in"
+			output="${tmp.dir}/${project.distname}-${project.version}/pkg/rpm/${project.distname}.spec">
+			<arg value="-e"/>
+			<arg value="s/@VERSION@/${project.version}/"/>
+		</exec>
+		<tar destfile="${tmp.dir}/${project.distname}-${project.version}.tar" 
+			basedir="${tmp.dir}"/>
+	</target>
+	
+	<target name="pkg-tgz" depends="pkg-tar">
+		<gzip src="${tmp.dir}/${project.distname}-${project.version}.tar" 
+			destfile="${tmp.dir}/${project.distname}-${project.version}.tar.gz"/>
+	</target>
 
     <target name="deploy" depends="war" description="Deploy to a server">
     	<taskdef name="deploy"

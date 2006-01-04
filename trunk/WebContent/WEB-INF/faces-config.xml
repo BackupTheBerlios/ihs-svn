@@ -5,6 +5,13 @@
           "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
 
 <faces-config>
+	<render-kit>
+		<renderer>
+			<component-family>javax.faces.Output</component-family>
+			<renderer-type>com.corejsf.Pager</renderer-type>
+			<renderer-class>com.corejsf.PagerRenderer</renderer-class>
+		</renderer>
+	</render-kit>
 	<navigation-rule>
 		<from-view-id>/administrators.jsp</from-view-id>
 		<navigation-case>
@@ -41,7 +48,7 @@
 			<to-view-id>/mailservice/users.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-		<navigation-rule>
+	<navigation-rule>
 		<from-view-id>/mailservice/users.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>addUser</from-outcome>
@@ -113,5 +120,10 @@
 		<managed-bean-name>backing_users</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.Users</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>config</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.Configuration</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 </faces-config>

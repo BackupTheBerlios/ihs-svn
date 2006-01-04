@@ -3,7 +3,8 @@
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jstl/core">
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:corejsf="http://corejsf.com/pager">
 <jsp:directive.page contentType="text/html"/>
 <f:view>
 <f:verbatim><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -35,7 +36,11 @@
 						<h:outputText styleClass="message" value="#{backing_users.result}"/>
 					<f:verbatim>&lt;/p&gt;</f:verbatim>
 		
-					<h:dataTable rows="0" var="curUser"
+					<corejsf:pager dataTableId="usersList" 
+						showpages="#{config.maxPagesInPager}"
+						selectedStyleClass="pagerSelected"
+						styleClass="pager"/>
+					<h:dataTable id="usersList" rows="#{config.maxUsersInList}" var="curUser"
 						value="#{backing_users.users}" styleClass="listing">
 						<h:column>
 							<f:facet name="header">

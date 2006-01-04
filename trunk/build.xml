@@ -25,6 +25,7 @@
         <pathelement path ="${webinf.dir}/lib/jsf-api.jar"/>
         <pathelement path ="${webinf.dir}/lib/jsf-impl.jar"/>
         <pathelement path ="${webinf.dir}/lib/jstl.jar"/>
+        <pathelement path ="${webinf.dir}/lib/[jspapi].jar"/>
         <pathelement path ="${webinf.dir}/lib/standard.jar"/>
         <pathelement path ="${webinf.dir}/classes"/>
         <pathelement path ="${classpath.external}"/>
@@ -32,7 +33,7 @@
     </path>
 
     <!-- define your folder for deployment -->
-    <property name="deploy.dir" value="deploy"/>
+    <property name="deploy.dir" value="/usr/share/tomcat5/webapps/"/>
 
     <!-- Local system paths -->
     <property file="${basedir}/build.properties"/>

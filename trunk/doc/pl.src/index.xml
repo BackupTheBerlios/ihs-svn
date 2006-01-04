@@ -2,6 +2,8 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
 	[
 	<!ENTITY biblio SYSTEM "biblio.xml">
+<!--	<!ENTITY users SYSTEM "users.xml">
+	<!ENTITY admins SYSTEM "admins.xml">-->
 	<!ENTITY cons.req SYSTEM "cons.req.xml">
 	]
 >

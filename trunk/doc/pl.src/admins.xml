@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<chapter id="admins">
+	<title>Podręcznik administratora</title>
+
+	<para>
+	</para>
+
+	<section id="admins.install">
+		<title>Instalacja</title>
+
+		<section id="admins.install.download">
+			<title>Ściąganie</title>
+		</section>
+
+		<section id="admins.install.depends">
+			<title>Zależności</title>
+		</section>
+
+		<section id="admins.install.compilation">
+			<title>Kompilacja</title>
+		</section>
+
+		<section id="admins.install.rpm">
+			<title>Budowanie pakietów RPM</title>
+		</section>
+	</section>
+
+	<section id="admins.conf">
+		<title>Konfiguracja</title>
+	
+		<section id="admins.conf.jndi">
+			<title>Korzystanie z JNDI</title>
+		</section>
+	</section>
+</chapter>

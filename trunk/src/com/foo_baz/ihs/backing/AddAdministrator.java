@@ -104,7 +104,10 @@ public class AddAdministrator extends Administrator {
 				adminsDB.updateAdministrator(this)
 				: adminsDB.addAdministrator(this); 
 			if ( OperationStatus.SUCCESS.equals(stat) ) {
-				this.setResult(stat.getDescription());
+				this.setResult(
+						Messages.getString(
+							"com.foo_baz.ihs.messages", 
+							updating ? "addAdministratorUpdated" : "addAdministratorAdded", null));
 				if( ! updating )
 					this.clear();
 			} else {

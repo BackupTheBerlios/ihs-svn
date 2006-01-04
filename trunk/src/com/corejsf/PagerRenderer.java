@@ -57,7 +57,7 @@ public class PagerRenderer extends Renderer {
       if (startPage > 0)  
          writeLink(writer, component, formId, id, "<<", styleClass);
 
-      for (int i = startPage; i < endPage; i++) {
+      for (int i = startPage; i < endPage && endPage != 1; i++) {
          writeLink(writer, component, formId, id, "" + (i + 1), 
             i == currentPage ? selectedStyleClass : styleClass);
       }
@@ -69,7 +69,7 @@ public class PagerRenderer extends Renderer {
          writeLink(writer, component, formId, id, ">", styleClass);
 
       // hidden field to hold result
-      writeHiddenField(writer, component, id);
+      writeHiddenField(writer, component, id, currentPage + 1);
    }
    
    private void writeLink(ResponseWriter writer, UIComponent component, 
@@ -106,10 +106,11 @@ public class PagerRenderer extends Renderer {
    }
 
    private void writeHiddenField(ResponseWriter writer, UIComponent component, 
-      String id) throws IOException {
+      String id, int val) throws IOException {
       writer.startElement("input", component);
       writer.writeAttribute("type", "hidden", null);
       writer.writeAttribute("name", id, null);
+      writer.writeAttribute("value", new Integer(val), null);
       writer.endElement("input");
    }
 

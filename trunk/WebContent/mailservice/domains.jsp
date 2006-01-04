@@ -30,51 +30,55 @@
 					<h2><h:outputText value="#{msgs.mailServiceDomainsTitle}"/></h2>
 				</div>
 				<h:form id="domains">
-					<!-- result messages -->
-					<f:verbatim>&lt;p&gt;</f:verbatim>
-						<h:messages styleClass="error" globalOnly="false" layout="table"/>
-						<h:outputText styleClass="message" value="#{backing_domains.result}"/>
-					<f:verbatim>&lt;/p&gt;</f:verbatim>
+					<h:panelGrid>
+						<!-- result messages -->
+						<h:panelGrid>
+							<h:messages styleClass="error" globalOnly="false" layout="table"/>
+							<h:outputText styleClass="message" value="#{backing_domains.result}"/>
+						</h:panelGrid>
+		
+						<h:dataTable id="domainsList" 
+							rows="#{config.maxDomainsInList}" var="curDomain"
+							value="#{backing_domains.domains}" styleClass="listing">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.commonSelectHeader}"/>
+								</f:facet>
+								<h:selectBooleanCheckbox 
+									value="#{curDomain.selected}" id="selected"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.mailServiceDomainsDomainHeader}"/>
+								</f:facet>
+								<h:commandLink action="#{backing_domains.editDomain}" value="#{curDomain.domain}">
+									<f:param name="idDomain" value="#{curDomain.idDomain}"/>
+								</h:commandLink>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.mailServiceDomainsUsersHeader}"/>
+								</f:facet>
+								<h:commandLink action="#{backing_domains.listUsers}">
+									<h:outputText value="#{curDomain.numberOfUsers}"/>
+									<f:param name="idDomain" value="#{curDomain.idDomain}"/>
+								</h:commandLink>
+							</h:column>
+						</h:dataTable>
+						<corejsf:pager dataTableId="domainsList" 
+							showpages="#{config.maxPagesInPager}"
+							selectedStyleClass="pagerSelected"
+							styleClass="pager"/>		
 
-					<corejsf:pager dataTableId="domainsList" 
-						showpages="#{config.maxPagesInPager}"
-						selectedStyleClass="pagerSelected"
-						styleClass="pager"/>		
-					<h:dataTable id="domainsList" 
-						rows="#{config.maxDomainsInList}" var="curDomain"
-						value="#{backing_domains.domains}" styleClass="listing">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{msgs.commonSelectHeader}"/>
-							</f:facet>
-							<h:selectBooleanCheckbox 
-								value="#{curDomain.selected}" id="selected"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{msgs.mailServiceDomainsDomainHeader}"/>
-							</f:facet>
-							<h:commandLink action="#{backing_domains.editDomain}" value="#{curDomain.domain}">
-								<f:param name="idDomain" value="#{curDomain.idDomain}"/>
-							</h:commandLink>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#{msgs.mailServiceDomainsUsersHeader}"/>
-							</f:facet>
-							<h:commandLink action="#{backing_domains.listUsers}">
-								<h:outputText value="#{curDomain.numberOfUsers}"/>
-								<f:param name="idDomain" value="#{curDomain.idDomain}"/>
-							</h:commandLink>
-						</h:column>
-					</h:dataTable>
-
-					<h:commandButton value="#{msgs.commonAdd}"
-						action="#{backing_domains.addDomain}"/>
-					<h:commandButton value="#{msgs.commonRemove}"
-						action="#{backing_domains.removeDomains}"/>
-					<h:commandButton value="#{msgs.commonReload}"
-						action="reload"/>
+						<h:panelGroup>
+							<h:commandButton value="#{msgs.commonAdd}"
+								action="#{backing_domains.addDomain}"/>
+							<h:commandButton value="#{msgs.commonRemove}"
+								action="#{backing_domains.removeDomains}"/>
+							<h:commandButton value="#{msgs.commonReload}"
+								action="reload"/>
+						</h:panelGroup>
+					</h:panelGrid>
 				</h:form>
 			</div>
 			<f:subview id="footer">

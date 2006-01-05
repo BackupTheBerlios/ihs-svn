@@ -1,0 +1,131 @@
+<project basedir=".." default="doc">
+	<import file="../build.xml"/>
+	
+	<target name="all" depends="doc"/>
+
+	<target name="doc" depends="doc-html,doc-rtf"/>
+
+	<target name="xml2rtf">
+		<exec executable="${jade.bin}" dir="${xml2rtf.srcdir}">
+			<env key="SGML_CATALOG_FILES" value="${jade.catalog}"/>
+			<arg value="-t"/>
+			<arg value="rtf"/>
+			<arg value="-i"/>
+			<arg value="output-print"/>
+			<arg value="-d"/>
+			<arg value="../stylesheet.dsl"/>
+			<arg value="${jade.xml_dcl}"/>
+			<arg value="${xml2rtf.srcfile}"/>
+		</exec>
+		<move file="${xml2rtf.srcdir}/${xml2rtf.destfile}" todir="${xml2rtf.destdir}"/>
+	</target>
+
+	<target name="xml2html">
+		<exec executable="${jade.bin}" dir="${xml2html.dir}">
+			<env key="SGML_CATALOG_FILES" value="${jade.catalog}"/>
+			<arg value="-t"/>
+			<arg value="sgml"/>
+			<arg value="-i"/>
+			<arg value="output-html"/>
+			<arg value="-d"/>
+			<arg value="../stylesheet.dsl"/>
+			<arg value="${jade.xml_dcl}"/>
+			<arg value="${xml2html.file}"/>
+		</exec>
+	</target>
+
+	<target name="doc-html" depends="gen-html-files,logo-add,mime-type"/>
+	
+	<target name="doc-rtf" depends="gen-rtf-files"/>
+	
+	<target name="gen-html-files" depends="insert-code">
+		<antcall target="xml2html">
+			<param name="xml2html.file" value="../pl.src/index.xml"/>
+			<param name="xml2html.dir" value="doc/pl.html"/>
+		</antcall>
+		<copy file="doc/stylesheet.css" todir="doc/pl.html"/>
+		<antcall target="xml2html">
+			<param name="xml2html.file" value="../en.src/index.xml"/>
+			<param name="xml2html.dir" value="doc/en.html"/>
+		</antcall>
+		<copy file="doc/stylesheet.css" todir="doc/en.html"/>
+		<antcall target="xml2html">
+			<param name="xml2html.file" value="../desspec/desspec.xml"/>
+			<param name="xml2html.dir" value="doc/desspec"/>
+		</antcall>
+	</target>
+	
+	<target name="gen-rtf-files" depends="insert-code">
+		<antcall target="xml2rtf">
+			<param name="xml2rtf.srcfile" value="index.xml"/>
+			<param name="xml2rtf.destfile" value="index.rtf"/>
+			<param name="xml2rtf.srcdir" value="doc/pl.src"/>
+			<param name="xml2rtf.destdir" value="doc/pl.rtf"/>
+		</antcall>
+		<antcall target="xml2rtf">
+			<param name="xml2rtf.srcfile" value="index.xml"/>
+			<param name="xml2rtf.destfile" value="index.rtf"/>
+			<param name="xml2rtf.srcdir" value="doc/en.src"/>
+			<param name="xml2rtf.destdir" value="doc/en.rtf"/>
+		</antcall>
+	</target>
+
+	<target name="logo-add">
+		<apply dir="doc" executable="./logo-add.pl" parallel="true">
+			<fileset dir="doc" includes="**/*.html/*.html" excludes="**/.svn/*"/>
+		</apply>
+	</target>
+
+	<target name="insert-code">
+		<apply executable="./insert_code.pl" dir="doc">
+			<srcfile/>
+			<dirset dir="doc" includes="**/*.src"/>
+			<arg value=".xml"/>
+		</apply>
+	</target>
+
+	<target name="mime-type">
+		<apply dir="doc" executable="./mime-type.sh">
+			<arg value="text/html"/>
+			<fileset dir="doc" includes="**/*.html/*.html,**/desspec/*.html" excludes="**/.svn/*"/>
+		</apply>
+	</target>
+
+	<target name="clean"/>
+
+	<target name="mirror-prepare">
+		<chmod perm="0644">
+			<fileset dir="doc" includes="**/*.html/" excludes="**/.svn/*"/>
+		</chmod>
+		<chmod perm="0755">
+			<dirset dir="doc" includes="**/*.html/" excludes="**/.svn/*"/>
+		</chmod>
+	</target>
+
+	<target name="mirror" depends="mirror-berlios.de,mirror-sf.net"/>
+
+	<target name="mirror-sf.net">
+		<antcall target="mirror-server">
+			<param name="mirror.server" value="shell.sourceforge.net:/home/groups/i/ih/ihs/htdocs/"/>
+		</antcall>
+	</target>
+
+	<target name="mirror-berlios.de">
+		<antcall target="mirror-server">
+			<param name="mirror.server" value="shell.berlios.de:/home/groups/ihs/htdocs/"/>
+		</antcall>
+	</target>
+
+	<target name="mirror-server" depends="mirror-prepare">
+		<apply dir="doc" executable="rsync" parallel="true">
+			<arg value="-vCr"/>
+			<arg value="--delete"/>
+			<arg value="--rsh"/>
+			<arg value="ssh -l paweln"/>
+			<srcfile/>
+			<arg value="${mirror.server}"/>
+			<dirset dir="doc" includes="**/*.html"/>
+		</apply>
+	</target>
+
+</project>

@@ -1,4 +1,4 @@
-#Thu Dec 01 23:46:35 CET 2005
+#Wed Jan 11 22:21:07 CET 2006
 encoding//WebContent/mailservice/domains.jsp=UTF-8
 encoding//WebContent/commonMenu.jsp=UTF-8
 encoding//WebContent/administrators.jsp=UTF-8
@@ -6,5 +6,6 @@ encoding//WebContent/mailservice/addDomain.jsp=UTF-8
 encoding//WebContent/commonFooter.jsp=UTF-8
 eclipse.preferences.version=1
 encoding//WebContent/mailservice/addUser.jsp=UTF-8
+encoding//WebContent/configuration.jsp=UTF-8
 encoding//WebContent/addAdministrator.jsp=UTF-8
 encoding//WebContent/mailservice/users.jsp=UTF-8

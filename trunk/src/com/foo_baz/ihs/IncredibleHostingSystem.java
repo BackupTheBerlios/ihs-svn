@@ -1,6 +1,9 @@
 package com.foo_baz.ihs;
+
 import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
+import com.foo_baz.ihs.Administrators;
+import com.foo_baz.ihs.Administrator;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -10,7 +13,9 @@ import java.sql.SQLException;
 
 import java.sql.Types;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -22,7 +27,7 @@ import javax.sql.DataSource;
  * @author Pawe³ Niewiadomski
  */
 public class IncredibleHostingSystem
-implements com.foo_baz.ihs.Administrators {
+implements Administrators {
 	
 	protected Connection dbCon;
 	
@@ -200,11 +205,11 @@ implements com.foo_baz.ihs.Administrators {
 		return stat;
 	}
 	
-	public OperationStatus deleteAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
+	public OperationStatus deleteAdministrator(Administrator administrator) throws SQLException {
 		return removeByFunctionAndString( "IHS_ADMINISTRATOR_RM", administrator.getLogin());
 	}
 	
-	public OperationStatus updateAdministrator(com.foo_baz.ihs.Administrator administrator) throws SQLException {
+	public OperationStatus updateAdministrator(Administrator administrator) throws SQLException {
 		String func = "IHS_ADMINISTRATOR_CHANGE";
 		CallableStatement call = null;
 		OperationStatus stat = OperationStatus.SUCCESS;
@@ -343,6 +348,92 @@ implements com.foo_baz.ihs.Administrators {
 	
 	public void setMailService( MailService ms ) {
 		services.put(Service.MAIL_SERVICE, ms);
+	}
+	
+	public Configuration getConfiguration() {
+		return new Configuration() {
+			public String get( String key ) throws SQLException {
+				PreparedStatement st = null;
+				ResultSet res = null;
+				OperationStatus stat = OperationStatus.SUCCESS;
+				
+				String ret = null;
+				try {
+					int idx = 1;
+					st = dbCon.prepareStatement("SELECT value FROM ihs_config WHERE key=?");
+					st.setString(idx++, key);
+					res = st.executeQuery();
+					
+					if( res.next() ) {
+						ret = res.getString(idx++);
+					}
+				} finally {
+					try { if( res!=null ) res.close(); } catch( Exception e ) {};
+					try { if( st!= null) st.close(); } catch( Exception e ) {};
+				}
+				return ret;
+			}
+			
+			public Map getAll() throws SQLException {
+				PreparedStatement st = null;
+				ResultSet res = null;
+				
+				Map ret = new HashMap();
+				try {
+					st = dbCon.prepareStatement("SELECT key,value FROM ihs_config ORDER BY key");
+					res = st.executeQuery();
+					
+					for( int idx=1; res.next(); idx=1 ) {
+						String key = res.getString(idx++);
+						if( ! res.wasNull() && ! "".equals(key) ) {
+							String val = res.getString(idx++);
+							ret.put( key, val );
+						}
+					}
+				} finally {
+					try { if( res!=null ) res.close(); } catch( Exception e ) {};
+					try { if( st!= null) st.close(); } catch( Exception e ) {};
+				}
+				return ret;
+			}
+			
+			public OperationStatus set( String key, String value ) throws SQLException {
+				String func = "IHS_CONFIG_SET";
+				CallableStatement call = null;
+				OperationStatus stat = OperationStatus.SUCCESS;
+				
+				try {
+					call = dbCon.prepareCall("{? = call "+ func +"(?, ?)}");
+					int idx = 1;
+					call.registerOutParameter(idx++, Types.INTEGER);
+					call.setString(idx++, key);
+					call.setString(idx++, value);
+					call.execute();
+					
+					int res = call.getInt(1);
+					boolean wasNull = call.wasNull();
+					
+					if( wasNull ) {
+						stat = new OperationStatus( 
+							OperationStatus.FAILURE,
+							Messages.getString(
+								"com.foo_baz.ihs.errors", 
+								"ihsFuncRes", new Object[] {func}) );
+					} else {
+						if( res != 0 ) {
+							stat = new OperationStatus( 
+								OperationStatus.FAILURE,
+								Messages.getString(
+									"com.foo_baz.ihs.errors", 
+									"ihsFuncRes", new Object[] {func}) );
+						}
+					}
+				} finally {
+					try { if( call!= null) call.close(); } catch( Exception e ) {};
+				}
+				return stat;
+			}
+		};
 	}
 }
 

@@ -5,28 +5,20 @@
  */
 package com.foo_baz.ihs;
 
+import java.sql.SQLException;
+import java.util.Map;
+
+import com.foo_baz.util.OperationStatus;
+
 /**
  * @author new
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
-public class Configuration {
+public interface Configuration {
 	
-	public int getMaxPagesInPager() {
-		return 10;
-	}
+	public OperationStatus set( String key, String value ) throws SQLException;
 	
-	public int getMaxUsersInList() {
-		return 5;
-	}
+	public String get( String key ) throws SQLException;
 	
-	public int getMaxDomainsInList() {
-		return 5;
-	}
-	
-	public int getMaxAdministratorsInList() {
-		return 5;
-	}
+	public Map getAll() throws SQLException;
 
 }

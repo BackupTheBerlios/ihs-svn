@@ -37,7 +37,7 @@
 							<h:outputText styleClass="message" value="#{backing_users.result}"/>
 						</h:panelGrid>
 				
-						<h:dataTable id="usersList" rows="#{config.maxUsersInList}" var="curUser"
+						<h:dataTable id="usersList" rows="#{backing_configuration.maxUsersInList}" var="curUser"
 							value="#{backing_users.users}" styleClass="listing">
 							<h:column>
 								<f:facet name="header">
@@ -80,7 +80,7 @@
 							</h:column>
 						</h:dataTable>
 						<corejsf:pager dataTableId="usersList" 
-							showpages="#{config.maxPagesInPager}"
+							showpages="#{backing_configuration.maxPagesInPager}"
 							selectedStyleClass="pagerSelected"
 							styleClass="pager"/>
 

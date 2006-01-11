@@ -122,8 +122,8 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>config</managed-bean-name>
-		<managed-bean-class>com.foo_baz.ihs.Configuration</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-name>backing_configuration</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.Configuration</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 </faces-config>

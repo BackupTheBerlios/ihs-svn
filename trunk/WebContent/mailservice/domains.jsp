@@ -38,7 +38,7 @@
 						</h:panelGrid>
 		
 						<h:dataTable id="domainsList" 
-							rows="#{config.maxDomainsInList}" var="curDomain"
+							rows="#{backing_configuration.maxDomainsInList}" var="curDomain"
 							value="#{backing_domains.domains}" styleClass="listing">
 							<h:column>
 								<f:facet name="header">
@@ -66,7 +66,7 @@
 							</h:column>
 						</h:dataTable>
 						<corejsf:pager dataTableId="domainsList" 
-							showpages="#{config.maxPagesInPager}"
+							showpages="#{backing_configuration.maxPagesInPager}"
 							selectedStyleClass="pagerSelected"
 							styleClass="pager"/>		
 

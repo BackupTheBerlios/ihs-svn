@@ -8,6 +8,10 @@
 	<jsp:directive.page contentType="text/html"/>
 	<f:verbatim><![CDATA[<div id="menu"><ul>]]></f:verbatim>
 	
+	<f:verbatim><![CDATA[<li><a href="/ihs/faces/configuration.jsp">]]></f:verbatim>
+		<h:outputText value="#{msgs.configurationTitle}"/>
+	<f:verbatim><![CDATA[</a></li>]]></f:verbatim>
+
 	<f:verbatim><![CDATA[<li><a href="/ihs/faces/administrators.jsp">]]></f:verbatim>
 		<h:outputText value="#{msgs.administratorsTitle}"/>
 	<f:verbatim><![CDATA[</a></li>]]></f:verbatim>

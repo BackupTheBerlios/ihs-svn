@@ -37,7 +37,7 @@
 							<h:outputText styleClass="message" value="#{backing_administrators.result}"/>
 						</h:panelGrid>
 						
-						<h:dataTable rows="#{config.maxAdministratorsInList}" 
+						<h:dataTable rows="#{backing_configuration.maxAdministratorsInList}" 
 							id="administratorsList"
 							var="curAdmin"
 							value="#{backing_administrators.administrators}"
@@ -59,7 +59,7 @@
 						</h:dataTable>
 
 						<corejsf:pager dataTableId="administratorsList" 
-							showpages="#{config.maxPagesInPager}"
+							showpages="#{backing_configuration.maxPagesInPager}"
 							selectedStyleClass="pagerSelected"
 							styleClass="pager"/>
 		

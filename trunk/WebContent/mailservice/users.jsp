@@ -26,10 +26,15 @@
 				<c:import url="../commonMenu.jsp"/>
 			</f:subview>
 			<div id="main">
-				<div id="content">
-					<h2><h:outputText value="#{msgs.mailServiceUsersTitle}"/></h2>
-				</div>
 				<h:form id="users">
+					<div id="content">
+						<h2>
+							<h:outputText value="#{msgs.mailServiceUsersTitle}"/>
+							<h:commandLink action="#{backing_domains.editDomain}" value="#{backing_users.domain}">
+								<f:param name="idDomain" value="#{backing_users.idDomain}"/>
+							</h:commandLink>
+						</h2>
+					</div>
 					<h:panelGrid>
 						<!-- result messages -->
 						<h:panelGrid>

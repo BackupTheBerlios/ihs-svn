@@ -63,6 +63,10 @@
 			<from-outcome>editUser</from-outcome>
 			<to-view-id>/mailservice/addUser.jsp</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>editDomain</from-outcome>
+			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	<managed-bean>
 		<managed-bean-name>backing_administrators</managed-bean-name>
@@ -89,6 +93,10 @@
 			<to-view-id>/mailservice/users.jsp</to-view-id>
 			<redirect/>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>editDomain</from-outcome>
+			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/mailservice/addDomain.jsp</from-view-id>
@@ -96,6 +104,10 @@
 			<from-outcome>cancel</from-outcome>
 			<to-view-id>/mailservice/domains.jsp</to-view-id>
 			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listUsers</from-outcome>
+			<to-view-id>/mailservice/users.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<application>

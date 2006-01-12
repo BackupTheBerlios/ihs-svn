@@ -142,6 +142,17 @@ label.disabled { color: #d7d7d7 }
  max-width: 100%; 
 }
 
+#content :link, #content :visited {
+ text-decoration: none;
+ color: #b00;
+ border-bottom: 1px dotted #bbb;
+}
+
+#content :link:hover, #content :visited:hover {
+ background-color: #eee;
+ color: #555;
+}
+
 /* Styles for the error page (and rst errors) */
 #content.error .message, div.system-message {
  background: #fdc;

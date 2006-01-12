@@ -58,6 +58,14 @@
 							</f:facet>
 						</h:panelGrid>
 					</h:panelGrid>
+					
+					<h:panelGrid styleClass="related" rendered="#{backing_addDomain.updating}">
+						<h:commandLink action="#{backing_domains.listUsers}">
+							<h:outputText value="#{msgs.mailServiceUsersTitle}"/>
+							<h:outputText value="#{backing_addDomain.domain}"/>
+							<f:param name="idDomain" value="#{backing_addDomain.idDomain}"/>
+						</h:commandLink>
+					</h:panelGrid>
 				</h:form>
 			</div>
 			<f:subview id="footer">

@@ -25,13 +25,16 @@
 				<c:import url="/commonMenu.jsp"/>
 			</f:subview>
 			<div id="main">
-				<div id="content">
-					<h2>
-						<h:outputText rendered="#{!backing_addUser.updating}" value="#{msgs.mailServiceAddUserTitle}"/>
-						<h:outputText rendered="#{backing_addUser.updating}" value="#{msgs.mailServiceEditUserTitle}"/>
-					</h2>
-				</div>
 				<h:form id="addUser">
+					<div id="content">
+						<h2>
+							<h:outputText rendered="#{!backing_addUser.updating}" value="#{msgs.mailServiceAddUserTitle}"/>
+							<h:outputText rendered="#{backing_addUser.updating}" value="#{msgs.mailServiceEditUserTitle}"/>
+							<h:commandLink action="#{backing_domains.editDomain}" value="#{backing_users.domain}">
+								<f:param name="idDomain" value="#{backing_users.idDomain}"/>
+							</h:commandLink>
+						</h2>
+					</div>
 					<h:panelGrid>
 						<h:panelGrid>
 							<h:messages styleClass="error" globalOnly="true" layout="table"/>

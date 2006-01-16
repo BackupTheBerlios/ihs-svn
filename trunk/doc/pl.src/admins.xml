@@ -10,18 +10,111 @@
 
 		<section id="admins.install.download">
 			<title>¦ci±ganie</title>
+
+			<para>
+				Warto rozpocz±æ od sprawdzenia 
+				<ulink url="http://ihs.foo-baz.com">strony projektu</ulink>.
+			</para>
+
+			<para>
+				<ulink url="http://sourceforge.net/project/showfiles.php?group_id=134802">Udostêpnione pliki</ulink>
+				przechowywane s± na serwerze SourceForge. Sprawd¼ czy nie ma
+				nowych wersji.
+			</para>
+
+			<para>
+				Mo¿esz równie¿ ¶ci±gn±æ najnowsz± wersjê wprost z repozytorium
+				Subversion znajduj±cego siê pod adresem
+				<ulink url="http://svn.berlios.de/svnroot/repos/ihs/trunk">
+				http://svn.berlios.de/svnroot/repos/ihs/trunk
+				</ulink>
+			</para>
 		</section>
 
 		<section id="admins.install.depends">
 			<title>Zale¿no¶ci</title>
+
+			<para>
+				G³ówne zale¿no¶ci:
+				<itemizedlist>
+					<listitem>
+						<para>
+							Java Runtime co najmniej w wersji 1.4;
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							serwer J2EE, na razie system zosta³ przetestowany
+							tylko z Tomcat 5;
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Virtual Qmail w wersji co najmniej 11;
+						</para>
+					<listitem>
+					<listitem>
+						<para>
+							baza danych Oracle lub PostgreSQL (mo¿e byæ inna
+							ni¿ ta u¿ywana przez Virtual Qmail);
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
 		</section>
 
 		<section id="admins.install.compilation">
 			<title>Kompilacja</title>
+
+			<para>
+				Do kompilacji niezbêdny jest program <application>ant</application>.
+				Aby utworzyæ WAR z aplikacj± nale¿y wykonaæ nastêpuj±ce polecenie:
+<screen>
+<userinput>
+ant war
+</userinput>
+</screen>
+				W katalogu <filename>build</filename> zostanie utworzony
+				plik o nazwie <filename>ihs.war</filename>. Istnieje mo¿liwo¶æ
+				automatycznej instalacji na wskazanym serwerze, nale¿y
+				uprzednio zmodyfikowaæ plik <filename>build.properties</filename>,
+				nastêpnie wykonaæ polecenie:
+<screen>
+<userinput>
+ant deploy
+</userinput>
+</screen>
+				Mo¿na równie¿ skorzystaæ z prostrzej metody polegaj±cej
+				na kopiowaniu plików do katalogu Tomcat:
+<screen>
+<userinput>
+ant deploy-to-dir
+</userinput>
+</screen>
+			</para>
 		</section>
 
 		<section id="admins.install.rpm">
 			<title>Budowanie pakietów RPM</title>
+
+			<para>
+				Budowanie pakietów RPM jest bardzo proste, w przypadku
+				posiadania archiwum TAR/GZ wystarczy wydaæ nastêpuj±ce polecenie:
+<screen>
+<userinput>
+rpmbuild -tb ihs-*.tar.gz
+</userinput>
+</screen>
+				W przypadku ¼ród³em naj³atwiej zbudowaæ pakiet TAR/GZ i
+				wykonaæ polecenie podane powy¿ej, aby zbudowaæ pakiet
+				nale¿y wykonaæ:
+<screen>
+<userinput>
+ant pkg-tgz
+</userinput>
+</screen>
+				Pakiet zostanie zapisany w katalogu <filename>tmp</filename>.
+			</para>
 		</section>
 	</section>
 

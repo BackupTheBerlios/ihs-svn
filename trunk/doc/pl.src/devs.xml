@@ -109,12 +109,84 @@
 		<section id="design.reqs">
 			<title>Analiza wymagañ</title>
 			
+			<section id="design.reqs.soft">
+				<title>Wymagania dotycz±ce sprzêtu i oprogramowania</title>
+		
+				<table frame="all" id="tab.reqs.soft">
+					<title>Wymagania dotycz±ce sprzêtu i oprogramowania</title>
+					<tgroup cols="3">
+						<colspec colwidth="1*"/>
+						<colspec colwidth="1*"/>
+						<colspec colwidth="8*"/>
+						<thead>
+							<row>
+								<entry>Id.</entry>
+								<entry>Priorytet</entry>
+								<entry>Wymaganie</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>RS-1</entry>
+								<entry>1</entry>
+								<entry>Program bêdzie dzia³a³ pod systemami Linux, dystrybucja SuSe >= 9.3 oraz Fedora Core >= 4</entry>
+							</row>
+							<row>
+								<entry>RS-2</entry>
+								<entry>2</entry>
+								<entry>Program bêdzie dzia³a³ pod systemami OpenBSD >= 3.8, NetBSD >= 3.0</entry>
+							</row>
+							<row>
+								<entry>RS-3</entry>
+								<entry>3</entry>
+								<entry>Program bêdzie dzia³a³ pod innymi systemami Unix (np. Solaris, HP-UX)</entry>
+							</row>
+							<row>
+								<entry>RS-4</entry>
+								<entry>1</entry>
+								<entry>Program bêdzie dzia³a³ pod serwerem Tomcat >= 5</entry>
+							</row>
+							<row>
+								<entry>RS-5</entry>
+								<entry>2</entry>
+								<entry>Program bêdzie dzia³a³ pod serwerem JBoss</entry>
+							</row>
+							<row>
+								<entry>RS-6</entry>
+								<entry>3</entry>
+								<entry>Program bêdzie dzia³a³ pod serwerami Oracle Application Server, WebLogic, Websphere</entry>
+							</row>
+							<row>
+								<entry>RS-7</entry>
+								<entry>1</entry>
+								<entry>Mo¿liwe bêdzie wykorzystanie bazy danych Oracle</entry>
+							</row>
+							<row>
+								<entry>RS-8</entry>
+								<entry>1</entry>
+								<entry>Mo¿liwe bêdzie wykorzystanie bazy danych PostgreSQL</entry>
+							</row>
+							<row>
+								<entry>RS-9</entry>
+								<entry>2</entry>
+								<entry>Mo¿liwe bêdzie wykorzystanie bazy danych DB2</entry>
+							</row>
+							<row>
+								<entry>RS-10</entry>
+								<entry>1</entry>
+								<entry>Domy¶ln± platform± jest x86, testy wydajno¶ciowe musz± byæ spe³nione na maszynie P4 >= 3GHz, 512MB >= RAM</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</section>
+
 			<section id="design.reqs.general">
 				<title>Wymagania ogólne</title>
 		
 				<table frame="all" id="tab.reqs.general">
 					<title>Wymagania ogólne</title>
-					<tgroup cols="4">
+					<tgroup cols="3">
 						<colspec colwidth="1*"/>
 						<colspec colwidth="1*"/>
 						<colspec colwidth="8*"/>
@@ -129,34 +201,84 @@
 							<row>
 								<entry>RG-1</entry>
 								<entry>1</entry>
-								<entry>Program bêdzie dzia³a³ pod systemami Linux, dystrybucja SuSe >= 9.3 oraz Fedora Core >= 4</entry>
+								<entry>Istnieje mo¿liwo¶æ wyboru jêzyka, za pomoc± którego komunikujemy siê z serwisem</entry>
 							</row>
 							<row>
 								<entry>RG-2</entry>
-								<entry>2</entry>
-								<entry>Program bêdzie dzia³a³ pod systemami OpenBSD >= 3.8, NetBSD >= 3.0</entry>
+								<entry>1</entry>
+								<entry>Zostanie utworzony polski i angielski interfejs u¿ytkownika</entry>
 							</row>
 							<row>
 								<entry>RG-3</entry>
-								<entry>3</entry>
-								<entry>Program bêdzie dzia³a³ pod innymi systemami Unix (np. Solaris, HP-UX)</entry>
+								<entry>1</entry>
+								<entry>System umo¿liwia dodanie nowej domeny</entry>
 							</row>
 							<row>
 								<entry>RG-4</entry>
 								<entry>1</entry>
-								<entry>Program bêdzie dzia³a³ po stronie serwera, klient bêdzie obs³ugiwa³ system za pomoc± przegl±darki WWW</entry>
+								<entry>System umo¿liwia usuniêcie istniej±cej domeny</entry>
+							</row>
+							<row>
+								<entry>RG-5</entry>
+								<entry>1</entry>
+								<entry>System umo¿liwia dodanie u¿ytkownika do domeny</entry>
+							</row>
+							<row>
+								<entry>RG-6</entry>
+								<entry>1</entry>
+								<entry>System umo¿liwia zmianê parametrów konta u¿ytkownika</entry>
+							</row>
+							<row>
+								<entry>RG-7</entry>
+								<entry>1</entry>
+								<entry>Istnieje mo¿liwo¶æ usuniêcia konta u¿ytkownika</entry>
+							</row>
+							<row>
+								<entry>RG-8</entry>
+								<entry>1</entry>
+								<entry>Istnieje mo¿liwo¶æ przegl±dania zarejestrowanych domen</entry>
+							</row>
+							<row>
+								<entry>RG-9</entry>
+								<entry>1</entry>
+								<entry>Istnieje mo¿liwo¶æ przegl±dania zarejestrowanych u¿ytkowników</entry>
+							</row>
+							<row>
+								<entry>RG-10</entry>
+								<entry>1</entry>
+								<entry>Istnieje mo¿liwo¶æ przegl±dania logów tworzonych przez Virtual Qmail</entry>
+							</row>
+							<row>
+								<entry>RG-11</entry>
+								<entry>2</entry>
+								<entry>Istnieje mo¿liwo¶æ definiowania w³asnych raportów opartych o logu Virtual Qmail</entry>
+							</row>
+							<row>
+								<entry>RG-12</entry>
+								<entry>1</entry>
+								<entry>Istnieje mo¿liwo¶æ dodania administratora systemu</entry>
+							</row>
+							<row>
+								<entry>RG-13</entry>
+								<entry>1</entry>
+								<entry>Istnieje mo¿liwo¶æ usuniêcia administratora systemu</entry>
+							</row>
+							<row>
+								<entry>RG-14</entry>
+								<entry>1</entry>
+								<entry>Istnieje mo¿liwo¶æ zmiany konta administratora systemu</entry>
 							</row>
 						</tbody>
 					</tgroup>
 				</table>
 			</section>
-
+		
 			<section id="design.reqs.performance">
 				<title>Wymagania dotycz±ce wydajno¶ci</title>
 		
 				<table frame="all" id="tab.reqs.performance">
 					<title>Wymagania dotycz±ce wydajno¶ci</title>
-					<tgroup cols="4">
+					<tgroup cols="3">
 						<colspec colwidth="1*"/>
 						<colspec colwidth="1*"/>
 						<colspec colwidth="8*"/>
@@ -203,7 +325,7 @@
 		
 				<table frame="all" id="tab.reqs.security">
 					<title>Wymagania dotycz±ce bezpieczeñstwa</title>
-					<tgroup cols="4">
+					<tgroup cols="3">
 						<colspec colwidth="1*"/>
 						<colspec colwidth="1*"/>
 						<colspec colwidth="8*"/>
@@ -218,287 +340,35 @@
 							<row>
 								<entry>RS-1</entry>
 								<entry>2</entry>
-								<entry>Dostêp do systemu oparty bêdzie o u¿ytkowników i role, 
+								<entry>
+									Dostêp do systemu oparty bêdzie o u¿ytkowników i role, 
 									przed skorzystaniem z systemu u¿ytkownik bêdzie musia³ potwierdziæ 
 									swoj± to¿samo¶æ, system na podstawie konfiguracji okre¶li role nadane danemu u¿ytkownikowi</entry>
 							</row>
+							<row>
+								<entry>RS-2</entry>
+								<entry>2</entry>
+								<entry>Nowy typ administratora systemu - "zwyk³y", który nie ma mo¿liwo¶ci zmiany danych innych administratorów</entry>
+							</row>
+							<row>
+								<entry>RS-3</entry>
+								<entry>2</entry>
+								<entry>Nowy typ administratora system - "super", który ma mo¿liwo¶æ zmiany danych innych administratorów, oraz super administratorów</entry>
+							</row>
+							<row>
+								<entry>RS-4</entry>
+								<entry>2</entry>
+								<entry>Wprowadzenie autoryzacji has³em</entry>
+							</row>
 						</tbody>
 					</tgroup>
 				</table>
 			</section>
 
 
-			<section id="cons.req.biz">
-				<title>Wymagania biznesowe</title>
-		
-				<table frame="all" id="tab.req.biz">
-					<title>Wymagania biznesowe</title>
-					<tgroup cols="4">
-						<colspec colwidth="1*"/>
-						<colspec colwidth="7*"/>
-						<colspec colwidth="2*"/>
-						<colspec colwidth="1*"/>
-						<thead>
-							<row>
-								<entry>Id.</entry>
-								<entry>Wymaganie</entry>
-								<entry>Spe³nione</entry>
-								<entry>Priorytet</entry>
-							</row>
-						</thead>
-						<tbody>
-							<row>
-								<entry>WB-1</entry>
-								<entry>Udostêpnianie u¿ytkownikom skrzynki pocztowej</entry>
-								<entry>1</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WB-2</entry>
-								<entry>Udostêpnianie u¿ytkownikom mo¿liwo¶ci udostêpniania stron WWW</entry>
-								<entry>1</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WB-3</entry>
-								<entry>Jednoczesna obs³uga kont darmowych i p³atnych</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WB-4</entry>
-								<entry>Obs³uga p³atno¶ci przez Internet</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WB-5</entry>
-								<entry>W przypadku kont p³atnych nieop³aconych musz± one byæ automatycznie blokowane po okresie próbnym lub okresie wa¿no¶ci</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WB-6</entry>
-								<entry>Za pomoc± p³atno¶ci mo¿na nie tylko aktywywaæ konta ale równie¿ zwiêkszaæ limity np. przesy³anych bajtów, dostêpnej przestrzeni dyskowej, itp.</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WB-7</entry>
-								<entry>W przypadku kont p³atnych u¿ytkownicy maj± 14 dni okresu próbnego</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WB-8</entry>
-								<entry>U¿ytkownicy kont p³atnych maj± prawo zwrotu gotówki przez 30 dni od daty pierwszej p³atno¶ci (gwarancja jako¶ci lub zwrot pieniêdzy)</entry>
-								<entry>0</entry>
-								<entry>2</entry>
-							</row>
-							<row>
-								<entry>WB-9</entry>
-								<entry>W przypadku p³atno¶ci u¿ytkownicy maj± mo¿liwo¶æ otrzymania faktury</entry>
-								<entry>0</entry>
-								<entry>2</entry>
-							</row>
-							<row>
-								<entry>WB-10</entry>
-								<entry>W przypadku kont p³atnych, które zosta³y usuniête po okresie 30 dni od daty zap³aty zwrot gotówki nie wystêpuje</entry>
-								<entry>0</entry>
-								<entry>2</entry>
-							</row>
-							<row>
-								<entry>WB-11</entry>
-								<entry>Istnieje mo¿liwo¶æ wyboru jêzyka, za pomoc± którego komunikujemy siê z serwisem</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WB-12</entry>
-								<entry>Identyfikatorem u¿ytkownika jest jego adres e-mail</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WB-13</entry>
-								<entry>W przypadku gdy u¿ytkownik zak³ada konto, bez jednoczesnego zak³adania us³ugi e-mail podany adres musi byæ zweryfikowany</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-						</tbody>
-					</tgroup>
-				</table>
-			</section>
-		
-			<section id="cons.req.user">
-				<title>Wymagania u¿ytkownika</title>
-		
-				<table frame="all" id="tab.req.user">
-					<title>Wymagania u¿ytkownika</title>
-					<tgroup cols="4">
-						<colspec colwidth="1*"/>
-						<colspec colwidth="7*"/>
-						<colspec colwidth="2*"/>
-						<colspec colwidth="1*"/>
-						<thead>
-							<row>
-								<entry>Id.</entry>
-								<entry>Wymaganie</entry>
-								<entry>Spe³nione</entry>
-								<entry>Priorytet</entry>
-							</row>
-						</thead>
-						<tbody>
-							<row>
-								<entry>WU-1</entry>
-								<entry>U¿ytkownik mo¿e zarejestrowaæ dla siebie konto (zale¿y od ustawieñ)</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WU-2</entry>
-								<entry>Istnieje mo¿liwo¶æ ograniczania us³ug, z których mo¿e korzystaæ u¿ytkownik</entry>
-								<entry>0</entry>
-								<entry>2</entry>
-							</row>
-							<row>
-								<entry>WU-3</entry>
-								<entry>U¿ytkownik mo¿e usun±æ swoje konto</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WU-4</entry>
-								<entry>U¿ytkownik mo¿e zrezygnowaæ z us³ug, które wykorzystywa³ (np. u¿ytkownik mo¿e zrezygnowaæ ze strony WWW)</entry>
-								<entry>0</entry>
-								<entry>2</entry>
-							</row>
-							<row>
-								<entry>WU-5</entry>
-								<entry>U¿ytkownik ma dostêp do statystyk wykorzystania poszczególnych us³ug</entry>
-								<entry>1</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WU-6</entry>
-								<entry>U¿ytkownik ma mo¿liwo¶æ konfigurowania us³ug przypisanych do swojego konta</entry>
-								<entry>1</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WU-7</entry>
-								<entry>Konto u¿ytkownika mo¿e byæ zarejestrowane w systemie bez ¿adnych us³ug mu przypisanych</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WU-8</entry>
-								<entry>Zostanie utworzony polski i angielski interfejs u¿ytkownika</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WU-10</entry>
-								<entry>Us³uga e-mail polega na zalo¿eniu dla u¿ytkownika konta e-mail na serwerze, adres e-mail podaje u¿ytkownik</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WU-11</entry>
-								<entry>Us³uga WWW polega na zalo¿eniu dla u¿ytkownika wirtualnego serwera WWW</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WU-12</entry>
-								<entry>Us³uga Subversion polega na za³o¿eniu dla u¿ytkownika repozytorium Subversion</entry>
-								<entry>0</entry>
-								<entry>2</entry>
-							</row>
-							<row>
-								<entry>WU-13</entry>
-								<entry>Istnieje mo¿liwo¶æ przypomnienia has³a do konta lub us³ugi</entry>
-								<entry>0</entry>
-								<entry>2</entry>
-							</row>
-							<row>
-								<entry>WU-14</entry>
-								<entry>U¿ytkownik mo¿e korzystaæ z wielu us³ug tego samego typu</entry>
-								<entry>0</entry>
-								<entry>1</entry>
-							</row>
-							<row>
-								<entry>WU-15</entry>
-								<entry>Us³uga baza danych polega na za³o¿eniu dla u¿ytkownika bazy danych</entry>
-								<entry>0</entry>
-								<entry>2</entry>
-							</row>
-						</tbody>
-					</tgroup>
-				</table>
-			</section>
 		</section>
 
-		<section id="cons.constraints">
-			<title>Podstawowe za³o¿enia</title>
-
-			<para>
-				Realizowany projekt dzia³aæ ma w ¶rodowisku sieciowym,
-				w architekturze klient-serwer. U¿ytkownicy wykorzystywaæ
-				bêd± oferowane zasoby g³ównie za pomoc± ró¿nych programów
-				sieciowych, takich jak: klient poczty, przegl±darka
-				internetowa, klient FTP, itp.
-			</para>
-
-			<para>
-				Aby zapewniæ mo¿liwo¶æ obs³u¿enia jak
-				najwiêkszej ilo¶ci u¿ytkowników (zak³adaj±c poprawno¶æ
-				dzia³ania wykorzystywanych przez nich programów) 
-				¶wiadczone us³ugi powinny byæ zgodne z powszechnie obowi±zuj±cymi
-				normami czy standardami. Jendocze¶nie nale¿y testowaæ
-				system za pomoc± najpopularniejszych narzêdzi takich jak:
-				Firefox, Internet Explorer, Thunderbird, Outlook Express, Outlook,
-				Opera, The Bat. Wyrywkowo sprawdzaj±c system mniej popularnymi
-				aplikacjami.
-			</para>
-
-			<para>
-				Istotnym czynnikiem, na który nale¿y zwróciæ uwagê
-				jest bezpieczeñstwo systemu jako ca³o¶ci oraz 
-				pojedynczych us³ug, a tak¿e wysoka dostêpno¶æ systemu. W zwi±zku
-				z tym, ¿e jednym z docelowych ¶rodowisk s± systemy 
-				publiczne nale¿y liczyæ siê z mo¿liwo¶ci± ró¿nego rodzaju
-				ataków czy to przez z³o¶liwych u¿ytkowników, robaki
-				internetowe, itp. Nale¿y odpowiednio przemy¶leæ architekturê
-				systemu, stosowane zabezpieczenia czy procedury.
-			</para>
-
-			<para>
-				Poniewa¿ system tworzony jest aktualnie jako wolne oprogramowanie,
-				bez sponsorów oraz innych ¼róde³ finansowania nale¿y ograniczyæ
-				wszelkie zbêdne czynno¶ci do minimum. Jednocze¶nie nale¿y pamiêtaæ,
-				¿e do takich czynno¶ci nie zalicza siê testowanie produktu czy to
-				jednostkowe czy integracyjne. Tylko produkt o dobrej jako¶ci
-				mo¿e zaistnieæ na rynku oraz siê na nim utrzymaæ. Dlatego te¿
-				testowanie powinno odbywaæ siê jednocze¶nie z wytwarzaniem
-				oprogramowania, a nawet wcze¶niej zgodnie z metod± programowania
-				sterowanego testami.
-			</para>
-
-			<para>
-				Zapewnienie jako¶ci dotyczyæ ma równie¿ dokumentacji systemu.
-				Nieakceptowalna jest sytuacja gdy system rozwija siê bez
-				dokumentacji. Wszelkie modyfikacje powinny byæ najpierw
-				opisane a dopiero pó¼niej zaimplementowane. Takie podej¶cie
-				zapewni aktualno¶æ i dobr± jako¶æ dokumentacji - dokumentacja
-				tworzona po fakcie jest zawsze istotnie gorsza od dokumentacji
-				tworzonej przed implentacj±. Dokumentacja zawsze powinna
-				byæ tworzona w dwóch wersjach jêzykowych - polskiej i angielskiej.
-				Komentarze w kodzie tworzone s± tylko w jêzyku angielskim. 
-			</para>
-		</section>
-
-		<section id="cons.goals">
+		<section id="design.goals">
 			<title>Gole i wytyczne</title>
 
 			<para>
@@ -506,31 +376,40 @@
 				wytyczne.
 			</para>
 
-			<para>
-				Zachowanie zasady KISS (ang. keep it simple stupid!) - 
-				architektura, algorytmy, mechanizmy u¿yte w czasie
-				implementacji powinny byæ jak najprostrze. Dziêki temu
-				powstanie produkt ³atwy w utrzymaniu, rozszerzaniu i
-				instalacji.
-			</para>
+			<formalpara>
+				<title>Zasada KISS</title>
+				<para>
+					Zachowanie zasady KISS (ang. keep it simple stupid!) - 
+					architektura, algorytmy, mechanizmy u¿yte w czasie
+					implementacji powinny byæ jak najprostrze. Dziêki temu
+					powstanie produkt ³atwy w utrzymaniu, rozszerzaniu i
+					instalacji.
+				</para>
+			</formalpara>
 
-			<para>
-				Brak przedwczesnej optymalizacji - optymalizacja
-				mo¿e mieæ miejsce tylko i wy³±cznie po stwierdzeniu
-				empirycznie faktu i¿ jest ona niezbêdna. Implementacja
-				powinna skupiaæ siê na poprawno¶ci dzia³ania i 
-				czytelno¶ci kodu, szybko¶æ jest spraw± nieistotn±.
-			</para>
-
-			<para>
-				Liczy siê wygl±d i odczuwanie programu - powinna istnieæ
-				mo¿liwo¶æ zmiany ca³ego wygl±du aplikacji zgodnie
-				z ¿yczeniem klienta. W czasie operacji wykonywanych
-				przy udziale u¿ytkownika system musi dzia³aæ szybko 
-				- u¿ytkownik nie mo¿e byæ zmuszony do d³u¿szego czekania
-				na wyniki. Istotny jest czas otrzymania pierwszych
-				wyników.
-			</para>
+			<formalpara>
+				<title>Brak przedwczesnej optymalizacji</title>
+				<para>
+					Optymalizacja
+					mo¿e mieæ miejsce tylko i wy³±cznie po stwierdzeniu
+					empirycznie faktu i¿ jest ona niezbêdna. Implementacja
+					powinna skupiaæ siê na poprawno¶ci dzia³ania i 
+					czytelno¶ci kodu, szybko¶æ jest spraw± nieistotn±.
+				</para>
+			</formalpara>
+			
+			<formalpara>
+				<title>Szybko¶æ zwracania wszystkich wyników vs szybko¶æ zwracania pierwszych</title>
+				<para>
+					Liczy siê wygl±d i odczuwanie programu - powinna istnieæ
+					mo¿liwo¶æ zmiany ca³ego wygl±du aplikacji zgodnie
+					z ¿yczeniem klienta. W czasie operacji wykonywanych
+					przy udziale u¿ytkownika system musi dzia³aæ szybko 
+					- u¿ytkownik nie mo¿e byæ zmuszony do d³u¿szego czekania
+					na wyniki. Istotny jest czas otrzymania pierwszych
+					wyników.
+				</para>
+			</formalpara>
 		</section>
 	</section>
 

@@ -8,6 +8,7 @@
 	<target name="xml2rtf">
 		<exec executable="${jade.bin}" dir="${xml2rtf.srcdir}">
 			<env key="SGML_CATALOG_FILES" value="${jade.catalog}"/>
+			<env key="SP_ENCODING" value="ISO-8859-2"/>
 			<arg value="-t"/>
 			<arg value="rtf"/>
 			<arg value="-i"/>

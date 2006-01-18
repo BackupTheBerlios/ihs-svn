@@ -596,5 +596,61 @@
 				</para>
 			</section>
 		</section>
-	</section> <!--design-->
+	</section> <!--strategies-->
+
+	<section id="future">
+		<title>Plany na przysz³o¶æ</title>
+
+		<formalpara>
+			<title>Zwiêkszenie bezpieczeñstwa</title>
+			<para>
+				Aby system nadawa³ siê do szerszych zastosowañ nale¿y opracowaæ metodê zabezpieczania po³±czeñ miêdzy
+				IHS a Virtual Qmail. CORBA posiada mechanizm szyfrowania i autoryzacji po³±czeñ na podstawie certyfikatów.
+				Nale¿y opracowaæ i udokumentowaæ metodê wykorzystania tego mechanizmu.
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Obs³uga innych baz danych</title>
+			<para>
+				Poniewa¿ w MySQL 5 wprowadzono obs³ugê widoków, mechanizmu spustowego oraz procedur wykonywanych
+				po stronie serwera teoretycznie istnieje mo¿liwo¶æ dodania obs³ugi tej bazy danych bez konieczno¶ci
+				wiêkszych zmian po stronie Virtual Qmail czy IHS. Planowana jest równie¿ w 
+				przysz³o¶ci obs³uga DB2. Jest to jedna z popularniejszych baz danych wykorzystywanych
+				w korporacjach.
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Integracja z innymi aplikacjami</title>
+			<para>
+				Docelowo IHS ma pe³niæ rolê systemu, za pomoc± którego zarz±dzaæ bêdzie mo¿na ca³ym systemem.
+				Ma to byæ kompleksowy system do zarz±dzania serwerami hostingowymi, czyli m.in. powinien pozwalaæ na:
+				zarz±dzanie wirtualnymi serwerami WWW (Apache, Tomcat, itp.) i FTP (ProFTPD, pureftpd, itp.), u¿ytkownikami, 
+				konfiguracjê innych us³ug sieciowych, monitorowanie stanu systemu, tworzenie ró¿nego rodzaju statystyk i zestawieñ. 
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Lepsza instalacja</title>
+			<para>
+				Instalacja systemu nie nale¿y do skomplikowanych, jednak zgodnie z panuj±cym trendem
+				warto by³oby utworzyæ procedurê instalacji i konfiguracji zainstalowanego systemu wprost z przegl±darki.
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Obs³uga wtyczek</title>
+			<para>
+				System w za³o¿eniu ma byæ ³atwy do rozszerzania. Jednym z elementów potrzebnych do tego
+				jest elastyczny system wtyczek, które odpowiedzialne bêd± za dodatkowe, nowe funkcje.
+				U¿ytkownik bêdzie móg³ zale¿nie od potrzeb dodawaæ lub usuwaæ wtyczki modyfikuj±c w ten sposób
+				mo¿liwo¶ci IHS.
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Obs³uga ró¿nych tematów graficznych</title>
+			<para>
+				Po¿±dan± cech± systemu jest mo¿liwo¶æ dostosowania wygl±du aplikacji
+				do upodobañ poszczególnych u¿ytkowników. Dziêki zastosowaniu CSS
+				wprowadzenie takiego mechanizmu powinno byæ ³atwe.
+			</para>
+		</formalpara>
+	</section>
 </chapter>

@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Architektura systemu</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Podrêcznik programisty"
+HREF="devs.html"><LINK
+REL="PREVIOUS"
+TITLE="Baza danych"
+HREF="strategies.database.html"><LINK
+REL="NEXT"
+TITLE="Bibliografia"
+HREF="biblio.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-01-19T21:50:53"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="strategies.database.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Rozdzia&#322; 3. Podrêcznik programisty</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="biblio.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="architecture"
+>3.6. Architektura systemu</A
+></H1
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.overall"
+></A
+><P
+><B
+>Rysunek 3-1. Wysokopoziomowa architektura systemu</B
+></P
+><P
+><IMG
+SRC="../imgs/Overall_architecture.png"></P
+></DIV
+><P
+>	
+			<A
+HREF="architecture.html#figure.architecture.overall"
+>Rysunek 3-1</A
+> przedstawia
+			jeden z najbardziej skomplikowanych przypadków gdy ka¿dy
+			z elementów znajduje siê na innym systemie operacyjnym.
+		</P
+><P
+>&#13;			System umo¿liwia ³atwe przenoszenie us³ug i wykorzystywanie
+			w pe³ni istniej±cej mocy obliczeniowej. W wiêkszo¶ci przypadków
+			jednak wykorzystywana bêdzie architektura zawieraj±ca wszystkie
+			elementy na tym samym serwerze.
+		</P
+><P
+>&#13;			W przysz³o¶ci w miarê rozstastania siê mo¿liwo¶ci IHS i 
+			integrowania go z innymi us³ugami architektura systemu mo¿e
+			zawieraæ znacznie wiêcej elementów.
+		</P
+><P
+>&#13;			Virtual Qmail i IHS komunikuj± siê za pomoc± protoko³u CORBA,
+			bazy danych wykorzystywane s± za pomoc± protoko³u JDBC.
+		</P
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.ihsdb"
+></A
+><P
+><B
+>Rysunek 3-2. Architektura bazy IHS</B
+></P
+><P
+><IMG
+SRC="../imgs/IHSDatabaseArchitecture.png"></P
+></DIV
+><P
+>	
+			<A
+HREF="architecture.html#figure.architecture.ihsdb"
+>Rysunek 3-2</A
+> przedstawia
+			sk³adowe bazy danych. Wykorzystywane s± nastêpuj±ce mechanizmy: 
+			tabele, widoki, wbudowane procedury. Po³o¿ony jest szczególny
+			nacisk na uniezale¿nienie od siebie poszczególnych systemów,
+			wiêkszo¶æ operacji na bazie danych wykonywana jest za pomoc±
+			procedur, dane pobierane s± w oparciu o widoki. Takie podej¶cie
+			umo¿liwia optymalizacjê struktury samej bazy danych bez
+			konieczno¶ci modyfikacji elementów korzystaj±cych z niej.
+			Dodatkow± zalet± takiego podej¶cia jest wspó³dzielenie kodu
+			operuj±cego na danych. Wszelkie aplikacje mog± korzystaæ
+			z tych samych procedur, dziêki czemu administracja ca³ym
+			systemem zostaje uproszczona.
+		</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="strategies.database.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Spis tre&#347;ci</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="biblio.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Baza danych</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="devs.html"
+ACCESSKEY="U"
+>Pocz&#261;tek rozdzia&#322;u</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Bibliografia</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

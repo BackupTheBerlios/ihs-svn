@@ -653,4 +653,124 @@
 			</para>
 		</formalpara>
 	</section>
+
+	<section id="strategies.errors">
+		<title>Obs³uga b³êdów</title>
+
+		<para>
+			W czasie dzia³ania aplikacji mog± wyst±piæ nieprzewidziane
+			sytuacje, które mog± wp³yn±æ na dzia³anie systemu, np. spowodowaæ,
+			¿e niektórych czynno¶ci nie da siê wykonaæ.
+		</para>
+
+		<para>
+			Tworz±c system nale¿y pamiêtaæ o takich sytuacjach i zak³adaæ,
+			¿e mog± siê one pojawiæ w dowolnym momencie, dlatego nale¿y
+			zwróciæ uwagê na obs³ugê wszelkich b³êdów.
+		</para>
+
+		<para>
+			Nie mo¿na ignorowaæ warto¶ci zwracanych przez funkcje czy wyj±tków.
+			Wszystkie one musz± byæ otoczone odpowiedni± obs³ug±, która
+			zapewni, ¿e w przypadku b³êdu odpowiednia informacja zostanie
+			przedstawiona u¿ytkownikowi (komunikat o b³êdzie a nie
+			pusta strona), istotne jest równie¿ aby b³êdy by³y zapisywane
+			po stronie serwera.
+		</para>
+
+		<para>
+			Poniewa¿ ¶rodowisko u¿ytkownika jest poza kontrol±, nale¿y
+			zapewniæ mo¿liwo¶æ odtworzenia czynno¶ci, które doprowadzi³y
+			do zaistnienia b³êdu. Bardzo pomocne w tym celu s± odpowiednie
+			logi zapisywane po stronie serwera. Nale¿y zapisywaæ wszelkie informacje,
+			które mog± pomóc w wykryciu i ustaleniu przyczyn awarii.
+		</para>
+	</section>
+
+	<section id="strategies.database">
+		<title>Baza danych</title>
+
+		<para>
+			IHS domy¶lnie bêdzie korzysta³ tylko z jednej instancji bazy
+			danych. Inne konfiguracje musz± byæ zaimplementowane
+			przez administratora systemu.
+		</para>
+
+		<para>
+			W bazie danych zapisywane bêd± wszelkie informacje, które
+			maj± byæ dostêpne przez d³u¿szy okres (ni¿ sesja u¿ytkownika),
+			a które nie s± na tyle du¿e (wiêcej ni¿ kilka megabajtów) aby
+			utrudnia³y korzystanie z bazy.
+		</para>
+
+		<para>
+			Systemy, z którymi IHS bêdzie zintegrowany, np. Virtual Qmail,
+			mog± posiadaæ swoje w³asne bazy danych. Je¿eli istnieje
+			taka mo¿liwo¶æ nie powinny one byæ wykorzystywane bezpro¶rednio
+			lecz przy u¿yciu API dostarczanego przez dan± aplikacjê.
+			Takie podej¶cie umo¿liwi ³atwiejsz± konfiguracjê i utrzymanie.
+		</para>
+
+		<para>
+			W przypadkach gdy takie API nie istnieje nale¿y zastanowiæ siê
+			nad wydzieleniem osobnych elementów, które bêd± odpowiedzialne 
+			za obs³ugê zewnêtrznej bazy danych. Nale¿y równie¿ pamiêtaæ
+			o tym ¿eby takie komponenty mo¿na by³o konfigurowaæ za pomoc±
+			IHS. Nie wolno u¿ywaæ zakodowanych na sta³e ¶cie¿ek, hase³,
+			u¿ytkowników czy nazw baz danych.
+		</para>
+	</section>
+
+	<section id="architecture">
+		<title>Architektura systemu</title>
+
+        <figure id="figure.architecture.overall">
+            <title>Wysokopoziomowa architektura systemu</title>
+            <graphic fileref="../imgs/Overall_architecture.png" format="PNG"/>
+        </figure>
+
+		<para>	
+			<xref linkend="figure.architecture.overall"/> przedstawia
+			jeden z najbardziej skomplikowanych przypadków gdy ka¿dy
+			z elementów znajduje siê na innym systemie operacyjnym.
+		</para>
+
+		<para>
+			System umo¿liwia ³atwe przenoszenie us³ug i wykorzystywanie
+			w pe³ni istniej±cej mocy obliczeniowej. W wiêkszo¶ci przypadków
+			jednak wykorzystywana bêdzie architektura zawieraj±ca wszystkie
+			elementy na tym samym serwerze.
+		</para>
+
+		<para>
+			W przysz³o¶ci w miarê rozstastania siê mo¿liwo¶ci IHS i 
+			integrowania go z innymi us³ugami architektura systemu mo¿e
+			zawieraæ znacznie wiêcej elementów.
+		</para>
+
+		<para>
+			Virtual Qmail i IHS komunikuj± siê za pomoc± protoko³u CORBA,
+			bazy danych wykorzystywane s± za pomoc± protoko³u JDBC.
+		</para>
+
+        <figure id="figure.architecture.ihsdb">
+            <title>Architektura bazy IHS</title>
+            <graphic fileref="../imgs/IHSDatabaseArchitecture.png" format="PNG"/>
+        </figure>
+
+		<para>	
+			<xref linkend="figure.architecture.ihsdb"/> przedstawia
+			sk³adowe bazy danych. Wykorzystywane s± nastêpuj±ce mechanizmy: 
+			tabele, widoki, wbudowane procedury. Po³o¿ony jest szczególny
+			nacisk na uniezale¿nienie od siebie poszczególnych systemów,
+			wiêkszo¶æ operacji na bazie danych wykonywana jest za pomoc±
+			procedur, dane pobierane s± w oparciu o widoki. Takie podej¶cie
+			umo¿liwia optymalizacjê struktury samej bazy danych bez
+			konieczno¶ci modyfikacji elementów korzystaj±cych z niej.
+			Dodatkow± zalet± takiego podej¶cia jest wspó³dzielenie kodu
+			operuj±cego na danych. Wszelkie aplikacje mog± korzystaæ
+			z tych samych procedur, dziêki czemu administracja ca³ym
+			systemem zostaje uproszczona.
+		</para>
+	</section>
 </chapter>

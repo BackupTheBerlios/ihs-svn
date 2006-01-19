@@ -2,27 +2,27 @@
 <HTML
 ><HEAD
 ><TITLE
->Goals and guidelines</TITLE
+>Obs³uga b³êdów</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
 REL="HOME"
-TITLE="Incredible hosting system"
+TITLE="Incredible Hosting System"
 HREF="index.html"><LINK
 REL="UP"
-TITLE="Design considerations"
-HREF="considerations.html"><LINK
+TITLE="Podrêcznik programisty"
+HREF="devs.html"><LINK
 REL="PREVIOUS"
-TITLE="Basic constraints"
-HREF="cons.constraints.html"><LINK
+TITLE="Plany na przysz³o¶æ"
+HREF="future.html"><LINK
 REL="NEXT"
-TITLE="Requirements analize"
-HREF="cons.req.html"><LINK
+TITLE="Baza danych"
+HREF="strategies.database.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-01-19T21:51:35"><META
+CONTENT="2006-01-19T21:50:53"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -44,7 +44,7 @@ CELLSPACING="0"
 ><TH
 COLSPAN="3"
 ALIGN="center"
->Incredible hosting system</TH
+>Incredible Hosting System</TH
 ></TR
 ><TR
 ><TD
@@ -52,23 +52,23 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="cons.constraints.html"
+HREF="future.html"
 ACCESSKEY="P"
->Prev</A
+>Poprzedni</A
 ></TD
 ><TD
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
->Chapter 3. Design considerations</TD
+>Rozdzia&#322; 3. Podrêcznik programisty</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="cons.req.html"
+HREF="strategies.database.html"
 ACCESSKEY="N"
->Next</A
+>Nast&#281;pny</A
 ></TD
 ></TR
 ></TABLE
@@ -80,34 +80,34 @@ CLASS="section"
 ><H1
 CLASS="section"
 ><A
-NAME="cons.goals"
->3.4. Goals and guidelines</A
+NAME="strategies.errors"
+>3.4. Obs³uga b³êdów</A
 ></H1
 ><P
->&#13;				Following is a list of the most important goals and
-				guidelines than must be ensured during implementation.
-			</P
+>&#13;			W czasie dzia³ania aplikacji mog± wyst±piæ nieprzewidziane
+			sytuacje, które mog± wp³yn±æ na dzia³anie systemu, np. spowodowaæ,
+			¿e niektórych czynno¶ci nie da siê wykonaæ.
+		</P
 ><P
->&#13;				The KISS principle (keep it simple stupid!) - 
-				architecture, algorithms, mechanism used during
-				implementation should be as simple as possible.
-				This way product easy to maintenance and extension will be 
-				created.
-			</P
+>&#13;			Tworz±c system nale¿y pamiêtaæ o takich sytuacjach i zak³adaæ,
+			¿e mog± siê one pojawiæ w dowolnym momencie, dlatego nale¿y
+			zwróciæ uwagê na obs³ugê wszelkich b³êdów.
+		</P
 ><P
->&#13;				Don't early optimize - optimalization can be done
-				only in case that it's really needed (it must be proved
-				in tests). Implementation should focus on correctness of
-				working and easines of reading the code. Speed is not
-				important.
-			</P
+>&#13;			Nie mo¿na ignorowaæ warto¶ci zwracanych przez funkcje czy wyj±tków.
+			Wszystkie one musz± byæ otoczone odpowiedni± obs³ug±, która
+			zapewni, ¿e w przypadku b³êdu odpowiednia informacja zostanie
+			przedstawiona u¿ytkownikowi (komunikat o b³êdzie a nie
+			pusta strona), istotne jest równie¿ aby b³êdy by³y zapisywane
+			po stronie serwera.
+		</P
 ><P
->&#13;				Look and feel are very important - there should be a 
-				possibility to modify theme. Operations done
-				with user interaction should work as fast as possible.
-				User should not have to wait for results. Time from
-				event to first results should be minimized.
-			</P
+>&#13;			Poniewa¿ ¶rodowisko u¿ytkownika jest poza kontrol±, nale¿y
+			zapewniæ mo¿liwo¶æ odtworzenia czynno¶ci, które doprowadzi³y
+			do zaistnienia b³êdu. Bardzo pomocne w tym celu s± odpowiednie
+			logi zapisywane po stronie serwera. Nale¿y zapisywaæ wszelkie informacje,
+			które mog± pomóc w wykryciu i ustaleniu przyczyn awarii.
+		</P
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"
@@ -125,9 +125,9 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="cons.constraints.html"
+HREF="future.html"
 ACCESSKEY="P"
->Prev</A
+>Poprzedni</A
 ></TD
 ><TD
 WIDTH="34%"
@@ -136,16 +136,16 @@ VALIGN="top"
 ><A
 HREF="index.html"
 ACCESSKEY="H"
->Home</A
+>Spis tre&#347;ci</A
 ></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="cons.req.html"
+HREF="strategies.database.html"
 ACCESSKEY="N"
->Next</A
+>Nast&#281;pny</A
 ></TD
 ></TR
 ><TR
@@ -153,21 +153,21 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Basic constraints</TD
+>Plany na przysz³o¶æ</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
 ><A
-HREF="considerations.html"
+HREF="devs.html"
 ACCESSKEY="U"
->Up</A
+>Pocz&#261;tek rozdzia&#322;u</A
 ></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Requirements analize</TD
+>Baza danych</TD
 ></TR
 ></TABLE
 ></DIV

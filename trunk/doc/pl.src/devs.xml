@@ -753,6 +753,44 @@
 			bazy danych wykorzystywane s± za pomoc± protoko³u JDBC.
 		</para>
 
+		<formalpara>
+			<title>Virtual Qmail</title>
+			<para>
+				Odpowiedzialny jest za zarz±dzaniem systemem pocztowy.
+				Aplikacja zarz±dza plikami konfiguracyjnymi MTA, tworzy
+				odpowiednie struktury na dysku, przechowuje informacje
+				o u¿ytkownikach.
+			</para>
+		</formalpara>
+
+		<formalpara>
+			<title>Virtual Qmail DB</title>
+			<para>
+				Baza danych obs³uguj±ca Virtual Qmail. IHS nie powinien
+				z niej korzystaæ bezpo¶rednio tylko za pomoc± 
+				API udostêpnianego przez V-Q. Jednak¿e mog± istnieæ przypadki
+				gdy tylko bezpo¶redni dostêp pozwoli osi±gn±æ oczekiwan±
+				funkcjonalno¶æ.
+			</para>
+		</formalpara>
+
+		<formalpara>
+			<title>Incredible Hosting System</title>
+			<para>
+				Jest to interfejs WWW umo¿liwiaj±cy administracjê
+				Virtual Qmailem. Dzia³a w ¶rodowisku J2EE. Sk³ada siê
+				ze stron JSP, Servletów.
+			</para>
+		</formalpara>
+
+		<formalpara>
+			<title>Incredible Hosting System DB</title>
+			<para>
+				Baza danych wy³±cznie na us³ugi IHS. Zawiera konfiguracjê
+				oraz inne niezbêdne dane.
+			</para>
+		</formalpara>
+		
         <figure id="figure.architecture.ihsdb">
             <title>Architektura bazy IHS</title>
             <graphic fileref="../imgs/IHSDatabaseArchitecture.png" format="PNG"/>
@@ -772,5 +810,13 @@
 			z tych samych procedur, dziêki czemu administracja ca³ym
 			systemem zostaje uproszczona.
 		</para>
+
+		<section id="subarch">
+			<title>Architektura podsystemów</title>
+
+			<section id="subarch.ihsdb">
+				<title>Baza danych IHS</title>
+			</section>
+		</section>
 	</section>
 </chapter>

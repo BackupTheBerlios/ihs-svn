@@ -22,7 +22,7 @@ REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-01-19T21:50:53"><META
+CONTENT="2006-01-23T20:47:51"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -120,6 +120,52 @@ HREF="architecture.html#figure.architecture.overall"
 >&#13;			Virtual Qmail i IHS komunikuj± siê za pomoc± protoko³u CORBA,
 			bazy danych wykorzystywane s± za pomoc± protoko³u JDBC.
 		</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Virtual Qmail. </B
+>
+				Odpowiedzialny jest za zarz±dzaniem systemem pocztowy.
+				Aplikacja zarz±dza plikami konfiguracyjnymi MTA, tworzy
+				odpowiednie struktury na dysku, przechowuje informacje
+				o u¿ytkownikach.
+			</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Virtual Qmail DB. </B
+>
+				Baza danych obs³uguj±ca Virtual Qmail. IHS nie powinien
+				z niej korzystaæ bezpo¶rednio tylko za pomoc± 
+				API udostêpnianego przez V-Q. Jednak¿e mog± istnieæ przypadki
+				gdy tylko bezpo¶redni dostêp pozwoli osi±gn±æ oczekiwan±
+				funkcjonalno¶æ.
+			</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Incredible Hosting System. </B
+>
+				Jest to interfejs WWW umo¿liwiaj±cy administracjê
+				Virtual Qmailem. Dzia³a w ¶rodowisku J2EE. Sk³ada siê
+				ze stron JSP, Servletów.
+			</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Incredible Hosting System DB. </B
+>
+				Baza danych wy³±cznie na us³ugi IHS. Zawiera konfiguracjê
+				oraz inne niezbêdne dane.
+			</P
+></DIV
 ><DIV
 CLASS="figure"
 ><A

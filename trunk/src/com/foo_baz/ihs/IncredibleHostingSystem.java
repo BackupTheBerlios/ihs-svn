@@ -360,7 +360,7 @@ implements Administrators {
 				String ret = null;
 				try {
 					int idx = 1;
-					st = dbCon.prepareStatement("SELECT value FROM ihs_config WHERE key=?");
+					st = dbCon.prepareStatement("SELECT value FROM ihs_view_config WHERE key=?");
 					st.setString(idx++, key);
 					res = st.executeQuery();
 					
@@ -380,7 +380,7 @@ implements Administrators {
 				
 				Map ret = new HashMap();
 				try {
-					st = dbCon.prepareStatement("SELECT key,value FROM ihs_config ORDER BY key");
+					st = dbCon.prepareStatement("SELECT key,value FROM ihs_view_config ORDER BY key");
 					res = st.executeQuery();
 					
 					for( int idx=1; res.next(); idx=1 ) {

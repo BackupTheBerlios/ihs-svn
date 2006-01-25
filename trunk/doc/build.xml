@@ -96,10 +96,10 @@
 
 	<target name="mirror-prepare">
 		<chmod perm="0644">
-			<fileset dir="doc" includes="**/*.html/" excludes="**/.svn/*"/>
+			<fileset dir="doc" includes="**/*.html/,**/imgs/" excludes="**/.svn/*"/>
 		</chmod>
 		<chmod perm="0755">
-			<dirset dir="doc" includes="**/*.html/" excludes="**/.svn/*"/>
+			<dirset dir="doc" includes="**/*.html/,**/imgs/" excludes="**/.svn/*"/>
 		</chmod>
 	</target>
 
@@ -125,7 +125,7 @@
 			<arg value="ssh -l paweln"/>
 			<srcfile/>
 			<arg value="${mirror.server}"/>
-			<dirset dir="doc" includes="**/*.html"/>
+			<dirset dir="doc" includes="**/*.html,**/imgs/"/>
 		</apply>
 	</target>
 

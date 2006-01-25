@@ -22,7 +22,7 @@ REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-01-23T20:47:51"><META
+CONTENT="2006-01-25T21:40:46"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -197,6 +197,182 @@ HREF="architecture.html#figure.architecture.ihsdb"
 			z tych samych procedur, dziêki czemu administracja ca³ym
 			systemem zostaje uproszczona.
 		</P
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="subarch"
+>3.6.1. Architektura podsystemów</A
+></H2
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="subarch.ihsdb"
+>3.6.1.1. Baza danych IHS</A
+></H3
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.ihsdb.details"
+></A
+><P
+><B
+>Rysunek 3-3. Logiczny model bazy danych IHS</B
+></P
+><P
+><IMG
+SRC="../imgs/IHSDBLogicalmodel.png"></P
+></DIV
+><P
+>	
+					<A
+HREF="architecture.html#figure.architecture.ihsdb.details"
+>Rysunek 3-3</A
+> przedstawia
+					logiczny model bazy danych.
+				</P
+><P
+>&#13;					Przedstawione powy¿ej typy aktualnie zdefiniowane
+					s± nastêpuj±co:
+				</P
+><DIV
+CLASS="table"
+><A
+NAME="tab.architecture.ihsdb.details"
+></A
+><P
+><B
+>Tabela 3-5. Typy danych u¿ywane w bazie IHS</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><THEAD
+><TR
+><TH
+>Typ</TH
+><TH
+>Definicja (dla Oracle)</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>ihs_config_key_type</TD
+><TD
+>varchar2(1024)</TD
+></TR
+><TR
+><TD
+>ihs_config_value_type</TD
+><TD
+>varchar2(1024)</TD
+></TR
+><TR
+><TD
+>ihs_administrator_login_type</TD
+><TD
+>varchar2(512)</TD
+></TR
+><TR
+><TD
+>ihs_administrator_password_type</TD
+><TD
+>varchar2(512)</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="subarch.ihs"
+>3.6.1.2. Architektura IHS</A
+></H3
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.ihs.details"
+></A
+><P
+><B
+>Rysunek 3-4. Architektura IHS</B
+></P
+><P
+><IMG
+SRC="../imgs/IHSArchitecture.png"></P
+></DIV
+><P
+>	
+					<A
+HREF="architecture.html#figure.architecture.ihs.details"
+>Rysunek 3-4</A
+> przedstawia
+					wysokopoziomow± architekturê IHS. Poni¿ej znajduje
+					siê krótki opis poszczególnych elementów.
+				</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Configuration. </B
+>
+						Konfiguracja u¿ywana przez serwer J2EE oraz pliki
+						wykorzystywane przez Java Server Faces.
+					</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Static Files. </B
+>
+						Statyczne pliki takie jak t³umaczenia,
+						arkusze stylów CSS, pliki graficzne.
+					</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>JSF pages. </B
+>
+						Strony JSF, stanowi± one interfejs u¿ytkownika.
+					</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Libraries. </B
+>
+						Wnêtrze systemu. Biblioteki zawieraj± kod
+						komunikuj±cy siê z bazami danych, z systemem Virtual
+						Qmail. Czê¶æ plików tworzona jest na podstawie opisu IDL.
+					</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Backing beans. </B
+>
+						Stanowi± warstwê po¶rednicz±c± miêdzy interfejsem
+						u¿ytkownika a bibliotekami. Tutaj znajduj± siê
+						obiekty obs³uguj±ce sesjê u¿ytkownika, itp.
+					</P
+></DIV
+></DIV
+></DIV
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"

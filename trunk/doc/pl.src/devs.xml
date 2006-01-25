@@ -816,6 +816,105 @@
 
 			<section id="subarch.ihsdb">
 				<title>Baza danych IHS</title>
+
+		        <figure id="figure.architecture.ihsdb.details">
+        		    <title>Logiczny model bazy danych IHS</title>
+		            <graphic fileref="../imgs/IHSDBLogicalmodel.png" format="PNG"/>
+		        </figure>
+		
+				<para>	
+					<xref linkend="figure.architecture.ihsdb.details"/> przedstawia
+					logiczny model bazy danych.
+				</para>
+
+				<para>
+					Przedstawione powy¿ej typy aktualnie zdefiniowane
+					s± nastêpuj±co:
+				</para>
+
+				<table frame="all" id="tab.architecture.ihsdb.details">
+					<title>Typy danych u¿ywane w bazie IHS</title>
+					<tgroup cols="2">
+						<colspec colwidth="1*"/>
+						<colspec colwidth="1*"/>
+						<thead>
+							<row>
+								<entry>Typ</entry>
+								<entry>Definicja (dla Oracle)</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>ihs_config_key_type</entry>
+								<entry>varchar2(1024)</entry>
+							</row>
+							<row>
+								<entry>ihs_config_value_type</entry>
+								<entry>varchar2(1024)</entry>
+							</row>
+							<row>
+								<entry>ihs_administrator_login_type</entry>
+								<entry>varchar2(512)</entry>
+							</row>
+							<row>
+								<entry>ihs_administrator_password_type</entry>
+								<entry>varchar2(512)</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</section>
+
+			<section id="subarch.ihs">
+				<title>Architektura IHS</title>
+
+				<figure id="figure.architecture.ihs.details">
+        		    <title>Architektura IHS</title>
+		            <graphic fileref="../imgs/IHSArchitecture.png" format="PNG"/>
+		        </figure>
+		
+				<para>	
+					<xref linkend="figure.architecture.ihs.details"/> przedstawia
+					wysokopoziomow± architekturê IHS. Poni¿ej znajduje
+					siê krótki opis poszczególnych elementów.
+				</para>
+
+				<formalpara>
+					<title>Configuration</title>
+					<para>
+						Konfiguracja u¿ywana przez serwer J2EE oraz pliki
+						wykorzystywane przez Java Server Faces.
+					</para>
+				</formalpara>
+				<formalpara>
+					<title>Static Files</title>
+					<para>
+						Statyczne pliki takie jak t³umaczenia,
+						arkusze stylów CSS, pliki graficzne.
+					</para>
+				</formalpara>
+				<formalpara>
+					<title>JSF pages</title>
+					<para>
+						Strony JSF, stanowi± one interfejs u¿ytkownika.
+					</para>
+				</formalpara>
+				<formalpara>
+					<title>Libraries</title>
+					<para>
+						Wnêtrze systemu. Biblioteki zawieraj± kod
+						komunikuj±cy siê z bazami danych, z systemem Virtual
+						Qmail. Czê¶æ plików tworzona jest na podstawie opisu IDL.
+					</para>
+				</formalpara>
+				<formalpara>
+					<title>Backing beans</title>
+					<para>
+						Stanowi± warstwê po¶rednicz±c± miêdzy interfejsem
+						u¿ytkownika a bibliotekami. Tutaj znajduj± siê
+						obiekty obs³uguj±ce sesjê u¿ytkownika, itp.
+					</para>
+				</formalpara>
 			</section>
 		</section>
 	</section>

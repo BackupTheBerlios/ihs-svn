@@ -19,6 +19,10 @@ END;
 /
 show errors;
 
+create table ihs_administrators ( login varchar2(512) not null check( login<> '' ), value varchar2(512) );
+alter table ihs_administrators add constraint ihs_administrators_pkey primary key(login);
+create view ihs_view_administrators as select login,password from ihs_administrators;
+
 CREATE OR REPLACE FUNCTION ihs_administrator_add
 (a_login IN ihs_administrators.login%TYPE,
 a_pass IN ihs_administrators.password%TYPE) RETURN INTEGER IS

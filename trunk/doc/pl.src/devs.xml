@@ -918,4 +918,248 @@
 			</section>
 		</section>
 	</section>
+
+	<section id="policies">
+		<title>Obowi±zuj±ce wytyczne</title>
+
+		<section id="policies.software">
+			<title>Wykorzystywane oprogramowanie</title>
+
+			<para>
+				W czasie prac nad systemem wykorzystywane s± nastêpuj±ce
+				aplikacje:
+				<itemizedlist>
+					<listitem>
+						<para>
+							java >= 1.4.2
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ant >= 1.6
+						</para>
+					</listitem>
+					<listitem>
+						<para>	
+							Oracle >= 10g
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							PostgreSQL >= 8
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Eclipse >= 3.0
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
+		</section>
+
+		<section id="policies.tree">
+			<title>Organizacja struktury katalogów</title>
+			<formalpara>
+				<title>./doc</title>
+				<para>
+					Katalog, w którym przechowywana jest dokumentacja, oraz
+					pliki wymagane do jej wygenerowania.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/en.src</title>
+				<para>
+					Pliki ¼ród³owe w formacie DocBook, z których generowana
+					jest angielska wersja dokumentacji.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/en.rtf</title>
+				<para>
+					Dokumentacja po angielsku w formacie RTF. Generowana automatycznie.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/en.html</title>
+				<para>
+					Dokumentacja po angielsku w formacie HTML. Generowana automatycznie.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/imgs</title>
+				<para>
+					Wspólne dla wszystkich wersji obrazki.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/pl.src</title>
+				<para>
+					Pliki ¼ród³owe w formacie DocBook, z których generowana
+					jest polska wersja dokumentacji.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/pl.rtf</title>
+				<para>
+					Dokumentacja po polsku w formacie RTF. Generowana automatycznie.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/pl.html</title>
+				<para>
+					Dokumentacja po polsku w formacie HTML. Generowana automatycznie.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/ihs</title>
+				<para>
+					Kod ¼ród³owy zawieraj±cy g³ówn± czê¶æ systemu.
+					Tutaj znajduje siê kod odpowiedzialny za: komunikacjê
+					z Virtual Qmail, obs³ugê bazy danych, itp.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/ihs/mailservice</title>
+				<para>
+					Wrappery dla obiektów u¿ywanych przez Virtual Qmail.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/ihs/backing</title>
+				<para>
+					Backing beans dla g³ównej czê¶ci systemu.
+					Jest to warstwa po¶rednicz±ca miêdzy interfejscem
+					u¿ytkownika a j±drem systemu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/ihs/backing/mailservice</title>
+				<para>
+					Backing beans dla Virtual Qmail.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/v_q</title>
+				<para>
+					Kod generowany automatycznie na podstawie plików IDL
+					dostarczanych przez Virtual Qmail.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/util</title>
+				<para>
+					Kod ogólnego przeznaczenia, który mo¿e byæ
+					wspó³dzielony z innymi projektami.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/corejsf</title>
+				<para>
+					Kod zaczerpniêty z ksi±¿ki Core JSF.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./build</title>
+				<para>
+					Katalog, w którym umieszczane s± pliki wygenerowane 
+					podczas kompilacji.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./pkg</title>
+				<para>
+					Katalog zawiera pliki niezbêdne do generowania pakietów
+					dystrybucyjnych.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./pkg/rpm</title>
+				<para>
+					Pliki potrzebne do wygenerowania pakietów RPM.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./tmp</title>
+				<para>
+					Miejsce na ró¿ne pliki tymczasowe. Nie podlega
+					wersjonowaniu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent</title>
+				<para>
+					Pliki JSF, pliki graficzne, style CSS, itp.
+					Materia³y serwowane przez serwer J2EE.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent/mailservice</title>
+				<para>
+					Interfejs u¿ytkownika obs³uguj±cy backing beans dla
+					Virtual Qmail.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent/META-INF</title>
+				<para>
+					Pliki konfiguracyjne dla serwera J2EE.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent/WEB-INF</title>
+				<para>
+					Konfiguracja aplikacji J2EE.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent/WEB-INF/lib</title>
+				<para>
+					Biblioteki niezbêdne do kompilacji.
+				</para>
+			</formalpara>
+		</section>
+
+		<section id="policies.building">
+			<title>Kompilacja</title>
+
+			<para>
+				Kompilacja jest wyj±tkowo ³atwa, wystarczy w g³ównym katalogu
+				wykonaæ polecenie:
+			</para>
+
+			<para>
+<screen><userinput>ant war</userinput></screen>
+				wygeneruje ono w katalog <filename>./build</filename> plik WAR.
+			</para>
+
+			<para>
+<screen><userinput>ant deploy</userinput></screen>
+				spróbuje zainstalowaæ aplikacjê zgodnie z ustawieniami
+				zawartymie w pliku <filename>build.properties</filename>.
+			</para>
+
+			<para>
+<screen><userinput>ant doc</userinput></screen>
+				w katalogu <filename>./doc</filename>
+				wygeneruje od nowa dokumentacjê.
+			</para>
+
+		</section>
+
+		<section id="policies.packages">
+			<title>Tworzenie pakietów</title>
+			<para>
+				Wykonanie polecenia:
+<screen><userinput>ant pkg-rpm</userinput></screen>
+				wygeneruje pakiet RPM.
+			</para>
+
+			<para>
+<screen><userinput>ant pkg-tgz</userinput></screen>
+				wygeneruje spakowane archiwum z kodem.
+			</para>
+		</section>
+	</section>
 </chapter>
+

@@ -1161,5 +1161,172 @@
 			</para>
 		</section>
 	</section>
+
+	<section id="imp">
+		<title>Szczegó³y implementacji IHS</title>
+
+		<section id="imp.com">
+			<title>Pakiet com</title>
+
+			<figure id="figure.imp.com">
+				<title>Pakiet com</title>
+				<graphic fileref="../imgs/PackageOverviewcom.png" format="PNG"/>
+		    </figure>
+		
+			<para>	
+				<xref linkend="figure.imp.com"/> przedstawia 
+				zawarato¶æ g³ównego pakietu aplikacji IHS. Pakiet corejsf
+				zawiera kod pomocniczy zaczerpniêty z GEA-2004, pakiet foo_baz zawiera
+				g³ówn± czê¶æ systemu.
+			</para>
+		</section>
+
+		<section id="imp.com.foo_baz">
+			<title>Pakiet com.foo_baz</title>
+			<figure id="figure.imp.com.foo_baz">
+				<title>Pakiet com.foo_baz</title>
+				<graphic fileref="../imgs/PackageOverviewcomfoo_baz.png" format="PNG"/>
+		    </figure>
+		
+			<para>	
+				<xref linkend="figure.imp.com.foo_baz"/> przedstawia 
+				nastêpuj±ce pakiety:
+				<itemizedlist>
+					<listitem>
+						<para>
+							util - zawiera pomocnicze klasy,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							v_q - zawiera kod wygenerowany z plików IDL Virtual Qmail,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ihs - zawiera kod IHS,
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
+		</section>
+
+		<section id="imp.com.foo_baz.ihs">
+			<title>Pakiet com.foo_baz.ihs</title>
+			<figure id="figure.imp.com.foo_baz.ihs">
+				<title>Pakiet com.foo_baz.ihs</title>
+				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihs.png" format="PNG"/>
+		    </figure>
+	
+			<figure id="figure.imp.com.foo_baz.ihs.mailservice">
+				<title>Pakiet com.foo_baz.ihs.mailservice</title>
+				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihsmailservice.png" format="PNG"/>
+		    </figure>
+	
+			<para>	
+				<xref linkend="figure.imp.com.foo_baz.ihs"/> i
+				<xref linkend="figure.imp.com.foo_baz.ihs.mailservice"/>
+				przedstawiaj± nastêpuj±ce elementy:
+				<itemizedlist>
+					<listitem>
+						<para>
+							backing - pakiet zawieraj±cy Backing Beans,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							mailservice - obs³uga systemu pocztowego,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Configuration - obs³uga konfiguracji systemu,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Service - plug-in, pojedyñcza us³uga obs³ugiwana przez system,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							MailService - us³uga pocztowa,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							VirtualQmailMailService - implementacja
+							oparta o Virtual Qmail,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Administrators - zarz±dzanie administratorami,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							IncredibleSystemHosting - g³ówne j±dro systemu,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Administrator - reprezentacja informacji o administratorze,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ExtendedAdministrator - Administrator wzbogacony o dodatkowe informacje u¿ywane przez GUI,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Domain - reprezentacja informacji o domenie,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ExtendedDomain - Domain wzbogacona o dodatkowe informacje u¿ywane przez GUI,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							User - reprezentacja informacji o u¿ytkowniku,
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ExtendedUser - User wzbogacony o dodatkowe informacje u¿ywane przez GUI,
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
+		</section>
+
+		<section id="imp.com.foo_baz.ihs.backing">
+			<title>Pakiet com.foo_baz.ihs.backing</title>
+			<figure id="figure.imp.com.foo_baz.ihs.backing">
+				<title>Pakiet com.foo_baz.ihs.backing</title>
+				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihsbacking.png" format="PNG"/>
+		    </figure>
+	
+			<figure id="figure.imp.com.foo_baz.ihs.backing.mailservice">
+				<title>Pakiet com.foo_baz.ihs.backing.mailservice</title>
+				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihsbackingmailservice.png" format="PNG"/>
+		    </figure>
+	
+			<para>	
+				<xref linkend="figure.imp.com.foo_baz.ihs.backing"/> 
+				i <xref linkend="figure.imp.com.foo_baz.ihs.backing.mailservice"/> 
+				przedstawiaj± elementy, które po¶rednicz± miêdzy g³ównymi
+				czê¶ciami systemu (np. z pakietów com.foo_baz.ihs i com.foo_baz.ihs.mailservice)
+				a interfejsem u¿ytkownika reprezentowanym przez strony JSF.
+				Elementy te maj± ró¿ny czas ¿ycia, niektóre z nich 
+				tworzone s± dla ka¿dego ¿±dania, inne dla sesji u¿ytkownika.
+				W wiêkszo¶ci wypadków ka¿dej ze stron JSF przypada
+				co najmniej jeden element.
+			</para>	
+		</section>
+	</section>
 </chapter>
 

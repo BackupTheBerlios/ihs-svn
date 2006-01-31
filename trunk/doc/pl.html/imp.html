@@ -22,7 +22,7 @@ REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-01-30T20:56:34"><META
+CONTENT="2006-01-31T20:53:28"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -60,7 +60,7 @@ ACCESSKEY="P"
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
->Rozdzia&#322; 3. Podrêcznik programisty</TD
+>Rozdzia&#322; 4. Podrêcznik programisty</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
@@ -81,97 +81,15 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="imp"
->3.8. Szczegó³y implementacji IHS</A
+>4.8. Szczegó³y implementacji IHS</A
 ></H1
 ><DIV
 CLASS="section"
 ><H2
 CLASS="section"
 ><A
-NAME="imp.com"
->3.8.1. Pakiet com</A
-></H2
-><DIV
-CLASS="figure"
-><A
-NAME="figure.imp.com"
-></A
-><P
-><B
->Rysunek 3-5. Pakiet com</B
-></P
-><P
-><IMG
-SRC="../imgs/PackageOverviewcom.png"></P
-></DIV
-><P
->	
-				<A
-HREF="imp.html#figure.imp.com"
->Rysunek 3-5</A
-> przedstawia 
-				zawarato¶æ g³ównego pakietu aplikacji IHS. Pakiet corejsf
-				zawiera kod pomocniczy zaczerpniêty z GEA-2004, pakiet foo_baz zawiera
-				g³ówn± czê¶æ systemu.
-			</P
-></DIV
-><DIV
-CLASS="section"
-><H2
-CLASS="section"
-><A
-NAME="imp.com.foo_baz"
->3.8.2. Pakiet com.foo_baz</A
-></H2
-><DIV
-CLASS="figure"
-><A
-NAME="figure.imp.com.foo_baz"
-></A
-><P
-><B
->Rysunek 3-6. Pakiet com.foo_baz</B
-></P
-><P
-><IMG
-SRC="../imgs/PackageOverviewcomfoo_baz.png"></P
-></DIV
-><P
->	
-				<A
-HREF="imp.html#figure.imp.com.foo_baz"
->Rysunek 3-6</A
-> przedstawia 
-				nastêpuj±ce pakiety:
-				<P
-></P
-></P><UL
-><LI
-><P
->&#13;							util - zawiera pomocnicze klasy,
-						</P
-></LI
-><LI
-><P
->&#13;							v_q - zawiera kod wygenerowany z plików IDL Virtual Qmail,
-						</P
-></LI
-><LI
-><P
->&#13;							ihs - zawiera kod IHS,
-						</P
-></LI
-></UL
-><P>
-			</P
-></DIV
-><DIV
-CLASS="section"
-><H2
-CLASS="section"
-><A
-NAME="imp.com.foo_baz.ihs"
->3.8.3. Pakiet com.foo_baz.ihs</A
+NAME="imp.core"
+>4.8.1. G³ówna czê¶æ systemu</A
 ></H2
 ><DIV
 CLASS="figure"
@@ -180,121 +98,104 @@ NAME="figure.imp.com.foo_baz.ihs"
 ></A
 ><P
 ><B
->Rysunek 3-7. Pakiet com.foo_baz.ihs</B
+>Rysunek 4-6. Pakiet com.foo_baz.ihs</B
 ></P
 ><P
 ><IMG
 SRC="../imgs/PackageOverviewcomfoo_bazihs.png"></P
 ></DIV
+><P
+>&#13;				G³ówna czê¶æ systemu zawarta jest w pakiecie com.foo_baz.ihs,
+				rysunek <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs"
+>Rysunek 4-6</A
+> przedstawia
+				zawarte w tym pakiecie elementy. Poni¿ej znajduje siê krótki
+				opis ka¿dego z nich.
+			</P
 ><DIV
-CLASS="figure"
-><A
-NAME="figure.imp.com.foo_baz.ihs.mailservice"
-></A
+CLASS="formalpara"
 ><P
 ><B
->Rysunek 3-8. Pakiet com.foo_baz.ihs.mailservice</B
-></P
-><P
-><IMG
-SRC="../imgs/PackageOverviewcomfoo_bazihsmailservice.png"></P
-></DIV
-><P
->	
-				<A
-HREF="imp.html#figure.imp.com.foo_baz.ihs"
->Rysunek 3-7</A
-> i
-				<A
-HREF="imp.html#figure.imp.com.foo_baz.ihs.mailservice"
->Rysunek 3-8</A
+>Configuration. </B
 >
-				przedstawiaj± nastêpuj±ce elementy:
-				<P
-></P
-></P><UL
-><LI
+					Interfejs, za pomoc± którego mo¿na obs³ugiwaæ konfiguracjê
+					- dodawaæ, aktualizowaæ czy usuwaæ parametry. Domy¶lnie
+					konfiguracja przechowywana jest w bazie danych.
+					Interfejs zawiera tylko podstawowe operacje do
+					przechowywania ³añcuchów znakowych.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
 ><P
->&#13;							backing - pakiet zawieraj±cy Backing Beans,
-						</P
-></LI
-><LI
+><B
+>Service. </B
+>
+					Interfejs, który musz± implementowaæ wszystkie
+					wtyczki dla systemu IHS. Za jego pomoc± IHS odwo³uje siê
+					do wtyczek.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
 ><P
->&#13;							mailservice - obs³uga systemu pocztowego,
-						</P
-></LI
-><LI
+><B
+>MailService. </B
+>
+					Interfejs reprezentuj±cy wtyczkê obs³uguj±ca system
+					pocztowy, zawiera on dodatkowe metody, które s±
+					niezbêdne do poprawnej obs³ugi takiego systemu.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
 ><P
->&#13;							Configuration - obs³uga konfiguracji systemu,
-						</P
-></LI
-><LI
+><B
+>Administrators. </B
+>
+					Interfejs reprezentuj±cy wszystkie mo¿liwe operacje,
+					które mo¿na przeprowadzaæ na kontach administratorów.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
 ><P
->&#13;							Service - plug-in, pojedyñcza us³uga obs³ugiwana przez system,
-						</P
-></LI
-><LI
+><B
+>IncredibleSystemHosting. </B
+>
+					G³ówne j±dro systemu, implementuje interfejs Administrators.
+					Zajmuje siê do tego obs³ug± wtyczek, dostarcza 
+					implementacjê interfejsu Configuration.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
 ><P
->&#13;							MailService - us³uga pocztowa,
-						</P
-></LI
-><LI
+><B
+>Administrator. </B
+>
+					Reprezentuje informacje przechowywane o administratorach.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
 ><P
->&#13;							VirtualQmailMailService - implementacja
-							oparta o Virtual Qmail,
-						</P
-></LI
-><LI
-><P
->&#13;							Administrators - zarz±dzanie administratorami,
-						</P
-></LI
-><LI
-><P
->&#13;							IncredibleSystemHosting - g³ówne j±dro systemu,
-						</P
-></LI
-><LI
-><P
->&#13;							Administrator - reprezentacja informacji o administratorze,
-						</P
-></LI
-><LI
-><P
->&#13;							ExtendedAdministrator - Administrator wzbogacony o dodatkowe informacje u¿ywane przez GUI,
-						</P
-></LI
-><LI
-><P
->&#13;							Domain - reprezentacja informacji o domenie,
-						</P
-></LI
-><LI
-><P
->&#13;							ExtendedDomain - Domain wzbogacona o dodatkowe informacje u¿ywane przez GUI,
-						</P
-></LI
-><LI
-><P
->&#13;							User - reprezentacja informacji o u¿ytkowniku,
-						</P
-></LI
-><LI
-><P
->&#13;							ExtendedUser - User wzbogacony o dodatkowe informacje u¿ywane przez GUI,
-						</P
-></LI
-></UL
-><P>
-			</P
+><B
+>ExtendedAdministrator. </B
+>
+					Administrator wzbogacony o dodatkowe informacje 
+					u¿ywane przez GUI.
+				</P
+></DIV
 ></DIV
 ><DIV
 CLASS="section"
 ><H2
 CLASS="section"
 ><A
-NAME="imp.com.foo_baz.ihs.backing"
->3.8.4. Pakiet com.foo_baz.ihs.backing</A
+NAME="imp.ui"
+>4.8.2. Interejs u¿ytkownika</A
 ></H2
 ><DIV
 CLASS="figure"
@@ -303,7 +204,7 @@ NAME="figure.imp.com.foo_baz.ihs.backing"
 ></A
 ><P
 ><B
->Rysunek 3-9. Pakiet com.foo_baz.ihs.backing</B
+>Rysunek 4-7. Pakiet com.foo_baz.ihs.backing</B
 ></P
 ><P
 ><IMG
@@ -316,7 +217,7 @@ NAME="figure.imp.com.foo_baz.ihs.backing.mailservice"
 ></A
 ><P
 ><B
->Rysunek 3-10. Pakiet com.foo_baz.ihs.backing.mailservice</B
+>Rysunek 4-8. Pakiet com.foo_baz.ihs.backing.mailservice</B
 ></P
 ><P
 ><IMG
@@ -326,11 +227,11 @@ SRC="../imgs/PackageOverviewcomfoo_bazihsbackingmailservice.png"></P
 >	
 				<A
 HREF="imp.html#figure.imp.com.foo_baz.ihs.backing"
->Rysunek 3-9</A
+>Rysunek 4-7</A
 > 
 				i <A
 HREF="imp.html#figure.imp.com.foo_baz.ihs.backing.mailservice"
->Rysunek 3-10</A
+>Rysunek 4-8</A
 > 
 				przedstawiaj± elementy, które po¶rednicz± miêdzy g³ównymi
 				czê¶ciami systemu (np. z pakietów com.foo_baz.ihs i com.foo_baz.ihs.mailservice)
@@ -340,6 +241,45 @@ HREF="imp.html#figure.imp.com.foo_baz.ihs.backing.mailservice"
 				W wiêkszo¶ci wypadków ka¿dej ze stron JSF przypada
 				co najmniej jeden element.
 			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.plugins"
+>4.8.3. Wtyczki</A
+></H2
+><P
+>&#13;				Poni¿ej znajduje siê lista wtyczek instalowanych wraz
+				z IHS.
+			</P
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="imp.plugins.v_q"
+>4.8.3.1. VirtualQmailMailService</A
+></H3
+><P
+>&#13;					Implementacja interfejsu MailService, która oparta
+					jest o system Virtual Qmail. Komunikacja odbywa siê
+					za pomoc± us³ug dostêpnych poprzez CORBA.
+				</P
+><P
+>&#13;					Pliki znajduj±ce siê w pakiecie com.foo_baz.ihs.mailservice
+					oraz com.foo_baz.ihs.VirtualQmailMailService odpowiedzialne
+					s± za interakcjê z systemem Virtual Qmail. Pakiet
+					com.foo_baz.ihs.backing.mailservice 
+					po¶redniczy w obs³udze interfejsu u¿ytkownika.
+					Interfejs u¿ytkownika obs³ugiwany jest przez strony
+					JSF znajduj±ce siê w katalogu <TT
+CLASS="filename"
+>mailserver</TT
+>.
+				</P
+></DIV
 ></DIV
 ></DIV
 ><DIV

@@ -52,7 +52,7 @@
 						<para>
 							Virtual Qmail w wersji co najmniej 11;
 						</para>
-					<listitem>
+					</listitem>
 					<listitem>
 						<para>
 							baza danych Oracle lub PostgreSQL (mo¿e byæ inna
@@ -64,58 +64,13 @@
 		</section>
 
 		<section id="admins.install.compilation">
-			<title>Kompilacja</title>
+			<title>Kompilacja, tworzenie pakietów</title>
 
 			<para>
-				Do kompilacji niezbêdny jest program <application>ant</application>.
-				Aby utworzyæ WAR z aplikacj± nale¿y wykonaæ nastêpuj±ce polecenie:
-<screen>
-<userinput>
-ant war
-</userinput>
-</screen>
-				W katalogu <filename>build</filename> zostanie utworzony
-				plik o nazwie <filename>ihs.war</filename>. Istnieje mo¿liwo¶æ
-				automatycznej instalacji na wskazanym serwerze, nale¿y
-				uprzednio zmodyfikowaæ plik <filename>build.properties</filename>,
-				nastêpnie wykonaæ polecenie:
-<screen>
-<userinput>
-ant deploy
-</userinput>
-</screen>
-				Mo¿na równie¿ skorzystaæ z prostrzej metody polegaj±cej
-				na kopiowaniu plików do katalogu Tomcat:
-<screen>
-<userinput>
-ant deploy-to-dir
-</userinput>
-</screen>
+				Proces kompilacji opisany jest w <xref linkend="policies.building"/>.
 			</para>
 		</section>
 
-		<section id="admins.install.rpm">
-			<title>Budowanie pakietów RPM</title>
-
-			<para>
-				Budowanie pakietów RPM jest bardzo proste, w przypadku
-				posiadania archiwum TAR/GZ wystarczy wydaæ nastêpuj±ce polecenie:
-<screen>
-<userinput>
-rpmbuild -tb ihs-*.tar.gz
-</userinput>
-</screen>
-				W przypadku ¼ród³em naj³atwiej zbudowaæ pakiet TAR/GZ i
-				wykonaæ polecenie podane powy¿ej, aby zbudowaæ pakiet
-				nale¿y wykonaæ:
-<screen>
-<userinput>
-ant pkg-tgz
-</userinput>
-</screen>
-				Pakiet zostanie zapisany w katalogu <filename>tmp</filename>.
-			</para>
-		</section>
 	</section>
 
 	<section id="admins.conf">
@@ -123,6 +78,9 @@ ant pkg-tgz
 	
 		<section id="admins.conf.jndi">
 			<title>Korzystanie z JNDI</title>
+			
+			<para>
+			</para>
 		</section>
 	</section>
 </chapter>

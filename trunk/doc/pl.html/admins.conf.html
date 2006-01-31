@@ -2,7 +2,7 @@
 <HTML
 ><HEAD
 ><TITLE
->Baza danych</TITLE
+>Konfiguracja</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
@@ -10,14 +10,14 @@ REL="HOME"
 TITLE="Incredible Hosting System"
 HREF="index.html"><LINK
 REL="UP"
+TITLE="Podrêcznik administratora"
+HREF="admins.html"><LINK
+REL="PREVIOUS"
+TITLE="Podrêcznik administratora"
+HREF="admins.html"><LINK
+REL="NEXT"
 TITLE="Podrêcznik programisty"
 HREF="devs.html"><LINK
-REL="PREVIOUS"
-TITLE="Obs³uga b³êdów"
-HREF="strategies.errors.html"><LINK
-REL="NEXT"
-TITLE="Architektura systemu"
-HREF="architecture.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
@@ -52,7 +52,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="strategies.errors.html"
+HREF="admins.html"
 ACCESSKEY="P"
 >Poprzedni</A
 ></TD
@@ -60,13 +60,13 @@ ACCESSKEY="P"
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
->Rozdzia&#322; 4. Podrêcznik programisty</TD
+>Rozdzia&#322; 3. Podrêcznik administratora</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="architecture.html"
+HREF="devs.html"
 ACCESSKEY="N"
 >Nast&#281;pny</A
 ></TD
@@ -80,35 +80,20 @@ CLASS="section"
 ><H1
 CLASS="section"
 ><A
-NAME="strategies.database"
->4.5. Baza danych</A
+NAME="admins.conf"
+>3.2. Konfiguracja</A
 ></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="admins.conf.jndi"
+>3.2.1. Korzystanie z JNDI</A
+></H2
 ><P
->&#13;			IHS domy¶lnie bêdzie korzysta³ tylko z jednej instancji bazy
-			danych. Inne konfiguracje musz± byæ zaimplementowane
-			przez administratora systemu.
-		</P
-><P
->&#13;			W bazie danych zapisywane bêd± wszelkie informacje, które
-			maj± byæ dostêpne przez d³u¿szy okres (ni¿ sesja u¿ytkownika),
-			a które nie s± na tyle du¿e (wiêcej ni¿ kilka megabajtów) aby
-			utrudnia³y korzystanie z bazy.
-		</P
-><P
->&#13;			Systemy, z którymi IHS bêdzie zintegrowany, np. Virtual Qmail,
-			mog± posiadaæ swoje w³asne bazy danych. Je¿eli istnieje
-			taka mo¿liwo¶æ nie powinny one byæ wykorzystywane bezpro¶rednio
-			lecz przy u¿yciu API dostarczanego przez dan± aplikacjê.
-			Takie podej¶cie umo¿liwi ³atwiejsz± konfiguracjê i utrzymanie.
-		</P
-><P
->&#13;			W przypadkach gdy takie API nie istnieje nale¿y zastanowiæ siê
-			nad wydzieleniem osobnych elementów, które bêd± odpowiedzialne 
-			za obs³ugê zewnêtrznej bazy danych. Nale¿y równie¿ pamiêtaæ
-			o tym ¿eby takie komponenty mo¿na by³o konfigurowaæ za pomoc±
-			IHS. Nie wolno u¿ywaæ zakodowanych na sta³e ¶cie¿ek, hase³,
-			u¿ytkowników czy nazw baz danych.
-		</P
+>&#13;			</P
+></DIV
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"
@@ -126,7 +111,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="strategies.errors.html"
+HREF="admins.html"
 ACCESSKEY="P"
 >Poprzedni</A
 ></TD
@@ -144,7 +129,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="architecture.html"
+HREF="devs.html"
 ACCESSKEY="N"
 >Nast&#281;pny</A
 ></TD
@@ -154,13 +139,13 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Obs³uga b³êdów</TD
+>Podrêcznik administratora</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
 ><A
-HREF="devs.html"
+HREF="admins.html"
 ACCESSKEY="U"
 >Pocz&#261;tek rozdzia&#322;u</A
 ></TD
@@ -168,7 +153,7 @@ ACCESSKEY="U"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Architektura systemu</TD
+>Podrêcznik programisty</TD
 ></TR
 ></TABLE
 ></DIV

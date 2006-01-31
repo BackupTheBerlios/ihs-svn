@@ -756,18 +756,21 @@
 		<formalpara>
 			<title>Virtual Qmail</title>
 			<para>
-				Odpowiedzialny jest za zarz±dzaniem systemem pocztowy.
-				Aplikacja zarz±dza plikami konfiguracyjnymi MTA, tworzy
-				odpowiednie struktury na dysku, przechowuje informacje
-				o u¿ytkownikach.
+				Odpowiedzialny jest za zarz±dzanie systemem pocztowym.
+				System zarz±dza plikami konfiguracyjnymi programu pocztowego, 
+				utrzymuje na dysku odpowiednie struktury danych, w których
+				przechowywana jest poczta u¿ytkowników. Zawiera
+				modu³ autoryzacyjny. Posiada równie¿ mo¿liwo¶æ logowania 
+				czynno¶ci wykonywanych przez u¿ytkowników.
 			</para>
 		</formalpara>
 
 		<formalpara>
 			<title>Virtual Qmail DB</title>
 			<para>
-				Baza danych obs³uguj±ca Virtual Qmail. IHS nie powinien
-				z niej korzystaæ bezpo¶rednio tylko za pomoc± 
+				Baza danych obs³uguj±ca Virtual Qmail. Zawiera
+				informacje o domenach, u¿ytkownikach, konfiguracji.
+				IHS nie powinien z niej korzystaæ bezpo¶rednio tylko za pomoc± 
 				API udostêpnianego przez V-Q. Jednak¿e mog± istnieæ przypadki
 				gdy tylko bezpo¶redni dostêp pozwoli osi±gn±æ oczekiwan±
 				funkcjonalno¶æ.
@@ -778,8 +781,9 @@
 			<title>Incredible Hosting System</title>
 			<para>
 				Jest to interfejs WWW umo¿liwiaj±cy administracjê
-				Virtual Qmailem. Dzia³a w ¶rodowisku J2EE. Sk³ada siê
-				ze stron JSP, Servletów.
+				Virtual Qmailem oraz w przysz³o¶ci innym oprogramowaniem. 
+				Dzia³a w ¶rodowisku J2EE. Sk³ada siê ze stron JSP, Servletów
+				oraz statycznych plików.
 			</para>
 		</formalpara>
 
@@ -811,111 +815,204 @@
 			systemem zostaje uproszczona.
 		</para>
 
-		<section id="subarch">
-			<title>Architektura podsystemów</title>
+		<section id="architecture.v_q">
+			<title>Architektura Virtual Qmail</title>
 
-			<section id="subarch.ihsdb">
-				<title>Baza danych IHS</title>
+			<figure id="figure.architecture.v_q">
+	            <title>Architektura Virtual Qmail</title>
+	            <graphic fileref="../imgs/VirtualQmailArchitecture.png" format="PNG"/>
+	        </figure>
 
-		        <figure id="figure.architecture.ihsdb.details">
-        		    <title>Logiczny model bazy danych IHS</title>
-		            <graphic fileref="../imgs/IHSDBLogicalmodel.png" format="PNG"/>
-		        </figure>
-		
-				<para>	
-					<xref linkend="figure.architecture.ihsdb.details"/> przedstawia
-					logiczny model bazy danych.
-				</para>
+			<para>	
+				<xref linkend="figure.architecture.v_q"/> przedstawia
+				elementy, które s± niezbêdnie do funkcjonowania IHS, Virtual
+				Qmail jest bardziej z³o¿onym systemem, niektóre elementy
+				zosta³y celowo pominiête. Przedstawione na rysunku procesy
+				dostêpne s± za pomoc± protoko³u CORBA.
+			</para>
 
+			<formalpara>
+				<title>ivq</title>
 				<para>
-					Przedstawione powy¿ej typy aktualnie zdefiniowane
-					s± nastêpuj±co:
+					G³ówna czê¶æ systemu. Us³uga udostêpnia takie funkcje
+					jak zarz±dzanie u¿ytkownikami, domenami, konfiguracj±.
+					¯±dania obs³ugiwane przez t± us³ugê wp³ywaj±
+					bezpo¶rednio na funkcjonowanie ca³ego systemu pocztowego.
 				</para>
+			</formalpara>
 
-				<table frame="all" id="tab.architecture.ihsdb.details">
-					<title>Typy danych u¿ywane w bazie IHS</title>
-					<tgroup cols="2">
-						<colspec colwidth="1*"/>
-						<colspec colwidth="1*"/>
-						<thead>
-							<row>
-								<entry>Typ</entry>
-								<entry>Definicja (dla Oracle)</entry>
-							</row>
-						</thead>
-						<tbody>
-							<row>
-								<entry>ihs_config_key_type</entry>
-								<entry>varchar2(1024)</entry>
-							</row>
-							<row>
-								<entry>ihs_config_value_type</entry>
-								<entry>varchar2(1024)</entry>
-							</row>
-							<row>
-								<entry>ihs_administrator_login_type</entry>
-								<entry>varchar2(512)</entry>
-							</row>
-							<row>
-								<entry>ihs_administrator_password_type</entry>
-								<entry>varchar2(512)</entry>
-							</row>
-						</tbody>
-					</tgroup>
-				</table>
-			</section>
-
-			<section id="subarch.ihs">
-				<title>Architektura IHS</title>
-
-				<figure id="figure.architecture.ihs.details">
-        		    <title>Architektura IHS</title>
-		            <graphic fileref="../imgs/IHSArchitecture.png" format="PNG"/>
-		        </figure>
-		
-				<para>	
-					<xref linkend="figure.architecture.ihs.details"/> przedstawia
-					wysokopoziomow± architekturê IHS. Poni¿ej znajduje
-					siê krótki opis poszczególnych elementów.
+			<formalpara>
+				<title>ilogger</title>
+				<para>
+					Umo¿liwia dostêp do statystyk zapisywanych podczas
+					dzia³ania Virtual Qmail. Za pomoc± tej us³ugi mo¿na
+					pobraæ takie informacje jak ilo¶æ u¿ytkowników,
+					którzy wys³ali pocztê w ci±gu ostatnich 5 minut, lista
+					u¿ytkowników, którzy nie byli wstanie siê zalogowaæ, itp.
 				</para>
+			</formalpara>
 
-				<formalpara>
-					<title>Configuration</title>
-					<para>
-						Konfiguracja u¿ywana przez serwer J2EE oraz pliki
-						wykorzystywane przez Java Server Faces.
-					</para>
-				</formalpara>
-				<formalpara>
-					<title>Static Files</title>
-					<para>
-						Statyczne pliki takie jak t³umaczenia,
-						arkusze stylów CSS, pliki graficzne.
-					</para>
-				</formalpara>
-				<formalpara>
-					<title>JSF pages</title>
-					<para>
-						Strony JSF, stanowi± one interfejs u¿ytkownika.
-					</para>
-				</formalpara>
-				<formalpara>
-					<title>Libraries</title>
-					<para>
-						Wnêtrze systemu. Biblioteki zawieraj± kod
-						komunikuj±cy siê z bazami danych, z systemem Virtual
-						Qmail. Czê¶æ plików tworzona jest na podstawie opisu IDL.
-					</para>
-				</formalpara>
-				<formalpara>
-					<title>Backing beans</title>
-					<para>
-						Stanowi± warstwê po¶rednicz±c± miêdzy interfejsem
-						u¿ytkownika a bibliotekami. Tutaj znajduj± siê
-						obiekty obs³uguj±ce sesjê u¿ytkownika, itp.
-					</para>
-				</formalpara>
-			</section>
+			<para>
+				Baza danych u¿ywana przez Virtual Qmail nie bêdzie w tym miejscu
+				opisywana poniewa¿ IHS powinien byæ tworzony w taki
+				sposób aby by³ niezale¿ny od jej struktury. Jak siê pó¼niej
+				oka¿e w niektórych sytuacjach nie bêdzie to mo¿liwe.
+			</para>
+		</section>
+
+		<section id="subarch.ihsdb">
+			<title>Baza danych IHS</title>
+
+	        <figure id="figure.architecture.ihsdb.details">
+        	    <title>Logiczny model bazy danych IHS</title>
+	            <graphic fileref="../imgs/IHSDBLogicalmodel.png" format="PNG"/>
+	        </figure>
+	
+			<para>	
+				<xref linkend="figure.architecture.ihsdb.details"/> przedstawia
+				logiczny model bazy danych.
+			</para>
+
+			<para>
+				Przedstawione powy¿ej typy aktualnie zdefiniowane
+				s± nastêpuj±co:
+			</para>
+
+			<table frame="all" id="tab.architecture.ihsdb.details">
+				<title>Typy danych u¿ywane w bazie IHS</title>
+				<tgroup cols="2">
+					<colspec colwidth="1*"/>
+					<colspec colwidth="1*"/>
+					<thead>
+						<row>
+							<entry>Typ</entry>
+							<entry>Definicja (dla Oracle)</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>ihs_config_key_type</entry>
+							<entry>varchar2(1024)</entry>
+						</row>
+						<row>
+							<entry>ihs_config_value_type</entry>
+							<entry>varchar2(1024)</entry>
+						</row>
+						<row>
+							<entry>ihs_administrator_login_type</entry>
+							<entry>varchar2(512)</entry>
+						</row>
+						<row>
+							<entry>ihs_administrator_password_type</entry>
+							<entry>varchar2(512)</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
+			<formalpara>
+				<title>ihs_config_set</title>
+				<para>
+					Procedury. Zajmuj± siê aktualizacj± konfiguracji systemu.
+					Nie nale¿y bezpo¶rednio operowaæ na tablicach.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_config_tuple</title>
+				<para>
+					Schemat krotki, która przechowywana jest w tablicy ihs_config.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_config</title>
+				<para>
+					Tablica zawieraj±ca informacje o konfiguracji systemu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_view_config</title>
+				<para>
+					Widok umo¿liwiaj±cy odczytywanie konfiguracji.
+					Nie nale¿y korzystaæ bezpo¶rednio z tablicy ihs_config.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_administrator_add, ihs_administrator_rm, ihs_administrator_change</title>
+				<para>
+					Procedury. Zarz±dzaj± zmianami listy administratorów.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_administrator_tuple</title>
+				<para>
+					Schemat krotki, która przechowywana jest w tablicy ihs_administrators.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_administrators</title>
+				<para>
+					Tablica zawieraj±ca informacje o administratorach systemu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_view_administrators</title>
+				<para>
+					Widok umo¿liwiaj±cy odczytywanie listy administratorów.
+					Nie nale¿y korzystaæ bezpo¶rednio z tablicy ihs_administrators.
+				</para>
+			</formalpara>
+		</section>
+
+		<section id="subarch.ihs">
+			<title>Architektura IHS</title>
+
+			<figure id="figure.architecture.ihs.details">
+        	    <title>Architektura IHS</title>
+	            <graphic fileref="../imgs/IHSArchitecture.png" format="PNG"/>
+	        </figure>
+	
+			<para>	
+				<xref linkend="figure.architecture.ihs.details"/> przedstawia
+				wysokopoziomow± architekturê IHS. Poni¿ej znajduje
+				siê krótki opis poszczególnych elementów.
+			</para>
+
+			<formalpara>
+				<title>Configuration</title>
+				<para>
+					Konfiguracja u¿ywana przez serwer J2EE oraz pliki
+					wykorzystywane przez Java Server Faces.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Static Files</title>
+				<para>
+					Statyczne pliki takie jak t³umaczenia,
+					arkusze stylów CSS, pliki graficzne.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>JSF pages</title>
+				<para>
+					Strony JSF, stanowi± one interfejs u¿ytkownika.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Libraries</title>
+				<para>
+					Wnêtrze systemu. Biblioteki zawieraj± kod
+					komunikuj±cy siê z bazami danych, z systemem Virtual
+					Qmail. Czê¶æ plików tworzona jest na podstawie opisu IDL.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Backing beans</title>
+				<para>
+					Stanowi± warstwê po¶rednicz±c± miêdzy interfejsem
+					u¿ytkownika a bibliotekami. Tutaj znajduj± siê
+					obiekty obs³uguj±ce sesjê u¿ytkownika, itp.
+				</para>
+			</formalpara>
 		</section>
 	</section>
 
@@ -1140,6 +1237,11 @@
 			</para>
 
 			<para>
+<screen><userinput>ant deploy-to-dir</userinput></screen>
+				skopiuje pliki do katalogu serwera Tomcat.
+			</para>
+
+			<para>
 <screen><userinput>ant doc</userinput></screen>
 				w katalogu <filename>./doc</filename>
 				wygeneruje od nowa dokumentacjê.
@@ -1159,152 +1261,93 @@
 <screen><userinput>ant pkg-tgz</userinput></screen>
 				wygeneruje spakowane archiwum z kodem.
 			</para>
+
+			<para>
+				W przypadku posiadania pakietu TAR/GZ mo¿na bardzo
+				³atwo wygenerowaæ pakiety RPM, wystarczy wydaæ
+				nastêpuj±ce polecenie:
+<screen><userinput>rpmbuild -tb ihs-*.tar.gz</userinput></screen>
+			</para>
 		</section>
 	</section>
 
 	<section id="imp">
 		<title>Szczegó³y implementacji IHS</title>
 
-		<section id="imp.com">
-			<title>Pakiet com</title>
-
-			<figure id="figure.imp.com">
-				<title>Pakiet com</title>
-				<graphic fileref="../imgs/PackageOverviewcom.png" format="PNG"/>
-		    </figure>
-		
-			<para>	
-				<xref linkend="figure.imp.com"/> przedstawia 
-				zawarato¶æ g³ównego pakietu aplikacji IHS. Pakiet corejsf
-				zawiera kod pomocniczy zaczerpniêty z GEA-2004, pakiet foo_baz zawiera
-				g³ówn± czê¶æ systemu.
-			</para>
-		</section>
-
-		<section id="imp.com.foo_baz">
-			<title>Pakiet com.foo_baz</title>
-			<figure id="figure.imp.com.foo_baz">
-				<title>Pakiet com.foo_baz</title>
-				<graphic fileref="../imgs/PackageOverviewcomfoo_baz.png" format="PNG"/>
-		    </figure>
-		
-			<para>	
-				<xref linkend="figure.imp.com.foo_baz"/> przedstawia 
-				nastêpuj±ce pakiety:
-				<itemizedlist>
-					<listitem>
-						<para>
-							util - zawiera pomocnicze klasy,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							v_q - zawiera kod wygenerowany z plików IDL Virtual Qmail,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							ihs - zawiera kod IHS,
-						</para>
-					</listitem>
-				</itemizedlist>
-			</para>
-		</section>
-
-		<section id="imp.com.foo_baz.ihs">
-			<title>Pakiet com.foo_baz.ihs</title>
+		<section id="imp.core">
+			<title>G³ówna czê¶æ systemu</title>
 			<figure id="figure.imp.com.foo_baz.ihs">
 				<title>Pakiet com.foo_baz.ihs</title>
 				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihs.png" format="PNG"/>
 		    </figure>
 	
-			<figure id="figure.imp.com.foo_baz.ihs.mailservice">
-				<title>Pakiet com.foo_baz.ihs.mailservice</title>
-				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihsmailservice.png" format="PNG"/>
-		    </figure>
 	
-			<para>	
-				<xref linkend="figure.imp.com.foo_baz.ihs"/> i
-				<xref linkend="figure.imp.com.foo_baz.ihs.mailservice"/>
-				przedstawiaj± nastêpuj±ce elementy:
-				<itemizedlist>
-					<listitem>
-						<para>
-							backing - pakiet zawieraj±cy Backing Beans,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							mailservice - obs³uga systemu pocztowego,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							Configuration - obs³uga konfiguracji systemu,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							Service - plug-in, pojedyñcza us³uga obs³ugiwana przez system,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							MailService - us³uga pocztowa,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							VirtualQmailMailService - implementacja
-							oparta o Virtual Qmail,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							Administrators - zarz±dzanie administratorami,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							IncredibleSystemHosting - g³ówne j±dro systemu,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							Administrator - reprezentacja informacji o administratorze,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							ExtendedAdministrator - Administrator wzbogacony o dodatkowe informacje u¿ywane przez GUI,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							Domain - reprezentacja informacji o domenie,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							ExtendedDomain - Domain wzbogacona o dodatkowe informacje u¿ywane przez GUI,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							User - reprezentacja informacji o u¿ytkowniku,
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							ExtendedUser - User wzbogacony o dodatkowe informacje u¿ywane przez GUI,
-						</para>
-					</listitem>
-				</itemizedlist>
+			<para>
+				G³ówna czê¶æ systemu zawarta jest w pakiecie com.foo_baz.ihs,
+				rysunek <xref linkend="figure.imp.com.foo_baz.ihs"/> przedstawia
+				zawarte w tym pakiecie elementy. Poni¿ej znajduje siê krótki
+				opis ka¿dego z nich.
 			</para>
+
+			<formalpara>
+				<title>Configuration</title>
+				<para>
+					Interfejs, za pomoc± którego mo¿na obs³ugiwaæ konfiguracjê
+					- dodawaæ, aktualizowaæ czy usuwaæ parametry. Domy¶lnie
+					konfiguracja przechowywana jest w bazie danych.
+					Interfejs zawiera tylko podstawowe operacje do
+					przechowywania ³añcuchów znakowych.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Service</title>
+				<para>
+					Interfejs, który musz± implementowaæ wszystkie
+					wtyczki dla systemu IHS. Za jego pomoc± IHS odwo³uje siê
+					do wtyczek.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>MailService</title>
+				<para>
+					Interfejs reprezentuj±cy wtyczkê obs³uguj±ca system
+					pocztowy, zawiera on dodatkowe metody, które s±
+					niezbêdne do poprawnej obs³ugi takiego systemu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Administrators</title>
+				<para>
+					Interfejs reprezentuj±cy wszystkie mo¿liwe operacje,
+					które mo¿na przeprowadzaæ na kontach administratorów.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>IncredibleSystemHosting</title>
+				<para>
+					G³ówne j±dro systemu, implementuje interfejs Administrators.
+					Zajmuje siê do tego obs³ug± wtyczek, dostarcza 
+					implementacjê interfejsu Configuration.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Administrator</title>
+				<para>
+					Reprezentuje informacje przechowywane o administratorach.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ExtendedAdministrator</title>
+				<para>
+					Administrator wzbogacony o dodatkowe informacje 
+					u¿ywane przez GUI.
+				</para>
+			</formalpara>
 		</section>
 
-		<section id="imp.com.foo_baz.ihs.backing">
-			<title>Pakiet com.foo_baz.ihs.backing</title>
+		<section id="imp.ui">
+			<title>Interejs u¿ytkownika</title>
+			
 			<figure id="figure.imp.com.foo_baz.ihs.backing">
 				<title>Pakiet com.foo_baz.ihs.backing</title>
 				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihsbacking.png" format="PNG"/>
@@ -1326,6 +1369,35 @@
 				W wiêkszo¶ci wypadków ka¿dej ze stron JSF przypada
 				co najmniej jeden element.
 			</para>	
+		</section>
+
+		<section id="imp.plugins">
+			<title>Wtyczki</title>
+			
+			<para>
+				Poni¿ej znajduje siê lista wtyczek instalowanych wraz
+				z IHS.
+			</para>
+
+			<section id="imp.plugins.v_q">
+				<title>VirtualQmailMailService</title>
+
+				<para>
+					Implementacja interfejsu MailService, która oparta
+					jest o system Virtual Qmail. Komunikacja odbywa siê
+					za pomoc± us³ug dostêpnych poprzez CORBA.
+				</para>
+
+				<para>
+					Pliki znajduj±ce siê w pakiecie com.foo_baz.ihs.mailservice
+					oraz com.foo_baz.ihs.VirtualQmailMailService odpowiedzialne
+					s± za interakcjê z systemem Virtual Qmail. Pakiet
+					com.foo_baz.ihs.backing.mailservice 
+					po¶redniczy w obs³udze interfejsu u¿ytkownika.
+					Interfejs u¿ytkownika obs³ugiwany jest przez strony
+					JSF znajduj±ce siê w katalogu <filename>mailserver</filename>.
+				</para>
+			</section>
 		</section>
 	</section>
 </chapter>

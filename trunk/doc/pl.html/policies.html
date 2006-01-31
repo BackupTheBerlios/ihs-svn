@@ -22,7 +22,7 @@ REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-01-30T20:56:34"><META
+CONTENT="2006-01-31T20:53:28"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -60,7 +60,7 @@ ACCESSKEY="P"
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
->Rozdzia&#322; 3. Podrêcznik programisty</TD
+>Rozdzia&#322; 4. Podrêcznik programisty</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
@@ -81,7 +81,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies"
->3.7. Obowi±zuj±ce wytyczne</A
+>4.7. Obowi±zuj±ce wytyczne</A
 ></H1
 ><DIV
 CLASS="section"
@@ -89,7 +89,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies.software"
->3.7.1. Wykorzystywane oprogramowanie</A
+>4.7.1. Wykorzystywane oprogramowanie</A
 ></H2
 ><P
 >&#13;				W czasie prac nad systemem wykorzystywane s± nastêpuj±ce
@@ -133,7 +133,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies.tree"
->3.7.2. Organizacja struktury katalogów</A
+>4.7.2. Organizacja struktury katalogów</A
 ></H2
 ><DIV
 CLASS="formalpara"
@@ -372,7 +372,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies.building"
->3.7.3. Kompilacja</A
+>4.7.3. Kompilacja</A
 ></H2
 ><P
 >&#13;				Kompilacja jest wyj±tkowo ³atwa, wystarczy w g³ównym katalogu
@@ -410,6 +410,16 @@ CLASS="filename"
 CLASS="screen"
 ><KBD
 CLASS="userinput"
+>ant deploy-to-dir</KBD
+></PRE
+><P>
+				skopiuje pliki do katalogu serwera Tomcat.
+			</P
+><P
+>&#13;</P><PRE
+CLASS="screen"
+><KBD
+CLASS="userinput"
 >ant doc</KBD
 ></PRE
 ><P>
@@ -426,7 +436,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies.packages"
->3.7.4. Tworzenie pakietów</A
+>4.7.4. Tworzenie pakietów</A
 ></H2
 ><P
 >&#13;				Wykonanie polecenia:
@@ -448,6 +458,18 @@ CLASS="userinput"
 ></PRE
 ><P>
 				wygeneruje spakowane archiwum z kodem.
+			</P
+><P
+>&#13;				W przypadku posiadania pakietu TAR/GZ mo¿na bardzo
+				³atwo wygenerowaæ pakiety RPM, wystarczy wydaæ
+				nastêpuj±ce polecenie:
+</P><PRE
+CLASS="screen"
+><KBD
+CLASS="userinput"
+>rpmbuild -tb ihs-*.tar.gz</KBD
+></PRE
+><P>
 			</P
 ></DIV
 ></DIV

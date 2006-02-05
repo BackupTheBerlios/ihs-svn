@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<chapter id="admins">
+	<title>Podręcznik administratora</title>
+
+	<para>
+	</para>
+
+	<section id="admins.install">
+		<title>Instalacja</title>
+
+		<section id="admins.install.download">
+			<title>Ściąganie</title>
+
+			<para>
+				Warto rozpocząć od sprawdzenia 
+				<ulink url="http://ihs.foo-baz.com">strony projektu</ulink>.
+			</para>
+
+			<para>
+				<ulink url="http://sourceforge.net/project/showfiles.php?group_id=134802">Udostępnione pliki</ulink>
+				przechowywane są na serwerze SourceForge. Sprawdź czy nie ma
+				nowych wersji.
+			</para>
+
+			<para>
+				Możesz również ściągnąć najnowszą wersję wprost z repozytorium
+				Subversion znajdującego się pod adresem
+				<ulink url="http://svn.berlios.de/svnroot/repos/ihs/trunk">
+				http://svn.berlios.de/svnroot/repos/ihs/trunk
+				</ulink>
+			</para>
+		</section>
+
+		<section id="admins.install.depends">
+			<title>Zależności</title>
+
+			<para>
+				Główne zależności:
+				<itemizedlist>
+					<listitem>
+						<para>
+							Java Runtime co najmniej w wersji 1.4;
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							serwer J2EE, na razie system został przetestowany
+							tylko z Tomcat 5;
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Virtual Qmail w wersji co najmniej 11;
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							baza danych Oracle lub PostgreSQL (może być inna
+							niż ta używana przez Virtual Qmail);
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
+		</section>
+
+		<section id="admins.install.compilation">
+			<title>Kompilacja, tworzenie pakietów</title>
+
+			<para>
+				Proces kompilacji opisany jest w <xref linkend="policies.building"/>.
+			</para>
+		</section>
+
+		<section id="admins.install.j2ee">
+			<title>Instalacja na serwerze J2EE</title>
+
+			<section id="admins.install.j2ee.tomcat">
+				<title>Tomcat</title>
+
+				<para>
+					Najprostrzą metodą instalacji jest skopiowanie
+					pliku WAR do katalogu <filename>webapps</filename>.
+					Po restarcie Tomcat powinien rozpakować aplikację.
+				</para>
+			</section>
+
+			<section id="admins.install.j2ee.other">
+				<title>Inne serwery aplikacji</title>
+
+				<para>
+					Aktualnie nie wspierane są żadne inne serwery aplikacji
+					oprócz Tomcat. W przyszłych wersjach planowana jest obsługa
+					innych popularnych serwerów.
+				</para>
+			</section>
+		</section>
+
+		<section id="admins.install.db">
+			<title>Instalacja bazy danych</title>
+
+			<para>
+				Po zainstalowaniu IHS na serwerze aplikacji ostatnim
+				krokiem jest skonfigurowanie połączenia z bazą danych
+				oraz instalacja obiektów w bazie danych.
+			</para>
+
+			<para>
+				IHS odwołuje się do bazy danych za pomocą 
+				zasobu jdbc/ihsDB, który wyszukiwany jest w katalogu JNDI.
+			</para>
+
+			<para>
+				Konfiguracja JNDI różni się między serwerami. Dla Tomcat
+				przykładowe pliki konfiguracyjne (dla Oracle i PostgreSQL)
+				znajdują się w katalogu <filename>META-INF</filename>.
+			</para>
+
+			<para>
+				Należy pamiętać, że sterowniki JDBC nie są rozprowadzane
+				razem z IHS, należy je zainstalować zgodnie z procedurą
+				odpowiednią dla danego serwera J2EE. W Tomcat zazwyczaj
+				instalowane są one w katalogu <filename>common/lib</filename>.
+			</para>
+
+			<para>
+				Do utworzenia obiektów w bazie danych należy posłużyć
+				się skryptami <filename>oracle.sql</filename> lub <filename>pgsql.sql</filename>.
+			</para>
+		</section>
+	</section>
+
+	<section id="admins.conf">
+		<title>Konfiguracja</title>
+	
+		<para>
+			Po zainstalowaniu oprogramowania należy uruchomić
+			przeglądarkę internetową i otworzyć główną stronę systemu,
+			jednym z elementów menu będzie odnośnik do strony konfiguracyjnej.
+		</para>
+	</section>
+</chapter>

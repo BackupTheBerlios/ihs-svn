@@ -19,7 +19,7 @@ REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-01-31T20:53:28"><META
+CONTENT="2006-02-05T16:50:28"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -107,6 +107,16 @@ HREF="admins.html#admins.install.depends"
 >3.1.3. <A
 HREF="admins.html#admins.install.compilation"
 >Kompilacja, tworzenie pakietów</A
+></DT
+><DT
+>3.1.4. <A
+HREF="admins.html#admins.install.j2ee"
+>Instalacja na serwerze J2EE</A
+></DT
+><DT
+>3.1.5. <A
+HREF="admins.html#admins.install.db"
+>Instalacja bazy danych</A
 ></DT
 ></DL
 ></DD
@@ -214,6 +224,91 @@ NAME="admins.install.compilation"
 >&#13;				Proces kompilacji opisany jest w <A
 HREF="policies.html#policies.building"
 >Sekcja 4.7.3</A
+>.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="admins.install.j2ee"
+>3.1.4. Instalacja na serwerze J2EE</A
+></H2
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="admins.install.j2ee.tomcat"
+>3.1.4.1. Tomcat</A
+></H3
+><P
+>&#13;					Najprostrz± metod± instalacji jest skopiowanie
+					pliku WAR do katalogu <TT
+CLASS="filename"
+>webapps</TT
+>.
+					Po restarcie Tomcat powinien rozpakowaæ aplikacjê.
+				</P
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="admins.install.j2ee.other"
+>3.1.4.2. Inne serwery aplikacji</A
+></H3
+><P
+>&#13;					Aktualnie nie wspierane s± ¿adne inne serwery aplikacji
+					oprócz Tomcat. W przysz³ych wersjach planowana jest obs³uga
+					innych popularnych serwerów.
+				</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="admins.install.db"
+>3.1.5. Instalacja bazy danych</A
+></H2
+><P
+>&#13;				Po zainstalowaniu IHS na serwerze aplikacji ostatnim
+				krokiem jest skonfigurowanie po³±czenia z baz± danych
+				oraz instalacja obiektów w bazie danych.
+			</P
+><P
+>&#13;				IHS odwo³uje siê do bazy danych za pomoc± 
+				zasobu jdbc/ihsDB, który wyszukiwany jest w katalogu JNDI.
+			</P
+><P
+>&#13;				Konfiguracja JNDI ró¿ni siê miêdzy serwerami. Dla Tomcat
+				przyk³adowe pliki konfiguracyjne (dla Oracle i PostgreSQL)
+				znajduj± siê w katalogu <TT
+CLASS="filename"
+>META-INF</TT
+>.
+			</P
+><P
+>&#13;				Nale¿y pamiêtaæ, ¿e sterowniki JDBC nie s± rozprowadzane
+				razem z IHS, nale¿y je zainstalowaæ zgodnie z procedur±
+				odpowiedni± dla danego serwera J2EE. W Tomcat zazwyczaj
+				instalowane s± one w katalogu <TT
+CLASS="filename"
+>common/lib</TT
+>.
+			</P
+><P
+>&#13;				Do utworzenia obiektów w bazie danych nale¿y pos³u¿yæ
+				siê skryptami <TT
+CLASS="filename"
+>oracle.sql</TT
+> lub <TT
+CLASS="filename"
+>pgsql.sql</TT
 >.
 			</P
 ></DIV

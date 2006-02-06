@@ -34,7 +34,7 @@ ant build
 
 %install
 mkdir -p $RPM_BUILD_ROOT/%{webapps_dir}
-ant -Ddistdir=$RPM_BUILD_ROOT/ -Ddeploy.dir=%{webapps_dir} install
+ant -Dinstall.prefix=%{_prefix} -Dinstall.docdir=%{_docdir} -Dinstall.datadir=%{_datadir} -Dinstall.distdir=$RPM_BUILD_ROOT/ -Ddeploy.dir=%{webapps_dir} install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -42,6 +42,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %attr(0644,-,-) %{webapps_dir}/ihs.war
+%doc %{_docdir}/%{project}-%{version}
 
 %changelog
 * Wed Dec 21 2005 Pawel Niewiadosmki <new@foo-baz.com> 1

@@ -32,9 +32,6 @@
         <pathelement path ="${classpath}"/>
     </path>
 
-    <!-- define your folder for deployment -->
-    <property name="deploy.dir" value="/usr/share/tomcat5/webapps/"/>
-
     <!-- Local system paths -->
     <property file="${basedir}/build.properties"/>
     <property name="webroot.dir" value="${basedir}/WebContent"/>
@@ -103,10 +100,43 @@
        </war>
     </target>
 
-    <target name="deploy-to-dir" depends="war">
-       <delete file="${distdir}${deploy.dir}/${project.distname}.war"/>
-       <delete dir="${distdir}${deploy.dir}/${project.distname}"/>
-       <copy file="${build.dir}/${project.distname}.war" todir="${distdir}${deploy.dir}"/>
+	<target name="deploy-to-dir" depends="war">
+		<mkdir dir="${install.distdir}${install.prefix}"/>
+		<mkdir dir="${install.distdir}${install.sharedir}"/>
+		<mkdir dir="${install.distdir}${install.tomcatdir}"/>
+		<mkdir dir="${install.distdir}${install.webappsdir}"/>
+		<mkdir dir="${install.distdir}${install.docdir}"/>
+		<mkdir dir="${install.distdir}${install.docdir}/${project.distname}-${project.version}"/>
+		<delete file="${install.distdir}${install.webappsdir}/${project.distname}.war"/>
+		<delete dir="${install.distdir}${install.webappsdir}/${project.distname}"/>
+		<copy file="${build.dir}/${project.distname}.war" todir="${install.distdir}${install.webappsdir}"/>
+		<copy todir="${install.distdir}${install.docdir}/${project.distname}-${project.version}">
+			<fileset dir="." includes="**/README*">
+				<depth max="1"/>
+			</fileset>
+			<fileset dir="." includes="**/INSTALL*">
+				<depth max="1"/>
+			</fileset>	
+			<fileset dir="." includes="**/*.sql">
+				<depth max="1"/>
+			</fileset>
+		</copy>
+		<copy todir="${install.distdir}${install.docdir}/${project.distname}-${project.version}/pl.html">
+			<fileset dir="doc/pl.html"/>
+		</copy>
+		<copy todir="${install.distdir}${install.docdir}/${project.distname}-${project.version}/pl.rtf">
+			<fileset dir="doc/pl.rtf"/>
+		</copy>
+		<copy todir="${install.distdir}${install.docdir}/${project.distname}-${project.version}/en.html">
+			<fileset dir="doc/en.html"/>
+		</copy>
+		<copy todir="${install.distdir}${install.docdir}/${project.distname}-${project.version}/en.rtf">
+			<fileset dir="doc/en.rtf"/>
+		</copy>
+		<copy todir="${install.distdir}${install.docdir}/${project.distname}-${project.version}/imgs">
+			<fileset dir="doc/imgs"/>
+		</copy>
+		<copy file="VERSION" todir="${install.distdir}${install.docdir}/${project.distname}-${project.version}"/>
     </target>
 
 	<target name="install" depends="deploy-to-dir">

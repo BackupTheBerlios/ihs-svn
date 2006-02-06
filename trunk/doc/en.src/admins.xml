@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="iso-8859-2"?>
 <chapter id="admins">
-	<title>Podręcznik administratora</title>
+	<title>Administrators guide</title>
 
 	<para>
 	</para>
 
 	<section id="admins.install">
-		<title>Instalacja</title>
+		<title>Installation</title>
 
 		<section id="admins.install.download">
-			<title>Ściąganie</title>
+			<title>Downloading</title>
 
 			<para>
-				Warto rozpocząć od sprawdzenia 
-				<ulink url="http://ihs.foo-baz.com">strony projektu</ulink>.
+				It's worth checking
+				<ulink url="http://ihs.foo-baz.com">project's page</ulink>.
 			</para>
 
 			<para>
-				<ulink url="http://sourceforge.net/project/showfiles.php?group_id=134802">Udostępnione pliki</ulink>
-				przechowywane są na serwerze SourceForge. Sprawdź czy nie ma
-				nowych wersji.
+				<ulink url="http://sourceforge.net/project/showfiles.php?group_id=134802">Released files</ulink>
+				are kept on SourceForge. Check if there's newer version.
 			</para>
 
 			<para>
-				Możesz również ściągnąć najnowszą wersję wprost z repozytorium
-				Subversion znajdującego się pod adresem
+				You can also access repository with newest version - 
 				<ulink url="http://svn.berlios.de/svnroot/repos/ihs/trunk">
 				http://svn.berlios.de/svnroot/repos/ihs/trunk
 				</ulink>
@@ -32,31 +30,31 @@
 		</section>
 
 		<section id="admins.install.depends">
-			<title>Zależności</title>
+			<title>Dependencies</title>
 
 			<para>
-				Główne zależności:
+				Main dependencies:
 				<itemizedlist>
 					<listitem>
 						<para>
-							Java Runtime co najmniej w wersji 1.4;
+							Java Runtime at least 1.4;
 						</para>
 					</listitem>
 					<listitem>
 						<para>
-							serwer J2EE, na razie system został przetestowany
-							tylko z Tomcat 5;
+							J2EE application server, at this time system is tested only with
+							Tomcat 5;
 						</para>
 					</listitem>
 					<listitem>
 						<para>
-							Virtual Qmail w wersji co najmniej 11;
+							Virtual Qmail at least 11;
 						</para>
 					</listitem>
 					<listitem>
 						<para>
-							baza danych Oracle lub PostgreSQL (może być inna
-							niż ta używana przez Virtual Qmail);
+							Oracle or PostgreSQL database (can be different than instance
+							used by Virtual Qmail);
 						</para>
 					</listitem>
 				</itemizedlist>
@@ -64,78 +62,74 @@
 		</section>
 
 		<section id="admins.install.compilation">
-			<title>Kompilacja, tworzenie pakietów</title>
+			<title>Compilation, packaging</title>
 
 			<para>
-				Proces kompilacji opisany jest w <xref linkend="policies.building"/>.
+				Compilation is described in <xref linkend="policies.building"/>.
 			</para>
 		</section>
 
 		<section id="admins.install.j2ee">
-			<title>Instalacja na serwerze J2EE</title>
+			<title>Deploying on J2EE server</title>
 
 			<section id="admins.install.j2ee.tomcat">
 				<title>Tomcat</title>
 
 				<para>
-					Najprostrzą metodą instalacji jest skopiowanie
-					pliku WAR do katalogu <filename>webapps</filename>.
-					Po restarcie Tomcat powinien rozpakować aplikację.
+					The easiest way is to copy WAR
+					to <filename>webapps</filename> directory in Tomcat installation
 				</para>
 			</section>
 
 			<section id="admins.install.j2ee.other">
-				<title>Inne serwery aplikacji</title>
+				<title>Other application servers</title>
 
 				<para>
-					Aktualnie nie wspierane są żadne inne serwery aplikacji
-					oprócz Tomcat. W przyszłych wersjach planowana jest obsługa
-					innych popularnych serwerów.
+					There's no support for other J2EE servers. In future versions there
+					will be support for other popular applications.
 				</para>
 			</section>
 		</section>
 
 		<section id="admins.install.db">
-			<title>Instalacja bazy danych</title>
+			<title>Database setup</title>
 
 			<para>
-				Po zainstalowaniu IHS na serwerze aplikacji ostatnim
-				krokiem jest skonfigurowanie połączenia z bazą danych
-				oraz instalacja obiektów w bazie danych.
+				After IHS is installed you should setup database link and create object in database that
+				are needed by IHS.
 			</para>
 
 			<para>
-				IHS odwołuje się do bazy danych za pomocą 
-				zasobu jdbc/ihsDB, który wyszukiwany jest w katalogu JNDI.
+				IHS uses 
+				jdbc/ihsDB resource as a link to database. Resource is looked up in JNDI directory.
 			</para>
 
 			<para>
-				Konfiguracja JNDI różni się między serwerami. Dla Tomcat
-				przykładowe pliki konfiguracyjne (dla Oracle i PostgreSQL)
-				znajdują się w katalogu <filename>META-INF</filename>.
+				JNDI configuration differs betweem servers. Example
+				files for Tomcat are located in 
+				<filename>META-INF</filename> directory.
 			</para>
 
 			<para>
-				Należy pamiętać, że sterowniki JDBC nie są rozprowadzane
-				razem z IHS, należy je zainstalować zgodnie z procedurą
-				odpowiednią dla danego serwera J2EE. W Tomcat zazwyczaj
-				instalowane są one w katalogu <filename>common/lib</filename>.
+				You should remember that JDBC drivers are not distributed with IHS.
+				You must aquire them from other sources. For Tomcat you can usually
+				put them into <filename>common/lib</filename> directory.
 			</para>
 
 			<para>
-				Do utworzenia obiektów w bazie danych należy posłużyć
-				się skryptami <filename>oracle.sql</filename> lub <filename>pgsql.sql</filename>.
+				Use 
+				<filename>oracle.sql</filename> or <filename>pgsql.sql</filename> scripts to create objects
+				in database.
 			</para>
 		</section>
 	</section>
 
 	<section id="admins.conf">
-		<title>Konfiguracja</title>
+		<title>Configuration</title>
 	
 		<para>
-			Po zainstalowaniu oprogramowania należy uruchomić
-			przeglądarkę internetową i otworzyć główną stronę systemu,
-			jednym z elementów menu będzie odnośnik do strony konfiguracyjnej.
+			After installation run web browser and open main page of web application,
+			menu will include link for configuration panel.
 		</para>
 	</section>
 </chapter>

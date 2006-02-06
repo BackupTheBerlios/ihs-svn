@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+	[
+	<!ENTITY biblio SYSTEM "biblio.xml">
+	<!ENTITY admins SYSTEM "admins.xml">
+	<!ENTITY devs SYSTEM "devs.xml">
+	]
+>
+<book lang="pl">
+	<bookinfo>
+		<title>Incredible Hosting System</title>
+		<authorgroup>
+			<author>
+				<firstname>Paweł</firstname>
+				<surname>Niewiadomski</surname>
+			</author>
+		</authorgroup>
+		<copyright>
+			<year>2005</year>
+			<holder><ulink url="http://foo-baz.com">foo-baz.com</ulink></holder>
+		</copyright>
+	</bookinfo>
+
+	<preface id="foreword">
+		<title>Słowo wstępne</title>
+
+		<para>
+		</para>
+	</preface>
+
+	<chapter id="intro">
+		<title>Wprowadzenie</title>
+
+		<para>
+			Następujący rozdział zawiera krótki opis projektu. Przedstawienie
+			najważniejszy wymagań oraz ograniczeń. Platformę użytą
+			w czasie realizacji. Zawiera również objaśnienie
+			najważniejszych terminów.
+		</para>
+		
+		<para>
+			Dokument reprezentuje dokumentację projektową
+			związaną z realizowanym projektem. Kolejno są
+			to: wprowadzenie do systemu, rozważania projektowe,
+			architektura systemu, polityki i strategie realizacji, 
+			dokładny projekt systemu, słownik terminów, bibliografia.
+		</para>
+
+		<para>
+			Dokument skierowany jest przede wszystkim do 
+			odbiorców związanych z informatyką, stąd częste występowanie
+			terminów używanych w tej dziedzinie. Grupą docelową
+			stanowią administratorzy korzystający z systemu, programiści
+			chcący rozwijać system. Część informacji może być również
+			przydatna dla użytkowników takiego systemu.
+		</para>
+
+		<para>
+			Realizowany projekt, który opisany jest niniejszym
+			dokumencie, prezentowany jest w Sieci jako Incredible Hosting
+			System, w skrócie <glossterm>IHS</glossterm>, w związku z tym taka nazwa będzie
+			często wykorzystywana będzie jako odwołanie się do całości systemu.
+			Częścią IHS jest panel administracyjny służący do
+			zarządzania pocztą darmową oraz płatną przez strony WWW.
+			Panel ten stanowi cześć systemu realizowaną jako
+			temat pracy magisterskiej. Ponieważ ten element nie może
+			istnieć bez innych części wchodzących w skład IHS dokument
+			ten zawiera opis całego systemu.
+		</para>
+		
+		<para>
+			Aby dokładniej zrozumieć specyfikę projektu, podjęte
+			decyzje projektowe oraz zapoznać się z częścią
+			wykorzystanego oprogramowania warto zapoznać się
+			z poprzednio realizowaną pracą pt. System poczty darmowej - NIE-2003.
+			IHS oparty jest na doświadczeniach uzyskanych w czasie realizacji
+			poprzedniego systemu, jest to kolejny krok mający na celu
+			zapewnienie zintegrowanego środowiska do zarządzania użytkownikami
+			w systemach pocztowych czy hostingowych.
+		</para>
+	</chapter>
+
+	<chapter id="overview">
+		<title>Wprowadzenie do systemu</title>
+
+		<para>
+			IHS stanowić ma platformę do implementacji i 
+			wdrażania systemów pocztowych czy hostingowych w różnych
+			środowiskach - małych i średnich firmach potrzebujących
+			środowiska do zarządzania kontami dla swoich pracowników,
+			firmach realizujących usługi oparte na systemie dla
+			wszystkich zainteresowanych - niezależnie czy to będą
+			usługi płatne czy darmowe.
+		</para>
+
+		<para>
+			Jest to skomplikowane zadanie wymagające wykorzystania
+			i integracji wielu istniejących programów, należy m.in.
+			połączyć takie systemy jak: serwer WWW, agent pocztowy,
+			serwer FTP, bazy danych. Zależnie od wymagań musi istnieć
+			możliwość integracji systemu z innymi aplikacjami
+			działającymi w środowisku, w którym będzie on wdrażany.
+		</para>
+
+		<para>
+			Poza integracją tych systemów zbudowana musi zostać
+			platforma umożliwiająca zarządzanie całością systemu
+			niezależnie od elementów wykorzystanych w danym wdrożeniu.
+			Ma ona stanowić scentralizowane i ujednolicone
+			środowisko tak użytkownika jak i programistyczne.
+			Oznacza to, że niezależnie od wykorzystanych elementów (np.
+			różnych dostawców baz danych) użytkownik powinien mieć
+			dostęp do tego samego interfejsu. Programista natomiast
+			ma mieć możliwość wykorzystania stałego i elastycznego
+			API umożliwiającego rozszerzanie czy łączenie systemu z
+			innymi aplikacjami.
+		</para>
+
+		<para>
+			IHS będzie oparty między innymi na następujących
+			aplikacjach, technologiach:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Apache jako serwer WWW;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						PostgreSQL jako domyślna baza danych;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						ProFTPD jako domyślny serwer FTP;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						qmail oraz Virtual Qmail jako agent poczty;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						CORBA jako protokół komunikacji między usługami;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						J2EE jako platforma, na której działać będzie
+						zintegrowany system zarządzania usługami.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+
+		<para>
+			Wykorzystywane będą również inne aplikacje
+			bez których realizacja projektu byłaby niemożliwa,
+			powyższa lista zawiera te najważniejsze, tworzące
+			jądro systemu.
+		</para>
+
+		<para>
+			Realizacja oparta jest wyłącznie na otwartym
+			lub bezpłatny oprogramowaniu, wszelkie utworzone
+			oprogramowanie będzie rozprowadzane wraz z
+			kodem źródłowym. Podejście takie gwarantuje 
+			maksymalną elastyczność systemu oraz możliwość
+			dopasowywania go do potrzeb danego środowiska, w którym
+			system będzie wdrażany. Firma 
+			<ulink url="http://foo-baz.com/">foo-baz.com</ulink>
+			świadczy usługi związane z instalacją, integracją
+			oraz utrzymaniem IHS w środowisku klienta.
+		</para>
+	</chapter>
+	
+	&admins;
+	&devs;
+	&biblio;
+</book>
+

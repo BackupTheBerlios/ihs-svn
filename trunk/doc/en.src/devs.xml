@@ -1,0 +1,1345 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<chapter id="devs">
+	<title>Developers guide</title>
+	
+	<section id="design">
+		<title>Design considerations</title>
+
+		<section id="design.related">
+			<title>Software and hardware</title>
+			<para>
+				IHS is based on operating system compatible with Unix.
+				By default it's Linux. Target group includes also
+				OpenBSD (all BSD family), Solaris. Two distributions of Linux
+				are targeted by default - Fedora Core and SuSe (because
+				they are most popular).
+			</para>
+
+			<para>
+				IHS requires elements like J2EE application server, MTA,
+				Virtual Qmail. Applications responsible for elements
+				should be changeable - system must be modular, with replaceable
+				and compatible parts.
+			</para>
+			
+			<para>
+				During implementation only x86 architecture is accessible
+				it doesn't mean that system doesn't run on any other.
+				Servers usually include now x86_64 or IA-64 and IHS must
+				be portable to those architectures.
+			</para>
+		</section>
+
+		<section id="design.users">
+			<title>Users groups</title>
+			<para>
+				Target groups are:
+			</para>
+			<formalpara>
+				<title>Normal users</title>
+				<para>
+					They don't have or have limited knowledge about
+					system, they are interested only in service, IT
+					knowledge can be limited and should not be required
+					from them; lowest privileges;
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Domains administrators</title>
+				<para>
+					They have knowledge about features realized by system.
+					They are interested in using and managing
+					services provided by system. IT knowledge
+					is not required from them; priviledges extended by
+					domain administration;
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>System administrators</title>
+				<para>
+					They have knowledge about environment IHS is working in.
+					They are familiar with installation and configuration
+					not only IHS but other applications used by system;
+					they have unlimited access in IHS;
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Developers</title>
+				<para>
+					They know system's internals, architecture,
+					databases used, configuration, communication protocols,
+					available API; they may not be faimiliar with operating
+					system or applications used by IHS; they are not
+					direct users of the system;
+				</para>
+			</formalpara>
+
+			<para>
+				Every group of users must be dynamically recognized.
+				One IHS instance must be able to handle any type of user based
+				on information passed from user and configuration stored
+				on server. There should be option to limit access to users
+				of specified type.
+			</para>
+		</section>
+
+		<section id="design.reqs">
+			<title>Design constraints</title>
+			
+			<section id="design.reqs.soft">
+				<title>Software and hardware requirements</title>
+		
+				<table frame="all" id="tab.reqs.soft">
+					<title>Software and hardware requirements</title>
+					<tgroup cols="3">
+						<colspec colwidth="1*"/>
+						<colspec colwidth="1*"/>
+						<colspec colwidth="8*"/>
+						<thead>
+							<row>
+								<entry>Id.</entry>
+								<entry>Importance</entry>
+								<entry>Requirement</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>RS-1</entry>
+								<entry>1</entry>
+								<entry>System will work under Linux distros: SuSe >= 9.3 and Fedora Core >= 4</entry>
+							</row>
+							<row>
+								<entry>RS-2</entry>
+								<entry>2</entry>
+								<entry>Application will work under OpenBSD >= 3.8, NetBSD >= 3.0</entry>
+							</row>
+							<row>
+								<entry>RS-3</entry>
+								<entry>3</entry>
+								<entry>Application will work under other Unix systems (i.e. Solaris, HP-UX)</entry>
+							</row>
+							<row>
+								<entry>RS-4</entry>
+								<entry>1</entry>
+								<entry>Application will work under Tomcat >= 5</entry>
+							</row>
+							<row>
+								<entry>RS-5</entry>
+								<entry>2</entry>
+								<entry>Application will work under JBoss</entry>
+							</row>
+							<row>
+								<entry>RS-6</entry>
+								<entry>3</entry>
+								<entry>Application will work under Oracle Application Server, WebLogic, Websphere</entry>
+							</row>
+							<row>
+								<entry>RS-7</entry>
+								<entry>1</entry>
+								<entry>Oracle database will be supported</entry>
+							</row>
+							<row>
+								<entry>RS-8</entry>
+								<entry>1</entry>
+								<entry>PostgreSQL database will be supported</entry>
+							</row>
+							<row>
+								<entry>RS-9</entry>
+								<entry>2</entry>
+								<entry>DB2 database will be supported</entry>
+							</row>
+							<row>
+								<entry>RS-10</entry>
+								<entry>1</entry>
+								<entry>x86 is default architecture, performance tests will be done on P4 >= 3GHz, 512MB >= RAM</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</section>
+
+			<section id="design.reqs.general">
+				<title>General requirements</title>
+		
+				<table frame="all" id="tab.reqs.general">
+					<title>General requirements</title>
+					<tgroup cols="3">
+						<colspec colwidth="1*"/>
+						<colspec colwidth="1*"/>
+						<colspec colwidth="8*"/>
+						<thead>
+							<row>
+								<entry>Id.</entry>
+								<entry>Importance</entry>
+								<entry>Requirement</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>RG-1</entry>
+								<entry>1</entry>
+								<entry>It's possible to select language of communication</entry>
+							</row>
+							<row>
+								<entry>RG-2</entry>
+								<entry>1</entry>
+								<entry>There's Polish and English version</entry>
+							</row>
+							<row>
+								<entry>RG-3</entry>
+								<entry>1</entry>
+								<entry>It's possible to create new domain</entry>
+							</row>
+							<row>
+								<entry>RG-4</entry>
+								<entry>1</entry>
+								<entry>It's possible to remove a domain</entry>
+							</row>
+							<row>
+								<entry>RG-5</entry>
+								<entry>1</entry>
+								<entry>It's possible to add a user to a domain</entry>
+							</row>
+							<row>
+								<entry>RG-6</entry>
+								<entry>1</entry>
+								<entry>It's possible to change user's configuration</entry>
+							</row>
+							<row>
+								<entry>RG-7</entry>
+								<entry>1</entry>
+								<entry>It's possible to remove a user</entry>
+							</row>
+							<row>
+								<entry>RG-8</entry>
+								<entry>1</entry>
+								<entry>It's possible to browse registered domains</entry>
+							</row>
+							<row>
+								<entry>RG-9</entry>
+								<entry>1</entry>
+								<entry>It's possible to browse registered users</entry>
+							</row>
+							<row>
+								<entry>RG-10</entry>
+								<entry>1</entry>
+								<entry>It's possible to browse logs created by Virtual Qmail</entry>
+							</row>
+							<row>
+								<entry>RG-11</entry>
+								<entry>2</entry>
+								<entry>It's possible to create customized reports for logs of Virtual Qmail</entry>
+							</row>
+							<row>
+								<entry>RG-12</entry>
+								<entry>1</entry>
+								<entry>It's possible to add a system administrator</entry>
+							</row>
+							<row>
+								<entry>RG-13</entry>
+								<entry>1</entry>
+								<entry>It's possible to remove a system administrator</entry>
+							</row>
+							<row>
+								<entry>RG-14</entry>
+								<entry>1</entry>
+								<entry>It's possible to alter a system administrator's account</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</section>
+		
+			<section id="design.reqs.performance">
+				<title>Performance requirements</title>
+		
+				<table frame="all" id="tab.reqs.performance">
+					<title>Performance requirements</title>
+					<tgroup cols="3">
+						<colspec colwidth="1*"/>
+						<colspec colwidth="1*"/>
+						<colspec colwidth="8*"/>
+						<thead>
+							<row>
+								<entry>Id.</entry>
+								<entry>Importance</entry>
+								<entry>Requirement</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>RP-1</entry>
+								<entry>2</entry>
+								<entry>System must respond in time lower than 30 seconds when there are 1000 domains registered</entry>
+							</row>
+							<row>
+								<entry>RP-2</entry>
+								<entry>2</entry>
+								<entry>System must respond in time lower than 30 seconds when there are 10000 users registered for a domain</entry>
+							</row>
+							<row>
+								<entry>RP-3</entry>
+								<entry>1</entry>
+								<entry>Adding a domain must not last longer than 30 seconds, it should not depend on number of already registered domains</entry>
+							</row>
+							<row>
+								<entry>RP-4</entry>
+								<entry>1</entry>
+								<entry>Adding a user must not last longer than 30 seconds, it should not depend on number of already registered users</entry>
+							</row>
+							<row>
+								<entry>RP-5</entry>
+								<entry>1</entry>
+								<entry>Password change must not last longer than 15 seconds, it should not depends on number of already registered users</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</section>
+
+			<section id="design.reqs.security">
+				<title>Security requirements</title>
+		
+				<table frame="all" id="tab.reqs.security">
+					<title>Security requirements</title>
+					<tgroup cols="3">
+						<colspec colwidth="1*"/>
+						<colspec colwidth="1*"/>
+						<colspec colwidth="8*"/>
+						<thead>
+							<row>
+								<entry>Id.</entry>
+								<entry>Importance</entry>
+								<entry>Requirement</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>RS-1</entry>
+								<entry>2</entry>
+								<entry>
+									Access to system will be based on user authentication and authorization,
+									when accessing system user should authenticate and system must apply configured role to user
+								</entry>
+							</row>
+							<row>
+								<entry>RS-2</entry>
+								<entry>2</entry>
+								<entry>New type of system administrator - "regular", it doesn't have ability to alter other system administrators</entry>
+							</row>
+							<row>
+								<entry>RS-3</entry>
+								<entry>2</entry>
+								<entry>New type of system administrator - "super",  it's able to alter all users, even other super system administrators</entry>
+							</row>
+							<row>
+								<entry>RS-4</entry>
+								<entry>2</entry>
+								<entry>Password based authentication</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</section>
+
+
+		</section>
+
+		<section id="design.goals">
+			<title>Goals and policies</title>
+
+			<para>
+				Following guidelines should be kept in mind during implementation.
+			</para>
+
+			<formalpara>
+				<title>KISS rule</title>
+				<para>
+					Remember and follow KISS (keep it simple stupid!) - architecture, algorithms,
+					mechanisms should be simple. Make prodcut easy to maintain and extend.
+				</para>
+			</formalpara>
+
+			<formalpara>
+				<title>Don't optimize</title>
+				<para>
+					Optymalization can be done only when there's clear need to do so.
+					Implementation must be simple and valid, speed is less important.
+				</para>
+			</formalpara>
+			
+			<formalpara>
+				<title>Speed of whole operation vs speed of first results</title>
+				<para>
+					Look and feel matters - it easier to use systems that communicate
+					with user as soon as possible. Because this is a web application
+					user should first results as soon as possible. Overall speed can be lower but
+					it will be nicer.
+				</para>
+			</formalpara>
+		</section>
+	</section>
+
+	<section id="strategies">
+		<title>Strategies</title>
+
+		<section id="strategies.products">
+			<title>Products used</title>
+
+			<section id="strategies.products.linux">
+				<title>Linux</title>
+				<para>
+					First of supported operating systems is Linux. It was decided because
+					it's one of the most popular systems used on servers.
+				</para>
+
+				<para>
+					Only 2 of hundreds of existsing distributions are supported: 
+					Fedora Core (free version that Red Hat Enterprise Linux is based on) 
+					and OpenSuSe (free version that SuSe Linux Enterprise Server is based on). 
+					They are similar so it's easy to support them at the same time.
+				</para>
+
+				<para>
+					Both distributions are based on RPM package manager, thanks to that it's 
+					easy to create installation version. It's also easy to manage
+					installed software, enhances to try product (because it's easy to remove it).
+					Dependencies are easily tracked, also updates are easy to perform.
+				</para>
+			
+				<para>
+					In future IHS will be ported to other Unix operating systems. Windows
+					won't be probably officially supported.
+				</para>
+			</section>
+
+			<section id="strategies.products.databases">
+				<title>PostgreSQL, Oracle</title>
+				<para>
+					As every complex system IHS requires database for it's operations. 
+					Database is used as a storage for configuration, users and every other data
+					that must be kept for a long time.
+				</para>
+
+				<para>
+					In first version two different database systems are used, this way it's possible
+					to select the most suitable one. Oracle is a lider in corporate environments. PostgreSQL
+					is a lider of open source databases.
+
+				<para>
+					Both systems are similar in basic functionality - they support views, procedures stored in server,
+					triggers. Mentioned feautes were used during implementation. That's way MySQL - the most popular
+					open source databases is at this time not supported - it doesn't have required features.
+					MySQL support would require architecture changes.
+				</para>
+
+				<para>
+					Selection of those databases systems was also dictated by Virtual Qmail - it supports
+					at this time only Oracle and PostgreSQL. Because Virtual Qmail is intergral part of IHS
+					supported by it databases should be also supported by IHS. This way it's easier to integrate both
+					systems.
+				</para>
+			</section>
+
+			<section id="strategies.products.v-q">
+				<title>Virtual Qmail</title>
+				<para>
+					Virtual Qmail is core of the system - this application is responsible for managing mail system.
+					It's responsible for registering or removing users or domains. With MTA it creates mail system which is easy
+					in maitenance.
+				</para>
+
+				<para>
+					IHS is another user interface which can be used to manage Virtual Qmail. There are some other application
+					that do job similar to Virtual Qmail. Selection was based on previous experience, see NIE-2002.
+				</para>
+			</section>
+
+			<section id="strategies.products.corba">
+				<title>CORBA</title>
+				<para>
+					To allow communication between both systems CORBA was used.
+				</para>
+
+				<para>
+					Virtual Qmail consists of separate services that communicatie with each other, adding additional services
+					used in IHS is easy. It's also possible to easily integrate parts written in different languages.
+				</para>
+			</section>
+
+			<section id="strategies.products.java">
+				<title>Java</title>
+				<para>
+					Java was selected because it's very popular in web world.
+				</para>
+
+				<para>
+					Other possibilities were C++, PERL, PHP or python. But following disadvantages were against them:
+					<itemizedlist>
+						<listitem>
+							<para>
+								C++ - lack of support for creating web services, longest time to market, there's less libraries similar to J2EE ones;
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								PERL - lack of support for complex object oriented systems, there's no similar environment to J2EE;
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								PHP - lack of support for CORBA;
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								python - less popular than J2EE, time needed to learn language, Zope is not as good as J2EE;
+							</para>
+						</listitem>
+					</itemizedlist>
+				</para>
+
+				<para>
+					Java compared to other languages brings environment in which it's easy to create applications, it has great background - J2EE gives
+					you lot of libraries and mechanisms, also there's plenty of experienced users willing to share their knowledge.
+					It supports CORBA out of the box, JDBC gives easy to use interface for databases.
+				</para>
+			</section>
+
+			<section id="strategies.products.jsf">
+				<title>Java Server Faces</title>
+				<para>
+					To make implementation of IHS easy decision was made to use framework called Java Server Faces. It's an additional
+					layer between that brings object oriented wrappers for standard HTML elements, also additional elements are available.
+					This makes easy to create and integrate JSP with business logic.
+				</para>
+
+				<para>
+					Unfortunately during implementation based on JSF there were many problems which delayed project.
+					Current experience says JSF may not be best option available, some mechanisms are missing, probably it would have
+					been better decision to use Struts.
+				</para>
+			</section>
+
+			<section id="strategies.products.tomcat">
+				<title>Tomcat 5</title>
+				<para>
+					Tomcat is one of the most popular application servers available on market. It's popularity is motivated
+					by low price (it's free), good documenation, large users group and good support.
+				</para>
+
+				<para>
+					Also it's easy to install, performs well and have all functions required to implement this project.
+				</para>
+
+				<para>
+					In future other J2EE servers will also be supported. But at this time system was tested only with Tomcat.
+				</para>
+			</section>
+		</section>
+	</section> <!--strategies-->
+
+	<section id="future">
+		<title>Future plans</title>
+
+		<formalpara>
+			<title>Zwiększenie bezpieczeństwa</title>
+			<para>
+				Aby system nadawał się do szerszych zastosowań należy opracować metodę zabezpieczania połączeń między
+				IHS a Virtual Qmail. CORBA posiada mechanizm szyfrowania i autoryzacji połączeń na podstawie certyfikatów.
+				Należy opracować i udokumentować metodę wykorzystania tego mechanizmu.
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Obsługa innych baz danych</title>
+			<para>
+				Ponieważ w MySQL 5 wprowadzono obsługę widoków, mechanizmu spustowego oraz procedur wykonywanych
+				po stronie serwera teoretycznie istnieje możliwość dodania obsługi tej bazy danych bez konieczności
+				większych zmian po stronie Virtual Qmail czy IHS. Planowana jest również w 
+				przyszłości obsługa DB2. Jest to jedna z popularniejszych baz danych wykorzystywanych
+				w korporacjach.
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Integracja z innymi aplikacjami</title>
+			<para>
+				Docelowo IHS ma pełnić rolę systemu, za pomocą którego zarządzać będzie można całym systemem.
+				Ma to być kompleksowy system do zarządzania serwerami hostingowymi, czyli m.in. powinien pozwalać na:
+				zarządzanie wirtualnymi serwerami WWW (Apache, Tomcat, itp.) i FTP (ProFTPD, pureftpd, itp.), użytkownikami, 
+				konfigurację innych usług sieciowych, monitorowanie stanu systemu, tworzenie różnego rodzaju statystyk i zestawień. 
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Lepsza instalacja</title>
+			<para>
+				Instalacja systemu nie należy do skomplikowanych, jednak zgodnie z panującym trendem
+				warto byłoby utworzyć procedurę instalacji i konfiguracji zainstalowanego systemu wprost z przeglądarki.
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Obsługa wtyczek</title>
+			<para>
+				System w założeniu ma być łatwy do rozszerzania. Jednym z elementów potrzebnych do tego
+				jest elastyczny system wtyczek, które odpowiedzialne będą za dodatkowe, nowe funkcje.
+				Użytkownik będzie mógł zależnie od potrzeb dodawać lub usuwać wtyczki modyfikując w ten sposób
+				możliwości IHS.
+			</para>
+		</formalpara>
+		<formalpara>
+			<title>Obsługa różnych tematów graficznych</title>
+			<para>
+				Pożądaną cechą systemu jest możliwość dostosowania wyglądu aplikacji
+				do upodobań poszczególnych użytkowników. Dzięki zastosowaniu CSS
+				wprowadzenie takiego mechanizmu powinno być łatwe.
+			</para>
+		</formalpara>
+	</section>
+
+	<section id="strategies.errors">
+		<title>Obsługa błędów</title>
+
+		<para>
+			W czasie działania aplikacji mogą wystąpić nieprzewidziane
+			sytuacje, które mogą wpłynąć na działanie systemu, np. spowodować,
+			że niektórych czynności nie da się wykonać.
+		</para>
+
+		<para>
+			Tworząc system należy pamiętać o takich sytuacjach i zakładać,
+			że mogą się one pojawić w dowolnym momencie, dlatego należy
+			zwrócić uwagę na obsługę wszelkich błędów.
+		</para>
+
+		<para>
+			Nie można ignorować wartości zwracanych przez funkcje czy wyjątków.
+			Wszystkie one muszą być otoczone odpowiednią obsługą, która
+			zapewni, że w przypadku błędu odpowiednia informacja zostanie
+			przedstawiona użytkownikowi (komunikat o błędzie a nie
+			pusta strona), istotne jest również aby błędy były zapisywane
+			po stronie serwera.
+		</para>
+
+		<para>
+			Ponieważ środowisko użytkownika jest poza kontrolą, należy
+			zapewnić możliwość odtworzenia czynności, które doprowadziły
+			do zaistnienia błędu. Bardzo pomocne w tym celu są odpowiednie
+			logi zapisywane po stronie serwera. Należy zapisywać wszelkie informacje,
+			które mogą pomóc w wykryciu i ustaleniu przyczyn awarii.
+		</para>
+	</section>
+
+	<section id="strategies.database">
+		<title>Baza danych</title>
+
+		<para>
+			IHS domyślnie będzie korzystał tylko z jednej instancji bazy
+			danych. Inne konfiguracje muszą być zaimplementowane
+			przez administratora systemu.
+		</para>
+
+		<para>
+			W bazie danych zapisywane będą wszelkie informacje, które
+			mają być dostępne przez dłuższy okres (niż sesja użytkownika),
+			a które nie są na tyle duże (więcej niż kilka megabajtów) aby
+			utrudniały korzystanie z bazy.
+		</para>
+
+		<para>
+			Systemy, z którymi IHS będzie zintegrowany, np. Virtual Qmail,
+			mogą posiadać swoje własne bazy danych. Jeżeli istnieje
+			taka możliwość nie powinny one być wykorzystywane bezprośrednio
+			lecz przy użyciu API dostarczanego przez daną aplikację.
+			Takie podejście umożliwi łatwiejszą konfigurację i utrzymanie.
+		</para>
+
+		<para>
+			W przypadkach gdy takie API nie istnieje należy zastanowić się
+			nad wydzieleniem osobnych elementów, które będą odpowiedzialne 
+			za obsługę zewnętrznej bazy danych. Należy również pamiętać
+			o tym żeby takie komponenty można było konfigurować za pomocą
+			IHS. Nie wolno używać zakodowanych na stałe ścieżek, haseł,
+			użytkowników czy nazw baz danych.
+		</para>
+	</section>
+
+	<section id="architecture">
+		<title>Architektura systemu</title>
+
+        <figure id="figure.architecture.overall">
+            <title>Wysokopoziomowa architektura systemu</title>
+            <graphic fileref="../imgs/Overall_architecture.png" format="PNG"/>
+        </figure>
+
+		<para>	
+			<xref linkend="figure.architecture.overall"/> przedstawia
+			jeden z najbardziej skomplikowanych przypadków gdy każdy
+			z elementów znajduje się na innym systemie operacyjnym.
+		</para>
+
+		<para>
+			System umożliwia łatwe przenoszenie usług i wykorzystywanie
+			w pełni istniejącej mocy obliczeniowej. W większości przypadków
+			jednak wykorzystywana będzie architektura zawierająca wszystkie
+			elementy na tym samym serwerze.
+		</para>
+
+		<para>
+			W przyszłości w miarę rozstastania się możliwości IHS i 
+			integrowania go z innymi usługami architektura systemu może
+			zawierać znacznie więcej elementów.
+		</para>
+
+		<para>
+			Virtual Qmail i IHS komunikują się za pomocą protokołu CORBA,
+			bazy danych wykorzystywane są za pomocą protokołu JDBC.
+		</para>
+
+		<formalpara>
+			<title>Virtual Qmail</title>
+			<para>
+				Odpowiedzialny jest za zarządzanie systemem pocztowym.
+				System zarządza plikami konfiguracyjnymi programu pocztowego, 
+				utrzymuje na dysku odpowiednie struktury danych, w których
+				przechowywana jest poczta użytkowników. Zawiera
+				moduł autoryzacyjny. Posiada również możliwość logowania 
+				czynności wykonywanych przez użytkowników.
+			</para>
+		</formalpara>
+
+		<formalpara>
+			<title>Virtual Qmail DB</title>
+			<para>
+				Baza danych obsługująca Virtual Qmail. Zawiera
+				informacje o domenach, użytkownikach, konfiguracji.
+				IHS nie powinien z niej korzystać bezpośrednio tylko za pomocą 
+				API udostępnianego przez V-Q. Jednakże mogą istnieć przypadki
+				gdy tylko bezpośredni dostęp pozwoli osiągnąć oczekiwaną
+				funkcjonalność.
+			</para>
+		</formalpara>
+
+		<formalpara>
+			<title>Incredible Hosting System</title>
+			<para>
+				Jest to interfejs WWW umożliwiający administrację
+				Virtual Qmailem oraz w przyszłości innym oprogramowaniem. 
+				Działa w środowisku J2EE. Składa się ze stron JSP, Servletów
+				oraz statycznych plików.
+			</para>
+		</formalpara>
+
+		<formalpara>
+			<title>Incredible Hosting System DB</title>
+			<para>
+				Baza danych wyłącznie na usługi IHS. Zawiera konfigurację
+				oraz inne niezbędne dane.
+			</para>
+		</formalpara>
+		
+        <figure id="figure.architecture.ihsdb">
+            <title>Architektura bazy IHS</title>
+            <graphic fileref="../imgs/IHSDatabaseArchitecture.png" format="PNG"/>
+        </figure>
+
+		<para>	
+			<xref linkend="figure.architecture.ihsdb"/> przedstawia
+			składowe bazy danych. Wykorzystywane są następujące mechanizmy: 
+			tabele, widoki, wbudowane procedury. Położony jest szczególny
+			nacisk na uniezależnienie od siebie poszczególnych systemów,
+			większość operacji na bazie danych wykonywana jest za pomocą
+			procedur, dane pobierane są w oparciu o widoki. Takie podejście
+			umożliwia optymalizację struktury samej bazy danych bez
+			konieczności modyfikacji elementów korzystających z niej.
+			Dodatkową zaletą takiego podejścia jest współdzielenie kodu
+			operującego na danych. Wszelkie aplikacje mogą korzystać
+			z tych samych procedur, dzięki czemu administracja całym
+			systemem zostaje uproszczona.
+		</para>
+
+		<section id="architecture.v_q">
+			<title>Architektura Virtual Qmail</title>
+
+			<figure id="figure.architecture.v_q">
+	            <title>Architektura Virtual Qmail</title>
+	            <graphic fileref="../imgs/VirtualQmailArchitecture.png" format="PNG"/>
+	        </figure>
+
+			<para>	
+				<xref linkend="figure.architecture.v_q"/> przedstawia
+				elementy, które są niezbędnie do funkcjonowania IHS, Virtual
+				Qmail jest bardziej złożonym systemem, niektóre elementy
+				zostały celowo pominięte. Przedstawione na rysunku procesy
+				dostępne są za pomocą protokołu CORBA.
+			</para>
+
+			<formalpara>
+				<title>ivq</title>
+				<para>
+					Główna część systemu. Usługa udostępnia takie funkcje
+					jak zarządzanie użytkownikami, domenami, konfiguracją.
+					Żądania obsługiwane przez tą usługę wpływają
+					bezpośrednio na funkcjonowanie całego systemu pocztowego.
+				</para>
+			</formalpara>
+
+			<formalpara>
+				<title>ilogger</title>
+				<para>
+					Umożliwia dostęp do statystyk zapisywanych podczas
+					działania Virtual Qmail. Za pomocą tej usługi można
+					pobrać takie informacje jak ilość użytkowników,
+					którzy wysłali pocztę w ciągu ostatnich 5 minut, lista
+					użytkowników, którzy nie byli wstanie się zalogować, itp.
+				</para>
+			</formalpara>
+
+			<para>
+				Baza danych używana przez Virtual Qmail nie będzie w tym miejscu
+				opisywana ponieważ IHS powinien być tworzony w taki
+				sposób aby był niezależny od jej struktury. Jak się później
+				okaże w niektórych sytuacjach nie będzie to możliwe.
+			</para>
+		</section>
+
+		<section id="subarch.ihsdb">
+			<title>Baza danych IHS</title>
+
+	        <figure id="figure.architecture.ihsdb.details">
+        	    <title>Logiczny model bazy danych IHS</title>
+	            <graphic fileref="../imgs/IHSDBLogicalmodel.png" format="PNG"/>
+	        </figure>
+	
+			<para>	
+				<xref linkend="figure.architecture.ihsdb.details"/> przedstawia
+				logiczny model bazy danych.
+			</para>
+
+			<para>
+				Przedstawione powyżej typy aktualnie zdefiniowane
+				są następująco:
+			</para>
+
+			<table frame="all" id="tab.architecture.ihsdb.details">
+				<title>Typy danych używane w bazie IHS</title>
+				<tgroup cols="2">
+					<colspec colwidth="1*"/>
+					<colspec colwidth="1*"/>
+					<thead>
+						<row>
+							<entry>Typ</entry>
+							<entry>Definicja (dla Oracle)</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>ihs_config_key_type</entry>
+							<entry>varchar2(1024)</entry>
+						</row>
+						<row>
+							<entry>ihs_config_value_type</entry>
+							<entry>varchar2(1024)</entry>
+						</row>
+						<row>
+							<entry>ihs_administrator_login_type</entry>
+							<entry>varchar2(512)</entry>
+						</row>
+						<row>
+							<entry>ihs_administrator_password_type</entry>
+							<entry>varchar2(512)</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
+			<formalpara>
+				<title>ihs_config_set</title>
+				<para>
+					Procedury. Zajmują się aktualizacją konfiguracji systemu.
+					Nie należy bezpośrednio operować na tablicach.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_config_tuple</title>
+				<para>
+					Schemat krotki, która przechowywana jest w tablicy ihs_config.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_config</title>
+				<para>
+					Tablica zawierająca informacje o konfiguracji systemu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_view_config</title>
+				<para>
+					Widok umożliwiający odczytywanie konfiguracji.
+					Nie należy korzystać bezpośrednio z tablicy ihs_config.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_administrator_add, ihs_administrator_rm, ihs_administrator_change</title>
+				<para>
+					Procedury. Zarządzają zmianami listy administratorów.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_administrator_tuple</title>
+				<para>
+					Schemat krotki, która przechowywana jest w tablicy ihs_administrators.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_administrators</title>
+				<para>
+					Tablica zawierająca informacje o administratorach systemu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ihs_view_administrators</title>
+				<para>
+					Widok umożliwiający odczytywanie listy administratorów.
+					Nie należy korzystać bezpośrednio z tablicy ihs_administrators.
+				</para>
+			</formalpara>
+		</section>
+
+		<section id="subarch.ihs">
+			<title>Architektura IHS</title>
+
+			<figure id="figure.architecture.ihs.details">
+        	    <title>Architektura IHS</title>
+	            <graphic fileref="../imgs/IHSArchitecture.png" format="PNG"/>
+	        </figure>
+	
+			<para>	
+				<xref linkend="figure.architecture.ihs.details"/> przedstawia
+				wysokopoziomową architekturę IHS. Poniżej znajduje
+				się krótki opis poszczególnych elementów.
+			</para>
+
+			<formalpara>
+				<title>Configuration</title>
+				<para>
+					Konfiguracja używana przez serwer J2EE oraz pliki
+					wykorzystywane przez Java Server Faces.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Static Files</title>
+				<para>
+					Statyczne pliki takie jak tłumaczenia,
+					arkusze stylów CSS, pliki graficzne.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>JSF pages</title>
+				<para>
+					Strony JSF, stanowią one interfejs użytkownika.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Libraries</title>
+				<para>
+					Wnętrze systemu. Biblioteki zawierają kod
+					komunikujący się z bazami danych, z systemem Virtual
+					Qmail. Część plików tworzona jest na podstawie opisu IDL.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Backing beans</title>
+				<para>
+					Stanowią warstwę pośredniczącą między interfejsem
+					użytkownika a bibliotekami. Tutaj znajdują się
+					obiekty obsługujące sesję użytkownika, itp.
+				</para>
+			</formalpara>
+		</section>
+	</section>
+
+	<section id="policies">
+		<title>Obowiązujące wytyczne</title>
+
+		<section id="policies.software">
+			<title>Wykorzystywane oprogramowanie</title>
+
+			<para>
+				W czasie prac nad systemem wykorzystywane są następujące
+				aplikacje:
+				<itemizedlist>
+					<listitem>
+						<para>
+							java >= 1.4.2
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ant >= 1.6
+						</para>
+					</listitem>
+					<listitem>
+						<para>	
+							Oracle >= 10g
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							PostgreSQL >= 8
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Eclipse >= 3.0
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
+		</section>
+
+		<section id="policies.tree">
+			<title>Organizacja struktury katalogów</title>
+			<formalpara>
+				<title>./doc</title>
+				<para>
+					Katalog, w którym przechowywana jest dokumentacja, oraz
+					pliki wymagane do jej wygenerowania.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/en.src</title>
+				<para>
+					Pliki źródłowe w formacie DocBook, z których generowana
+					jest angielska wersja dokumentacji.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/en.rtf</title>
+				<para>
+					Dokumentacja po angielsku w formacie RTF. Generowana automatycznie.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/en.html</title>
+				<para>
+					Dokumentacja po angielsku w formacie HTML. Generowana automatycznie.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/imgs</title>
+				<para>
+					Wspólne dla wszystkich wersji obrazki.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/pl.src</title>
+				<para>
+					Pliki źródłowe w formacie DocBook, z których generowana
+					jest polska wersja dokumentacji.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/pl.rtf</title>
+				<para>
+					Dokumentacja po polsku w formacie RTF. Generowana automatycznie.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./doc/pl.html</title>
+				<para>
+					Dokumentacja po polsku w formacie HTML. Generowana automatycznie.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/ihs</title>
+				<para>
+					Kod źródłowy zawierający główną część systemu.
+					Tutaj znajduje się kod odpowiedzialny za: komunikację
+					z Virtual Qmail, obsługę bazy danych, itp.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/ihs/mailservice</title>
+				<para>
+					Wrappery dla obiektów używanych przez Virtual Qmail.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/ihs/backing</title>
+				<para>
+					Backing beans dla głównej części systemu.
+					Jest to warstwa pośrednicząca między interfejscem
+					użytkownika a jądrem systemu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/ihs/backing/mailservice</title>
+				<para>
+					Backing beans dla Virtual Qmail.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/v_q</title>
+				<para>
+					Kod generowany automatycznie na podstawie plików IDL
+					dostarczanych przez Virtual Qmail.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/foo_baz/util</title>
+				<para>
+					Kod ogólnego przeznaczenia, który może być
+					współdzielony z innymi projektami.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./src/com/corejsf</title>
+				<para>
+					Kod zaczerpnięty z książki Core JSF.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./build</title>
+				<para>
+					Katalog, w którym umieszczane są pliki wygenerowane 
+					podczas kompilacji.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./pkg</title>
+				<para>
+					Katalog zawiera pliki niezbędne do generowania pakietów
+					dystrybucyjnych.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./pkg/rpm</title>
+				<para>
+					Pliki potrzebne do wygenerowania pakietów RPM.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./tmp</title>
+				<para>
+					Miejsce na różne pliki tymczasowe. Nie podlega
+					wersjonowaniu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent</title>
+				<para>
+					Pliki JSF, pliki graficzne, style CSS, itp.
+					Materiały serwowane przez serwer J2EE.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent/mailservice</title>
+				<para>
+					Interfejs użytkownika obsługujący backing beans dla
+					Virtual Qmail.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent/META-INF</title>
+				<para>
+					Pliki konfiguracyjne dla serwera J2EE.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent/WEB-INF</title>
+				<para>
+					Konfiguracja aplikacji J2EE.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>./WebContent/WEB-INF/lib</title>
+				<para>
+					Biblioteki niezbędne do kompilacji.
+				</para>
+			</formalpara>
+		</section>
+
+		<section id="policies.building">
+			<title>Kompilacja</title>
+
+			<para>
+				Kompilacja jest wyjątkowo łatwa, wystarczy w głównym katalogu
+				wykonać polecenie:
+			</para>
+
+			<para>
+<screen><userinput>ant war</userinput></screen>
+				wygeneruje ono w katalog <filename>./build</filename> plik WAR.
+			</para>
+
+			<para>
+<screen><userinput>ant deploy</userinput></screen>
+				spróbuje zainstalować aplikację zgodnie z ustawieniami
+				zawartymie w pliku <filename>build.properties</filename>.
+			</para>
+
+			<para>
+<screen><userinput>ant deploy-to-dir</userinput></screen>
+				skopiuje pliki do katalogu serwera Tomcat.
+			</para>
+
+			<para>
+<screen><userinput>ant doc</userinput></screen>
+				w katalogu <filename>./doc</filename>
+				wygeneruje od nowa dokumentację.
+			</para>
+
+		</section>
+
+		<section id="policies.packages">
+			<title>Tworzenie pakietów</title>
+			<para>
+				Wykonanie polecenia:
+<screen><userinput>ant pkg-rpm</userinput></screen>
+				wygeneruje pakiet RPM.
+			</para>
+
+			<para>
+<screen><userinput>ant pkg-tgz</userinput></screen>
+				wygeneruje spakowane archiwum z kodem.
+			</para>
+
+			<para>
+				W przypadku posiadania pakietu TAR/GZ można bardzo
+				łatwo wygenerować pakiety RPM, wystarczy wydać
+				następujące polecenie:
+<screen><userinput>rpmbuild -tb ihs-*.tar.gz</userinput></screen>
+			</para>
+		</section>
+	</section>
+
+	<section id="imp">
+		<title>Szczegóły implementacji IHS</title>
+
+		<section id="imp.core">
+			<title>Główna część systemu</title>
+			<figure id="figure.imp.com.foo_baz.ihs">
+				<title>Pakiet com.foo_baz.ihs</title>
+				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihs.png" format="PNG"/>
+		    </figure>
+	
+	
+			<para>
+				Główna część systemu zawarta jest w pakiecie com.foo_baz.ihs,
+				rysunek <xref linkend="figure.imp.com.foo_baz.ihs"/> przedstawia
+				zawarte w tym pakiecie elementy. Poniżej znajduje się krótki
+				opis każdego z nich.
+			</para>
+
+			<formalpara>
+				<title>Configuration</title>
+				<para>
+					Interfejs, za pomocą którego można obsługiwać konfigurację
+					- dodawać, aktualizować czy usuwać parametry. Domyślnie
+					konfiguracja przechowywana jest w bazie danych.
+					Interfejs zawiera tylko podstawowe operacje do
+					przechowywania łańcuchów znakowych.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Service</title>
+				<para>
+					Interfejs, który muszą implementować wszystkie
+					wtyczki dla systemu IHS. Za jego pomocą IHS odwołuje się
+					do wtyczek.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>MailService</title>
+				<para>
+					Interfejs reprezentujący wtyczkę obsługująca system
+					pocztowy, zawiera on dodatkowe metody, które są
+					niezbędne do poprawnej obsługi takiego systemu.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Administrators</title>
+				<para>
+					Interfejs reprezentujący wszystkie możliwe operacje,
+					które można przeprowadzać na kontach administratorów.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>IncredibleSystemHosting</title>
+				<para>
+					Główne jądro systemu, implementuje interfejs Administrators.
+					Zajmuje się do tego obsługą wtyczek, dostarcza 
+					implementację interfejsu Configuration.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Administrator</title>
+				<para>
+					Reprezentuje informacje przechowywane o administratorach.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>ExtendedAdministrator</title>
+				<para>
+					Administrator wzbogacony o dodatkowe informacje 
+					używane przez GUI.
+				</para>
+			</formalpara>
+		</section>
+
+		<section id="imp.ui">
+			<title>Interejs użytkownika</title>
+			
+			<figure id="figure.imp.com.foo_baz.ihs.backing">
+				<title>Pakiet com.foo_baz.ihs.backing</title>
+				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihsbacking.png" format="PNG"/>
+		    </figure>
+	
+			<figure id="figure.imp.com.foo_baz.ihs.backing.mailservice">
+				<title>Pakiet com.foo_baz.ihs.backing.mailservice</title>
+				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihsbackingmailservice.png" format="PNG"/>
+		    </figure>
+	
+			<para>	
+				<xref linkend="figure.imp.com.foo_baz.ihs.backing"/> 
+				i <xref linkend="figure.imp.com.foo_baz.ihs.backing.mailservice"/> 
+				przedstawiają elementy, które pośredniczą między głównymi
+				częściami systemu (np. z pakietów com.foo_baz.ihs i com.foo_baz.ihs.mailservice)
+				a interfejsem użytkownika reprezentowanym przez strony JSF.
+				Elementy te mają różny czas życia, niektóre z nich 
+				tworzone są dla każdego żądania, inne dla sesji użytkownika.
+				W większości wypadków każdej ze stron JSF przypada
+				co najmniej jeden element.
+			</para>	
+		</section>
+
+		<section id="imp.plugins">
+			<title>Wtyczki</title>
+			
+			<para>
+				Poniżej znajduje się lista wtyczek instalowanych wraz
+				z IHS.
+			</para>
+
+			<section id="imp.plugins.v_q">
+				<title>VirtualQmailMailService</title>
+
+				<para>
+					Implementacja interfejsu MailService, która oparta
+					jest o system Virtual Qmail. Komunikacja odbywa się
+					za pomocą usług dostępnych poprzez CORBA.
+				</para>
+
+				<para>
+					Pliki znajdujące się w pakiecie com.foo_baz.ihs.mailservice
+					oraz com.foo_baz.ihs.VirtualQmailMailService odpowiedzialne
+					są za interakcję z systemem Virtual Qmail. Pakiet
+					com.foo_baz.ihs.backing.mailservice 
+					pośredniczy w obsłudze interfejsu użytkownika.
+					Interfejs użytkownika obsługiwany jest przez strony
+					JSF znajdujące się w katalogu <filename>mailserver</filename>.
+				</para>
+			</section>
+		</section>
+	</section>
+</chapter>
+

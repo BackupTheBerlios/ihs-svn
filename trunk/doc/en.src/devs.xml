@@ -543,253 +543,233 @@
 		<title>Future plans</title>
 
 		<formalpara>
-			<title>Zwiêkszenie bezpieczeñstwa</title>
+			<title>Increasing security</title>
 			<para>
-				Aby system nadawa³ siê do szerszych zastosowañ nale¿y opracowaæ metodê zabezpieczania po³±czeñ miêdzy
-				IHS a Virtual Qmail. CORBA posiada mechanizm szyfrowania i autoryzacji po³±czeñ na podstawie certyfikatów.
-				Nale¿y opracowaæ i udokumentowaæ metodê wykorzystania tego mechanizmu.
+				At this time connections between IHS and Virtual Qmail are not secured. CORBA includes some mechanisms to
+				authenticate users and protect communication by encryption it's worth to make it possible to use them.
 			</para>
 		</formalpara>
 		<formalpara>
-			<title>Obs³uga innych baz danych</title>
+			<title>Support for other database systems</title>
 			<para>
-				Poniewa¿ w MySQL 5 wprowadzono obs³ugê widoków, mechanizmu spustowego oraz procedur wykonywanych
-				po stronie serwera teoretycznie istnieje mo¿liwo¶æ dodania obs³ugi tej bazy danych bez konieczno¶ci
-				wiêkszych zmian po stronie Virtual Qmail czy IHS. Planowana jest równie¿ w 
-				przysz³o¶ci obs³uga DB2. Jest to jedna z popularniejszych baz danych wykorzystywanych
-				w korporacjach.
+				MySQL 5 introduces views, triggers and stored procedures, so it should have technical capatibilities
+				required by IHS and Virtual Qmail. Also DB2 support would be worth having.
 			</para>
 		</formalpara>
 		<formalpara>
-			<title>Integracja z innymi aplikacjami</title>
+			<title>Integration with other systems</title>
 			<para>
-				Docelowo IHS ma pe³niæ rolê systemu, za pomoc± którego zarz±dzaæ bêdzie mo¿na ca³ym systemem.
-				Ma to byæ kompleksowy system do zarz±dzania serwerami hostingowymi, czyli m.in. powinien pozwalaæ na:
-				zarz±dzanie wirtualnymi serwerami WWW (Apache, Tomcat, itp.) i FTP (ProFTPD, pureftpd, itp.), u¿ytkownikami, 
-				konfiguracjê innych us³ug sieciowych, monitorowanie stanu systemu, tworzenie ró¿nego rodzaju statystyk i zestawieñ. 
+				IHS in future will be an interface that will allow to manage hosting system in whole.
+				It's going to be a complex system including support for virtual WWW servers (Apache, Tomcat, etc.), FTP servers
+				(ProFTPD, pureftpd, etc.) and other network services. It will allows to monitor system, create
+				statistics and reports.
 			</para>
 		</formalpara>
 		<formalpara>
-			<title>Lepsza instalacja</title>
+			<title>Better installation</title>
 			<para>
-				Instalacja systemu nie nale¿y do skomplikowanych, jednak zgodnie z panuj±cym trendem
-				warto by³oby utworzyæ procedurê instalacji i konfiguracji zainstalowanego systemu wprost z przegl±darki.
+				It would be nice to have easier installation process. There's an idea to
+				make installation process operated by web browser.
 			</para>
 		</formalpara>
 		<formalpara>
-			<title>Obs³uga wtyczek</title>
+			<title>Plug-ins support</title>
 			<para>
-				System w za³o¿eniu ma byæ ³atwy do rozszerzania. Jednym z elementów potrzebnych do tego
-				jest elastyczny system wtyczek, które odpowiedzialne bêd± za dodatkowe, nowe funkcje.
-				U¿ytkownik bêdzie móg³ zale¿nie od potrzeb dodawaæ lub usuwaæ wtyczki modyfikuj±c w ten sposób
-				mo¿liwo¶ci IHS.
+				System should be easy to extend. One of elements needed for it it's flexible system of plug-ins.
+				Plug-ins will add new features or change existing. It shoule be possible to add or remove them on the fly.
 			</para>
 		</formalpara>
 		<formalpara>
-			<title>Obs³uga ró¿nych tematów graficznych</title>
+			<title>Themes support</title>
 			<para>
-				Po¿±dan± cech± systemu jest mo¿liwo¶æ dostosowania wygl±du aplikacji
-				do upodobañ poszczególnych u¿ytkowników. Dziêki zastosowaniu CSS
-				wprowadzenie takiego mechanizmu powinno byæ ³atwe.
+				It would be nice to have some mechanism to customize look of application.
+				Each user should be able to select the most suitable theme. CSS will help in
+				achieving this.
 			</para>
 		</formalpara>
 	</section>
 
 	<section id="strategies.errors">
-		<title>Obs³uga b³êdów</title>
+		<title>Errors handling</title>
 
 		<para>
-			W czasie dzia³ania aplikacji mog± wyst±piæ nieprzewidziane
-			sytuacje, które mog± wp³yn±æ na dzia³anie systemu, np. spowodowaæ,
-			¿e niektórych czynno¶ci nie da siê wykonaæ.
+			At runtime strange things may happen, they may influence system, for
+			example disable some parts, breaks some processes.
 		</para>
 
 		<para>
-			Tworz±c system nale¿y pamiêtaæ o takich sytuacjach i zak³adaæ,
-			¿e mog± siê one pojawiæ w dowolnym momencie, dlatego nale¿y
-			zwróciæ uwagê na obs³ugê wszelkich b³êdów.
+			During implementation it's important to keep in mind that
+			awkward situations may happen, it's good to try to protect system
+			from them - error handling is very important.
 		</para>
 
 		<para>
-			Nie mo¿na ignorowaæ warto¶ci zwracanych przez funkcje czy wyj±tków.
-			Wszystkie one musz± byæ otoczone odpowiedni± obs³ug±, która
-			zapewni, ¿e w przypadku b³êdu odpowiednia informacja zostanie
-			przedstawiona u¿ytkownikowi (komunikat o b³êdzie a nie
-			pusta strona), istotne jest równie¿ aby b³êdy by³y zapisywane
-			po stronie serwera.
+			Ignoring returned values or exception is usually a bad thing.
+			They all should be handled in way that will provide valueable
+			traceback (written in logs) and a message to user (empty page
+			is generally a wrong idea ;-).		
 		</para>
 
 		<para>
-			Poniewa¿ ¶rodowisko u¿ytkownika jest poza kontrol±, nale¿y
-			zapewniæ mo¿liwo¶æ odtworzenia czynno¶ci, które doprowadzi³y
-			do zaistnienia b³êdu. Bardzo pomocne w tym celu s± odpowiednie
-			logi zapisywane po stronie serwera. Nale¿y zapisywaæ wszelkie informacje,
-			które mog± pomóc w wykryciu i ustaleniu przyczyn awarii.
+			 Remember that this is a web
+			application so you may not be able to cooperate with
+			client that saw the error - try to write everything that could
+			be useful in log.
 		</para>
 	</section>
 
 	<section id="strategies.database">
-		<title>Baza danych</title>
+		<title>Database</title>
 
 		<para>
-			IHS domy¶lnie bêdzie korzysta³ tylko z jednej instancji bazy
-			danych. Inne konfiguracje musz± byæ zaimplementowane
-			przez administratora systemu.
+			IHS by default uses only one instance of a database. Any other
+			combinations must be implemented by system administrator (for example
+			distributed database system).
 		</para>
 
 		<para>
-			W bazie danych zapisywane bêd± wszelkie informacje, które
-			maj± byæ dostêpne przez d³u¿szy okres (ni¿ sesja u¿ytkownika),
-			a które nie s± na tyle du¿e (wiêcej ni¿ kilka megabajtów) aby
-			utrudnia³y korzystanie z bazy.
+			Database includes all information that must be available
+			outside user's session, large amounts of data can be written
+			outside database. Depends on database system and ability to handle
+			large objects - large data kept in database may impact performance.
 		</para>
 
 		<para>
-			Systemy, z którymi IHS bêdzie zintegrowany, np. Virtual Qmail,
-			mog± posiadaæ swoje w³asne bazy danych. Je¿eli istnieje
-			taka mo¿liwo¶æ nie powinny one byæ wykorzystywane bezpro¶rednio
-			lecz przy u¿yciu API dostarczanego przez dan± aplikacjê.
-			Takie podej¶cie umo¿liwi ³atwiejsz± konfiguracjê i utrzymanie.
+			Systems IHS will be integrated with (i.e. Virtual Qmail) may have
+			additional databases. IHS should try to avoid using other databases
+			directly, try to use available API and if there's no other
+			option try to use data directyl from database. Using API
+			makes code easier to maintain and integrate.
 		</para>
 
 		<para>
-			W przypadkach gdy takie API nie istnieje nale¿y zastanowiæ siê
-			nad wydzieleniem osobnych elementów, które bêd± odpowiedzialne 
-			za obs³ugê zewnêtrznej bazy danych. Nale¿y równie¿ pamiêtaæ
-			o tym ¿eby takie komponenty mo¿na by³o konfigurowaæ za pomoc±
-			IHS. Nie wolno u¿ywaæ zakodowanych na sta³e ¶cie¿ek, hase³,
-			u¿ytkowników czy nazw baz danych.
+			If there's no API think about creating one as a separate component.
+			Don't include SQL commands inside business components. Always
+			create additional layer of abstraction.
+			Don't include fixed paths, passwords or users in code.
 		</para>
 	</section>
 
 	<section id="architecture">
-		<title>Architektura systemu</title>
+		<title>System architecture</title>
 
         <figure id="figure.architecture.overall">
-            <title>Wysokopoziomowa architektura systemu</title>
+            <title>High-level system architecture</title>
             <graphic fileref="../imgs/Overall_architecture.png" format="PNG"/>
         </figure>
 
 		<para>	
-			<xref linkend="figure.architecture.overall"/> przedstawia
-			jeden z najbardziej skomplikowanych przypadków gdy ka¿dy
-			z elementów znajduje siê na innym systemie operacyjnym.
+			<xref linkend="figure.architecture.overall"/> 
+			presents one of the most complex situations when every component
+			is located on each own computer.
 		</para>
 
 		<para>
-			System umo¿liwia ³atwe przenoszenie us³ug i wykorzystywanie
-			w pe³ni istniej±cej mocy obliczeniowej. W wiêkszo¶ci przypadków
-			jednak wykorzystywana bêdzie architektura zawieraj±ca wszystkie
-			elementy na tym samym serwerze.
+			System allows to easily move services from machine to machine
+			to use available power. Altought it's possible to distribute 
+			everything usually all components will be placed on single
+			machine.
 		</para>
 
 		<para>
-			W przysz³o¶ci w miarê rozstastania siê mo¿liwo¶ci IHS i 
-			integrowania go z innymi us³ugami architektura systemu mo¿e
-			zawieraæ znacznie wiêcej elementów.
+			In future as system grows and number of supported applications
+			grows architecture can be more complex, it may include much
+			more elements.
 		</para>
 
 		<para>
-			Virtual Qmail i IHS komunikuj± siê za pomoc± protoko³u CORBA,
-			bazy danych wykorzystywane s± za pomoc± protoko³u JDBC.
+			Virtual Qmail and IHS communicate with CORBA, databases are
+			usually accessed with JDBC (but in case of Virtual Qmail
+			it depends of configuration).
 		</para>
 
 		<formalpara>
 			<title>Virtual Qmail</title>
 			<para>
-				Odpowiedzialny jest za zarz±dzanie systemem pocztowym.
-				System zarz±dza plikami konfiguracyjnymi programu pocztowego, 
-				utrzymuje na dysku odpowiednie struktury danych, w których
-				przechowywana jest poczta u¿ytkowników. Zawiera
-				modu³ autoryzacyjny. Posiada równie¿ mo¿liwo¶æ logowania 
-				czynno¶ci wykonywanych przez u¿ytkowników.
+				Application is responsible for managing mail system.
+				It keeps track on configuration files, filesystem structures.
+				It includes authentication and authorization module.
+				It has also ability to log actions performed by users.
 			</para>
 		</formalpara>
 
 		<formalpara>
 			<title>Virtual Qmail DB</title>
 			<para>
-				Baza danych obs³uguj±ca Virtual Qmail. Zawiera
-				informacje o domenach, u¿ytkownikach, konfiguracji.
-				IHS nie powinien z niej korzystaæ bezpo¶rednio tylko za pomoc± 
-				API udostêpnianego przez V-Q. Jednak¿e mog± istnieæ przypadki
-				gdy tylko bezpo¶redni dostêp pozwoli osi±gn±æ oczekiwan±
-				funkcjonalno¶æ.
+				Database used by Virtual Qmail. 
+				Keeps information about domains, users, configuration.
+				IHS should not access it directyl but use API provided
+				by V-Q. In rare cases direct access may be required.
 			</para>
 		</formalpara>
 
 		<formalpara>
 			<title>Incredible Hosting System</title>
 			<para>
-				Jest to interfejs WWW umo¿liwiaj±cy administracjê
-				Virtual Qmailem oraz w przysz³o¶ci innym oprogramowaniem. 
-				Dzia³a w ¶rodowisku J2EE. Sk³ada siê ze stron JSP, Servletów
-				oraz statycznych plików.
+				WWW interface allowing administration of Virtual Qmail and
+				in the future also other applications.
+				Runs in J2EE environment. Includes JSP pages, Servlets
+				and static files.
 			</para>
 		</formalpara>
 
 		<formalpara>
 			<title>Incredible Hosting System DB</title>
 			<para>
-				Baza danych wy³±cznie na us³ugi IHS. Zawiera konfiguracjê
-				oraz inne niezbêdne dane.
+				Database used only by IHS.
 			</para>
 		</formalpara>
 		
         <figure id="figure.architecture.ihsdb">
-            <title>Architektura bazy IHS</title>
+            <title>Architecture of database used by IHS</title>
             <graphic fileref="../imgs/IHSDatabaseArchitecture.png" format="PNG"/>
         </figure>
 
 		<para>	
-			<xref linkend="figure.architecture.ihsdb"/> przedstawia
-			sk³adowe bazy danych. Wykorzystywane s± nastêpuj±ce mechanizmy: 
-			tabele, widoki, wbudowane procedury. Po³o¿ony jest szczególny
-			nacisk na uniezale¿nienie od siebie poszczególnych systemów,
-			wiêkszo¶æ operacji na bazie danych wykonywana jest za pomoc±
-			procedur, dane pobierane s± w oparciu o widoki. Takie podej¶cie
-			umo¿liwia optymalizacjê struktury samej bazy danych bez
-			konieczno¶ci modyfikacji elementów korzystaj±cych z niej.
-			Dodatkow± zalet± takiego podej¶cia jest wspó³dzielenie kodu
-			operuj±cego na danych. Wszelkie aplikacje mog± korzystaæ
-			z tych samych procedur, dziêki czemu administracja ca³ym
-			systemem zostaje uproszczona.
+			<xref linkend="figure.architecture.ihsdb"/> presents elements
+			of database. IHS uses tables, views, stored procedures.
+			Everything is written that elements are not tied with
+			database structure - all operations are performed through
+			stored procedures, selects are done using views. This way
+			it's possible to change database layout without impacting IHS
+			or other tools. You can for example optimize database structure.
+			Another advantage of this is that system is easier to maintain
+			and extend.
 		</para>
 
 		<section id="architecture.v_q">
-			<title>Architektura Virtual Qmail</title>
+			<title>Architecture of Virtual Qmail</title>
 
 			<figure id="figure.architecture.v_q">
-	            <title>Architektura Virtual Qmail</title>
+	            <title>Architecture of Virtual Qmail</title>
 	            <graphic fileref="../imgs/VirtualQmailArchitecture.png" format="PNG"/>
 	        </figure>
 
 			<para>	
-				<xref linkend="figure.architecture.v_q"/> przedstawia
-				elementy, które s± niezbêdnie do funkcjonowania IHS, Virtual
-				Qmail jest bardziej z³o¿onym systemem, niektóre elementy
-				zosta³y celowo pominiête. Przedstawione na rysunku procesy
-				dostêpne s± za pomoc± protoko³u CORBA.
+				<xref linkend="figure.architecture.v_q"/> shows elements
+				that are required by IHS. Virtual Qmail itself may include
+				other elements, be more complex, but full architecture
+				is not important from IHS point of view. All elements
+				communicate via CORBA.
 			</para>
 
 			<formalpara>
 				<title>ivq</title>
 				<para>
-					G³ówna czê¶æ systemu. Us³uga udostêpnia takie funkcje
-					jak zarz±dzanie u¿ytkownikami, domenami, konfiguracj±.
-					¯±dania obs³ugiwane przez t± us³ugê wp³ywaj±
-					bezpo¶rednio na funkcjonowanie ca³ego systemu pocztowego.
+					Main part of the system. This service is responsible
+					for handling domains or users management.
+					Request processed by this service impact system directly,
+					usually at the moment they arrive.
 				</para>
 			</formalpara>
 
 			<formalpara>
 				<title>ilogger</title>
 				<para>
-					Umo¿liwia dostêp do statystyk zapisywanych podczas
-					dzia³ania Virtual Qmail. Za pomoc± tej us³ugi mo¿na
-					pobraæ takie informacje jak ilo¶æ u¿ytkowników,
-					którzy wys³ali pocztê w ci±gu ostatnich 5 minut, lista
-					u¿ytkowników, którzy nie byli wstanie siê zalogowaæ, itp.
+					Gives access to statistics and logs created during
+					execution of Virtual Qmail. Using this service you can
+					get information about number of users that sent mail in
+					last 5 minutes, or list of users which weren't able to login, etc.
 				</para>
 			</formalpara>
 

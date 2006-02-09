@@ -774,40 +774,38 @@
 			</formalpara>
 
 			<para>
-				Baza danych u¿ywana przez Virtual Qmail nie bêdzie w tym miejscu
-				opisywana poniewa¿ IHS powinien byæ tworzony w taki
-				sposób aby by³ niezale¿ny od jej struktury. Jak siê pó¼niej
-				oka¿e w niektórych sytuacjach nie bêdzie to mo¿liwe.
+				Database user by Virtual Qmail won't be described here
+				because it's out of scope of this document.
+				Usually there no need to be familiar with it.
 			</para>
 		</section>
 
 		<section id="subarch.ihsdb">
-			<title>Baza danych IHS</title>
+			<title>Database used by IHS</title>
 
 	        <figure id="figure.architecture.ihsdb.details">
-        	    <title>Logiczny model bazy danych IHS</title>
+        	    <title>Logical model of database used by IHS</title>
 	            <graphic fileref="../imgs/IHSDBLogicalmodel.png" format="PNG"/>
 	        </figure>
 	
 			<para>	
-				<xref linkend="figure.architecture.ihsdb.details"/> przedstawia
-				logiczny model bazy danych.
+				<xref linkend="figure.architecture.ihsdb.details"/> 
+				shows logical model of a database.
 			</para>
 
 			<para>
-				Przedstawione powy¿ej typy aktualnie zdefiniowane
-				s± nastêpuj±co:
+				Types presented are at this time defined as following:
 			</para>
 
 			<table frame="all" id="tab.architecture.ihsdb.details">
-				<title>Typy danych u¿ywane w bazie IHS</title>
+				<title>Data types used in IHS database</title>
 				<tgroup cols="2">
 					<colspec colwidth="1*"/>
 					<colspec colwidth="1*"/>
 					<thead>
 						<row>
-							<entry>Typ</entry>
-							<entry>Definicja (dla Oracle)</entry>
+							<entry>Type</entry>
+							<entry>Definition (for Oracle)</entry>
 						</row>
 					</thead>
 					<tbody>
@@ -834,118 +832,116 @@
 			<formalpara>
 				<title>ihs_config_set</title>
 				<para>
-					Procedury. Zajmuj± siê aktualizacj± konfiguracji systemu.
-					Nie nale¿y bezpo¶rednio operowaæ na tablicach.
+					Procedures. They are used to manage configuration.
+					Don't use tables directly.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>ihs_config_tuple</title>
 				<para>
-					Schemat krotki, która przechowywana jest w tablicy ihs_config.
+					Definition of tuple stored in ihs_config table.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>ihs_config</title>
 				<para>
-					Tablica zawieraj±ca informacje o konfiguracji systemu.
+					Table keeping configuration.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>ihs_view_config</title>
 				<para>
-					Widok umo¿liwiaj±cy odczytywanie konfiguracji.
-					Nie nale¿y korzystaæ bezpo¶rednio z tablicy ihs_config.
+					View used to access configuration.
+					Don't use table directly.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>ihs_administrator_add, ihs_administrator_rm, ihs_administrator_change</title>
 				<para>
-					Procedury. Zarz±dzaj± zmianami listy administratorów.
+					Procedures. They are used to manage list of administrators.
+					Don't use tables directly.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>ihs_administrator_tuple</title>
 				<para>
-					Schemat krotki, która przechowywana jest w tablicy ihs_administrators.
+					Definition of tuple stored in ihs_administrators table.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>ihs_administrators</title>
 				<para>
-					Tablica zawieraj±ca informacje o administratorach systemu.
+					Table with system administrators.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>ihs_view_administrators</title>
 				<para>
-					Widok umo¿liwiaj±cy odczytywanie listy administratorów.
-					Nie nale¿y korzystaæ bezpo¶rednio z tablicy ihs_administrators.
+					View for accessing administrators.
+					Don't use table directly.
 				</para>
 			</formalpara>
 		</section>
 
 		<section id="subarch.ihs">
-			<title>Architektura IHS</title>
+			<title>IHS architecture</title>
 
 			<figure id="figure.architecture.ihs.details">
-        	    <title>Architektura IHS</title>
+        	    <title>IHS architecture</title>
 	            <graphic fileref="../imgs/IHSArchitecture.png" format="PNG"/>
 	        </figure>
 	
 			<para>	
-				<xref linkend="figure.architecture.ihs.details"/> przedstawia
-				wysokopoziomow± architekturê IHS. Poni¿ej znajduje
-				siê krótki opis poszczególnych elementów.
+				<xref linkend="figure.architecture.ihs.details"/> presents
+				high-level architecture of IHS itself. Following is a description
+				of main components.
 			</para>
 
 			<formalpara>
 				<title>Configuration</title>
 				<para>
-					Konfiguracja u¿ywana przez serwer J2EE oraz pliki
-					wykorzystywane przez Java Server Faces.
+					Configuraion used by J2EE server and files used
+					by Java Server Faces.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>Static Files</title>
 				<para>
-					Statyczne pliki takie jak t³umaczenia,
-					arkusze stylów CSS, pliki graficzne.
+					Files including translations, CSS stylesheets, graphics.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>JSF pages</title>
 				<para>
-					Strony JSF, stanowi± one interfejs u¿ytkownika.
+					They describe user interface.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>Libraries</title>
 				<para>
-					Wnêtrze systemu. Biblioteki zawieraj± kod
-					komunikuj±cy siê z bazami danych, z systemem Virtual
-					Qmail. Czê¶æ plików tworzona jest na podstawie opisu IDL.
+					Core of the system. Libraries include code communicating
+					with databases, Virtual Qmail. Part of files is created
+					from IDL.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>Backing beans</title>
 				<para>
-					Stanowi± warstwê po¶rednicz±c± miêdzy interfejsem
-					u¿ytkownika a bibliotekami. Tutaj znajduj± siê
-					obiekty obs³uguj±ce sesjê u¿ytkownika, itp.
+					They are layer between UI and core. Here you can find
+					objects handling user session.
 				</para>
 			</formalpara>
 		</section>
 	</section>
 
 	<section id="policies">
-		<title>Obowi±zuj±ce wytyczne</title>
+		<title>Policies and guidelines</title>
 
 		<section id="policies.software">
-			<title>Wykorzystywane oprogramowanie</title>
+			<title>Used software</title>
 
 			<para>
-				W czasie prac nad systemem wykorzystywane s± nastêpuj±ce
-				aplikacje:
+				Following software is used to develop system:
 				<itemizedlist>
 					<listitem>
 						<para>
@@ -977,163 +973,155 @@
 		</section>
 
 		<section id="policies.tree">
-			<title>Organizacja struktury katalogów</title>
+			<title>Filesystem structure</title>
 			<formalpara>
 				<title>./doc</title>
-				<para>
-					Katalog, w którym przechowywana jest dokumentacja, oraz
-					pliki wymagane do jej wygenerowania.
+				<para>	
+					Directory including all documentation and files
+					used to generate it.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./doc/en.src</title>
 				<para>
-					Pliki ¼ród³owe w formacie DocBook, z których generowana
-					jest angielska wersja dokumentacji.
+					DocBook source files which are used to generate English
+					documentation.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./doc/en.rtf</title>
 				<para>
-					Dokumentacja po angielsku w formacie RTF. Generowana automatycznie.
+					Documentation in RTF format. Generated automatically.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./doc/en.html</title>
 				<para>
-					Dokumentacja po angielsku w formacie HTML. Generowana automatycznie.
+					Documentation in HTML. Generated automatically.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./doc/imgs</title>
 				<para>
-					Wspólne dla wszystkich wersji obrazki.
+					Common graphic files.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./doc/pl.src</title>
 				<para>
-					Pliki ¼ród³owe w formacie DocBook, z których generowana
-					jest polska wersja dokumentacji.
+					DocBook source files which are used to generate Polish
+					documentation.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./doc/pl.rtf</title>
 				<para>
-					Dokumentacja po polsku w formacie RTF. Generowana automatycznie.
+					Documentation in RTF format. Generated automatically.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./doc/pl.html</title>
 				<para>
-					Dokumentacja po polsku w formacie HTML. Generowana automatycznie.
+					Documentation in HTML format. Generated automatically.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./src/com/foo_baz/ihs</title>
 				<para>
-					Kod ¼ród³owy zawieraj±cy g³ówn± czê¶æ systemu.
-					Tutaj znajduje siê kod odpowiedzialny za: komunikacjê
-					z Virtual Qmail, obs³ugê bazy danych, itp.
+					Source code of main part of the system.
+					Code responsible for communication with Virtuam Qmail,
+					database handling, etc.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./src/com/foo_baz/ihs/mailservice</title>
 				<para>
-					Wrappery dla obiektów u¿ywanych przez Virtual Qmail.
+					Wrappers for some types from Virtual Qmail.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./src/com/foo_baz/ihs/backing</title>
 				<para>
-					Backing beans dla g³ównej czê¶ci systemu.
-					Jest to warstwa po¶rednicz±ca miêdzy interfejscem
-					u¿ytkownika a j±drem systemu.
+					Backing beans for main part.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./src/com/foo_baz/ihs/backing/mailservice</title>
 				<para>
-					Backing beans dla Virtual Qmail.
+					Backing beans for mail service, at this time for Virtual Qmail.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./src/com/foo_baz/v_q</title>
 				<para>
-					Kod generowany automatycznie na podstawie plików IDL
-					dostarczanych przez Virtual Qmail.
+					Code generated from IDL files distributed with Virtual Qmail.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./src/com/foo_baz/util</title>
 				<para>
-					Kod ogólnego przeznaczenia, który mo¿e byæ
-					wspó³dzielony z innymi projektami.
+					Utilities. Common code.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./src/com/corejsf</title>
 				<para>
-					Kod zaczerpniêty z ksi±¿ki Core JSF.
+					Code taken from GEA-2004.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./build</title>
 				<para>
-					Katalog, w którym umieszczane s± pliki wygenerowane 
-					podczas kompilacji.
+					Directory where compiled files are stored.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./pkg</title>
 				<para>
-					Katalog zawiera pliki niezbêdne do generowania pakietów
-					dystrybucyjnych.
+					Includes files used to generate distribution packages.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./pkg/rpm</title>
 				<para>
-					Pliki potrzebne do wygenerowania pakietów RPM.
+					Files for building RPM packages.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./tmp</title>
 				<para>
-					Miejsce na ró¿ne pliki tymczasowe. Nie podlega
-					wersjonowaniu.
+					Temporary files. This directory is not versioned.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./WebContent</title>
 				<para>
-					Pliki JSF, pliki graficzne, style CSS, itp.
-					Materia³y serwowane przez serwer J2EE.
+					JSF pages, CSS stylesheets, graphic files.
+					Files server by J2EE.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./WebContent/mailservice</title>
 				<para>
-					Interfejs u¿ytkownika obs³uguj±cy backing beans dla
-					Virtual Qmail.
+					User interface for managing mail service.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./WebContent/META-INF</title>
 				<para>
-					Pliki konfiguracyjne dla serwera J2EE.
+					Configuration files for J2EE server.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./WebContent/WEB-INF</title>
 				<para>
-					Konfiguracja aplikacji J2EE.
+					Application's configuration.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>./WebContent/WEB-INF/lib</title>
 				<para>
-					Biblioteki niezbêdne do kompilacji.
+					Libraries needed for compilation.
 				</para>
 			</formalpara>
 		</section>

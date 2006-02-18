@@ -2,19 +2,22 @@
 <HTML
 ><HEAD
 ><TITLE
->Foreword</TITLE
+>Database</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
 REL="HOME"
 TITLE="Incredible Hosting System"
 HREF="index.html"><LINK
+REL="UP"
+TITLE="Developers guide"
+HREF="devs.html"><LINK
 REL="PREVIOUS"
-TITLE="Incredible Hosting System"
-HREF="index.html"><LINK
+TITLE="Errors handling"
+HREF="strategies.errors.html"><LINK
 REL="NEXT"
-TITLE="Introduction"
-HREF="intro.html"><LINK
+TITLE="System architecture"
+HREF="architecture.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
@@ -23,7 +26,7 @@ CONTENT="2006-02-18T08:48:04"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
-CLASS="preface"
+CLASS="section"
 BGCOLOR="#FFFFFF"
 TEXT="#000000"
 LINK="#0000FF"
@@ -49,7 +52,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="index.html"
+HREF="strategies.errors.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -57,13 +60,13 @@ ACCESSKEY="P"
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
-></TD
+>Chapter 4. Developers guide</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="intro.html"
+HREF="architecture.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
@@ -73,14 +76,37 @@ ACCESSKEY="N"
 ALIGN="LEFT"
 WIDTH="100%"></DIV
 ><DIV
-CLASS="preface"
+CLASS="section"
 ><H1
+CLASS="section"
 ><A
-NAME="foreword"
-></A
->Foreword</H1
+NAME="strategies.database"
+>4.5. Database</A
+></H1
 ><P
->&#13;		</P
+>&#13;			IHS by default uses only one instance of a database. Any other
+			combinations must be implemented by system administrator (for example
+			distributed database system).
+		</P
+><P
+>&#13;			Database includes all information that must be available
+			outside user's session, large amounts of data can be written
+			outside database. Depends on database system and ability to handle
+			large objects - large data kept in database may impact performance.
+		</P
+><P
+>&#13;			Systems IHS will be integrated with (i.e. Virtual Qmail) may have
+			additional databases. IHS should try to avoid using other databases
+			directly, try to use available API and if there's no other
+			option try to use data directyl from database. Using API
+			makes code easier to maintain and integrate.
+		</P
+><P
+>&#13;			If there's no API think about creating one as a separate component.
+			Don't include SQL commands inside business components. Always
+			create additional layer of abstraction.
+			Don't include fixed paths, passwords or users in code.
+		</P
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"
@@ -98,7 +124,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="index.html"
+HREF="strategies.errors.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -116,7 +142,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="intro.html"
+HREF="architecture.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
@@ -126,17 +152,21 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Incredible Hosting System</TD
+>Errors handling</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="devs.html"
+ACCESSKEY="U"
+>Up</A
+></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Introduction</TD
+>System architecture</TD
 ></TR
 ></TABLE
 ></DIV

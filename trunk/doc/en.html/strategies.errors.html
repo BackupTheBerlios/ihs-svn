@@ -2,19 +2,22 @@
 <HTML
 ><HEAD
 ><TITLE
->Foreword</TITLE
+>Errors handling</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
 REL="HOME"
 TITLE="Incredible Hosting System"
 HREF="index.html"><LINK
+REL="UP"
+TITLE="Developers guide"
+HREF="devs.html"><LINK
 REL="PREVIOUS"
-TITLE="Incredible Hosting System"
-HREF="index.html"><LINK
+TITLE="Future plans"
+HREF="future.html"><LINK
 REL="NEXT"
-TITLE="Introduction"
-HREF="intro.html"><LINK
+TITLE="Database"
+HREF="strategies.database.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
@@ -23,7 +26,7 @@ CONTENT="2006-02-18T08:48:04"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
-CLASS="preface"
+CLASS="section"
 BGCOLOR="#FFFFFF"
 TEXT="#000000"
 LINK="#0000FF"
@@ -49,7 +52,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="index.html"
+HREF="future.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -57,13 +60,13 @@ ACCESSKEY="P"
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
-></TD
+>Chapter 4. Developers guide</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="intro.html"
+HREF="strategies.database.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
@@ -73,14 +76,34 @@ ACCESSKEY="N"
 ALIGN="LEFT"
 WIDTH="100%"></DIV
 ><DIV
-CLASS="preface"
+CLASS="section"
 ><H1
+CLASS="section"
 ><A
-NAME="foreword"
-></A
->Foreword</H1
+NAME="strategies.errors"
+>4.4. Errors handling</A
+></H1
 ><P
->&#13;		</P
+>&#13;			At runtime strange things may happen, they may influence system, for
+			example disable some parts, breaks some processes.
+		</P
+><P
+>&#13;			During implementation it's important to keep in mind that
+			awkward situations may happen, it's good to try to protect system
+			from them - error handling is very important.
+		</P
+><P
+>&#13;			Ignoring returned values or exception is usually a bad thing.
+			They all should be handled in way that will provide valueable
+			traceback (written in logs) and a message to user (empty page
+			is generally a wrong idea ;-).		
+		</P
+><P
+>&#13;			 Remember that this is a web
+			application so you may not be able to cooperate with
+			client that saw the error - try to write everything that could
+			be useful in log.
+		</P
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"
@@ -98,7 +121,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="index.html"
+HREF="future.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -116,7 +139,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="intro.html"
+HREF="strategies.database.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
@@ -126,17 +149,21 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Incredible Hosting System</TD
+>Future plans</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="devs.html"
+ACCESSKEY="U"
+>Up</A
+></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Introduction</TD
+>Database</TD
 ></TR
 ></TABLE
 ></DIV

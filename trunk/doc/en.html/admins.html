@@ -2,7 +2,7 @@
 <HTML
 ><HEAD
 ><TITLE
->Podrêcznik administratora</TITLE
+>Administrators guide</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
@@ -10,16 +10,16 @@ REL="HOME"
 TITLE="Incredible Hosting System"
 HREF="index.html"><LINK
 REL="PREVIOUS"
-TITLE="Wprowadzenie do systemu"
+TITLE="Overview of the system"
 HREF="overview.html"><LINK
 REL="NEXT"
-TITLE="Konfiguracja"
+TITLE="Configuration"
 HREF="admins.conf.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-02-18T08:47:04"><META
+CONTENT="2006-02-18T08:48:04"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -51,7 +51,7 @@ VALIGN="bottom"
 ><A
 HREF="overview.html"
 ACCESSKEY="P"
->Poprzedni</A
+>Prev</A
 ></TD
 ><TD
 WIDTH="80%"
@@ -65,7 +65,7 @@ VALIGN="bottom"
 ><A
 HREF="admins.conf.html"
 ACCESSKEY="N"
->Nast&#281;pny</A
+>Next</A
 ></TD
 ></TR
 ></TABLE
@@ -78,52 +78,52 @@ CLASS="chapter"
 ><A
 NAME="admins"
 ></A
->Rozdzia&#322; 3. Podrêcznik administratora</H1
+>Chapter 3. Administrators guide</H1
 ><DIV
 CLASS="TOC"
 ><DL
 ><DT
 ><B
->Spis tre&#347;ci</B
+>Table of Contents</B
 ></DT
 ><DT
 >3.1. <A
 HREF="admins.html#admins.install"
->Instalacja</A
+>Installation</A
 ></DT
 ><DD
 ><DL
 ><DT
 >3.1.1. <A
 HREF="admins.html#admins.install.download"
->¦ci±ganie</A
+>Downloading</A
 ></DT
 ><DT
 >3.1.2. <A
 HREF="admins.html#admins.install.depends"
->Zale¿no¶ci</A
+>Dependencies</A
 ></DT
 ><DT
 >3.1.3. <A
 HREF="admins.html#admins.install.compilation"
->Kompilacja, tworzenie pakietów</A
+>Compilation, packaging</A
 ></DT
 ><DT
 >3.1.4. <A
 HREF="admins.html#admins.install.j2ee"
->Instalacja na serwerze J2EE</A
+>Deploying on J2EE server</A
 ></DT
 ><DT
 >3.1.5. <A
 HREF="admins.html#admins.install.db"
->Instalacja bazy danych</A
+>Database setup</A
 ></DT
 ></DL
 ></DD
 ><DT
 >3.2. <A
 HREF="admins.conf.html"
->Konfiguracja</A
+>Configuration</A
 ></DT
 ></DL
 ></DIV
@@ -135,7 +135,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="admins.install"
->3.1. Instalacja</A
+>3.1. Installation</A
 ></H1
 ><DIV
 CLASS="section"
@@ -143,28 +143,26 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="admins.install.download"
->3.1.1. ¦ci±ganie</A
+>3.1.1. Downloading</A
 ></H2
 ><P
->&#13;				Warto rozpocz±æ od sprawdzenia 
+>&#13;				It's worth checking
 				<A
 HREF="http://ihs.foo-baz.com"
 TARGET="_top"
->strony projektu</A
+>project's page</A
 >.
 			</P
 ><P
 >&#13;				<A
 HREF="http://sourceforge.net/project/showfiles.php?group_id=134802"
 TARGET="_top"
->Udostêpnione pliki</A
+>Released files</A
 >
-				przechowywane s± na serwerze SourceForge. Sprawd¼ czy nie ma
-				nowych wersji.
+				are kept on SourceForge. Check if there's newer version.
 			</P
 ><P
->&#13;				Mo¿esz równie¿ ¶ci±gn±æ najnowsz± wersjê wprost z repozytorium
-				Subversion znajduj±cego siê pod adresem
+>&#13;				You can also access repository with newest version - 
 				<A
 HREF="http://svn.berlios.de/svnroot/repos/ihs/trunk"
 TARGET="_top"
@@ -179,33 +177,33 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="admins.install.depends"
->3.1.2. Zale¿no¶ci</A
+>3.1.2. Dependencies</A
 ></H2
 ><P
->&#13;				G³ówne zale¿no¶ci:
+>&#13;				Main dependencies:
 				<P
 ></P
 ></P><UL
 ><LI
 ><P
->&#13;							Java Runtime co najmniej w wersji 1.4;
+>&#13;							Java Runtime at least 1.4;
 						</P
 ></LI
 ><LI
 ><P
->&#13;							serwer J2EE, na razie system zosta³ przetestowany
-							tylko z Tomcat 5;
+>&#13;							J2EE application server, at this time system is tested only with
+							Tomcat 5;
 						</P
 ></LI
 ><LI
 ><P
->&#13;							Virtual Qmail w wersji co najmniej 11;
+>&#13;							Virtual Qmail at least 11;
 						</P
 ></LI
 ><LI
 ><P
->&#13;							baza danych Oracle lub PostgreSQL (mo¿e byæ inna
-							ni¿ ta u¿ywana przez Virtual Qmail);
+>&#13;							Oracle or PostgreSQL database (can be different than instance
+							used by Virtual Qmail);
 						</P
 ></LI
 ></UL
@@ -218,12 +216,12 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="admins.install.compilation"
->3.1.3. Kompilacja, tworzenie pakietów</A
+>3.1.3. Compilation, packaging</A
 ></H2
 ><P
->&#13;				Proces kompilacji opisany jest w <A
+>&#13;				Compilation is described in <A
 HREF="policies.html#policies.building"
->Sekcja 4.7.3</A
+>Section 4.7.3</A
 >.
 			</P
 ></DIV
@@ -233,7 +231,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="admins.install.j2ee"
->3.1.4. Instalacja na serwerze J2EE</A
+>3.1.4. Deploying on J2EE server</A
 ></H2
 ><DIV
 CLASS="section"
@@ -244,12 +242,11 @@ NAME="admins.install.j2ee.tomcat"
 >3.1.4.1. Tomcat</A
 ></H3
 ><P
->&#13;					Najprostrz± metod± instalacji jest skopiowanie
-					pliku WAR do katalogu <TT
+>&#13;					The easiest way is to copy WAR
+					to <TT
 CLASS="filename"
 >webapps</TT
->.
-					Po restarcie Tomcat powinien rozpakowaæ aplikacjê.
+> directory in Tomcat installation
 				</P
 ></DIV
 ><DIV
@@ -258,12 +255,11 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="admins.install.j2ee.other"
->3.1.4.2. Inne serwery aplikacji</A
+>3.1.4.2. Other application servers</A
 ></H3
 ><P
->&#13;					Aktualnie nie wspierane s± ¿adne inne serwery aplikacji
-					oprócz Tomcat. W przysz³ych wersjach planowana jest obs³uga
-					innych popularnych serwerów.
+>&#13;					There's no support for other J2EE servers. In future versions there
+					will be support for other popular applications.
 				</P
 ></DIV
 ></DIV
@@ -273,43 +269,42 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="admins.install.db"
->3.1.5. Instalacja bazy danych</A
+>3.1.5. Database setup</A
 ></H2
 ><P
->&#13;				Po zainstalowaniu IHS na serwerze aplikacji ostatnim
-				krokiem jest skonfigurowanie po³±czenia z baz± danych
-				oraz instalacja obiektów w bazie danych.
+>&#13;				After IHS is installed you should setup database link and create object in database that
+				are needed by IHS.
 			</P
 ><P
->&#13;				IHS odwo³uje siê do bazy danych za pomoc± 
-				zasobu jdbc/ihsDB, który wyszukiwany jest w katalogu JNDI.
+>&#13;				IHS uses 
+				jdbc/ihsDB resource as a link to database. Resource is looked up in JNDI directory.
 			</P
 ><P
->&#13;				Konfiguracja JNDI ró¿ni siê miêdzy serwerami. Dla Tomcat
-				przyk³adowe pliki konfiguracyjne (dla Oracle i PostgreSQL)
-				znajduj± siê w katalogu <TT
+>&#13;				JNDI configuration differs betweem servers. Example
+				files for Tomcat are located in 
+				<TT
 CLASS="filename"
 >META-INF</TT
->.
+> directory.
 			</P
 ><P
->&#13;				Nale¿y pamiêtaæ, ¿e sterowniki JDBC nie s± rozprowadzane
-				razem z IHS, nale¿y je zainstalowaæ zgodnie z procedur±
-				odpowiedni± dla danego serwera J2EE. W Tomcat zazwyczaj
-				instalowane s± one w katalogu <TT
+>&#13;				You should remember that JDBC drivers are not distributed with IHS.
+				You must aquire them from other sources. For Tomcat you can usually
+				put them into <TT
 CLASS="filename"
 >common/lib</TT
->.
+> directory.
 			</P
 ><P
->&#13;				Do utworzenia obiektów w bazie danych nale¿y pos³u¿yæ
-				siê skryptami <TT
+>&#13;				Use 
+				<TT
 CLASS="filename"
 >oracle.sql</TT
-> lub <TT
+> or <TT
 CLASS="filename"
 >pgsql.sql</TT
->.
+> scripts to create objects
+				in database.
 			</P
 ></DIV
 ></DIV
@@ -332,7 +327,7 @@ VALIGN="top"
 ><A
 HREF="overview.html"
 ACCESSKEY="P"
->Poprzedni</A
+>Prev</A
 ></TD
 ><TD
 WIDTH="34%"
@@ -341,7 +336,7 @@ VALIGN="top"
 ><A
 HREF="index.html"
 ACCESSKEY="H"
->Spis tre&#347;ci</A
+>Home</A
 ></TD
 ><TD
 WIDTH="33%"
@@ -350,7 +345,7 @@ VALIGN="top"
 ><A
 HREF="admins.conf.html"
 ACCESSKEY="N"
->Nast&#281;pny</A
+>Next</A
 ></TD
 ></TR
 ><TR
@@ -358,7 +353,7 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Wprowadzenie do systemu</TD
+>Overview of the system</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
@@ -368,7 +363,7 @@ VALIGN="top"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Konfiguracja</TD
+>Configuration</TD
 ></TR
 ></TABLE
 ></DIV

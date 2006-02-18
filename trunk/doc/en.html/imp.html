@@ -2,7 +2,7 @@
 <HTML
 ><HEAD
 ><TITLE
->Szczegó³y implementacji IHS</TITLE
+>Implementation details for IHS</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
@@ -10,19 +10,19 @@ REL="HOME"
 TITLE="Incredible Hosting System"
 HREF="index.html"><LINK
 REL="UP"
-TITLE="Podrêcznik programisty"
+TITLE="Developers guide"
 HREF="devs.html"><LINK
 REL="PREVIOUS"
-TITLE="Obowi±zuj±ce wytyczne"
+TITLE="Policies and guidelines"
 HREF="policies.html"><LINK
 REL="NEXT"
-TITLE="Bibliografia"
+TITLE="Bibliography"
 HREF="biblio.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-02-18T08:47:04"><META
+CONTENT="2006-02-18T08:48:04"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -54,13 +54,13 @@ VALIGN="bottom"
 ><A
 HREF="policies.html"
 ACCESSKEY="P"
->Poprzedni</A
+>Prev</A
 ></TD
 ><TD
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
->Rozdzia&#322; 4. Podrêcznik programisty</TD
+>Chapter 4. Developers guide</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
@@ -68,7 +68,7 @@ VALIGN="bottom"
 ><A
 HREF="biblio.html"
 ACCESSKEY="N"
->Nast&#281;pny</A
+>Next</A
 ></TD
 ></TR
 ></TABLE
@@ -81,7 +81,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="imp"
->4.8. Szczegó³y implementacji IHS</A
+>4.8. Implementation details for IHS</A
 ></H1
 ><DIV
 CLASS="section"
@@ -89,7 +89,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="imp.core"
->4.8.1. G³ówna czê¶æ systemu</A
+>4.8.1. Core of the system</A
 ></H2
 ><DIV
 CLASS="figure"
@@ -98,20 +98,20 @@ NAME="figure.imp.com.foo_baz.ihs"
 ></A
 ><P
 ><B
->Rysunek 4-6. Pakiet com.foo_baz.ihs</B
+>Figure 4-6. Package com.foo_baz.ihs</B
 ></P
 ><P
 ><IMG
 SRC="../imgs/PackageOverviewcomfoo_bazihs.png"></P
 ></DIV
 ><P
->&#13;				G³ówna czê¶æ systemu zawarta jest w pakiecie com.foo_baz.ihs,
-				rysunek <A
+>&#13;				Main part of the system resides in com.foo_baz.ihs package,
+				picture <A
 HREF="imp.html#figure.imp.com.foo_baz.ihs"
->Rysunek 4-6</A
-> przedstawia
-				zawarte w tym pakiecie elementy. Poni¿ej znajduje siê krótki
-				opis ka¿dego z nich.
+>Figure 4-6</A
+> 
+				shows elements included in this package. Followin is a short
+				description of each of them:
 			</P
 ><DIV
 CLASS="formalpara"
@@ -119,11 +119,9 @@ CLASS="formalpara"
 ><B
 >Configuration. </B
 >
-					Interfejs, za pomoc± którego mo¿na obs³ugiwaæ konfiguracjê
-					- dodawaæ, aktualizowaæ czy usuwaæ parametry. Domy¶lnie
-					konfiguracja przechowywana jest w bazie danych.
-					Interfejs zawiera tylko podstawowe operacje do
-					przechowywania ³añcuchów znakowych.
+					This is an interface to configuration - it allows to
+					add, update or remove parameters. By default configuration
+					is kept in database. Interface handles only strings.
 				</P
 ></DIV
 ><DIV
@@ -132,9 +130,9 @@ CLASS="formalpara"
 ><B
 >Service. </B
 >
-					Interfejs, który musz± implementowaæ wszystkie
-					wtyczki dla systemu IHS. Za jego pomoc± IHS odwo³uje siê
-					do wtyczek.
+					This interface must be implemented by any plug-ins
+					for IHS. It's used for communication between plug-in
+					and system.
 				</P
 ></DIV
 ><DIV
@@ -143,9 +141,8 @@ CLASS="formalpara"
 ><B
 >MailService. </B
 >
-					Interfejs reprezentuj±cy wtyczkê obs³uguj±ca system
-					pocztowy, zawiera on dodatkowe metody, które s±
-					niezbêdne do poprawnej obs³ugi takiego systemu.
+					Interface representing plug-in handling mail system.
+					It includes some additional methods.
 				</P
 ></DIV
 ><DIV
@@ -154,8 +151,8 @@ CLASS="formalpara"
 ><B
 >Administrators. </B
 >
-					Interfejs reprezentuj±cy wszystkie mo¿liwe operacje,
-					które mo¿na przeprowadzaæ na kontach administratorów.
+					Interface representing service managing administrators's
+					accounts.
 				</P
 ></DIV
 ><DIV
@@ -164,9 +161,8 @@ CLASS="formalpara"
 ><B
 >IncredibleSystemHosting. </B
 >
-					G³ówne j±dro systemu, implementuje interfejs Administrators.
-					Zajmuje siê do tego obs³ug± wtyczek, dostarcza 
-					implementacjê interfejsu Configuration.
+					Core of the system. Implements Administrators interface.
+					Includes code managing plug-ins, implements Configuration.
 				</P
 ></DIV
 ><DIV
@@ -175,7 +171,7 @@ CLASS="formalpara"
 ><B
 >Administrator. </B
 >
-					Reprezentuje informacje przechowywane o administratorach.
+					Represents information stored about administrator.
 				</P
 ></DIV
 ><DIV
@@ -184,8 +180,7 @@ CLASS="formalpara"
 ><B
 >ExtendedAdministrator. </B
 >
-					Administrator wzbogacony o dodatkowe informacje 
-					u¿ywane przez GUI.
+					Administrator extended with some data used by GUI.
 				</P
 ></DIV
 ></DIV
@@ -195,7 +190,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="imp.ui"
->4.8.2. Interejs u¿ytkownika</A
+>4.8.2. User interface</A
 ></H2
 ><DIV
 CLASS="figure"
@@ -204,7 +199,7 @@ NAME="figure.imp.com.foo_baz.ihs.backing"
 ></A
 ><P
 ><B
->Rysunek 4-7. Pakiet com.foo_baz.ihs.backing</B
+>Figure 4-7. Package com.foo_baz.ihs.backing</B
 ></P
 ><P
 ><IMG
@@ -217,7 +212,7 @@ NAME="figure.imp.com.foo_baz.ihs.backing.mailservice"
 ></A
 ><P
 ><B
->Rysunek 4-8. Pakiet com.foo_baz.ihs.backing.mailservice</B
+>Figure 4-8. Package com.foo_baz.ihs.backing.mailservice</B
 ></P
 ><P
 ><IMG
@@ -227,19 +222,17 @@ SRC="../imgs/PackageOverviewcomfoo_bazihsbackingmailservice.png"></P
 >	
 				<A
 HREF="imp.html#figure.imp.com.foo_baz.ihs.backing"
->Rysunek 4-7</A
+>Figure 4-7</A
 > 
-				i <A
+				and <A
 HREF="imp.html#figure.imp.com.foo_baz.ihs.backing.mailservice"
->Rysunek 4-8</A
+>Figure 4-8</A
 > 
-				przedstawiaj± elementy, które po¶rednicz± miêdzy g³ównymi
-				czê¶ciami systemu (np. z pakietów com.foo_baz.ihs i com.foo_baz.ihs.mailservice)
-				a interfejsem u¿ytkownika reprezentowanym przez strony JSF.
-				Elementy te maj± ró¿ny czas ¿ycia, niektóre z nich 
-				tworzone s± dla ka¿dego ¿±dania, inne dla sesji u¿ytkownika.
-				W wiêkszo¶ci wypadków ka¿dej ze stron JSF przypada
-				co najmniej jeden element.
+				include elements that are used as a mediator between core
+				of the system and user interface represented by JSF pages.
+				Elements have different scope, some are created for every
+				request, some for every session. Usually any JSF pages
+				uses one of them.
 			</P
 ></DIV
 ><DIV
@@ -248,11 +241,10 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="imp.plugins"
->4.8.3. Wtyczki</A
+>4.8.3. Plug-ins</A
 ></H2
 ><P
->&#13;				Poni¿ej znajduje siê lista wtyczek instalowanych wraz
-				z IHS.
+>&#13;				Here's list of plug-ins installed with IHS:
 			</P
 ><DIV
 CLASS="section"
@@ -263,21 +255,13 @@ NAME="imp.plugins.v_q"
 >4.8.3.1. VirtualQmailMailService</A
 ></H3
 ><P
->&#13;					Implementacja interfejsu MailService, która oparta
-					jest o system Virtual Qmail. Komunikacja odbywa siê
-					za pomoc± us³ug dostêpnych poprzez CORBA.
+>&#13;					Implements MailService interface. Uses Virtual Qmail
+					as a backend for mail system. Communication is CORBA based.
 				</P
 ><P
->&#13;					Pliki znajduj±ce siê w pakiecie com.foo_baz.ihs.mailservice
-					oraz com.foo_baz.ihs.VirtualQmailMailService odpowiedzialne
-					s± za interakcjê z systemem Virtual Qmail. Pakiet
-					com.foo_baz.ihs.backing.mailservice 
-					po¶redniczy w obs³udze interfejsu u¿ytkownika.
-					Interfejs u¿ytkownika obs³ugiwany jest przez strony
-					JSF znajduj±ce siê w katalogu <TT
-CLASS="filename"
->mailserver</TT
->.
+>&#13;					Files in packages com.foo_baz.ihs.mailservice and
+					com.foo_baz.ihs.VirtualQmailMailService include implementation
+					of this plug-in.
 				</P
 ></DIV
 ></DIV
@@ -300,7 +284,7 @@ VALIGN="top"
 ><A
 HREF="policies.html"
 ACCESSKEY="P"
->Poprzedni</A
+>Prev</A
 ></TD
 ><TD
 WIDTH="34%"
@@ -309,7 +293,7 @@ VALIGN="top"
 ><A
 HREF="index.html"
 ACCESSKEY="H"
->Spis tre&#347;ci</A
+>Home</A
 ></TD
 ><TD
 WIDTH="33%"
@@ -318,7 +302,7 @@ VALIGN="top"
 ><A
 HREF="biblio.html"
 ACCESSKEY="N"
->Nast&#281;pny</A
+>Next</A
 ></TD
 ></TR
 ><TR
@@ -326,7 +310,7 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Obowi±zuj±ce wytyczne</TD
+>Policies and guidelines</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
@@ -334,13 +318,13 @@ VALIGN="top"
 ><A
 HREF="devs.html"
 ACCESSKEY="U"
->Pocz&#261;tek rozdzia&#322;u</A
+>Up</A
 ></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Bibliografia</TD
+>Bibliography</TD
 ></TR
 ></TABLE
 ></DIV

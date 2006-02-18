@@ -425,6 +425,7 @@
 					In first version two different database systems are used, this way it's possible
 					to select the most suitable one. Oracle is a lider in corporate environments. PostgreSQL
 					is a lider of open source databases.
+				</para>
 
 				<para>
 					Both systems are similar in basic functionality - they support views, procedures stored in server,

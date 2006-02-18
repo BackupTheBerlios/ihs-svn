@@ -2,7 +2,7 @@
 <HTML
 ><HEAD
 ><TITLE
->Obowi±zuj±ce wytyczne</TITLE
+>Policies and guidelines</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
@@ -10,19 +10,19 @@ REL="HOME"
 TITLE="Incredible Hosting System"
 HREF="index.html"><LINK
 REL="UP"
-TITLE="Podrêcznik programisty"
+TITLE="Developers guide"
 HREF="devs.html"><LINK
 REL="PREVIOUS"
-TITLE="Architektura systemu"
+TITLE="System architecture"
 HREF="architecture.html"><LINK
 REL="NEXT"
-TITLE="Szczegó³y implementacji IHS"
+TITLE="Implementation details for IHS"
 HREF="imp.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-02-18T08:47:04"><META
+CONTENT="2006-02-18T08:48:04"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -54,13 +54,13 @@ VALIGN="bottom"
 ><A
 HREF="architecture.html"
 ACCESSKEY="P"
->Poprzedni</A
+>Prev</A
 ></TD
 ><TD
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
->Rozdzia&#322; 4. Podrêcznik programisty</TD
+>Chapter 4. Developers guide</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
@@ -68,7 +68,7 @@ VALIGN="bottom"
 ><A
 HREF="imp.html"
 ACCESSKEY="N"
->Nast&#281;pny</A
+>Next</A
 ></TD
 ></TR
 ></TABLE
@@ -81,7 +81,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies"
->4.7. Obowi±zuj±ce wytyczne</A
+>4.7. Policies and guidelines</A
 ></H1
 ><DIV
 CLASS="section"
@@ -89,11 +89,10 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies.software"
->4.7.1. Wykorzystywane oprogramowanie</A
+>4.7.1. Used software</A
 ></H2
 ><P
->&#13;				W czasie prac nad systemem wykorzystywane s± nastêpuj±ce
-				aplikacje:
+>&#13;				Following software is used to develop system:
 				<P
 ></P
 ></P><UL
@@ -133,16 +132,16 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies.tree"
->4.7.2. Organizacja struktury katalogów</A
+>4.7.2. Filesystem structure</A
 ></H2
 ><DIV
 CLASS="formalpara"
 ><P
 ><B
 >./doc. </B
->
-					Katalog, w którym przechowywana jest dokumentacja, oraz
-					pliki wymagane do jej wygenerowania.
+>	
+					Directory including all documentation and files
+					used to generate it.
 				</P
 ></DIV
 ><DIV
@@ -151,8 +150,8 @@ CLASS="formalpara"
 ><B
 >./doc/en.src. </B
 >
-					Pliki ¼ród³owe w formacie DocBook, z których generowana
-					jest angielska wersja dokumentacji.
+					DocBook source files which are used to generate English
+					documentation.
 				</P
 ></DIV
 ><DIV
@@ -161,7 +160,7 @@ CLASS="formalpara"
 ><B
 >./doc/en.rtf. </B
 >
-					Dokumentacja po angielsku w formacie RTF. Generowana automatycznie.
+					Documentation in RTF format. Generated automatically.
 				</P
 ></DIV
 ><DIV
@@ -170,7 +169,7 @@ CLASS="formalpara"
 ><B
 >./doc/en.html. </B
 >
-					Dokumentacja po angielsku w formacie HTML. Generowana automatycznie.
+					Documentation in HTML. Generated automatically.
 				</P
 ></DIV
 ><DIV
@@ -179,7 +178,7 @@ CLASS="formalpara"
 ><B
 >./doc/imgs. </B
 >
-					Wspólne dla wszystkich wersji obrazki.
+					Common graphic files.
 				</P
 ></DIV
 ><DIV
@@ -188,8 +187,8 @@ CLASS="formalpara"
 ><B
 >./doc/pl.src. </B
 >
-					Pliki ¼ród³owe w formacie DocBook, z których generowana
-					jest polska wersja dokumentacji.
+					DocBook source files which are used to generate Polish
+					documentation.
 				</P
 ></DIV
 ><DIV
@@ -198,7 +197,7 @@ CLASS="formalpara"
 ><B
 >./doc/pl.rtf. </B
 >
-					Dokumentacja po polsku w formacie RTF. Generowana automatycznie.
+					Documentation in RTF format. Generated automatically.
 				</P
 ></DIV
 ><DIV
@@ -207,7 +206,7 @@ CLASS="formalpara"
 ><B
 >./doc/pl.html. </B
 >
-					Dokumentacja po polsku w formacie HTML. Generowana automatycznie.
+					Documentation in HTML format. Generated automatically.
 				</P
 ></DIV
 ><DIV
@@ -216,9 +215,9 @@ CLASS="formalpara"
 ><B
 >./src/com/foo_baz/ihs. </B
 >
-					Kod ¼ród³owy zawieraj±cy g³ówn± czê¶æ systemu.
-					Tutaj znajduje siê kod odpowiedzialny za: komunikacjê
-					z Virtual Qmail, obs³ugê bazy danych, itp.
+					Source code of main part of the system.
+					Code responsible for communication with Virtuam Qmail,
+					database handling, etc.
 				</P
 ></DIV
 ><DIV
@@ -227,7 +226,7 @@ CLASS="formalpara"
 ><B
 >./src/com/foo_baz/ihs/mailservice. </B
 >
-					Wrappery dla obiektów u¿ywanych przez Virtual Qmail.
+					Wrappers for some types from Virtual Qmail.
 				</P
 ></DIV
 ><DIV
@@ -236,9 +235,7 @@ CLASS="formalpara"
 ><B
 >./src/com/foo_baz/ihs/backing. </B
 >
-					Backing beans dla g³ównej czê¶ci systemu.
-					Jest to warstwa po¶rednicz±ca miêdzy interfejscem
-					u¿ytkownika a j±drem systemu.
+					Backing beans for main part.
 				</P
 ></DIV
 ><DIV
@@ -247,7 +244,7 @@ CLASS="formalpara"
 ><B
 >./src/com/foo_baz/ihs/backing/mailservice. </B
 >
-					Backing beans dla Virtual Qmail.
+					Backing beans for mail service, at this time for Virtual Qmail.
 				</P
 ></DIV
 ><DIV
@@ -256,8 +253,7 @@ CLASS="formalpara"
 ><B
 >./src/com/foo_baz/v_q. </B
 >
-					Kod generowany automatycznie na podstawie plików IDL
-					dostarczanych przez Virtual Qmail.
+					Code generated from IDL files distributed with Virtual Qmail.
 				</P
 ></DIV
 ><DIV
@@ -266,8 +262,7 @@ CLASS="formalpara"
 ><B
 >./src/com/foo_baz/util. </B
 >
-					Kod ogólnego przeznaczenia, który mo¿e byæ
-					wspó³dzielony z innymi projektami.
+					Utilities. Common code.
 				</P
 ></DIV
 ><DIV
@@ -276,7 +271,7 @@ CLASS="formalpara"
 ><B
 >./src/com/corejsf. </B
 >
-					Kod zaczerpniêty z ksi±¿ki Core JSF.
+					Code taken from GEA-2004.
 				</P
 ></DIV
 ><DIV
@@ -285,8 +280,7 @@ CLASS="formalpara"
 ><B
 >./build. </B
 >
-					Katalog, w którym umieszczane s± pliki wygenerowane 
-					podczas kompilacji.
+					Directory where compiled files are stored.
 				</P
 ></DIV
 ><DIV
@@ -295,8 +289,7 @@ CLASS="formalpara"
 ><B
 >./pkg. </B
 >
-					Katalog zawiera pliki niezbêdne do generowania pakietów
-					dystrybucyjnych.
+					Includes files used to generate distribution packages.
 				</P
 ></DIV
 ><DIV
@@ -305,7 +298,7 @@ CLASS="formalpara"
 ><B
 >./pkg/rpm. </B
 >
-					Pliki potrzebne do wygenerowania pakietów RPM.
+					Files for building RPM packages.
 				</P
 ></DIV
 ><DIV
@@ -314,8 +307,7 @@ CLASS="formalpara"
 ><B
 >./tmp. </B
 >
-					Miejsce na ró¿ne pliki tymczasowe. Nie podlega
-					wersjonowaniu.
+					Temporary files. This directory is not versioned.
 				</P
 ></DIV
 ><DIV
@@ -324,8 +316,8 @@ CLASS="formalpara"
 ><B
 >./WebContent. </B
 >
-					Pliki JSF, pliki graficzne, style CSS, itp.
-					Materia³y serwowane przez serwer J2EE.
+					JSF pages, CSS stylesheets, graphic files.
+					Files server by J2EE.
 				</P
 ></DIV
 ><DIV
@@ -334,8 +326,7 @@ CLASS="formalpara"
 ><B
 >./WebContent/mailservice. </B
 >
-					Interfejs u¿ytkownika obs³uguj±cy backing beans dla
-					Virtual Qmail.
+					User interface for managing mail service.
 				</P
 ></DIV
 ><DIV
@@ -344,7 +335,7 @@ CLASS="formalpara"
 ><B
 >./WebContent/META-INF. </B
 >
-					Pliki konfiguracyjne dla serwera J2EE.
+					Configuration files for J2EE server.
 				</P
 ></DIV
 ><DIV
@@ -353,7 +344,7 @@ CLASS="formalpara"
 ><B
 >./WebContent/WEB-INF. </B
 >
-					Konfiguracja aplikacji J2EE.
+					Application's configuration.
 				</P
 ></DIV
 ><DIV
@@ -362,7 +353,7 @@ CLASS="formalpara"
 ><B
 >./WebContent/WEB-INF/lib. </B
 >
-					Biblioteki niezbêdne do kompilacji.
+					Libraries needed for compilation.
 				</P
 ></DIV
 ></DIV
@@ -372,11 +363,11 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies.building"
->4.7.3. Kompilacja</A
+>4.7.3. Compilation</A
 ></H2
 ><P
->&#13;				Kompilacja jest wyj±tkowo ³atwa, wystarczy w g³ównym katalogu
-				wykonaæ polecenie:
+>&#13;				Building this system is very easy, all you need to do is
+				execute following command in project's root directory:
 			</P
 ><P
 >&#13;</P><PRE
@@ -386,10 +377,10 @@ CLASS="userinput"
 >ant war</KBD
 ></PRE
 ><P>
-				wygeneruje ono w katalog <TT
+				it creates a WAR file in <TT
 CLASS="filename"
 >./build</TT
-> plik WAR.
+>.
 			</P
 ><P
 >&#13;</P><PRE
@@ -399,8 +390,8 @@ CLASS="userinput"
 >ant deploy</KBD
 ></PRE
 ><P>
-				spróbuje zainstalowaæ aplikacjê zgodnie z ustawieniami
-				zawartymie w pliku <TT
+				it tries to install application using configuration
+				written in <TT
 CLASS="filename"
 >build.properties</TT
 >.
@@ -413,7 +404,7 @@ CLASS="userinput"
 >ant deploy-to-dir</KBD
 ></PRE
 ><P>
-				skopiuje pliki do katalogu serwera Tomcat.
+				it copies WAR file to Tomcat's directory.
 			</P
 ><P
 >&#13;</P><PRE
@@ -423,11 +414,11 @@ CLASS="userinput"
 >ant doc</KBD
 ></PRE
 ><P>
-				w katalogu <TT
+				when inside <TT
 CLASS="filename"
 >./doc</TT
->
-				wygeneruje od nowa dokumentacjê.
+> directory it generates
+				documentation.
 			</P
 ></DIV
 ><DIV
@@ -436,10 +427,10 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="policies.packages"
->4.7.4. Tworzenie pakietów</A
+>4.7.4. Creating packges</A
 ></H2
 ><P
->&#13;				Wykonanie polecenia:
+>&#13;				Command:
 </P><PRE
 CLASS="screen"
 ><KBD
@@ -447,7 +438,7 @@ CLASS="userinput"
 >ant pkg-rpm</KBD
 ></PRE
 ><P>
-				wygeneruje pakiet RPM.
+				generates RPM package.
 			</P
 ><P
 >&#13;</P><PRE
@@ -457,12 +448,11 @@ CLASS="userinput"
 >ant pkg-tgz</KBD
 ></PRE
 ><P>
-				wygeneruje spakowane archiwum z kodem.
+				generates compressed tarball with code.
 			</P
 ><P
->&#13;				W przypadku posiadania pakietu TAR/GZ mo¿na bardzo
-				³atwo wygenerowaæ pakiety RPM, wystarczy wydaæ
-				nastêpuj±ce polecenie:
+>&#13;				When you have TAR/GZ you can easily create RPM package,
+				just run:
 </P><PRE
 CLASS="screen"
 ><KBD
@@ -491,7 +481,7 @@ VALIGN="top"
 ><A
 HREF="architecture.html"
 ACCESSKEY="P"
->Poprzedni</A
+>Prev</A
 ></TD
 ><TD
 WIDTH="34%"
@@ -500,7 +490,7 @@ VALIGN="top"
 ><A
 HREF="index.html"
 ACCESSKEY="H"
->Spis tre&#347;ci</A
+>Home</A
 ></TD
 ><TD
 WIDTH="33%"
@@ -509,7 +499,7 @@ VALIGN="top"
 ><A
 HREF="imp.html"
 ACCESSKEY="N"
->Nast&#281;pny</A
+>Next</A
 ></TD
 ></TR
 ><TR
@@ -517,7 +507,7 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Architektura systemu</TD
+>System architecture</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
@@ -525,13 +515,13 @@ VALIGN="top"
 ><A
 HREF="devs.html"
 ACCESSKEY="U"
->Pocz&#261;tek rozdzia&#322;u</A
+>Up</A
 ></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Szczegó³y implementacji IHS</TD
+>Implementation details for IHS</TD
 ></TR
 ></TABLE
 ></DIV

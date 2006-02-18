@@ -1127,184 +1127,169 @@
 		</section>
 
 		<section id="policies.building">
-			<title>Kompilacja</title>
+			<title>Compilation</title>
 
 			<para>
-				Kompilacja jest wyj±tkowo ³atwa, wystarczy w g³ównym katalogu
-				wykonaæ polecenie:
+				Building this system is very easy, all you need to do is
+				execute following command in project's root directory:
 			</para>
 
 			<para>
 <screen><userinput>ant war</userinput></screen>
-				wygeneruje ono w katalog <filename>./build</filename> plik WAR.
+				it creates a WAR file in <filename>./build</filename>.
 			</para>
 
 			<para>
 <screen><userinput>ant deploy</userinput></screen>
-				spróbuje zainstalowaæ aplikacjê zgodnie z ustawieniami
-				zawartymie w pliku <filename>build.properties</filename>.
+				it tries to install application using configuration
+				written in <filename>build.properties</filename>.
 			</para>
 
 			<para>
 <screen><userinput>ant deploy-to-dir</userinput></screen>
-				skopiuje pliki do katalogu serwera Tomcat.
+				it copies WAR file to Tomcat's directory.
 			</para>
 
 			<para>
 <screen><userinput>ant doc</userinput></screen>
-				w katalogu <filename>./doc</filename>
-				wygeneruje od nowa dokumentacjê.
+				when inside <filename>./doc</filename> directory it generates
+				documentation.
 			</para>
 
 		</section>
 
 		<section id="policies.packages">
-			<title>Tworzenie pakietów</title>
+			<title>Creating packges</title>
 			<para>
-				Wykonanie polecenia:
+				Command:
 <screen><userinput>ant pkg-rpm</userinput></screen>
-				wygeneruje pakiet RPM.
+				generates RPM package.
 			</para>
 
 			<para>
 <screen><userinput>ant pkg-tgz</userinput></screen>
-				wygeneruje spakowane archiwum z kodem.
+				generates compressed tarball with code.
 			</para>
 
 			<para>
-				W przypadku posiadania pakietu TAR/GZ mo¿na bardzo
-				³atwo wygenerowaæ pakiety RPM, wystarczy wydaæ
-				nastêpuj±ce polecenie:
+				When you have TAR/GZ you can easily create RPM package,
+				just run:
 <screen><userinput>rpmbuild -tb ihs-*.tar.gz</userinput></screen>
 			</para>
 		</section>
 	</section>
 
 	<section id="imp">
-		<title>Szczegó³y implementacji IHS</title>
+		<title>Implementation details for IHS</title>
 
 		<section id="imp.core">
-			<title>G³ówna czê¶æ systemu</title>
+			<title>Core of the system</title>
 			<figure id="figure.imp.com.foo_baz.ihs">
-				<title>Pakiet com.foo_baz.ihs</title>
+				<title>Package com.foo_baz.ihs</title>
 				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihs.png" format="PNG"/>
 		    </figure>
 	
-	
 			<para>
-				G³ówna czê¶æ systemu zawarta jest w pakiecie com.foo_baz.ihs,
-				rysunek <xref linkend="figure.imp.com.foo_baz.ihs"/> przedstawia
-				zawarte w tym pakiecie elementy. Poni¿ej znajduje siê krótki
-				opis ka¿dego z nich.
+				Main part of the system resides in com.foo_baz.ihs package,
+				picture <xref linkend="figure.imp.com.foo_baz.ihs"/> 
+				shows elements included in this package. Followin is a short
+				description of each of them:
 			</para>
 
 			<formalpara>
 				<title>Configuration</title>
 				<para>
-					Interfejs, za pomoc± którego mo¿na obs³ugiwaæ konfiguracjê
-					- dodawaæ, aktualizowaæ czy usuwaæ parametry. Domy¶lnie
-					konfiguracja przechowywana jest w bazie danych.
-					Interfejs zawiera tylko podstawowe operacje do
-					przechowywania ³añcuchów znakowych.
+					This is an interface to configuration - it allows to
+					add, update or remove parameters. By default configuration
+					is kept in database. Interface handles only strings.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>Service</title>
 				<para>
-					Interfejs, który musz± implementowaæ wszystkie
-					wtyczki dla systemu IHS. Za jego pomoc± IHS odwo³uje siê
-					do wtyczek.
+					This interface must be implemented by any plug-ins
+					for IHS. It's used for communication between plug-in
+					and system.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>MailService</title>
 				<para>
-					Interfejs reprezentuj±cy wtyczkê obs³uguj±ca system
-					pocztowy, zawiera on dodatkowe metody, które s±
-					niezbêdne do poprawnej obs³ugi takiego systemu.
+					Interface representing plug-in handling mail system.
+					It includes some additional methods.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>Administrators</title>
 				<para>
-					Interfejs reprezentuj±cy wszystkie mo¿liwe operacje,
-					które mo¿na przeprowadzaæ na kontach administratorów.
+					Interface representing service managing administrators's
+					accounts.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>IncredibleSystemHosting</title>
 				<para>
-					G³ówne j±dro systemu, implementuje interfejs Administrators.
-					Zajmuje siê do tego obs³ug± wtyczek, dostarcza 
-					implementacjê interfejsu Configuration.
+					Core of the system. Implements Administrators interface.
+					Includes code managing plug-ins, implements Configuration.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>Administrator</title>
 				<para>
-					Reprezentuje informacje przechowywane o administratorach.
+					Represents information stored about administrator.
 				</para>
 			</formalpara>
 			<formalpara>
 				<title>ExtendedAdministrator</title>
 				<para>
-					Administrator wzbogacony o dodatkowe informacje 
-					u¿ywane przez GUI.
+					Administrator extended with some data used by GUI.
 				</para>
 			</formalpara>
 		</section>
 
 		<section id="imp.ui">
-			<title>Interejs u¿ytkownika</title>
+			<title>User interface</title>
 			
 			<figure id="figure.imp.com.foo_baz.ihs.backing">
-				<title>Pakiet com.foo_baz.ihs.backing</title>
+				<title>Package com.foo_baz.ihs.backing</title>
 				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihsbacking.png" format="PNG"/>
 		    </figure>
 	
 			<figure id="figure.imp.com.foo_baz.ihs.backing.mailservice">
-				<title>Pakiet com.foo_baz.ihs.backing.mailservice</title>
+				<title>Package com.foo_baz.ihs.backing.mailservice</title>
 				<graphic fileref="../imgs/PackageOverviewcomfoo_bazihsbackingmailservice.png" format="PNG"/>
 		    </figure>
 	
 			<para>	
 				<xref linkend="figure.imp.com.foo_baz.ihs.backing"/> 
-				i <xref linkend="figure.imp.com.foo_baz.ihs.backing.mailservice"/> 
-				przedstawiaj± elementy, które po¶rednicz± miêdzy g³ównymi
-				czê¶ciami systemu (np. z pakietów com.foo_baz.ihs i com.foo_baz.ihs.mailservice)
-				a interfejsem u¿ytkownika reprezentowanym przez strony JSF.
-				Elementy te maj± ró¿ny czas ¿ycia, niektóre z nich 
-				tworzone s± dla ka¿dego ¿±dania, inne dla sesji u¿ytkownika.
-				W wiêkszo¶ci wypadków ka¿dej ze stron JSF przypada
-				co najmniej jeden element.
+				and <xref linkend="figure.imp.com.foo_baz.ihs.backing.mailservice"/> 
+				include elements that are used as a mediator between core
+				of the system and user interface represented by JSF pages.
+				Elements have different scope, some are created for every
+				request, some for every session. Usually any JSF pages
+				uses one of them.
 			</para>	
 		</section>
 
 		<section id="imp.plugins">
-			<title>Wtyczki</title>
+			<title>Plug-ins</title>
 			
 			<para>
-				Poni¿ej znajduje siê lista wtyczek instalowanych wraz
-				z IHS.
+				Here's list of plug-ins installed with IHS:
 			</para>
 
 			<section id="imp.plugins.v_q">
 				<title>VirtualQmailMailService</title>
 
 				<para>
-					Implementacja interfejsu MailService, która oparta
-					jest o system Virtual Qmail. Komunikacja odbywa siê
-					za pomoc± us³ug dostêpnych poprzez CORBA.
+					Implements MailService interface. Uses Virtual Qmail
+					as a backend for mail system. Communication is CORBA based.
 				</para>
 
 				<para>
-					Pliki znajduj±ce siê w pakiecie com.foo_baz.ihs.mailservice
-					oraz com.foo_baz.ihs.VirtualQmailMailService odpowiedzialne
-					s± za interakcjê z systemem Virtual Qmail. Pakiet
-					com.foo_baz.ihs.backing.mailservice 
-					po¶redniczy w obs³udze interfejsu u¿ytkownika.
-					Interfejs u¿ytkownika obs³ugiwany jest przez strony
-					JSF znajduj±ce siê w katalogu <filename>mailserver</filename>.
+					Files in packages com.foo_baz.ihs.mailservice and
+					com.foo_baz.ihs.VirtualQmailMailService include implementation
+					of this plug-in.
 				</para>
 			</section>
 		</section>

@@ -86,6 +86,12 @@
     <!-- Build entire project -->
     <target name="build" depends="prepare,compile"/>
     <target name="rebuild" depends="clean,prepare,compile"/>
+	<target name="cc">
+		<exec executable="svn">
+			<arg line="up --non-interactive"/>
+		</exec>
+		<antcall target="rebuild"/>
+	</target>
 
     <!-- Create binary distribution -->
     <target name="war" depends="build">

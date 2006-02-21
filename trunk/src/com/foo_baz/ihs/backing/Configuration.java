@@ -30,7 +30,7 @@ public class Configuration {
 		if( val == null || "".equals(val) ) {
 			val = Messages.getString(
 				"com.foo_baz.ihs.configuration", 
-				"ihsDefaultConfig_"+field, null);
+				"ihsDefaultConfiguration_"+field, null);
 		}
 		return val == null ? 0 : Integer.parseInt(val);
 	}

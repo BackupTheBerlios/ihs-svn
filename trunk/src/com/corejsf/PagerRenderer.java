@@ -11,10 +11,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.el.ValueBinding;
 import javax.faces.render.Renderer;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class PagerRenderer extends Renderer {
+   protected Logger logger = Logger.getLogger("com.corejsf");
+   
    public void encodeBegin(FacesContext context, UIComponent component) 
-      throws IOException {   
+      throws IOException {
       String id = component.getClientId(context);
       UIComponent parent = component;
       while (!(parent instanceof UIForm)) parent = parent.getParent();
@@ -39,10 +43,16 @@ public class PagerRenderer extends Renderer {
       int pagesize = data.getRows(); 
       if (pagesize <= 0) pagesize = itemcount;
 
-      int pages = itemcount / pagesize;
-      if (itemcount % pagesize != 0) pages++;
+      int pages = 1;
+	  if( pagesize != 0 ) {
+	    pages = itemcount / pagesize;
+        if (itemcount % pagesize != 0) pages++;
+	  }
 
-      int currentPage = first / pagesize;
+      int currentPage = 1;
+	  if( pagesize != 0 ) {
+	    currentPage = first / pagesize;
+	  }
       if (first >= itemcount - pagesize) currentPage = pages - 1;
       int startPage = 0;
       int endPage = pages;

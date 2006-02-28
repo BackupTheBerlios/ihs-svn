@@ -35,14 +35,6 @@ body, th, td {
  font-size: x-small; 
 }
 
-#menu ul {
- list-style: none;
- margin-left: 0;
- padding-left: 15px;
-}
-
-#menu ul li { margin: .5em 0; padding: 0; }
-
 #main {
  margin-left: 170px;
  margin-right: 170px;

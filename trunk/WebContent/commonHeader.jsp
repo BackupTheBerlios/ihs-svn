@@ -10,4 +10,5 @@
 	<f:verbatim><![CDATA[<div id="header"><h1><a href="/ihs/">]]></f:verbatim>
 		<h:outputText value="#{msgs.applicationTitle}"/>
 	<f:verbatim><![CDATA[</a></h1></div>]]></f:verbatim>
+
 </jsp:root>

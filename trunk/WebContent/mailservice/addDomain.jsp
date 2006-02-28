@@ -11,11 +11,10 @@
 	<html xmlns="http://www.w3c.org/1999/xhtml">
 		<head>
 		    <f:loadBundle basename="com.foo_baz.ihs.messages" var="msgs"/>
-		    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2"></meta>
 		    <title>
 			    <h:outputText value="#{msgs.applicationTitle}"/>
 			</title>
-			<link rel="stylesheet" href="../web.css" type="text/css" />
+			<![CDATA[<link rel="stylesheet" href="]]><h:outputText value="#{facesContext.externalContext.requestContextPath}"/><![CDATA[/web.css" type="text/css" />]]>
 		</head>
 		<body>
 			<f:subview id="header">

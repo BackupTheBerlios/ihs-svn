@@ -21,7 +21,6 @@
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
 			<to-view-id>/administrators.jsp</to-view-id>
-			<redirect/>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editAdministrator</from-outcome>
@@ -37,7 +36,6 @@
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
 			<to-view-id>/mailservice/domains.jsp</to-view-id>
-			<redirect/>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editDomain</from-outcome>
@@ -57,7 +55,6 @@
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
 			<to-view-id>/mailservice/users.jsp</to-view-id>
-			<redirect/>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editUser</from-outcome>
@@ -78,12 +75,38 @@
 		<managed-bean-class>com.foo_baz.ihs.backing.AddAdministrator</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backing_locale</managed-bean-name>
+		<managed-bean-class>com.foo_baz.util.faces.ChangeLocaleBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>gotoConfiguration</from-outcome>
+			<to-view-id>/configuration.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>gotoAdministrators</from-outcome>
+			<to-view-id>/administrators.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>gotoAddAdministrator</from-outcome>
+			<to-view-id>/addAdministrator.jsp</to-view-id>
+		</navigation-case>
+ 		<navigation-case>
+			<from-outcome>gotoMailServiceDomains</from-outcome>
+			<to-view-id>/mailservice/domains.jsp</to-view-id>
+		</navigation-case>			
+		<navigation-case>		
+			<from-outcome>gotoMailServiceAddDomain</from-outcome>
+			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/addAdministrator.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
 			<to-view-id>/administrators.jsp</to-view-id>
-			<redirect/>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -91,7 +114,6 @@
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
 			<to-view-id>/mailservice/users.jsp</to-view-id>
-			<redirect/>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editDomain</from-outcome>
@@ -103,7 +125,6 @@
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
 			<to-view-id>/mailservice/domains.jsp</to-view-id>
-			<redirect/>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>listUsers</from-outcome>
@@ -112,6 +133,11 @@
 	</navigation-rule>
 	<application>
 		<message-bundle>com.foo_baz.ihs.application</message-bundle>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>pl</supported-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
 	</application>
 	<managed-bean>
 		<managed-bean-name>backing_domains</managed-bean-name>

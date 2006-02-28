@@ -6,27 +6,44 @@
 	xmlns:c="http://java.sun.com/jstl/core">
 	
 	<jsp:directive.page contentType="text/html"/>
-	<f:verbatim><![CDATA[<div id="menu"><ul>]]></f:verbatim>
 	
-	<f:verbatim><![CDATA[<li><a href="/ihs/faces/configuration.jsp">]]></f:verbatim>
-		<h:outputText value="#{msgs.configurationTitle}"/>
-	<f:verbatim><![CDATA[</a></li>]]></f:verbatim>
+	<f:verbatim><![CDATA[<div id="menu">]]></f:verbatim>
+	<h:form id="commonMenu">
+		<h:panelGrid>
+			<h:panelGroup>
+				<h:panelGrid columns="2" id="localeGrid">
+					<h:commandLink immediate="true" action="#{backing_locale.changeLocale}">
+						<h:graphicImage value="/images/i18n/flags/en.png" style="border: 0px"/>
+						<f:param name="localeCode" value="en"/>
+					</h:commandLink>
+					
+					<h:commandLink immediate="true" action="#{backing_locale.changeLocale}">
+						<h:graphicImage value="/images/i18n/flags/pl.png" style="border: 0px"/>
+						<f:param name="localeCode" value="pl"/>
+					</h:commandLink>
+				</h:panelGrid>
+			</h:panelGroup>
+			
+			<h:commandLink immediate="true" action="gotoConfiguration">
+				<h:outputText value="#{msgs.configurationTitle}"/>
+			</h:commandLink>
 
-	<f:verbatim><![CDATA[<li><a href="/ihs/faces/administrators.jsp">]]></f:verbatim>
-		<h:outputText value="#{msgs.administratorsTitle}"/>
-	<f:verbatim><![CDATA[</a></li>]]></f:verbatim>
-	
-	<f:verbatim><![CDATA[<li><a href="/ihs/faces/addAdministrator.jsp">]]></f:verbatim>
-		<h:outputText value="#{msgs.addAdministratorTitle}"/>
-	<f:verbatim><![CDATA[</a></li>]]></f:verbatim>
+			<h:commandLink immediate="true" action="gotoAdministrators">
+				<h:outputText value="#{msgs.administratorsTitle}"/>
+			</h:commandLink>
+
+			<h:commandLink immediate="true" action="gotoAddAdministrator">
+				<h:outputText value="#{msgs.addAdministratorTitle}"/>
+			</h:commandLink>
+					 
+			<h:commandLink immediate="true" action="gotoMailServiceDomains">
+				<h:outputText value="#{msgs.mailServiceDomainsTitle}"/>
+			</h:commandLink>
 		
-	<f:verbatim><![CDATA[<li><a href="/ihs/faces/mailservice/domains.jsp">]]></f:verbatim>
-		<h:outputText value="#{msgs.mailServiceDomainsTitle}"/>
-	<f:verbatim><![CDATA[</a></li>]]></f:verbatim>
-
-	<f:verbatim><![CDATA[<li><a href="/ihs/faces/mailservice/addDomain.jsp">]]></f:verbatim>
-		<h:outputText value="#{msgs.mailServiceAddDomainTitle}"/>
-	<f:verbatim><![CDATA[</a></li>]]></f:verbatim>
-	
-	<f:verbatim><![CDATA[</ul></div>]]></f:verbatim>
+			<h:commandLink immediate="true" action="gotoMailServiceAddDomain">
+				<h:outputText value="#{msgs.mailServiceAddDomainTitle}"/>
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+	<f:verbatim><![CDATA[</div>]]></f:verbatim>
 </jsp:root>

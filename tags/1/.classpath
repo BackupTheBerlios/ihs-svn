@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/common/lib/[servletapi5].jar"/>
+	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/common/lib/[jspapi].jar"/>
+	<classpathentry kind="lib" path="/opt/oracle/jdev10g/jsf-ri/jsf-api.jar"/>
+	<classpathentry kind="output" path="build"/>
+</classpath>

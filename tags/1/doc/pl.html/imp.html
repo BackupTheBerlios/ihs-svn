@@ -1,0 +1,350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Szczegó³y implementacji IHS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Podrêcznik programisty"
+HREF="devs.html"><LINK
+REL="PREVIOUS"
+TITLE="Obowi±zuj±ce wytyczne"
+HREF="policies.html"><LINK
+REL="NEXT"
+TITLE="Bibliografia"
+HREF="biblio.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-02-18T08:47:04"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="policies.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Rozdzia&#322; 4. Podrêcznik programisty</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="biblio.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="imp"
+>4.8. Szczegó³y implementacji IHS</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.core"
+>4.8.1. G³ówna czê¶æ systemu</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.imp.com.foo_baz.ihs"
+></A
+><P
+><B
+>Rysunek 4-6. Pakiet com.foo_baz.ihs</B
+></P
+><P
+><IMG
+SRC="../imgs/PackageOverviewcomfoo_bazihs.png"></P
+></DIV
+><P
+>&#13;				G³ówna czê¶æ systemu zawarta jest w pakiecie com.foo_baz.ihs,
+				rysunek <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs"
+>Rysunek 4-6</A
+> przedstawia
+				zawarte w tym pakiecie elementy. Poni¿ej znajduje siê krótki
+				opis ka¿dego z nich.
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Configuration. </B
+>
+					Interfejs, za pomoc± którego mo¿na obs³ugiwaæ konfiguracjê
+					- dodawaæ, aktualizowaæ czy usuwaæ parametry. Domy¶lnie
+					konfiguracja przechowywana jest w bazie danych.
+					Interfejs zawiera tylko podstawowe operacje do
+					przechowywania ³añcuchów znakowych.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Service. </B
+>
+					Interfejs, który musz± implementowaæ wszystkie
+					wtyczki dla systemu IHS. Za jego pomoc± IHS odwo³uje siê
+					do wtyczek.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>MailService. </B
+>
+					Interfejs reprezentuj±cy wtyczkê obs³uguj±ca system
+					pocztowy, zawiera on dodatkowe metody, które s±
+					niezbêdne do poprawnej obs³ugi takiego systemu.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Administrators. </B
+>
+					Interfejs reprezentuj±cy wszystkie mo¿liwe operacje,
+					które mo¿na przeprowadzaæ na kontach administratorów.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>IncredibleSystemHosting. </B
+>
+					G³ówne j±dro systemu, implementuje interfejs Administrators.
+					Zajmuje siê do tego obs³ug± wtyczek, dostarcza 
+					implementacjê interfejsu Configuration.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Administrator. </B
+>
+					Reprezentuje informacje przechowywane o administratorach.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ExtendedAdministrator. </B
+>
+					Administrator wzbogacony o dodatkowe informacje 
+					u¿ywane przez GUI.
+				</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.ui"
+>4.8.2. Interejs u¿ytkownika</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.imp.com.foo_baz.ihs.backing"
+></A
+><P
+><B
+>Rysunek 4-7. Pakiet com.foo_baz.ihs.backing</B
+></P
+><P
+><IMG
+SRC="../imgs/PackageOverviewcomfoo_bazihsbacking.png"></P
+></DIV
+><DIV
+CLASS="figure"
+><A
+NAME="figure.imp.com.foo_baz.ihs.backing.mailservice"
+></A
+><P
+><B
+>Rysunek 4-8. Pakiet com.foo_baz.ihs.backing.mailservice</B
+></P
+><P
+><IMG
+SRC="../imgs/PackageOverviewcomfoo_bazihsbackingmailservice.png"></P
+></DIV
+><P
+>	
+				<A
+HREF="imp.html#figure.imp.com.foo_baz.ihs.backing"
+>Rysunek 4-7</A
+> 
+				i <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs.backing.mailservice"
+>Rysunek 4-8</A
+> 
+				przedstawiaj± elementy, które po¶rednicz± miêdzy g³ównymi
+				czê¶ciami systemu (np. z pakietów com.foo_baz.ihs i com.foo_baz.ihs.mailservice)
+				a interfejsem u¿ytkownika reprezentowanym przez strony JSF.
+				Elementy te maj± ró¿ny czas ¿ycia, niektóre z nich 
+				tworzone s± dla ka¿dego ¿±dania, inne dla sesji u¿ytkownika.
+				W wiêkszo¶ci wypadków ka¿dej ze stron JSF przypada
+				co najmniej jeden element.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.plugins"
+>4.8.3. Wtyczki</A
+></H2
+><P
+>&#13;				Poni¿ej znajduje siê lista wtyczek instalowanych wraz
+				z IHS.
+			</P
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="imp.plugins.v_q"
+>4.8.3.1. VirtualQmailMailService</A
+></H3
+><P
+>&#13;					Implementacja interfejsu MailService, która oparta
+					jest o system Virtual Qmail. Komunikacja odbywa siê
+					za pomoc± us³ug dostêpnych poprzez CORBA.
+				</P
+><P
+>&#13;					Pliki znajduj±ce siê w pakiecie com.foo_baz.ihs.mailservice
+					oraz com.foo_baz.ihs.VirtualQmailMailService odpowiedzialne
+					s± za interakcjê z systemem Virtual Qmail. Pakiet
+					com.foo_baz.ihs.backing.mailservice 
+					po¶redniczy w obs³udze interfejsu u¿ytkownika.
+					Interfejs u¿ytkownika obs³ugiwany jest przez strony
+					JSF znajduj±ce siê w katalogu <TT
+CLASS="filename"
+>mailserver</TT
+>.
+				</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="policies.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Spis tre&#347;ci</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="biblio.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Obowi±zuj±ce wytyczne</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="devs.html"
+ACCESSKEY="U"
+>Pocz&#261;tek rozdzia&#322;u</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Bibliografia</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

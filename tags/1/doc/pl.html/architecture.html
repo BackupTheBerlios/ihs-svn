@@ -1,0 +1,576 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Architektura systemu</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Podrêcznik programisty"
+HREF="devs.html"><LINK
+REL="PREVIOUS"
+TITLE="Baza danych"
+HREF="strategies.database.html"><LINK
+REL="NEXT"
+TITLE="Obowi±zuj±ce wytyczne"
+HREF="policies.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-02-18T08:47:04"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="strategies.database.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Rozdzia&#322; 4. Podrêcznik programisty</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="policies.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="architecture"
+>4.6. Architektura systemu</A
+></H1
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.overall"
+></A
+><P
+><B
+>Rysunek 4-1. Wysokopoziomowa architektura systemu</B
+></P
+><P
+><IMG
+SRC="../imgs/Overall_architecture.png"></P
+></DIV
+><P
+>	
+			<A
+HREF="architecture.html#figure.architecture.overall"
+>Rysunek 4-1</A
+> przedstawia
+			jeden z najbardziej skomplikowanych przypadków gdy ka¿dy
+			z elementów znajduje siê na innym systemie operacyjnym.
+		</P
+><P
+>&#13;			System umo¿liwia ³atwe przenoszenie us³ug i wykorzystywanie
+			w pe³ni istniej±cej mocy obliczeniowej. W wiêkszo¶ci przypadków
+			jednak wykorzystywana bêdzie architektura zawieraj±ca wszystkie
+			elementy na tym samym serwerze.
+		</P
+><P
+>&#13;			W przysz³o¶ci w miarê rozstastania siê mo¿liwo¶ci IHS i 
+			integrowania go z innymi us³ugami architektura systemu mo¿e
+			zawieraæ znacznie wiêcej elementów.
+		</P
+><P
+>&#13;			Virtual Qmail i IHS komunikuj± siê za pomoc± protoko³u CORBA,
+			bazy danych wykorzystywane s± za pomoc± protoko³u JDBC.
+		</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Virtual Qmail. </B
+>
+				Odpowiedzialny jest za zarz±dzanie systemem pocztowym.
+				System zarz±dza plikami konfiguracyjnymi programu pocztowego, 
+				utrzymuje na dysku odpowiednie struktury danych, w których
+				przechowywana jest poczta u¿ytkowników. Zawiera
+				modu³ autoryzacyjny. Posiada równie¿ mo¿liwo¶æ logowania 
+				czynno¶ci wykonywanych przez u¿ytkowników.
+			</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Virtual Qmail DB. </B
+>
+				Baza danych obs³uguj±ca Virtual Qmail. Zawiera
+				informacje o domenach, u¿ytkownikach, konfiguracji.
+				IHS nie powinien z niej korzystaæ bezpo¶rednio tylko za pomoc± 
+				API udostêpnianego przez V-Q. Jednak¿e mog± istnieæ przypadki
+				gdy tylko bezpo¶redni dostêp pozwoli osi±gn±æ oczekiwan±
+				funkcjonalno¶æ.
+			</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Incredible Hosting System. </B
+>
+				Jest to interfejs WWW umo¿liwiaj±cy administracjê
+				Virtual Qmailem oraz w przysz³o¶ci innym oprogramowaniem. 
+				Dzia³a w ¶rodowisku J2EE. Sk³ada siê ze stron JSP, Servletów
+				oraz statycznych plików.
+			</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Incredible Hosting System DB. </B
+>
+				Baza danych wy³±cznie na us³ugi IHS. Zawiera konfiguracjê
+				oraz inne niezbêdne dane.
+			</P
+></DIV
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.ihsdb"
+></A
+><P
+><B
+>Rysunek 4-2. Architektura bazy IHS</B
+></P
+><P
+><IMG
+SRC="../imgs/IHSDatabaseArchitecture.png"></P
+></DIV
+><P
+>	
+			<A
+HREF="architecture.html#figure.architecture.ihsdb"
+>Rysunek 4-2</A
+> przedstawia
+			sk³adowe bazy danych. Wykorzystywane s± nastêpuj±ce mechanizmy: 
+			tabele, widoki, wbudowane procedury. Po³o¿ony jest szczególny
+			nacisk na uniezale¿nienie od siebie poszczególnych systemów,
+			wiêkszo¶æ operacji na bazie danych wykonywana jest za pomoc±
+			procedur, dane pobierane s± w oparciu o widoki. Takie podej¶cie
+			umo¿liwia optymalizacjê struktury samej bazy danych bez
+			konieczno¶ci modyfikacji elementów korzystaj±cych z niej.
+			Dodatkow± zalet± takiego podej¶cia jest wspó³dzielenie kodu
+			operuj±cego na danych. Wszelkie aplikacje mog± korzystaæ
+			z tych samych procedur, dziêki czemu administracja ca³ym
+			systemem zostaje uproszczona.
+		</P
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="architecture.v_q"
+>4.6.1. Architektura Virtual Qmail</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.v_q"
+></A
+><P
+><B
+>Rysunek 4-3. Architektura Virtual Qmail</B
+></P
+><P
+><IMG
+SRC="../imgs/VirtualQmailArchitecture.png"></P
+></DIV
+><P
+>	
+				<A
+HREF="architecture.html#figure.architecture.v_q"
+>Rysunek 4-3</A
+> przedstawia
+				elementy, które s± niezbêdnie do funkcjonowania IHS, Virtual
+				Qmail jest bardziej z³o¿onym systemem, niektóre elementy
+				zosta³y celowo pominiête. Przedstawione na rysunku procesy
+				dostêpne s± za pomoc± protoko³u CORBA.
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ivq. </B
+>
+					G³ówna czê¶æ systemu. Us³uga udostêpnia takie funkcje
+					jak zarz±dzanie u¿ytkownikami, domenami, konfiguracj±.
+					¯±dania obs³ugiwane przez t± us³ugê wp³ywaj±
+					bezpo¶rednio na funkcjonowanie ca³ego systemu pocztowego.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ilogger. </B
+>
+					Umo¿liwia dostêp do statystyk zapisywanych podczas
+					dzia³ania Virtual Qmail. Za pomoc± tej us³ugi mo¿na
+					pobraæ takie informacje jak ilo¶æ u¿ytkowników,
+					którzy wys³ali pocztê w ci±gu ostatnich 5 minut, lista
+					u¿ytkowników, którzy nie byli wstanie siê zalogowaæ, itp.
+				</P
+></DIV
+><P
+>&#13;				Baza danych u¿ywana przez Virtual Qmail nie bêdzie w tym miejscu
+				opisywana poniewa¿ IHS powinien byæ tworzony w taki
+				sposób aby by³ niezale¿ny od jej struktury. Jak siê pó¼niej
+				oka¿e w niektórych sytuacjach nie bêdzie to mo¿liwe.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="subarch.ihsdb"
+>4.6.2. Baza danych IHS</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.ihsdb.details"
+></A
+><P
+><B
+>Rysunek 4-4. Logiczny model bazy danych IHS</B
+></P
+><P
+><IMG
+SRC="../imgs/IHSDBLogicalmodel.png"></P
+></DIV
+><P
+>	
+				<A
+HREF="architecture.html#figure.architecture.ihsdb.details"
+>Rysunek 4-4</A
+> przedstawia
+				logiczny model bazy danych.
+			</P
+><P
+>&#13;				Przedstawione powy¿ej typy aktualnie zdefiniowane
+				s± nastêpuj±co:
+			</P
+><DIV
+CLASS="table"
+><A
+NAME="tab.architecture.ihsdb.details"
+></A
+><P
+><B
+>Tabela 4-5. Typy danych u¿ywane w bazie IHS</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><THEAD
+><TR
+><TH
+>Typ</TH
+><TH
+>Definicja (dla Oracle)</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>ihs_config_key_type</TD
+><TD
+>varchar2(1024)</TD
+></TR
+><TR
+><TD
+>ihs_config_value_type</TD
+><TD
+>varchar2(1024)</TD
+></TR
+><TR
+><TD
+>ihs_administrator_login_type</TD
+><TD
+>varchar2(512)</TD
+></TR
+><TR
+><TD
+>ihs_administrator_password_type</TD
+><TD
+>varchar2(512)</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_config_set. </B
+>
+					Procedury. Zajmuj± siê aktualizacj± konfiguracji systemu.
+					Nie nale¿y bezpo¶rednio operowaæ na tablicach.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_config_tuple. </B
+>
+					Schemat krotki, która przechowywana jest w tablicy ihs_config.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_config. </B
+>
+					Tablica zawieraj±ca informacje o konfiguracji systemu.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_view_config. </B
+>
+					Widok umo¿liwiaj±cy odczytywanie konfiguracji.
+					Nie nale¿y korzystaæ bezpo¶rednio z tablicy ihs_config.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_administrator_add, ihs_administrator_rm, ihs_administrator_change. </B
+>
+					Procedury. Zarz±dzaj± zmianami listy administratorów.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_administrator_tuple. </B
+>
+					Schemat krotki, która przechowywana jest w tablicy ihs_administrators.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_administrators. </B
+>
+					Tablica zawieraj±ca informacje o administratorach systemu.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_view_administrators. </B
+>
+					Widok umo¿liwiaj±cy odczytywanie listy administratorów.
+					Nie nale¿y korzystaæ bezpo¶rednio z tablicy ihs_administrators.
+				</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="subarch.ihs"
+>4.6.3. Architektura IHS</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.ihs.details"
+></A
+><P
+><B
+>Rysunek 4-5. Architektura IHS</B
+></P
+><P
+><IMG
+SRC="../imgs/IHSArchitecture.png"></P
+></DIV
+><P
+>	
+				<A
+HREF="architecture.html#figure.architecture.ihs.details"
+>Rysunek 4-5</A
+> przedstawia
+				wysokopoziomow± architekturê IHS. Poni¿ej znajduje
+				siê krótki opis poszczególnych elementów.
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Configuration. </B
+>
+					Konfiguracja u¿ywana przez serwer J2EE oraz pliki
+					wykorzystywane przez Java Server Faces.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Static Files. </B
+>
+					Statyczne pliki takie jak t³umaczenia,
+					arkusze stylów CSS, pliki graficzne.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>JSF pages. </B
+>
+					Strony JSF, stanowi± one interfejs u¿ytkownika.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Libraries. </B
+>
+					Wnêtrze systemu. Biblioteki zawieraj± kod
+					komunikuj±cy siê z bazami danych, z systemem Virtual
+					Qmail. Czê¶æ plików tworzona jest na podstawie opisu IDL.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Backing beans. </B
+>
+					Stanowi± warstwê po¶rednicz±c± miêdzy interfejsem
+					u¿ytkownika a bibliotekami. Tutaj znajduj± siê
+					obiekty obs³uguj±ce sesjê u¿ytkownika, itp.
+				</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="strategies.database.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Spis tre&#347;ci</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="policies.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Baza danych</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="devs.html"
+ACCESSKEY="U"
+>Pocz&#261;tek rozdzia&#322;u</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Obowi±zuj±ce wytyczne</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

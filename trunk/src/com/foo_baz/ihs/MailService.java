@@ -56,4 +56,6 @@ public abstract class MailService implements Service {
 	abstract public OperationStatus updateUser( User user, boolean pass, boolean dir ) throws Exception;
 	/// Removes user
 	abstract public OperationStatus removeUser( int dom_id, String user ) throws Exception;
+
+	abstract public OperationStatus getLogs(int i, int j, ArrayList logs) throws Exception;
 }

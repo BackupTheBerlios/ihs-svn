@@ -43,6 +43,10 @@
 			<h:commandLink immediate="true" action="gotoMailServiceAddDomain">
 				<h:outputText value="#{msgs.mailServiceAddDomainTitle}"/>
 			</h:commandLink>
+
+			<h:commandLink immediate="true" action="gotoMailServiceLogs">
+				<h:outputText value="#{msgs.mailServiceLogsTitle}"/>
+			</h:commandLink>
 		</h:panelGrid>
 	</h:form>
 	<f:verbatim><![CDATA[</div>]]></f:verbatim>

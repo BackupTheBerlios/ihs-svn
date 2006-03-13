@@ -109,7 +109,6 @@ public class Administrators {
 			Integer.toString(count) );
 
 		ArrayList admins = (ArrayList) adminsModel.getWrappedData();
-		int ret = 0;
 		
 		IncredibleHostingSystem adminsDB = null;
 		

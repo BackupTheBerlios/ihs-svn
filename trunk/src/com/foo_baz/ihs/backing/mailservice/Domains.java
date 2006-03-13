@@ -119,7 +119,6 @@ public class Domains {
 			Integer.toString(count) );
 
 		ArrayList domains = (ArrayList) domainsModel.getWrappedData();
-		int ret = 0;
 		
 		IncredibleHostingSystem domainsDB = null;
 		try {
@@ -128,7 +127,6 @@ public class Domains {
 			
 			MailService mailService = domainsDB.getMailService();
 			
-			err_code res;
 			boolean partial = false;
 			Iterator domainsIter = domains.iterator();
 			ExtendedDomain curDomain;

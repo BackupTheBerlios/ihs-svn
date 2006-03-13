@@ -108,8 +108,7 @@ public class Users {
 			Integer.toString(count) );
 
 		ArrayList users = (ArrayList) usersModel.getWrappedData();
-		int ret = 0;
-		
+				
 		IncredibleHostingSystem usersDB = null;
 		try {
 			usersDB = new IncredibleHostingSystem();

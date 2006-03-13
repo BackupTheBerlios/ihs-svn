@@ -17,14 +17,18 @@ import org.omg.CORBA.IntHolder;
 import org.omg.CORBA.StringHolder;
 
 import com.foo_baz.ihs.mailservice.Domain;
+import com.foo_baz.ihs.mailservice.LogEntry;
 import com.foo_baz.ihs.mailservice.User;
 import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
 import com.foo_baz.v_q.db_error;
 import com.foo_baz.v_q.except;
+import com.foo_baz.v_q.ilogger;
+import com.foo_baz.v_q.iloggerHelper;
 import com.foo_baz.v_q.ivq;
 import com.foo_baz.v_q.ivqHelper;
 import com.foo_baz.v_q.null_error;
+import com.foo_baz.v_q.iloggerPackage.log_entry_listHolder;
 import com.foo_baz.v_q.ivqPackage.domain_info_listHolder;
 import com.foo_baz.v_q.ivqPackage.err_code;
 import com.foo_baz.v_q.ivqPackage.error;
@@ -71,6 +75,16 @@ public class VirtualQmailMailService extends MailService {
 			this.vqo = ivqHelper.narrow((org.omg.CORBA.Object) ic.lookup("VQ.ivq"));
 		}
 		return this.vqo;
+	}
+	
+	private ilogger logo = null;
+	
+	protected ilogger getVirtualQmailLogger() throws NamingException {
+		if( logo == null ) {
+			Context ic = getNamingContext();
+			this.logo = iloggerHelper.narrow((org.omg.CORBA.Object) ic.lookup("Logger.ilogger"));
+		}
+		return this.logo;
 	}
 	
 	/**
@@ -373,4 +387,36 @@ public class VirtualQmailMailService extends MailService {
 	public OperationStatus removeUser( int dom_id, String user ) throws Exception {
 		return OperationStatus.FAILURE;
 	}
+	
+	/**
+	 * 
+	 */
+	public OperationStatus getLogs( int start, int cnt, ArrayList al ) throws Exception {
+		ilogger log = getVirtualQmailLogger();
+		
+		log_entry_listHolder leList = new log_entry_listHolder();
+		error err;
+		try {
+			err = log.read(start, cnt, leList);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		}
+
+		if( err != null && err.ec == err_code.err_no ) {
+			al.clear();
+			for( int i=0, s = leList.value.length; i<s; ++i ) {
+				al.add(new LogEntry(leList.value[i]));
+			}
+			return OperationStatus.SUCCESS;
+		}
+		return new OperationStatus( OperationStatus.FAILURE, toString(err));
+	}
+
 }

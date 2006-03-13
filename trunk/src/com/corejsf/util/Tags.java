@@ -82,8 +82,6 @@ public class Tags {
          setMethodBinding(component, "action", attributeValue,
                new Class[] {});
       else {
-         FacesContext context = FacesContext.getCurrentInstance();
-         Application app = context.getApplication();
          MethodBinding mb = new ActionMethodBinding(attributeValue);
          component.getAttributes().put("action", mb);         
       }
@@ -151,14 +149,19 @@ public class Tags {
    }   
 
    private static class ActionMethodBinding 
-         extends MethodBinding implements Serializable {      
-      private String result;
-   
-      public ActionMethodBinding(String result) { this.result = result; }      
-      public Object invoke(FacesContext context, Object params[]) {
-         return result;
-      }
-      public String getExpressionString() { return result; }
-      public Class getType(FacesContext context) { return String.class; }
+         extends MethodBinding implements Serializable {
+	   /**
+	    *
+	    */
+	   private static final long serialVersionUID = 4587158208565160426L;
+	   private String result;
+	   
+	   public ActionMethodBinding(String result) { this.result = result; }
+	   public Object invoke(FacesContext context, Object params[]) {
+		   return result;
+	   }
+	   
+	   public String getExpressionString() { return result; }
+	   public Class getType(FacesContext context) { return String.class; }
    }
 }

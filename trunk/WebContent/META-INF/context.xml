@@ -12,7 +12,7 @@
 		</parameter>
 		<parameter>
 			<name>url</name>
-			<value>jdbc:oracle:thin:@localhost:1521:orcl</value>
+			<value>jdbc:oracle:thin:@127.0.0.1:1521:orcl</value>
 		</parameter>
 		<parameter>
 			<name>username</name>

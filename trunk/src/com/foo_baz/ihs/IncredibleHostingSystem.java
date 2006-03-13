@@ -24,7 +24,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 /**
- * @author Pawe³ Niewiadomski
+ * @author Paweï¿½ Niewiadomski
  */
 public class IncredibleHostingSystem
 implements Administrators {
@@ -355,7 +355,6 @@ implements Administrators {
 			public String get( String key ) throws SQLException {
 				PreparedStatement st = null;
 				ResultSet res = null;
-				OperationStatus stat = OperationStatus.SUCCESS;
 				
 				String ret = null;
 				try {

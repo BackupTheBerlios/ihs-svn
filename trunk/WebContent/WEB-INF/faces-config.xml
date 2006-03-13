@@ -93,13 +93,17 @@
 			<from-outcome>gotoAddAdministrator</from-outcome>
 			<to-view-id>/addAdministrator.jsp</to-view-id>
 		</navigation-case>
- 		<navigation-case>
+		<navigation-case>
 			<from-outcome>gotoMailServiceDomains</from-outcome>
 			<to-view-id>/mailservice/domains.jsp</to-view-id>
-		</navigation-case>			
-		<navigation-case>		
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>gotoMailServiceAddDomain</from-outcome>
 			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>gotoMailServiceLogs</from-outcome>
+			<to-view-id>/mailservice/logs.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -164,4 +168,16 @@
 		<managed-bean-class>com.foo_baz.ihs.backing.Configuration</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backing_logs</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.Logs</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<from-view-id>/mailservice/logs.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>reload</from-outcome>
+			<to-view-id>/mailservice/logs.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

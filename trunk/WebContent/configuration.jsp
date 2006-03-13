@@ -56,7 +56,14 @@
 								<f:validateLongRange minimum="5" maximum="1000"/>
 							</h:inputText>
 							<h:message styleClass="error" for="maxDomainsInList"/>
-							
+
+							<h:outputText value="#{msgs.configurationMaxLogsInList}"/>
+							<h:inputText size="25" required="true" id="maxLogsInList"
+								value="#{backing_configuration.maxLogsInList}">
+								<f:validateLongRange minimum="5" maximum="1000"/>
+							</h:inputText>
+							<h:message styleClass="error" for="maxLogsInList"/>
+
 							<h:outputText value="#{msgs.configurationMaxAdministratorsInList}"/>
 							<h:inputText size="25" required="true" id="maxAdministratorsInList"
 								value="#{backing_configuration.maxAdministratorsInList}">

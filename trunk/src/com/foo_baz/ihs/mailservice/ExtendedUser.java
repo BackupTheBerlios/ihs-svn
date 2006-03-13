@@ -12,9 +12,9 @@ public class ExtendedUser extends User {
 	/**
 	 * Creates copy of passed object
 	 */
-	public ExtendedUser( User User ) {
+	public ExtendedUser( User user ) {
 		this();
-		User tmpUser = (User) User.clone();
+		User tmpUser = (User) user.clone();
 		setIdDomain(tmpUser.getIdDomain());
 		setLogin(tmpUser.getLogin());
 		setPassword(tmpUser.getPassword());

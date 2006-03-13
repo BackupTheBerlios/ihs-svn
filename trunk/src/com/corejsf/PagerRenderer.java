@@ -12,7 +12,6 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.el.ValueBinding;
 import javax.faces.render.Renderer;
 import java.util.logging.Logger;
-import java.util.logging.Level;
 
 public class PagerRenderer extends Renderer {
    protected Logger logger = Logger.getLogger("com.corejsf");

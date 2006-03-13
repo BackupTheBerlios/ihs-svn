@@ -108,7 +108,28 @@ public class Configuration {
 		String field = "maxUsersInList";
 		config.put(field, new Integer(val).toString());
 	}
-	
+	/**
+	 * @return Returns the maxUsersInList.
+	 * @throws Exception
+	 */
+	public int getMaxLogsInList() throws Exception {
+		if( ! fromIhs ) readFromIhs();
+		String field = "maxLogsInList"; 
+		String val = (String) config.get(field);
+		if( val == null || "".equals(val) ) {
+			val = Messages.getString(
+				"com.foo_baz.ihs.configuration", 
+				"ihsDefaultConfiguration_"+field, null);
+		}
+		return val == null ? 0 : Integer.parseInt(val);
+	}
+	/**
+	 * @param maxUsersInList The maxUsersInList to set.
+	 */
+	public void setMaxLogsInList(int val) {
+		String field = "maxLogsInList";
+		config.put(field, new Integer(val).toString());
+	}
 	/**
 	 * @throws Exception
 	 * 

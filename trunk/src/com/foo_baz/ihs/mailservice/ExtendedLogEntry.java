@@ -1,8 +1,10 @@
 package com.foo_baz.ihs.mailservice;
 
+import com.foo_baz.util.faces.Messages;
+
 /**
  * This class represents
- * @author Pawe³ Niewiadomski
+ * @author Paweï¿½ Niewiadomski
  */
 public class ExtendedLogEntry extends LogEntry {
 	public ExtendedLogEntry() {
@@ -41,4 +43,14 @@ public class ExtendedLogEntry extends LogEntry {
 		this.selected = selected;
 	}
 	//@}
+	
+	public String getResultAsString() {
+		return Messages.getString("com.foo_baz.ihs.errors", 
+			"virtualQmailLoggerResult_"+Integer.toString(getResult()), null);
+	}
+	
+	public String getServiceAsString() {
+		return Messages.getString("com.foo_baz.ihs.errors", 
+			"virtualQmailLoggerService_"+Integer.toString(getService()), null);
+	}
 }

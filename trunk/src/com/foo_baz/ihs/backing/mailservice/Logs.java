@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 
 import com.foo_baz.ihs.IncredibleHostingSystem;
 import com.foo_baz.ihs.MailService;
 import com.foo_baz.ihs.mailservice.ExtendedLogEntry;
 import com.foo_baz.ihs.mailservice.LogEntry;
 import com.foo_baz.util.OperationStatus;
+import com.foo_baz.util.faces.Messages;
 
 public class Logs {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -19,7 +23,14 @@ public class Logs {
 	/**
 	 * Model representing table
 	 */
-	ListDataModel logsModel;
+	protected ListDataModel logsModel = null;
+	protected SelectItem [] domains = null;
+	protected SelectItem [] services = null;
+	protected SelectItem [] results = null;
+	private String serviceType = "";
+	private String resultType = "";
+	private String domain = "";
+	private String result = "";
 	
 	public DataModel getLogs() throws Exception {
 		IncredibleHostingSystem logsDB = null;
@@ -31,7 +42,13 @@ public class Logs {
 			
 			MailService mailService = logsDB.getMailService();
 			
-			OperationStatus stat = mailService.getLogs(0, 0, logs);
+			// get logs
+			OperationStatus stat = null;
+			if("".equals(getDomain())) { 
+				stat = mailService.getLogs(0, 0, logs);
+			} else {
+				stat = mailService.getLogsByDomain(getDomain(), 0, 0, logs);
+			}
 			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 				logger.info(this.getClass().getName()
 					+".getLogs: Error: "+stat.getDescription());
@@ -41,6 +58,17 @@ public class Logs {
 				
 				for( int i=0; eaIter.hasNext(); ++i ) {
 					ExtendedLogEntry ea = new ExtendedLogEntry((LogEntry)eaIter.next());
+					
+					if( ! "".equals(getServiceType())
+						&& ! getServiceType().equals(new Short(ea.getService()).toString())) {
+						continue;
+					}
+					
+					if( ! "".equals(getResultType())
+						&& ! getResultType().equals(new Short(ea.getResult()).toString())) {
+						continue;
+					}
+					
 					extLogs.add(ea);
 				}
 			}
@@ -50,9 +78,6 @@ public class Logs {
 		logsModel = new ListDataModel(extLogs);
 		return logsModel;
 	}
-	
-	//@{
-	private String result;
 	
 	/**
 	 * @return Returns the result.
@@ -84,8 +109,6 @@ public class Logs {
 		this.idDomain = idDomain;
 	}
 	
-	String domain;
-	
 	/**
 	 * @return Returns the domain.
 	 */
@@ -97,5 +120,195 @@ public class Logs {
 	 */
 	public void setDomain(String domain) {
 		this.domain = domain;
+	}
+	
+	public SelectItem[] getDomains() throws Exception {
+		IncredibleHostingSystem logsDB = null;
+		
+		domains = new SelectItem[1];
+		domains[0] = new SelectItem("", "");
+		
+		try {
+			logsDB = new IncredibleHostingSystem();
+			logsDB.open();
+			
+			MailService mailService = logsDB.getMailService();
+			
+			// get domains
+			ArrayList itemsList = new ArrayList();
+			OperationStatus stat = mailService.getDomainsInLogs(itemsList);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
+				logger.info(this.getClass().getName()
+					+".getDomainsInLogs: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
+			} else {
+				Iterator eaIter = itemsList.iterator();
+				
+				domains = new SelectItem[itemsList.size()+1];
+				domains[0] = new SelectItem("", "");
+				for( int i=1; eaIter.hasNext(); ++i ) {
+					String cur = (String) eaIter.next();
+					domains[i] = new SelectItem(cur, cur);
+				}
+			}
+		} finally {
+			try { logsDB.close(); } catch (Exception e) {};
+		}
+		return domains;
+	}
+	
+	public SelectItem[] getServices() throws Exception {
+		IncredibleHostingSystem logsDB = null;
+		
+		services = new SelectItem[1];
+		services[0] = new SelectItem("", "");
+		
+		try {
+			logsDB = new IncredibleHostingSystem();
+			logsDB.open();
+			
+			MailService mailService = logsDB.getMailService();
+			
+			// get domains
+			ArrayList itemsList = new ArrayList();
+			OperationStatus stat = mailService.getServicesInLogs(itemsList);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
+				logger.info(this.getClass().getName()
+					+".getServicesInLogs: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
+			} else {
+				Iterator eaIter = itemsList.iterator();
+				
+				services = new SelectItem[itemsList.size()+1];
+				services[0] = new SelectItem("", "");
+				for( int i=1; eaIter.hasNext(); ++i ) {
+					String cur = eaIter.next().toString();
+					services[i] = new SelectItem(cur, 
+						Messages.getString("com.foo_baz.ihs.errors", 
+							"virtualQmailLoggerService_"+cur, null ));
+				}
+			}
+		} finally {
+			try { logsDB.close(); } catch (Exception e) {};
+		}
+		return services;
+	}
+	
+	public SelectItem[] getResults() throws Exception {
+		IncredibleHostingSystem logsDB = null;
+		
+		results = new SelectItem[1];
+		results[0] = new SelectItem("", "");
+		
+		try {
+			logsDB = new IncredibleHostingSystem();
+			logsDB.open();
+			
+			MailService mailService = logsDB.getMailService();
+			
+			// get domains
+			ArrayList itemsList = new ArrayList();
+			OperationStatus stat = mailService.getResultsInLogs(itemsList);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
+				logger.info(this.getClass().getName()
+					+".getResultsInLogs: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
+			} else {
+				Iterator eaIter = itemsList.iterator();
+				
+				results = new SelectItem[itemsList.size()+1];
+				results[0] = new SelectItem("", "");
+				for( int i=1; eaIter.hasNext(); ++i ) {
+					String cur = eaIter.next().toString();
+					results[i] = new SelectItem(cur, 
+						Messages.getString("com.foo_baz.ihs.errors", 
+							"virtualQmailLoggerResult_"+cur, null ));
+				}
+			}
+		} finally {
+			try { logsDB.close(); } catch (Exception e) {};
+		}
+		return results;
+	}
+	
+	public String getServiceType() {
+		return serviceType;
+	}
+	
+	public void setServiceType(String val) {
+		if( ! "".equals(val) ) {
+			try {
+				Integer.parseInt(val);
+			} catch (NumberFormatException e) {
+				val = "";
+			}
+		}
+		this.serviceType = val;
+	}
+	
+	/**
+	 * 
+	 */
+	public void serviceTypeChanged( ValueChangeEvent event ) {
+		setServiceType((String)event.getNewValue());
+		FacesContext.getCurrentInstance().renderResponse();
+	}
+	
+	public String getResultType() {
+		return resultType;
+	}
+	
+	public void setResultType(String val) {
+		if( ! "".equals(val) ) {
+			try {
+				Integer.parseInt(val);
+			} catch (NumberFormatException e) {
+				val = "";
+			}
+		}
+		this.resultType = val;
+	}
+	
+	/**
+	 * 
+	 */
+	public void resultTypeChanged( ValueChangeEvent event ) {
+		setResultType((String)event.getNewValue());
+		FacesContext.getCurrentInstance().renderResponse();
+	}
+	
+	/**
+	 * 
+	 */
+	public void domainChanged( ValueChangeEvent event ) {
+		setDomain((String)event.getNewValue());
+		FacesContext.getCurrentInstance().renderResponse();
+	}
+	
+	/**
+	 * 
+	 */
+	public boolean isIpRendered() {
+		return true;
+	}
+	
+	public boolean isMessageRendered() {
+		return true;
+	}
+	
+	public boolean isLoginRendered() {
+		return true;
+	}
+	
+	public boolean isDomainRendered() {
+		return "".equals(getDomain());
+	}
+	
+	public boolean isServiceRendered() {
+		return "".equals(getServiceType());
+	}
+	
+	public boolean isResultRendered() {
+		return "".equals(getResultType());
 	}
 }

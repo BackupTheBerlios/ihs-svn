@@ -29,6 +29,10 @@ import com.foo_baz.v_q.ivq;
 import com.foo_baz.v_q.ivqHelper;
 import com.foo_baz.v_q.null_error;
 import com.foo_baz.v_q.iloggerPackage.log_entry_listHolder;
+import com.foo_baz.v_q.iloggerPackage.result_type_listHolder;
+import com.foo_baz.v_q.iloggerPackage.service_type_listHolder;
+import com.foo_baz.v_q.iloggerPackage.string_list2Holder;
+import com.foo_baz.v_q.iloggerPackage.string_listHolder;
 import com.foo_baz.v_q.ivqPackage.domain_info_listHolder;
 import com.foo_baz.v_q.ivqPackage.err_code;
 import com.foo_baz.v_q.ivqPackage.error;
@@ -419,4 +423,159 @@ public class VirtualQmailMailService extends MailService {
 		return new OperationStatus( OperationStatus.FAILURE, toString(err));
 	}
 
+	/**
+	 * 
+	 */
+	public OperationStatus getLogsByDomain( String dom, int start, int cnt, ArrayList al ) throws Exception {
+		ilogger log = getVirtualQmailLogger();
+		
+		log_entry_listHolder leList = new log_entry_listHolder();
+		error err;
+		try {
+			log.domain_set(dom);
+			err = log.read_by_dom(start, cnt, leList);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		}
+
+		if( err != null && err.ec == err_code.err_no ) {
+			al.clear();
+			for( int i=0, s = leList.value.length; i<s; ++i ) {
+				al.add(new LogEntry(leList.value[i]));
+			}
+			return OperationStatus.SUCCESS;
+		}
+		return new OperationStatus( OperationStatus.FAILURE, toString(err));
+	}
+
+	/**
+	 * @param al list of String[]
+	 */
+	public OperationStatus getLogsBySql( String sql, int start, int cnt, ArrayList al ) throws Exception {
+		ilogger log = getVirtualQmailLogger();
+		
+		string_list2Holder leList = new string_list2Holder();
+		error err;
+		try {
+			err = log.read_by_sql(sql, start, cnt, leList);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		}
+
+		if( err != null && err.ec == err_code.err_no ) {
+			al.clear();
+			for( int i=0, s = leList.value.length; i<s; ++i ) {
+				al.add(leList.value[i]);
+			}
+			return OperationStatus.SUCCESS;
+		}
+		return new OperationStatus( OperationStatus.FAILURE, toString(err));
+	}
+
+	/**
+	 * 
+	 */
+	public OperationStatus getDomainsInLogs( ArrayList al ) throws Exception {
+		ilogger log = getVirtualQmailLogger();
+		
+		string_listHolder leList = new string_listHolder();
+		error err;
+		try {
+			err = log.dom_ls(leList);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		}
+
+		if( err != null && err.ec == err_code.err_no ) {
+			al.clear();
+			for( int i=0, s = leList.value.length; i<s; ++i ) {
+				al.add(leList.value[i]);
+			}
+			return OperationStatus.SUCCESS;
+		}
+		return new OperationStatus( OperationStatus.FAILURE, toString(err));
+	}
+
+	/**
+	 * 
+	 */
+	public OperationStatus getServicesInLogs( ArrayList al ) throws Exception {
+		ilogger log = getVirtualQmailLogger();
+		
+		service_type_listHolder leList = new service_type_listHolder();
+		error err;
+		try {
+			err = log.service_ls(leList);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		}
+
+		if( err != null && err.ec == err_code.err_no ) {
+			al.clear();
+			for( int i=0, s = leList.value.length; i<s; ++i ) {
+				al.add(new Short(leList.value[i]));
+			}
+			return OperationStatus.SUCCESS;
+		}
+		return new OperationStatus( OperationStatus.FAILURE, toString(err));
+	}
+	
+	/**
+	 * 
+	 */
+	public OperationStatus getResultsInLogs( ArrayList al ) throws Exception {
+		ilogger log = getVirtualQmailLogger();
+		
+		result_type_listHolder leList = new result_type_listHolder();
+		error err;
+		try {
+			err = log.result_ls(leList);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		}
+
+		if( err != null && err.ec == err_code.err_no ) {
+			al.clear();
+			for( int i=0, s = leList.value.length; i<s; ++i ) {
+				al.add(new Short(leList.value[i]));
+			}
+			return OperationStatus.SUCCESS;
+		}
+		return new OperationStatus( OperationStatus.FAILURE, toString(err));
+	}
 }

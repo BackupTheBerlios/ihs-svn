@@ -58,4 +58,14 @@ public abstract class MailService implements Service {
 	abstract public OperationStatus removeUser( int dom_id, String user ) throws Exception;
 
 	abstract public OperationStatus getLogs(int i, int j, ArrayList logs) throws Exception;
-}
+	
+	abstract public OperationStatus getLogsByDomain( String dom, int i, int j, ArrayList logs ) throws Exception;
+	
+	abstract public OperationStatus getDomainsInLogs( ArrayList doms ) throws Exception;
+	
+	abstract public OperationStatus getServicesInLogs( ArrayList services ) throws Exception;
+	
+	abstract public OperationStatus getResultsInLogs( ArrayList results ) throws Exception;
+	
+	abstract public OperationStatus getLogsBySql( String sql, int start, int cnt, ArrayList al ) throws Exception;
+ }

@@ -31,6 +31,26 @@
 							<h:outputText value="#{msgs.mailServiceLogsTitle}"/>
 						</h2>
 					</div>
+					<h:panelGrid columns="6">
+						<h:outputText value="#{msgs.mailServiceLogsDomainHeader}"/>
+						<h:selectOneMenu value="#{backing_logs.domain}" onchange="submit()"
+							valueChangeListener="#{backing_logs.domainChanged}">
+							<f:selectItems value="#{backing_logs.domains}"/>
+						</h:selectOneMenu>
+						
+						<h:outputText value="#{msgs.mailServiceLogsServiceHeader}"/>
+						<h:selectOneMenu value="#{backing_logs.serviceType}" onchange="submit()"
+							valueChangeListener="#{backing_logs.serviceTypeChanged}">
+							<f:selectItems value="#{backing_logs.services}"/>
+						</h:selectOneMenu>
+						
+						<h:outputText value="#{msgs.mailServiceLogsResultHeader}"/>
+						<h:selectOneMenu value="#{backing_logs.resultType}" onchange="submit()"
+							valueChangeListener="#{backing_logs.resultTypeChanged}">
+							<f:selectItems value="#{backing_logs.results}"/>
+						</h:selectOneMenu>
+					</h:panelGrid>
+					
 					<h:panelGrid>
 						<!-- result messages -->
 						<h:panelGrid>
@@ -46,17 +66,41 @@
 								</f:facet>
 								<h:outputText value="#{curLog.time}"/>
 							</h:column>
-							<h:column>
+							<h:column rendered="#{backing_logs.domainRendered}">
 								<f:facet name="header">
 									<h:outputText value="#{msgs.mailServiceLogsDomainHeader}"/>
 								</f:facet>
 								<h:outputText value="#{curLog.domain}"/>
 							</h:column>
-							<h:column>
+							<h:column rendered="#{backing_logs.loginRendered}">
 								<f:facet name="header">
 									<h:outputText value="#{msgs.mailServiceLogsLoginHeader}"/>
 								</f:facet>
 								<h:outputText value="#{curLog.login}"/>
+							</h:column>
+							<h:column rendered="#{backing_logs.serviceRendered}">
+								<f:facet name="header">
+									<h:outputText value="#{msgs.mailServiceLogsServiceHeader}"/>
+								</f:facet>
+								<h:outputText value="#{curLog.serviceAsString}"/>
+							</h:column>
+							<h:column rendered="#{backing_logs.resultRendered}">
+								<f:facet name="header">
+									<h:outputText value="#{msgs.mailServiceLogsResultHeader}"/>
+								</f:facet>
+								<h:outputText value="#{curLog.resultAsString}"/>
+							</h:column>
+							<h:column rendered="#{backing_logs.ipRendered}">
+								<f:facet name="header">
+									<h:outputText value="#{msgs.mailServiceLogsIpHeader}"/>
+								</f:facet>
+								<h:outputText value="#{curLog.ip}"/>
+							</h:column>
+							<h:column rendered="#{backing_logs.messageRendered}">
+								<f:facet name="header">
+									<h:outputText value="#{msgs.mailServiceLogsMessageHeader}"/>
+								</f:facet>
+								<h:outputText value="#{curLog.message}"/>
 							</h:column>
 						</h:dataTable>
 						<corejsf:pager dataTableId="logsList" 

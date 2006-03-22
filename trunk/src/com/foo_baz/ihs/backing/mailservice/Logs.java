@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
+import javax.faces.application.Application;
 import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -23,7 +25,7 @@ public class Logs {
 	/**
 	 * Model representing table
 	 */
-	protected ListDataModel logsModel = null;
+	protected ExtendedLogsDataModel logsModel = null;
 	protected SelectItem [] domains = null;
 	protected SelectItem [] services = null;
 	protected SelectItem [] results = null;
@@ -32,10 +34,18 @@ public class Logs {
 	private String domain = "";
 	private String result = "";
 	
-	public DataModel getLogs() throws Exception {
+	public Logs() throws Exception {
 		IncredibleHostingSystem logsDB = null;
 		ArrayList logs = new ArrayList();
 		ArrayList extLogs = new ArrayList();
+		
+		domains = new SelectItem[1];
+		domains[0] = new SelectItem("", "");
+		services = new SelectItem[1];
+		services[0] = new SelectItem("", "");
+		results = new SelectItem[1];
+		results[0] = new SelectItem("", "");
+		
 		try {
 			logsDB = new IncredibleHostingSystem();
 			logsDB.open();
@@ -57,7 +67,7 @@ public class Logs {
 				Iterator eaIter = logs.iterator();
 				
 				for( int i=0; eaIter.hasNext(); ++i ) {
-					ExtendedLogEntry ea = new ExtendedLogEntry((LogEntry)eaIter.next());
+					ExtendedLogEntry ea = new ExtendedLogEntry((LogEntry) eaIter.next());
 					
 					if( ! "".equals(getServiceType())
 						&& ! getServiceType().equals(new Short(ea.getService()).toString())) {
@@ -72,10 +82,75 @@ public class Logs {
 					extLogs.add(ea);
 				}
 			}
+			
+			// get results
+			ArrayList itemsList = new ArrayList();
+			stat = mailService.getResultsInLogs(itemsList);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
+				logger.info(this.getClass().getName()
+					+".getResultsInLogs: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
+			} else {
+				Iterator eaIter = itemsList.iterator();
+				
+				results = new SelectItem[itemsList.size()+1];
+				results[0] = new SelectItem("", "");
+				for( int i=1; eaIter.hasNext(); ++i ) {
+					String cur = eaIter.next().toString();
+					results[i] = new SelectItem(cur, 
+						Messages.getString("com.foo_baz.ihs.errors", 
+							"virtualQmailLoggerResult_"+cur, null ));
+				}
+			}
+			
+			// get domains
+			itemsList = new ArrayList();
+			stat = mailService.getDomainsInLogs(itemsList);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
+				logger.info(this.getClass().getName()
+					+".getDomainsInLogs: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
+			} else {
+				Iterator eaIter = itemsList.iterator();
+				
+				domains = new SelectItem[itemsList.size()+1];
+				domains[0] = new SelectItem("", "");
+				for( int i=1; eaIter.hasNext(); ++i ) {
+					String cur = (String) eaIter.next();
+					domains[i] = new SelectItem(cur, cur);
+				}
+			}
+			
+			// get services
+			itemsList = new ArrayList();
+			stat = mailService.getServicesInLogs(itemsList);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
+				logger.info(this.getClass().getName()
+					+".getServicesInLogs: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
+			} else {
+				Iterator eaIter = itemsList.iterator();
+				
+				services = new SelectItem[itemsList.size()+1];
+				services[0] = new SelectItem("", "");
+				for( int i=1; eaIter.hasNext(); ++i ) {
+					String cur = eaIter.next().toString();
+					services[i] = new SelectItem(cur, 
+						Messages.getString("com.foo_baz.ihs.errors", 
+							"virtualQmailLoggerService_"+cur, null ));
+				}
+			}
 		} finally {
 			try { logsDB.close(); } catch (Exception e) {};
 		}
-		logsModel = new ListDataModel(extLogs);
+		logsModel = new ExtendedLogsDataModel(new ListDataModel(extLogs));
+	}
+	
+	public DataModel getLogs() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{backing_mailService}");
+		((MailServiceSession) binding.getValue(context)).getLogsSorting().sortDataModel(logsModel);
 		return logsModel;
 	}
 	
@@ -122,112 +197,15 @@ public class Logs {
 		this.domain = domain;
 	}
 	
-	public SelectItem[] getDomains() throws Exception {
-		IncredibleHostingSystem logsDB = null;
-		
-		domains = new SelectItem[1];
-		domains[0] = new SelectItem("", "");
-		
-		try {
-			logsDB = new IncredibleHostingSystem();
-			logsDB.open();
-			
-			MailService mailService = logsDB.getMailService();
-			
-			// get domains
-			ArrayList itemsList = new ArrayList();
-			OperationStatus stat = mailService.getDomainsInLogs(itemsList);
-			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
-				logger.info(this.getClass().getName()
-					+".getDomainsInLogs: Error: "+stat.getDescription());
-				this.setResult(stat.getDescription());
-			} else {
-				Iterator eaIter = itemsList.iterator();
-				
-				domains = new SelectItem[itemsList.size()+1];
-				domains[0] = new SelectItem("", "");
-				for( int i=1; eaIter.hasNext(); ++i ) {
-					String cur = (String) eaIter.next();
-					domains[i] = new SelectItem(cur, cur);
-				}
-			}
-		} finally {
-			try { logsDB.close(); } catch (Exception e) {};
-		}
+	public SelectItem[] getDomains() {
 		return domains;
 	}
 	
-	public SelectItem[] getServices() throws Exception {
-		IncredibleHostingSystem logsDB = null;
-		
-		services = new SelectItem[1];
-		services[0] = new SelectItem("", "");
-		
-		try {
-			logsDB = new IncredibleHostingSystem();
-			logsDB.open();
-			
-			MailService mailService = logsDB.getMailService();
-			
-			// get domains
-			ArrayList itemsList = new ArrayList();
-			OperationStatus stat = mailService.getServicesInLogs(itemsList);
-			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
-				logger.info(this.getClass().getName()
-					+".getServicesInLogs: Error: "+stat.getDescription());
-				this.setResult(stat.getDescription());
-			} else {
-				Iterator eaIter = itemsList.iterator();
-				
-				services = new SelectItem[itemsList.size()+1];
-				services[0] = new SelectItem("", "");
-				for( int i=1; eaIter.hasNext(); ++i ) {
-					String cur = eaIter.next().toString();
-					services[i] = new SelectItem(cur, 
-						Messages.getString("com.foo_baz.ihs.errors", 
-							"virtualQmailLoggerService_"+cur, null ));
-				}
-			}
-		} finally {
-			try { logsDB.close(); } catch (Exception e) {};
-		}
+	public SelectItem[] getServices() {
 		return services;
 	}
 	
-	public SelectItem[] getResults() throws Exception {
-		IncredibleHostingSystem logsDB = null;
-		
-		results = new SelectItem[1];
-		results[0] = new SelectItem("", "");
-		
-		try {
-			logsDB = new IncredibleHostingSystem();
-			logsDB.open();
-			
-			MailService mailService = logsDB.getMailService();
-			
-			// get domains
-			ArrayList itemsList = new ArrayList();
-			OperationStatus stat = mailService.getResultsInLogs(itemsList);
-			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
-				logger.info(this.getClass().getName()
-					+".getResultsInLogs: Error: "+stat.getDescription());
-				this.setResult(stat.getDescription());
-			} else {
-				Iterator eaIter = itemsList.iterator();
-				
-				results = new SelectItem[itemsList.size()+1];
-				results[0] = new SelectItem("", "");
-				for( int i=1; eaIter.hasNext(); ++i ) {
-					String cur = eaIter.next().toString();
-					results[i] = new SelectItem(cur, 
-						Messages.getString("com.foo_baz.ihs.errors", 
-							"virtualQmailLoggerResult_"+cur, null ));
-				}
-			}
-		} finally {
-			try { logsDB.close(); } catch (Exception e) {};
-		}
+	public SelectItem[] getResults() {
 		return results;
 	}
 	

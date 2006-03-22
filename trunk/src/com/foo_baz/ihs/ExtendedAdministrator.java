@@ -2,24 +2,21 @@ package com.foo_baz.ihs;
 
 /**
  * This class represents
- * @author Pawe³ Niewiadomski
+ * @author Paweï¿½ Niewiadomski
  */
 public class ExtendedAdministrator extends Administrator {
-	public ExtendedAdministrator() {
-	}
-	
-	/**
-	 * Creates copy of passed object
-	 */
-	public ExtendedAdministrator( Administrator admin ) {
-		this();
-		Administrator tmpAdmin = (Administrator) admin.clone();
-		this.setLogin(tmpAdmin.getLogin());
-		this.setPassword(tmpAdmin.getPassword());
-	}
-	
-	//@{
+	private Administrator wrappedData;	
 	private boolean selected = false;
+	
+	public ExtendedAdministrator() {
+		super();
+		setWrappedData(new Administrator());
+	}
+	
+	public ExtendedAdministrator( Administrator obj ) {
+		super();
+		setWrappedData(obj);
+	}
 		
 	/**
 	 * @return Returns the selected.
@@ -27,31 +24,36 @@ public class ExtendedAdministrator extends Administrator {
 	public boolean isSelected() {
 		return selected;
 	}
+	
 	/**
 	 * @param selected The selected to set.
 	 */
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
-	//@}
-	
-	//@{
-	/**
-	 * Order of this element in the collection
-	 */
-	private int order = -1;
-	
-	/**
-	 * @return Returns the order.
-	 */
-	public int getOrder() {
-		return order;
+
+	public Administrator getWrappedData() {
+		return wrappedData;
 	}
-	/**
-	 * @param order The order to set.
-	 */
-	public void setOrder(int order) {
-		this.order = order;
+
+	public void setWrappedData(Administrator wrappedData) {
+		this.wrappedData = wrappedData;
 	}
-	//@}	
+
+	public String getLogin() {
+		return wrappedData.getLogin();
+	}
+
+	public String getPassword() {
+		return wrappedData.getPassword();
+	}
+
+	public void setLogin(String login) {
+		wrappedData.setLogin(login);
+	}
+
+	public void setPassword(String password) {
+		wrappedData.setPassword(password);
+	}
+
 }

@@ -52,7 +52,9 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.mailServiceUsersLoginHeader}"/>
+									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByLogin}">
+										<h:outputText value="#{msgs.mailServiceUsersLoginHeader}"/>
+									</h:commandLink>
 								</f:facet>
 								<h:commandLink action="#{backing_users.editUser}" value="#{curUser.login}">
 									<f:param name="login" value="#{curUser.login}"/>
@@ -60,25 +62,33 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.mailServiceUsersFlagsHeader}"/>
+									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByFlags}">
+										<h:outputText value="#{msgs.mailServiceUsersFlagsHeader}"/>
+									</h:commandLink>
 								</f:facet>
 								<h:outputText value="#{curUser.flags}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.mailServiceUsersDirectoryHeader}"/>
+									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByDir}">
+										<h:outputText value="#{msgs.mailServiceUsersDirectoryHeader}"/>
+									</h:commandLink>
 								</f:facet>
 								<h:outputText value="#{curUser.dir}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.mailServiceUsersUidHeader}"/>
+									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByUid}">
+										<h:outputText value="#{msgs.mailServiceUsersUidHeader}"/>
+									</h:commandLink>
 								</f:facet>
 								<h:outputText value="#{curUser.uid}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.mailServiceUsersGidHeader}"/>
+									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByGid}">
+										<h:outputText value="#{msgs.mailServiceUsersGidHeader}"/>
+									</h:commandLink>
 								</f:facet>
 								<h:outputText value="#{curUser.gid}"/>
 							</h:column>

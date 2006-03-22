@@ -21,7 +21,6 @@ import com.foo_baz.ihs.mailservice.Domain;
 import com.foo_baz.ihs.mailservice.ExtendedDomain;
 import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
-import com.foo_baz.v_q.ivqPackage.err_code;
 
 public class Domains {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
@@ -30,7 +29,7 @@ public class Domains {
 	/**
 	 * Model representing table
 	 */
-	ListDataModel domainsModel;
+	ExtendedDomainsDataModel domainsModel;
 	
 	public DataModel getDomains() throws Exception {
 		IncredibleHostingSystem domainsDB = null;
@@ -51,28 +50,30 @@ public class Domains {
 				Iterator eaIter = domains.iterator();
 				
 				for( int i=0; eaIter.hasNext(); ++i ) {
-					ExtendedDomain ea = new ExtendedDomain((Domain)eaIter.next());
-					ea.setOrder(i);
+					ExtendedDomain eobj = new ExtendedDomain( (Domain) eaIter.next() );
 				
 					IntHolder cnt = new IntHolder(0);
 					stat = mailService.getNumberOfUsersInDomain(
-						ea.getIdDomain(), cnt);
+						eobj.getIdDomain(), cnt);
 					if( OperationStatus.SUCCESS.equals(stat) ) {
-						ea.setNumberOfUsers(cnt.value);
+						eobj.setNumberOfUsers(cnt.value);
 					}
 					
-					extDomains.add(ea);
+					extDomains.add(eobj);
 				}
 			}
 		} finally {
 			try { domainsDB.close(); } catch (Exception e) {};
 		}
-		domainsModel = new ListDataModel(extDomains);
+		domainsModel = new ExtendedDomainsDataModel(new ListDataModel(extDomains));
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{backing_mailService}");
+		((MailServiceSession) binding.getValue(context)).getDomainsSorting().sortDataModel(domainsModel);
 		return domainsModel;
 	}
 	
 	/**
-	 * 
 	 * @return Number of administrators selected for deletion in domainsModel
 	 */
 	public int getNumberOfDomainsSelectedForDeletion() {

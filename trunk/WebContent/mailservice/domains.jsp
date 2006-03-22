@@ -48,7 +48,11 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.mailServiceDomainsDomainHeader}"/>
+									<h:panelGroup>
+										<h:commandLink actionListener="#{backing_mailService.domainsSorting.sortByDomain}">
+											<h:outputText value="#{msgs.mailServiceDomainsDomainHeader}"/>
+										</h:commandLink>
+									</h:panelGroup>
 								</f:facet>
 								<h:commandLink action="#{backing_domains.editDomain}" value="#{curDomain.domain}">
 									<f:param name="idDomain" value="#{curDomain.idDomain}"/>
@@ -56,7 +60,9 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.mailServiceDomainsUsersHeader}"/>
+									<h:commandLink actionListener="#{backing_mailService.domainsSorting.sortByNumberOfUsers}">
+										<h:outputText value="#{msgs.mailServiceDomainsUsersHeader}"/>
+									</h:commandLink>
 								</f:facet>
 								<h:commandLink action="#{backing_domains.listUsers}">
 									<h:outputText value="#{curDomain.numberOfUsers}"/>
@@ -67,7 +73,7 @@
 						<corejsf:pager dataTableId="domainsList" 
 							showpages="#{backing_configuration.maxPagesInPager}"
 							selectedStyleClass="pagerSelected"
-							styleClass="pager"/>		
+							styleClass="pager"/>
 
 						<h:panelGroup>
 							<h:commandButton value="#{msgs.commonAdd}"

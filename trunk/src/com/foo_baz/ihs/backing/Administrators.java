@@ -26,9 +26,9 @@ public class Administrators {
 	/**
 	 * Model representing table
 	 */
-	ListDataModel adminsModel;
+	AdministratorsDataModel adminsModel;
 	
-	public DataModel getAdministrators() throws Exception {
+	public Administrators() throws Exception {
 		IncredibleHostingSystem adminsDB = null;
 		ArrayList admins = new ArrayList();
 		ArrayList extAdmins = new ArrayList();
@@ -43,9 +43,7 @@ public class Administrators {
 			} else {
 				Iterator eaIter = admins.iterator();
 				for( int i=0; eaIter.hasNext(); ++i ) {
-					ExtendedAdministrator ea = new ExtendedAdministrator((Administrator)eaIter.next());
-					ea.setOrder(i);
-					extAdmins.add(ea);
+					extAdmins.add(new ExtendedAdministrator((Administrator) eaIter.next()));
 				}
 			}
 		} catch (SQLException e) {
@@ -57,7 +55,10 @@ public class Administrators {
 		} finally {
 			try { adminsDB.close(); } catch (Exception e) {};
 		}
-		adminsModel = new ListDataModel(extAdmins);
+		adminsModel = new AdministratorsDataModel(new ListDataModel(extAdmins));
+	}
+	
+	public DataModel getAdministrators() {
 		return adminsModel;
 	}
 	

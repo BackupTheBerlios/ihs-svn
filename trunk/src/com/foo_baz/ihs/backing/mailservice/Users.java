@@ -23,11 +23,10 @@ import com.foo_baz.util.faces.Messages;
 public class Users {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
 
-	//@{
 	/**
 	 * Model representing table
 	 */
-	ListDataModel usersModel;
+	UsersDataModel usersModel;
 	
 	public DataModel getUsers() throws Exception {
 		IncredibleHostingSystem usersDB = null;
@@ -49,14 +48,17 @@ public class Users {
 				Iterator eaIter = users.iterator();
 				
 				for( int i=0; eaIter.hasNext(); ++i ) {
-					ExtendedUser ea = new ExtendedUser((User)eaIter.next());
-					extUsers.add(ea);
+					extUsers.add(new ExtendedUser((User)eaIter.next()));
 				}
 			}
 		} finally {
 			try { usersDB.close(); } catch (Exception e) {};
 		}
-		usersModel = new ListDataModel(extUsers);
+		usersModel = new UsersDataModel(new ListDataModel(extUsers));
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{backing_mailService}");
+		((MailServiceSession) binding.getValue(context)).getUsersSorting().sortDataModel(usersModel);
 		return usersModel;
 	}
 	
@@ -74,9 +76,7 @@ public class Users {
 		}
 		return ret;
 	}
-	//@}
 
-	//@{
 	private String result;
 	
 	/**
@@ -158,7 +158,6 @@ public class Users {
 		}
 		return "";
 	}
-	//@}
 	
 	/**
 	 * 

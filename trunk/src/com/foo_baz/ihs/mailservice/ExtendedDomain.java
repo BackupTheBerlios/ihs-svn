@@ -2,25 +2,22 @@ package com.foo_baz.ihs.mailservice;
 
 /**
  * This class represents
- * @author Pawe³ Niewiadomski
+ * @author Paweï¿½ Niewiadomski
  */
 public class ExtendedDomain extends Domain {
-	public ExtendedDomain() {
-	}
-	
-	/**
-	 * Creates copy of passed object
-	 */
-	public ExtendedDomain( Domain domain ) {
-		this();
-		Domain tmpDomain = (Domain) domain.clone();
-		this.setDomain(tmpDomain.getDomain());
-		this.setIdDomain(tmpDomain.getIdDomain());
-	}
-	
-	//@{
+	private Domain wrappedData;
 	private boolean selected = false;
+	private int numberOfUsers = 0;
+	
+	public ExtendedDomain() {
+		super();
+	}
 		
+	public ExtendedDomain( Domain obj ) {
+		super();
+		setWrappedData(obj);
+	}
+	
 	/**
 	 * @return Returns the selected.
 	 */
@@ -33,30 +30,7 @@ public class ExtendedDomain extends Domain {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
-	//@}
-	
-	//@{
-	/**
-	 * Order of this element in the collection
-	 */
-	private int order = -1;
-	
-	/**
-	 * @return Returns the order.
-	 */
-	public int getOrder() {
-		return order;
-	}
-	/**
-	 * @param order The order to set.
-	 */
-	public void setOrder(int order) {
-		this.order = order;
-	}
-	//@}
-	
-	int numberOfUsers;
-	
+
 	/**
 	 * @return Returns the numberOfUsers.
 	 */
@@ -68,5 +42,33 @@ public class ExtendedDomain extends Domain {
 	 */
 	public void setNumberOfUsers(int numberOfUsers) {
 		this.numberOfUsers = numberOfUsers;
+	}
+	
+	public Domain getWrappedData() {
+		return wrappedData;
+	}
+	public void setWrappedData(Domain wrappedData) {
+		this.wrappedData = wrappedData;
+	}
+
+	public String getDomain() {
+		return wrappedData.getDomain();
+	}
+
+	public int getIdDomain() {
+		return wrappedData.getIdDomain();
+	}
+
+	public void setDomain(String domain) {
+		wrappedData.setDomain(domain);
+	}
+
+	public void setIdDomain(int idDomain) {
+		wrappedData.setIdDomain(idDomain);
+	}
+	public void clear() {
+		setWrappedData(new Domain());
+		setNumberOfUsers(0);
+		setSelected(false);
 	}
 }

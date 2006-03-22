@@ -40,7 +40,7 @@ public class AddDomain extends ExtendedDomain {
 	public void setDomainInput(HtmlInputText domainInput) {
 		this.domainInput = domainInput;
 	}
-	//@{
+
 	public void validateDomain( FacesContext context, 
 			UIComponent component, Object value) throws ValidatorException {
 	
@@ -57,9 +57,7 @@ public class AddDomain extends ExtendedDomain {
 			throw new ValidatorException(message);	
 		}*/
 	}
-	//@}
 	
-	//@{
 	protected String commonAddUpdate( boolean updating ) throws Exception {
 		String ret = "success";
 		
@@ -122,9 +120,6 @@ public class AddDomain extends ExtendedDomain {
 		this.result = addAdministratorResult;
 	}	
 	
-	//@}
-
-	//@{
 	private boolean updating = false;
 	
 	/**
@@ -148,4 +143,5 @@ public class AddDomain extends ExtendedDomain {
 		clear();
 		setUpdating(false);
 		return "cancel";
-	}}
+	}
+}

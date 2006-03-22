@@ -12,14 +12,14 @@
 		<h:panelGrid>
 			<h:panelGroup>
 				<h:panelGrid columns="2" id="localeGrid">
-					<h:commandLink immediate="true" action="#{backing_locale.changeLocale}">
+					<h:commandLink id="en" immediate="true" 
+						actionListener="#{locale.changeLocale}">
 						<h:graphicImage value="/images/i18n/flags/en.png" style="border: 0px"/>
-						<f:param name="localeCode" value="en"/>
 					</h:commandLink>
 					
-					<h:commandLink immediate="true" action="#{backing_locale.changeLocale}">
+					<h:commandLink id="pl" immediate="true" 
+						actionListener="#{locale.changeLocale}">
 						<h:graphicImage value="/images/i18n/flags/pl.png" style="border: 0px"/>
-						<f:param name="localeCode" value="pl"/>
 					</h:commandLink>
 				</h:panelGrid>
 			</h:panelGroup>
@@ -32,7 +32,7 @@
 				<h:outputText value="#{msgs.administratorsTitle}"/>
 			</h:commandLink>
 
-			<h:commandLink immediate="true" action="gotoAddAdministrator">
+			<h:commandLink immediate="true" action="#{backing_administrators.addAdministrator}">
 				<h:outputText value="#{msgs.addAdministratorTitle}"/>
 			</h:commandLink>
 					 
@@ -40,7 +40,7 @@
 				<h:outputText value="#{msgs.mailServiceDomainsTitle}"/>
 			</h:commandLink>
 		
-			<h:commandLink immediate="true" action="gotoMailServiceAddDomain">
+			<h:commandLink immediate="true" action="#{backing_domains.addDomain}">
 				<h:outputText value="#{msgs.mailServiceAddDomainTitle}"/>
 			</h:commandLink>
 

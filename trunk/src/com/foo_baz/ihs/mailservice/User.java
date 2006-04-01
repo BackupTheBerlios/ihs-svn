@@ -2,6 +2,10 @@ package com.foo_baz.ihs.mailservice;
 
 import com.foo_baz.v_q.ivqPackage.user_info;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class User implements Cloneable
 {
 	private user_info ui = null;

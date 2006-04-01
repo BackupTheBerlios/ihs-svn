@@ -1,8 +1,3 @@
-/*
- * Created on 2006-01-04
- * 
- * @author new
- */
 package com.foo_baz.ihs;
 
 import java.sql.SQLException;
@@ -11,7 +6,8 @@ import java.util.Map;
 import com.foo_baz.util.OperationStatus;
 
 /**
- * @author new
+ * @author $Author$
+ * @version $Id$
  */
 public interface Configuration {
 	

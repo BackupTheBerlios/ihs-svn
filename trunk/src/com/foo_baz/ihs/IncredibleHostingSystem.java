@@ -24,7 +24,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 /**
- * @author Pawe� Niewiadomski
+ * @author $Author$
+ * @version $Id$
  */
 public class IncredibleHostingSystem
 implements Administrators {

@@ -7,6 +7,10 @@ import javax.faces.model.DataModelListener;
 
 import com.foo_baz.ihs.mailservice.ExtendedDomain;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class ExtendedDomainsDataModel extends DataModel {
 	private DataModel model;
 	private Row[] rows;

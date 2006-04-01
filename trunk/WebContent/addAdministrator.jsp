@@ -17,12 +17,9 @@
 			<![CDATA[<link rel="stylesheet" href="]]><h:outputText value="#{facesContext.externalContext.requestContextPath}"/><![CDATA[/web.css" type="text/css" />]]>
 		</head>
 		<body>
-			<f:subview id="header">
-				<c:import url="commonHeader.jsp"/>
-			</f:subview>
-			<f:subview id="menu">
-				<c:import url="commonMenu.jsp"/>
-			</f:subview>
+			<c:import url="commonHeader.jsp"/>
+			<c:import url="commonMenu.jsp"/>
+
 			<div id="main">
 				<div id="content">
 					<h2>
@@ -73,9 +70,8 @@
 					</h:panelGrid>
 				</h:form>
 			</div>
-			<f:subview id="footer">
-				<c:import url="commonFooter.jsp"/>
-			</f:subview>
+
+			<c:import url="commonFooter.jsp"/>
 		</body>
 	</html>
 </f:view>

@@ -1,5 +1,9 @@
 package com.foo_baz.ihs;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class Administrator implements Cloneable
 {
 	private String password;

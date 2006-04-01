@@ -1,15 +1,8 @@
-/*
- * Created on 2005-10-30
- * 
- * @author new
- */
 package com.foo_baz.ihs;
 
 /**
- * @author new
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
+ * @author $Author$
+ * @version $Id$
  */
 public interface Service {
 	//@{

@@ -13,6 +13,10 @@ import javax.faces.el.ValueBinding;
 import javax.faces.render.Renderer;
 import java.util.logging.Logger;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class PagerRenderer extends Renderer {
    protected Logger logger = Logger.getLogger("com.corejsf");
    

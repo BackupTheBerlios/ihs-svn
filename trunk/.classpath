@@ -5,5 +5,7 @@
 	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/common/lib/[servletapi5].jar"/>
 	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/common/lib/[jspapi].jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsf-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/server/lib/catalina.jar"/>
+	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/server/lib/[jmxri].jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>

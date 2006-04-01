@@ -8,6 +8,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class Messages {
    public static FacesMessage getMessage(String bundleName, String resourceId,
       Object[] params) {

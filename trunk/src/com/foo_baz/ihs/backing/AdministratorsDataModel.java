@@ -7,6 +7,10 @@ import javax.faces.model.DataModelListener;
 
 import com.foo_baz.ihs.Administrator;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class AdministratorsDataModel extends DataModel {
 	private DataModel model;
 	private Row[] rows;

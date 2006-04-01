@@ -18,12 +18,9 @@
 			<![CDATA[<link rel="stylesheet" href="]]><h:outputText value="#{facesContext.externalContext.requestContextPath}"/><![CDATA[/web.css" type="text/css" />]]>
 		</head>
 		<body>
-			<f:subview id="header">
-				<c:import url="../commonHeader.jsp"/>
-			</f:subview>
-			<f:subview id="menu">
-				<c:import url="../commonMenu.jsp"/>
-			</f:subview>
+			<c:import url="../commonHeader.jsp"/>
+			<c:import url="../commonMenu.jsp"/>
+
 			<div id="main">
 				<div id="content">
 					<h2><h:outputText value="#{msgs.mailServiceDomainsTitle}"/></h2>
@@ -49,9 +46,14 @@
 							<h:column>
 								<f:facet name="header">
 									<h:panelGroup>
-										<h:commandLink actionListener="#{backing_mailService.domainsSorting.sortByDomain}">
+										<h:commandLink 
+											rendered="#{!backing_mailService.domainsSorting.sortedByDomain}"
+											actionListener="#{backing_mailService.domainsSorting.sortByDomain}">
 											<h:outputText value="#{msgs.mailServiceDomainsDomainHeader}"/>
 										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.domainsSorting.sortedByDomain}"
+											value="#{msgs.mailServiceDomainsDomainHeader}"/>
 									</h:panelGroup>
 								</f:facet>
 								<h:commandLink action="#{backing_domains.editDomain}" value="#{curDomain.domain}">
@@ -60,9 +62,16 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.domainsSorting.sortByNumberOfUsers}">
-										<h:outputText value="#{msgs.mailServiceDomainsUsersHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.domainsSorting.sortedByNumberOfUsers}"
+											actionListener="#{backing_mailService.domainsSorting.sortByNumberOfUsers}">
+											<h:outputText value="#{msgs.mailServiceDomainsUsersHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.domainsSorting.sortedByNumberOfUsers}"
+											value="#{msgs.mailServiceDomainsUsersHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:commandLink action="#{backing_domains.listUsers}">
 									<h:outputText value="#{curDomain.numberOfUsers}"/>
@@ -86,9 +95,7 @@
 					</h:panelGrid>
 				</h:form>
 			</div>
-			<f:subview id="footer">
-				<c:import url="../commonFooter.jsp"/>
-			</f:subview>
+			<c:import url="../commonFooter.jsp"/>
 		</body>
 	</html>
 </f:view>

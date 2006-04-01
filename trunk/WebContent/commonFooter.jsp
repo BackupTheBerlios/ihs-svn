@@ -6,7 +6,8 @@
 		xmlns:c="http://java.sun.com/jstl/core">
 					
 	<jsp:directive.page contentType="text/html"/>
-
-	<div id="footer">
-	</div>
+	<f:subview id="footer">
+		<div id="footer">
+		</div>
+	</f:subview>
 </jsp:root>

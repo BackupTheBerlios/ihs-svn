@@ -1,8 +1,8 @@
 package com.foo_baz.ihs.mailservice;
 
 /**
- * This class represents
- * @author Pawe� Niewiadomski
+ * @author $Author$
+ * @version $Id$
  */
 public class ExtendedDomain extends Domain {
 	private Domain wrappedData;

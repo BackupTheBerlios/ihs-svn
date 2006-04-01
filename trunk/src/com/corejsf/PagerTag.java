@@ -3,6 +3,10 @@ package com.corejsf;
 import javax.faces.component.UIComponent;
 import javax.faces.webapp.UIComponentTag;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class PagerTag extends UIComponentTag {
    private String showpages;
    private String dataTableId;

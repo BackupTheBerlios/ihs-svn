@@ -18,12 +18,9 @@
 			<![CDATA[<link rel="stylesheet" href="]]><h:outputText value="#{facesContext.externalContext.requestContextPath}"/><![CDATA[/web.css" type="text/css" />]]>
 		</head>
 		<body>
-			<f:subview id="header">
-				<c:import url="../commonHeader.jsp"/>
-			</f:subview>
-			<f:subview id="menu">
-				<c:import url="../commonMenu.jsp"/>
-			</f:subview>
+			<c:import url="../commonHeader.jsp"/>
+			<c:import url="../commonMenu.jsp"/>
+			
 			<div id="main">
 				<h:form id="users">
 					<div id="content">
@@ -52,9 +49,16 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByLogin}">
-										<h:outputText value="#{msgs.mailServiceUsersLoginHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.usersSorting.sortedByLogin}"
+											actionListener="#{backing_mailService.usersSorting.sortByLogin}">
+											<h:outputText value="#{msgs.mailServiceUsersLoginHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.usersSorting.sortedByLogin}"
+											value="#{msgs.mailServiceUsersLoginHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:commandLink action="#{backing_users.editUser}" value="#{curUser.login}">
 									<f:param name="login" value="#{curUser.login}"/>
@@ -62,33 +66,61 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByFlags}">
-										<h:outputText value="#{msgs.mailServiceUsersFlagsHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.usersSorting.sortedByFlags}"
+											actionListener="#{backing_mailService.usersSorting.sortByFlags}">
+											<h:outputText value="#{msgs.mailServiceUsersFlagsHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.usersSorting.sortedByFlags}"
+											value="#{msgs.mailServiceUsersFlagsHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curUser.flags}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByDir}">
-										<h:outputText value="#{msgs.mailServiceUsersDirectoryHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.usersSorting.sortedByDir}"
+											actionListener="#{backing_mailService.usersSorting.sortByDir}">
+											<h:outputText value="#{msgs.mailServiceUsersDirectoryHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.usersSorting.sortedByDir}"
+											value="#{msgs.mailServiceUsersDirectoryHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curUser.dir}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByUid}">
-										<h:outputText value="#{msgs.mailServiceUsersUidHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.usersSorting.sortedByUid}"
+											actionListener="#{backing_mailService.usersSorting.sortByUid}">
+											<h:outputText value="#{msgs.mailServiceUsersUidHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.usersSorting.sortedByUid}"
+											value="#{msgs.mailServiceUsersUidHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curUser.uid}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.usersSorting.sortByGid}">
-										<h:outputText value="#{msgs.mailServiceUsersGidHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.usersSorting.sortedByGid}"
+											actionListener="#{backing_mailService.usersSorting.sortByGid}">
+											<h:outputText value="#{msgs.mailServiceUsersGidHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.usersSorting.sortedByGid}"
+											value="#{msgs.mailServiceUsersGidHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curUser.gid}"/>
 							</h:column>
@@ -109,9 +141,7 @@
 					</h:panelGrid>
 				</h:form>
 			</div>
-			<f:subview id="footer">
-				<c:import url="../commonFooter.jsp"/>
-			</f:subview>
+			<c:import url="../commonFooter.jsp"/>
 		</body>
 	</html>
 </f:view>

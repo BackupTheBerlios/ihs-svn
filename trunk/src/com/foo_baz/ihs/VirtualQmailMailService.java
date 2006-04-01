@@ -1,8 +1,3 @@
-/*
- * Created on 2005-10-30
- * 
- * @author new
- */
 package com.foo_baz.ihs;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -40,7 +35,8 @@ import com.foo_baz.v_q.ivqPackage.user_info;
 import com.foo_baz.v_q.ivqPackage.user_info_listHolder;
 
 /**
- * @author new
+ * @author $Author$
+ * @version $Id$
  */
 public class VirtualQmailMailService extends MailService {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs.mailservice");

@@ -3,8 +3,8 @@ package com.foo_baz.ihs.mailservice;
 import com.foo_baz.util.faces.Messages;
 
 /**
- * This class represents
- * @author Pawe� Niewiadomski
+ * @author $Author$
+ * @version $Id$
  */
 public class ExtendedLogEntry extends LogEntry {
 	private LogEntry wrappedData;

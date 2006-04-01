@@ -1,14 +1,10 @@
-/*
- * Created on 2005-10-30
- * 
- * @author new
- */
 package com.foo_baz.ihs.mailservice;
 
 import com.foo_baz.v_q.ivqPackage.domain_info;
 
 /**
- * @author new
+ * @author $Author$
+ * @version $Id$
  */
 public class Domain implements Cloneable {
 	private domain_info di = null;

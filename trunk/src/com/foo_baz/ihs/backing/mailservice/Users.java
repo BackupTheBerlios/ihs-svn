@@ -20,6 +20,10 @@ import com.foo_baz.ihs.mailservice.User;
 import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class Users {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
 

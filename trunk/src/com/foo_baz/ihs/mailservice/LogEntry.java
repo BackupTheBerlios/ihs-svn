@@ -2,6 +2,10 @@ package com.foo_baz.ihs.mailservice;
 
 import com.foo_baz.v_q.iloggerPackage.log_entry;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class LogEntry implements Cloneable
 {
 	private log_entry le = null;

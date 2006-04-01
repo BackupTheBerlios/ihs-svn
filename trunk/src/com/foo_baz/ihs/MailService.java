@@ -1,8 +1,3 @@
-/*
- * Created on 2005-10-30
- * 
- * @author new
- */
 package com.foo_baz.ihs;
 
 import java.util.ArrayList;
@@ -14,7 +9,8 @@ import com.foo_baz.ihs.mailservice.User;
 import com.foo_baz.util.OperationStatus;
 
 /**
- * @author new
+ * @author $Author$
+ * @version $Id$
  */
 public abstract class MailService implements Service {
 

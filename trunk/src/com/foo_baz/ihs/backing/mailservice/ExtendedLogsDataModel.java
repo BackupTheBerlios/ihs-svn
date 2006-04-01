@@ -7,6 +7,10 @@ import javax.faces.model.DataModelListener;
 
 import com.foo_baz.ihs.mailservice.ExtendedLogEntry;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class ExtendedLogsDataModel extends DataModel {
 	private DataModel model;
 	private Row[] rows;

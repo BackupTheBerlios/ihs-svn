@@ -18,12 +18,9 @@
 			<![CDATA[<link rel="stylesheet" href="]]><h:outputText value="#{facesContext.externalContext.requestContextPath}"/><![CDATA[/web.css" type="text/css" />]]>
 		</head>
 		<body>
-			<f:subview id="header">
-				<c:import url="../commonHeader.jsp"/>
-			</f:subview>
-			<f:subview id="menu">
-				<c:import url="../commonMenu.jsp"/>
-			</f:subview>
+			<c:import url="../commonHeader.jsp"/>
+			<c:import url="../commonMenu.jsp"/>
+
 			<div id="main">
 				<h:form id="users">
 					<div id="content">
@@ -62,57 +59,106 @@
 							value="#{backing_logs.logs}" styleClass="listing">
 							<h:column>
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.logsSorting.sortByTime}">
-										<h:outputText value="#{msgs.mailServiceLogsTimeHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.logsSorting.sortedByTime}"
+											actionListener="#{backing_mailService.logsSorting.sortByTime}">
+											<h:outputText value="#{msgs.mailServiceLogsTimeHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.logsSorting.sortedByTime}"
+											value="#{msgs.mailServiceLogsTimeHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curLog.time}"/>
 							</h:column>
 							<h:column rendered="#{backing_logs.domainRendered}">
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.logsSorting.sortByDomain}">
-										<h:outputText value="#{msgs.mailServiceLogsDomainHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.logsSorting.sortedByDomain}"
+											actionListener="#{backing_mailService.logsSorting.sortByDomain}">
+											<h:outputText value="#{msgs.mailServiceLogsDomainHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.logsSorting.sortedByDomain}"
+											value="#{msgs.mailServiceLogsDomainHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curLog.domain}"/>
 							</h:column>
 							<h:column rendered="#{backing_logs.loginRendered}">
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.logsSorting.sortByLogin}">
-										<h:outputText value="#{msgs.mailServiceLogsLoginHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.logsSorting.sortedByLogin}"
+											actionListener="#{backing_mailService.logsSorting.sortByLogin}">
+											<h:outputText value="#{msgs.mailServiceLogsLoginHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.logsSorting.sortedByLogin}"
+											value="#{msgs.mailServiceLogsLoginHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curLog.login}"/>
 							</h:column>
 							<h:column rendered="#{backing_logs.serviceRendered}">
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.logsSorting.sortByService}">
-										<h:outputText value="#{msgs.mailServiceLogsServiceHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.logsSorting.sortedByService}"
+											actionListener="#{backing_mailService.logsSorting.sortByService}">
+											<h:outputText value="#{msgs.mailServiceLogsServiceHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.logsSorting.sortedByService}"
+											value="#{msgs.mailServiceLogsServiceHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curLog.serviceAsString}"/>
 							</h:column>
 							<h:column rendered="#{backing_logs.resultRendered}">
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.logsSorting.sortByResult}">
-										<h:outputText value="#{msgs.mailServiceLogsResultHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.logsSorting.sortedByResult}"
+											actionListener="#{backing_mailService.logsSorting.sortByResult}">
+											<h:outputText value="#{msgs.mailServiceLogsResultHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.logsSorting.sortedByResult}"
+											value="#{msgs.mailServiceLogsResultHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curLog.resultAsString}"/>
 							</h:column>
 							<h:column rendered="#{backing_logs.ipRendered}">
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.logsSorting.sortByIp}">
-										<h:outputText value="#{msgs.mailServiceLogsIpHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.logsSorting.sortedByIp}"
+											actionListener="#{backing_mailService.logsSorting.sortByIp}">
+											<h:outputText value="#{msgs.mailServiceLogsIpHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.logsSorting.sortedByIp}"
+											value="#{msgs.mailServiceLogsIpHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curLog.ip}"/>
 							</h:column>
 							<h:column rendered="#{backing_logs.messageRendered}">
 								<f:facet name="header">
-									<h:commandLink actionListener="#{backing_mailService.logsSorting.sortByMessage}">
-										<h:outputText value="#{msgs.mailServiceLogsMessageHeader}"/>
-									</h:commandLink>
+									<h:panelGroup>
+										<h:commandLink 
+											rendered="#{!backing_mailService.logsSorting.sortedByMessage}"
+											actionListener="#{backing_mailService.logsSorting.sortByMessage}">
+											<h:outputText value="#{msgs.mailServiceLogsMessageHeader}"/>
+										</h:commandLink>
+										<h:outputText 
+											rendered="#{backing_mailService.logsSorting.sortedByMessage}"
+											value="#{msgs.mailServiceLogsMessageHeader}"/>
+									</h:panelGroup>
 								</f:facet>
 								<h:outputText value="#{curLog.message}"/>
 							</h:column>
@@ -129,9 +175,7 @@
 					</h:panelGrid>
 				</h:form>
 			</div>
-			<f:subview id="footer">
-				<c:import url="../commonFooter.jsp"/>
-			</f:subview>
+			<c:import url="../commonFooter.jsp"/>
 		</body>
 	</html>
 </f:view>

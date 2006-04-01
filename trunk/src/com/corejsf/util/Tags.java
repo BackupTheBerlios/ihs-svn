@@ -10,6 +10,10 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.webapp.UIComponentTag;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class Tags {
    public static void setString(UIComponent component, String attributeName,
          String attributeValue) {

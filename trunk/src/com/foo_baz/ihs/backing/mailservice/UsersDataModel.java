@@ -7,6 +7,10 @@ import javax.faces.model.DataModelListener;
 
 import com.foo_baz.ihs.mailservice.User;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class UsersDataModel extends DataModel {
 	private DataModel model;
 	private Row[] rows;

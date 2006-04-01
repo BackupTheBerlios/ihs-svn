@@ -1,7 +1,8 @@
 package com.foo_baz.util;
 
 /**
- * 
+ * @author $Author$
+ * @version $Id$
  */
 public class OperationStatus {
 	private final int value;

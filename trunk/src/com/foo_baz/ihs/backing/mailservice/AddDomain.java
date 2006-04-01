@@ -1,8 +1,3 @@
-/*
- * Created on 2005-10-30
- * 
- * @author new
- */
 package com.foo_baz.ihs.backing.mailservice;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -21,7 +16,8 @@ import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
 
 /**
- * @author new
+ * @author $Author$
+ * @version $Id$
  */
 public class AddDomain extends ExtendedDomain {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");

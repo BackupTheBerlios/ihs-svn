@@ -1,5 +1,9 @@
 package com.foo_baz.ihs.backing.mailservice;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public class MailServiceSession {
 	ExtendedDomainsDataModelConfiguration domainsSorting = new ExtendedDomainsDataModelConfiguration();
 	UsersDataModelConfiguration usersSorting = new UsersDataModelConfiguration();

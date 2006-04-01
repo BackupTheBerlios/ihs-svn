@@ -6,9 +6,10 @@
 	xmlns:c="http://java.sun.com/jstl/core">
 	
 	<jsp:directive.page contentType="text/html"/>
-
-	<f:verbatim><![CDATA[<div id="header"><h1><a href="/ihs/">]]></f:verbatim>
-		<h:outputText value="#{msgs.applicationTitle}"/>
-	<f:verbatim><![CDATA[</a></h1></div>]]></f:verbatim>
-
+	
+	<f:subview id="header">
+		<f:verbatim><![CDATA[<div id="header"><h1><a href="/ihs/">]]></f:verbatim>
+			<h:outputText value="#{msgs.applicationTitle}"/>
+		<f:verbatim><![CDATA[</a></h1></div>]]></f:verbatim>
+	</f:subview>
 </jsp:root>

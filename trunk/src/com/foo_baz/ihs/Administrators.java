@@ -2,6 +2,10 @@ package com.foo_baz.ihs;
 
 import com.foo_baz.util.OperationStatus;
 
+/**
+ * @author $Author$
+ * @version $Id$
+ */
 public interface Administrators
 {
   public abstract OperationStatus addAdministrator(com.foo_baz.ihs.Administrator administrator) throws Exception;

@@ -18,7 +18,7 @@
 			<![CDATA[<link rel="stylesheet" href="]]><h:outputText value="#{facesContext.externalContext.requestContextPath}"/><![CDATA[/web.css" type="text/css" />]]>
 		</head>
 		<body>
-			<c:import url="commonHeader.jsp"/>
+			<c:import url="/commonHeader.jsp"/>
 			<f:verbatim><![CDATA[<div id="menu">]]></f:verbatim>
 			<h:form id="commonMenu">
 				<h:panelGrid>
@@ -46,22 +46,24 @@
 				<form method="POST" action="j_security_check">
 					<p><h:outputText value="#{msgs.loginWelcome}"/></p>
 					
-					<h:panelGrid columns="2">
+					<h:panelGrid columns="2" styleClass="editing" rowClasses="odd,even">
 						<h:outputText value="#{msgs.commonLoginLabel}"/>
 						<f:verbatim><input type="text" name="j_username"/></f:verbatim>
 	
 						<h:outputText value="#{msgs.commonPasswordLabel}"/>
 						<f:verbatim><input type="password" name="j_password"/></f:verbatim>
 	
-						<h:panelGroup>
-							<f:verbatim><![CDATA[<input type="submit" value="]]></f:verbatim>
-							<h:outputText value="#{msgs.loginLoginButton}"/>
-							<f:verbatim><![CDATA["/>]]></f:verbatim>
-						</h:panelGroup>
+						<f:facet name="footer">
+							<h:panelGroup>
+								<f:verbatim><![CDATA[<input type="submit" value="]]></f:verbatim>
+								<h:outputText value="#{msgs.loginLoginButton}"/>
+								<f:verbatim><![CDATA["/>]]></f:verbatim>
+							</h:panelGroup>
+						</f:facet>
 					</h:panelGrid>
 				</form>		
 			</div>
-			<c:import url="commonFooter.jsp"/>
+			<c:import url="/commonFooter.jsp"/>
 		</body>
 	</html>
 </f:view>

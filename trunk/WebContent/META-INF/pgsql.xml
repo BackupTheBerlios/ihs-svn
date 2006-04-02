@@ -35,4 +35,14 @@
 			<value>true</value>
 		</parameter>		
 	</ResourceParams>
+	
+	<!-- configure login realm -->
+	<Realm name="IhsUserRealm" className="org.apache.catalina.realm.JDBCRealm"
+		driverName="org.postgresql.Driver"
+		connectionURL="jdbc:postgresql://localhost/ihs"
+		connectionName="ihs"
+		connectionPassword="ihs"
+		userTable="ihs_view_administrators" userNameCol="login" userCredCol="password"
+		userRoleTable="ihs_view_admins_groups" roleNameCol="group_name"/>
+	
 </Context>

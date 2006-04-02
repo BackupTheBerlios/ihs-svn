@@ -18,8 +18,8 @@
 			<![CDATA[<link rel="stylesheet" href="]]><h:outputText value="#{facesContext.externalContext.requestContextPath}"/><![CDATA[/web.css" type="text/css" />]]>
 		</head>
 		<body>
-			<c:import url="../commonHeader.jsp"/>
-			<c:import url="../commonMenu.jsp"/>
+			<c:import url="/commonHeader.jsp"/>
+			<c:import url="/commonMenu.jsp"/>
 
 			<div id="main">
 				<h:form id="users">
@@ -175,7 +175,7 @@
 					</h:panelGrid>
 				</h:form>
 			</div>
-			<c:import url="../commonFooter.jsp"/>
+			<c:import url="/commonFooter.jsp"/>
 		</body>
 	</html>
 </f:view>

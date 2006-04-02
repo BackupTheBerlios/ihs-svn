@@ -23,6 +23,15 @@ create table ihs_administrators ( login varchar2(512) not null check( login<> ''
 alter table ihs_administrators add constraint ihs_administrators_pkey primary key(login);
 create view ihs_view_administrators as select login,password from ihs_administrators;
 
+create table ihs_groups (group_name varchar2(512) not null check( group_name<> ''));
+alter table ihs_groups add constraint ihs_groups_pkey primary key(group_name);
+create view ihs_view_groups as select group_name from ihs_groups;
+insert into ihs_groups values('administrator');
+
+create table ihs_admins_groups(login varchar2(512) references ihs_administrators (login) not null, group_name varchar2(512) references ihs_groups (group_name) );
+alter table ihs_admins_groups add constraint ihs_admins_groups_pkey primary key(login,group_name);
+create view ihs_view_admins_groups as select login,group_name from ihs_admins_groups;
+
 CREATE OR REPLACE FUNCTION ihs_administrator_add
 (a_login IN ihs_administrators.login%TYPE,
 a_pass IN ihs_administrators.password%TYPE) RETURN INTEGER IS
@@ -36,6 +45,8 @@ BEGIN
 	IF cur_login%NOTFOUND = TRUE THEN
 		INSERT INTO ihs_administrators (login,password)
 			VALUES(a_login,a_pass);
+		INSERT INTO ihs_admins_groups (login,group_name)
+			VALUES(a_login,'administrator');
 		ret := 0;
 	ELSE
 		ret := -1;
@@ -70,3 +81,5 @@ BEGIN
 END;
 /
 show errors;
+
+commit;

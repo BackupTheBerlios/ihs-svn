@@ -48,6 +48,10 @@
 				<h:commandLink immediate="true" action="gotoMailServiceLogs">
 					<h:outputText value="#{msgs.mailServiceLogsTitle}"/>
 				</h:commandLink>
+				
+				<h:commandLink immediate="true" action="#{backing_ihs.logout}">
+					<h:outputText value="#{msgs.logoutTitle}"/>
+				</h:commandLink>
 			</h:panelGrid>
 		</h:form>
 		<f:verbatim><![CDATA[</div>]]></f:verbatim>

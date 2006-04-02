@@ -1,3 +1,4 @@
+package com.foo_baz.ihs;
 /**
  * @author $Author$
  * @version $Id$

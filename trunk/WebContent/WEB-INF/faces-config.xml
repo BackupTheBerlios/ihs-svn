@@ -8,56 +8,56 @@
 		</renderer>
 	</render-kit>
 	<navigation-rule>
-		<from-view-id>/administrators.jsp</from-view-id>
+		<from-view-id>/protected/administrators.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>addAdministrator</from-outcome>
-			<to-view-id>/addAdministrator.jsp</to-view-id>
+			<to-view-id>/protected/addAdministrator.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
-			<to-view-id>/administrators.jsp</to-view-id>
+			<to-view-id>/protected/administrators.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editAdministrator</from-outcome>
-			<to-view-id>/addAdministrator.jsp</to-view-id>
+			<to-view-id>/protected/addAdministrator.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/mailservice/domains.jsp</from-view-id>
+		<from-view-id>/protected/mailservice/domains.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>addDomain</from-outcome>
-			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/addDomain.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
-			<to-view-id>/mailservice/domains.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/domains.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editDomain</from-outcome>
-			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/addDomain.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>listUsers</from-outcome>
-			<to-view-id>/mailservice/users.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/users.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/mailservice/users.jsp</from-view-id>
+		<from-view-id>/protected/mailservice/users.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>addUser</from-outcome>
-			<to-view-id>/mailservice/addUser.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/addUser.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
-			<to-view-id>/mailservice/users.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/users.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editUser</from-outcome>
-			<to-view-id>/mailservice/addUser.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/addUser.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editDomain</from-outcome>
-			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/addDomain.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<managed-bean><description>Logic behind administrators.jsp</description>
@@ -78,56 +78,56 @@
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>gotoConfiguration</from-outcome>
-			<to-view-id>/configuration.jsp</to-view-id>
+			<to-view-id>/protected/configuration.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>gotoAdministrators</from-outcome>
-			<to-view-id>/administrators.jsp</to-view-id>
+			<to-view-id>/protected/administrators.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case><from-outcome>addAdministrator</from-outcome>
 			
-			<to-view-id>/addAdministrator.jsp</to-view-id>
+			<to-view-id>/protected/addAdministrator.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>gotoMailServiceDomains</from-outcome>
-			<to-view-id>/mailservice/domains.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/domains.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>addDomain</from-outcome>
-			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/addDomain.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>gotoMailServiceLogs</from-outcome>
-			<to-view-id>/mailservice/logs.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/logs.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/addAdministrator.jsp</from-view-id>
+		<from-view-id>/protected/addAdministrator.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/administrators.jsp</to-view-id>
+			<to-view-id>/protected/administrators.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/mailservice/addUser.jsp</from-view-id>
+		<from-view-id>/protected/mailservice/addUser.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/mailservice/users.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/users.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>editDomain</from-outcome>
-			<to-view-id>/mailservice/addDomain.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/addDomain.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/mailservice/addDomain.jsp</from-view-id>
+		<from-view-id>/protected/mailservice/addDomain.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/mailservice/domains.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/domains.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>listUsers</from-outcome>
-			<to-view-id>/mailservice/users.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/users.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<application>
@@ -169,10 +169,23 @@
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
-		<from-view-id>/mailservice/logs.jsp</from-view-id>
+		<from-view-id>/protected/mailservice/logs.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
-			<to-view-id>/mailservice/logs.jsp</to-view-id>
+			<to-view-id>/protected/mailservice/logs.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-<managed-bean><description>Common logic for mailservice/*.jsp</description><managed-bean-name>backing_mailService</managed-bean-name><managed-bean-class>com.foo_baz.ihs.backing.mailservice.MailServiceSession</managed-bean-class><managed-bean-scope>session</managed-bean-scope></managed-bean></faces-config>
+	<managed-bean>
+		<description>Common logic for mailservice/*.jsp</description>
+		<managed-bean-name>backing_mailService</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.MailServiceSession</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<description>Common logic for *.jsp</description>
+		<managed-bean-name>backing_ihs</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.IncredibleHostingSystemSession</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+</faces-config>
+

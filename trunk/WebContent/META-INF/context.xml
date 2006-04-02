@@ -35,4 +35,14 @@
 			<value>true</value>
 		</parameter>		
 	</ResourceParams>
+
+	<!-- configure login realm -->
+	<Realm name="IhsUserRealm" className="org.apache.catalina.realm.JDBCRealm"
+		driverName="oracle.jdbc.driver.OracleDriver"
+		connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:orcl"
+		connectionName="ihs"
+		connectionPassword="ihs"
+		userTable="ihs_view_administrators" userNameCol="login" userCredCol="password"
+		userRoleTable="ihs_view_admins_groups" roleNameCol="group_name"/>
+
 </Context>

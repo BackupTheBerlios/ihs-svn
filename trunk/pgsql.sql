@@ -20,6 +20,15 @@ create table ihs_administrators ( login text not null check( login<> '' ), passw
 alter table ihs_administrators add constraint ihs_administrators_pkey primary key(login);
 create view ihs_view_administrators as select login,password from ihs_administrators;
 
+create table ihs_groups (group_name text not null check( group_name<> ''));
+alter table ihs_groups add constraint ihs_groups_pkey primary key(group_name);
+create view ihs_view_groups as select group_name from ihs_groups;
+insert into ihs_groups values('administrator');
+
+create table ihs_admins_groups(login text references ihs_administrators (login) not null, group_name text references ihs_groups (group_name) );
+alter table ihs_admins_groups add constraint ihs_admins_groups_pkey primary key(login,group_name);
+create view ihs_view_admins_groups as select login,group_name from ihs_admins_groups;
+
 CREATE OR REPLACE FUNCTION ihs_administrator_add
 (ihs_administrators.login%TYPE, ihs_administrators.password%TYPE) RETURNS INTEGER AS '
 DECLARE
@@ -34,6 +43,8 @@ BEGIN
 	ELSE
 		INSERT INTO ihs_administrators (login,password)
 			VALUES(a_login,a_pass);
+		INSERT INTO ihs_admins_groups (login,group_name)
+			VALUES(a_login,'administrator');
 		ret := 0;
 	END IF;
 	RETURN ret;
@@ -65,3 +76,5 @@ BEGIN
 	END IF;
 	RETURN -1;
 END;' language 'plpgsql';
+
+commit;

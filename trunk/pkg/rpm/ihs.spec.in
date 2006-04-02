@@ -20,6 +20,8 @@ BuildRoot: %{_tmppath}/%{project}-root
 BuildPrereq: java2 >= 1.4.2, ant >= 1.6.2
 Requires: java2 >= 1.4.2, tomcat5 >= 5.0.27
 Requires: v-q-ivq >= 10
+Requires: jakarta-commons-logging >= 1.0.4, jmx >= 1.2.1, servletapi5 >= 5.0.18
+Requires: jakarta-commons-beanutils-core >= 1.7.0, jakarta-taglibs-standard >= 1.1.1
 BuildArch: noarch
 
 %description

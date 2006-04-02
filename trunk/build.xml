@@ -1,18 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE project [
+	<!ENTITY properties SYSTEM "file:xmls/properties.xml">
+	<!ENTITY paths  SYSTEM "file:xmls/path_refs.xml">
+]>
 <project name="ihs" basedir="." default="redeploy">
-    <!-- Project settings -->
-    <property name="project.distname" value="ihs"/>
+	&properties;
+	&paths;
 
-    <!-- Local system paths -->
-    <property file="${basedir}/build.properties"/>
-    <property name="webroot.dir" value="${basedir}/WebContent"/>
-    <property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
-    <property name="build.dir" value="build"/>
-    <property name="tmp.dir" value="tmp"/>
-	<loadfile property="project.version" srcFile="VERSION">
-		<filterchain>
-			<striplinebreaks/>
-		</filterchain>
-	</loadfile>
+	<!-- Project settings -->
+	<property name="project.distname" value="ihs"/>
 
 	<taskdef name="idlcheck" classname="idldepend.IDLCheckerTask">
  		<classpath>
@@ -34,51 +30,35 @@
 	</taskdef>
 
    	<taskdef name="undeploy"
-    	classname="org.apache.catalina.ant.UndeployTask">
+		classname="org.apache.catalina.ant.UndeployTask">
 		<classpath>
 			<pathelement location="${install.tomcatdir}/server/lib/[catalina-ant5].jar"/>
 		</classpath>
 	</taskdef>
 
-    <!-- classpath for JSF 1.0 -->
-    <path id="compile.classpath">
-        <pathelement path ="${webinf.dir}/lib/commons-beanutils.jar"/>
-        <pathelement path ="${webinf.dir}/lib/commons-collections.jar"/>
-        <pathelement path ="${webinf.dir}/lib/commons-digester.jar"/>
-        <pathelement path ="${webinf.dir}/lib/commons-logging.jar"/>
-        <pathelement path ="${webinf.dir}/lib/jsf-api.jar"/>
-        <pathelement path ="${webinf.dir}/lib/jsf-impl.jar"/>
-        <pathelement path ="${webinf.dir}/lib/jstl.jar"/>
-        <pathelement path ="${webinf.dir}/lib/[jspapi].jar"/>
-        <pathelement path ="${webinf.dir}/lib/standard.jar"/>
-        <pathelement path ="${webinf.dir}/classes"/>
-        <pathelement path ="${classpath.external}"/>
-        <pathelement path ="${classpath}"/>
-    </path>
+	<!-- Local system paths -->
+	<property file="${basedir}/build.properties"/>
+	<property name="webroot.dir" value="${basedir}/WebContent"/>
+	<property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
+	<property name="build.dir" value="build"/>
 
-    <!-- Local system paths -->
-    <property file="${basedir}/build.properties"/>
-    <property name="webroot.dir" value="${basedir}/WebContent"/>
-    <property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
-    <property name="build.dir" value="build"/>
+	<!-- Check timestamp on files -->
+	<target name="prepare">
+			<tstamp/>
+	</target>
 
-    <!-- Check timestamp on files -->
-    <target name="prepare">
-        <tstamp/>
-    </target>
-
-    <!-- Copy any resource or configuration files -->
-    <target name="resources">
-        <copy todir="${webinf.dir}/classes" includeEmptyDirs="no">
-            <fileset dir="src">
-            <patternset>
-                <include name="**/*.conf"/>
-                <include name="**/*.properties"/>
-                <include name="**/*.xml"/>
-            </patternset>
-            </fileset>
-        </copy>
-    </target>
+	<!-- Copy any resource or configuration files -->
+	<target name="resources">
+			<copy todir="${webinf.dir}/classes" includeEmptyDirs="no">
+			    <fileset dir="src">
+			    <patternset>
+			        <include name="**/*.conf"/>
+			        <include name="**/*.properties"/>
+			        <include name="**/*.xml"/>
+			    </patternset>
+			    </fileset>
+			</copy>
+	</target>
 	
 	<!-- Generate Java source from IDL -->
 	<target name="idl">
@@ -91,25 +71,25 @@
 		</idlcheck>
 	</target>
 
-    <!-- Normal build of application -->
-    <target name="compile" depends="prepare,resources,idl">
-        <javac srcdir="src" destdir="${webinf.dir}/classes">
-            <classpath refid="compile.classpath"/>
-        </javac>
-    </target>
+	<!-- Normal build of application -->
+	<target name="compile" depends="prepare,resources,idl">
+			<javac srcdir="src" destdir="${webinf.dir}/classes">
+			    <classpath refid="classpath"/>
+			</javac>
+	</target>
 
-    <!-- Remove classes directory for clean build -->
-    <target name="clean"
-      description="Prepare for clean build">
-      <delete dir="${webinf.dir}/classes"/>
-      <mkdir  dir="${webinf.dir}/classes"/>
-      <delete dir="${build.dir}"/>
-      <mkdir  dir="${build.dir}"/>
-    </target>
+	<!-- Remove classes directory for clean build -->
+	<target name="clean"
+		description="Prepare for clean build">
+		<delete dir="${webinf.dir}/classes"/>
+		<mkdir  dir="${webinf.dir}/classes"/>
+		<delete dir="${build.dir}"/>
+		<mkdir  dir="${build.dir}"/>
+	</target>
 
-    <!-- Build entire project -->
-    <target name="build" depends="prepare,compile"/>
-    <target name="rebuild" depends="clean,prepare,compile"/>
+	<!-- Build entire project -->
+	<target name="build" depends="prepare,compile"/>
+	<target name="rebuild" depends="clean,prepare,compile"/>
 	<target name="cc">
 		<exec executable="svn">
 			<arg line="up --non-interactive"/>
@@ -117,18 +97,28 @@
 		<antcall target="rebuild"/>
 	</target>
 
-    <!-- Create binary distribution -->
-    <target name="war" depends="build">
-      <mkdir dir="${build.dir}"/>
-      <war
-        basedir="${webroot.dir}"
-        warfile="${build.dir}/${project.distname}.war"
-        webxml="${webinf.dir}/web.xml">
-        <exclude name="WEB-INF/${build.dir}/**"/>
-        <exclude name="WEB-INF/src/**"/>
-        <exclude name="WEB-INF/web.xml"/>
-       </war>
-    </target>
+	<!-- Create binary distribution -->
+	<target name="war" depends="build">
+		<mkdir dir="${build.dir}"/>
+		<war
+			basedir="${webroot.dir}"
+			warfile="${build.dir}/${project.distname}.war"
+			webxml="${webinf.dir}/web.xml">
+			<exclude name="WEB-INF/${build.dir}/**"/>
+			<exclude name="WEB-INF/src/**"/>
+			<exclude name="WEB-INF/web.xml"/>
+		 </war>
+	</target>
+
+	<!-- Create binary distribution -->
+	<target name="jar" depends="build">
+		<mkdir dir="${build.dir}"/>
+		<jar
+			basedir="${webinf.dir}/classes"
+			jarfile="${build.dir}/${project.distname}-adapters.jar">
+			<include name="**/com/foo_baz/ihs/adapters/"/>
+		 </jar>
+	</target>
 
 	<target name="deploy-to-dir" depends="war">
 		<mkdir dir="${install.distdir}${install.prefix}"/>
@@ -167,7 +157,7 @@
 			<fileset dir="doc/imgs"/>
 		</copy>
 		<copy file="VERSION" todir="${install.distdir}${install.docdir}/${project.distname}-${project.version}"/>
-    </target>
+	</target>
 
 	<target name="install" depends="deploy-to-dir">
 	</target>
@@ -202,16 +192,16 @@
 		</exec>
 	</target>
 
-    <target name="deploy" depends="war" description="Deploy to a server">
-    	<deploy url="${manager.url}" username="${username}"
-    		password="${password}" path="/${project.distname}"
-    		war="file:${build.dir}/${project.distname}.war"/>
-    </target>
+	<target name="deploy" depends="war" description="Deploy to a server">
+		<deploy url="${manager.url}" username="${username}"
+			password="${password}" path="/${project.distname}"
+			war="file:${build.dir}/${project.distname}.war"/>
+	</target>
 	
-    <target name="undeploy" description="Undeploy from a server">
-    	<undeploy url="${manager.url}" username="${username}"
-    		password="${password}" path="/${project.distname}"/>
-    </target>
+	<target name="undeploy" description="Undeploy from a server">
+		<undeploy url="${manager.url}" username="${username}"
+			password="${password}" path="/${project.distname}"/>
+	</target>
 	
 	<target name="try.undeploy" description="Call the undeploy task (which may fail).">
 		<trycatch>

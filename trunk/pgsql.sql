@@ -25,7 +25,7 @@ alter table ihs_groups add constraint ihs_groups_pkey primary key(group_name);
 create view ihs_view_groups as select group_name from ihs_groups;
 insert into ihs_groups values('administrator');
 
-create table ihs_admins_groups(login text references ihs_administrators (login) not null, group_name text references ihs_groups (group_name) );
+create table ihs_admins_groups(login text references ihs_administrators (login) on delete cascade on update cascade not null, group_name text references ihs_groups (group_name) no delete cascade on update cascade not null );
 alter table ihs_admins_groups add constraint ihs_admins_groups_pkey primary key(login,group_name);
 create view ihs_view_admins_groups as select login,group_name from ihs_admins_groups;
 

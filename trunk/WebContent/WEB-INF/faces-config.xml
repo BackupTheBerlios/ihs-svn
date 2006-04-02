@@ -81,11 +81,15 @@
 			<to-view-id>/protected/configuration.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>gotoDefault</from-outcome>
+			<to-view-id>/protected/administrators.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>gotoAdministrators</from-outcome>
 			<to-view-id>/protected/administrators.jsp</to-view-id>
 		</navigation-case>
-		<navigation-case><from-outcome>addAdministrator</from-outcome>
-			
+		<navigation-case>
+			<from-outcome>addAdministrator</from-outcome>
 			<to-view-id>/protected/addAdministrator.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
@@ -99,6 +103,10 @@
 		<navigation-case>
 			<from-outcome>gotoMailServiceLogs</from-outcome>
 			<to-view-id>/protected/mailservice/logs.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>gotoLogin</from-outcome>
+			<to-view-id>/login.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>

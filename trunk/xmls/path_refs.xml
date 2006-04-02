@@ -11,6 +11,7 @@
 	<pathelement location="${jsf-impl.jar}"/>
 	<pathelement location="${jstl.jar}"/>
 	<pathelement location="${taglibs-standard.jar}"/>
+	<pathelement location="${servletapi5.jar}"/>
 	<pathelement location="${webinf.dir}/classes"/>
 	<pathelement path="${java.class.path}"/>
 </path>

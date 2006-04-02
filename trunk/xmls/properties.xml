@@ -41,4 +41,5 @@
 <property name="jsf-impl.jar" value="${webinf.dir}/lib/jsf-impl.jar"/>
 <property name="jstl.jar" value="${webinf.dir}/lib/jstl.jar"/>
 <property name="taglibs-standard.jar" value="${commons.dir}/jakarta-taglibs-standard.jar"/>
+<property name="servletapi5.jar" value="${commons.dir}/servletapi5.jar"/>
 

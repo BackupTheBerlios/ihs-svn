@@ -29,30 +29,28 @@
 				</div>
 				<h:form id="addDomain">
 					<h:panelGrid>
-						<h:panelGrid>
-							<h:messages styleClass="error" globalOnly="true" layout="table"/>
-							<h:outputText styleClass="message" value="#{backing_addDomain.result}"/>
-						</h:panelGrid>
-	
-						<h:panelGrid styleClass="editing" rowClasses="odd,even" columns="3">
-							<h:outputText value="#{msgs.mailServiceAddDomainDomain}"/>
-							<h:inputText size="25" required="true" id="domain"
-								value="#{backing_addDomain.domain}"
-								disabled="#{backing_addDomain.updating}"
-								validator="#{backing_addDomain.validateDomain}">
-								<f:validateLength minimum="1" maximum="512"/>
-							</h:inputText>
-							<h:message styleClass="error" for="domain"/>
-	
-							<f:facet name="footer">
-								<h:panelGroup>
-									<h:commandButton value="#{msgs.commonCancel}"
-										action="#{backing_addDomain.cancel}" immediate="true"/>
-									<h:commandButton value="#{backing_addDomain.updating ? msgs.commonUpdate : msgs.commonAdd}"
-										immediate="false" action="#{backing_addDomain.addDomain}"/>
-								</h:panelGroup>
-							</f:facet>
-						</h:panelGrid>
+						<h:messages styleClass="error" globalOnly="true" layout="table"/>
+						<h:outputText styleClass="message" value="#{backing_addDomain.result}"/>
+					</h:panelGrid>
+
+					<h:panelGrid styleClass="editing" rowClasses="odd,even" columns="3">
+						<h:outputText value="#{msgs.mailServiceAddDomainDomain}"/>
+						<h:inputText size="25" required="true" id="domain"
+							value="#{backing_addDomain.domain}"
+							disabled="#{backing_addDomain.updating}"
+							validator="#{backing_addDomain.validateDomain}">
+							<f:validateLength minimum="1" maximum="512"/>
+						</h:inputText>
+						<h:message styleClass="error" for="domain"/>
+
+						<f:facet name="footer">
+							<h:panelGroup>
+								<h:commandButton value="#{msgs.commonCancel}"
+									action="#{backing_addDomain.cancel}" immediate="true"/>
+								<h:commandButton value="#{backing_addDomain.updating ? msgs.commonUpdate : msgs.commonAdd}"
+									immediate="false" action="#{backing_addDomain.addDomain}"/>
+							</h:panelGroup>
+						</f:facet>
 					</h:panelGrid>
 					
 					<h:panelGrid styleClass="related" rendered="#{backing_addDomain.updating}">

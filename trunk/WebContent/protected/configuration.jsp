@@ -27,56 +27,54 @@
 				</div>
 				<h:form id="configuration">
 					<h:panelGrid>
-						<h:panelGrid>
-							<h:messages styleClass="error" globalOnly="true" layout="table"/>
-							<h:outputText styleClass="message" value="#{backing_configuration.result}"/>
-						</h:panelGrid>
-	
-						<h:panelGrid styleClass="editing" rowClasses="odd,even" columns="3">
-							<h:outputText value="#{msgs.configurationMaxPagesInPager}"/>
-							<h:inputText size="25" required="true" id="maxPagesInPager"
-								value="#{backing_configuration.maxPagesInPager}">
-								<f:validateLongRange minimum="2" maximum="100"/>
-							</h:inputText>
-							<h:message styleClass="error" for="maxPagesInPager"/>
-	
-							<h:outputText value="#{msgs.configurationMaxUsersInList}"/>
-							<h:inputText size="25" required="true" id="maxUsersInList"
-								value="#{backing_configuration.maxUsersInList}">
-								<f:validateLongRange minimum="5" maximum="1000"/>
-							</h:inputText>
-							<h:message styleClass="error" for="maxUsersInList"/>
-							
-							<h:outputText value="#{msgs.configurationMaxDomainsInList}"/>
-							<h:inputText size="25" required="true" id="maxDomainsInList"
-								value="#{backing_configuration.maxDomainsInList}">
-								<f:validateLongRange minimum="5" maximum="1000"/>
-							</h:inputText>
-							<h:message styleClass="error" for="maxDomainsInList"/>
+						<h:messages styleClass="error" globalOnly="true" layout="table"/>
+						<h:outputText styleClass="message" value="#{backing_configuration.result}"/>
+					</h:panelGrid>
 
-							<h:outputText value="#{msgs.configurationMaxLogsInList}"/>
-							<h:inputText size="25" required="true" id="maxLogsInList"
-								value="#{backing_configuration.maxLogsInList}">
-								<f:validateLongRange minimum="5" maximum="1000"/>
-							</h:inputText>
-							<h:message styleClass="error" for="maxLogsInList"/>
+					<h:panelGrid styleClass="editing" rowClasses="odd,even" columns="3">
+						<h:outputText value="#{msgs.configurationMaxPagesInPager}"/>
+						<h:inputText size="25" required="true" id="maxPagesInPager"
+							value="#{backing_configuration.maxPagesInPager}">
+							<f:validateLongRange minimum="2" maximum="100"/>
+						</h:inputText>
+						<h:message styleClass="error" for="maxPagesInPager"/>
 
-							<h:outputText value="#{msgs.configurationMaxAdministratorsInList}"/>
-							<h:inputText size="25" required="true" id="maxAdministratorsInList"
-								value="#{backing_configuration.maxAdministratorsInList}">
-								<f:validateLongRange minimum="5" maximum="1000"/>
-							</h:inputText>
-							<h:message styleClass="error" for="maxAdministratorsInList"/>
-							
-							<f:facet name="footer">
-								<h:panelGroup>
-									<h:commandButton value="#{msgs.commonReload}"
-										immediate="false" action="#{backing_configuration.reload}"/>
-									<h:commandButton value="#{msgs.commonUpdate}"
-										immediate="false" action="#{backing_configuration.update}"/>
-								</h:panelGroup>
-							</f:facet>
-						</h:panelGrid>
+						<h:outputText value="#{msgs.configurationMaxUsersInList}"/>
+						<h:inputText size="25" required="true" id="maxUsersInList"
+							value="#{backing_configuration.maxUsersInList}">
+							<f:validateLongRange minimum="5" maximum="1000"/>
+						</h:inputText>
+						<h:message styleClass="error" for="maxUsersInList"/>
+						
+						<h:outputText value="#{msgs.configurationMaxDomainsInList}"/>
+						<h:inputText size="25" required="true" id="maxDomainsInList"
+							value="#{backing_configuration.maxDomainsInList}">
+							<f:validateLongRange minimum="5" maximum="1000"/>
+						</h:inputText>
+						<h:message styleClass="error" for="maxDomainsInList"/>
+
+						<h:outputText value="#{msgs.configurationMaxLogsInList}"/>
+						<h:inputText size="25" required="true" id="maxLogsInList"
+							value="#{backing_configuration.maxLogsInList}">
+							<f:validateLongRange minimum="5" maximum="1000"/>
+						</h:inputText>
+						<h:message styleClass="error" for="maxLogsInList"/>
+
+						<h:outputText value="#{msgs.configurationMaxAdministratorsInList}"/>
+						<h:inputText size="25" required="true" id="maxAdministratorsInList"
+							value="#{backing_configuration.maxAdministratorsInList}">
+							<f:validateLongRange minimum="5" maximum="1000"/>
+						</h:inputText>
+						<h:message styleClass="error" for="maxAdministratorsInList"/>
+						
+						<f:facet name="footer">
+							<h:panelGroup>
+								<h:commandButton value="#{msgs.commonReload}"
+									immediate="false" action="#{backing_configuration.reload}"/>
+								<h:commandButton value="#{msgs.commonUpdate}"
+									immediate="false" action="#{backing_configuration.update}"/>
+							</h:panelGroup>
+						</f:facet>
 					</h:panelGrid>
 				</h:form>
 			</div>

@@ -48,13 +48,13 @@
 						</h:selectOneMenu>
 					</h:panelGrid>
 					
+					<!-- result messages -->
 					<h:panelGrid>
-						<!-- result messages -->
-						<h:panelGrid>
-							<h:messages styleClass="error" globalOnly="false" layout="table"/>
-							<h:outputText styleClass="message" value="#{backing_logs.result}"/>
-						</h:panelGrid>
-				
+						<h:messages styleClass="error" globalOnly="false" layout="table"/>
+						<h:outputText styleClass="message" value="#{backing_logs.result}"/>
+					</h:panelGrid>
+					
+					<h:panelGrid>
 						<h:dataTable id="logsList" rows="#{backing_configuration.maxLogsInList}" var="curLog"
 							value="#{backing_logs.logs}" styleClass="listing">
 							<h:column>

@@ -26,13 +26,13 @@
 					<h2><h:outputText value="#{msgs.administratorsTitle}"/></h2>
 				</div>
 				<h:form id="administrators">
+					<!-- result messages -->
 					<h:panelGrid>
-						<!-- result messages -->
-						<h:panelGrid>
-							<h:messages styleClass="error" globalOnly="false" layout="table"/>
-							<h:outputText styleClass="message" value="#{backing_administrators.result}"/>
-						</h:panelGrid>
-						
+						<h:messages styleClass="error" globalOnly="false" layout="table"/>
+						<h:outputText styleClass="message" value="#{backing_administrators.result}"/>
+					</h:panelGrid>
+
+					<h:panelGrid>
 						<h:dataTable rows="#{backing_configuration.maxAdministratorsInList}" 
 							id="administratorsList"
 							var="curAdmin"
@@ -53,7 +53,7 @@
 								</h:commandLink>
 							</h:column>
 						</h:dataTable>
-
+		
 						<corejsf:pager dataTableId="administratorsList" 
 							showpages="#{backing_configuration.maxPagesInPager}"
 							selectedStyleClass="pagerSelected"

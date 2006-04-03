@@ -46,13 +46,17 @@
 				<form method="POST" action="j_security_check">
 					<p><h:outputText value="#{msgs.loginWelcome}"/></p>
 					
+					<h:panelGrid>
+						<h:outputText styleClass="error" value="#{msgs.loginFailed}"/>
+					</h:panelGrid>
+					
 					<h:panelGrid columns="2" styleClass="editing" rowClasses="odd,even">
 						<h:outputText value="#{msgs.commonLoginLabel}"/>
 						<f:verbatim><input type="text" name="j_username"/></f:verbatim>
 		
 						<h:outputText value="#{msgs.commonPasswordLabel}"/>
 						<f:verbatim><input type="password" name="j_password"/></f:verbatim>
-	
+		
 						<f:facet name="footer">
 							<h:panelGroup>
 								<f:verbatim><![CDATA[<input type="submit" value="]]></f:verbatim>

@@ -31,13 +31,13 @@
 							</h:commandLink>
 						</h2>
 					</div>
+					<!-- result messages -->
 					<h:panelGrid>
-						<!-- result messages -->
-						<h:panelGrid>
-							<h:messages styleClass="error" globalOnly="false" layout="table"/>
-							<h:outputText styleClass="message" value="#{backing_users.result}"/>
-						</h:panelGrid>
-				
+						<h:messages styleClass="error" globalOnly="false" layout="table"/>
+						<h:outputText styleClass="message" value="#{backing_users.result}"/>
+					</h:panelGrid>
+					
+					<h:panelGrid>
 						<h:dataTable id="usersList" rows="#{backing_configuration.maxUsersInList}" var="curUser"
 							value="#{backing_users.users}" styleClass="listing">
 							<h:column>

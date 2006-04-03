@@ -77,7 +77,7 @@
 		<realm-name>IhsUserRealm</realm-name>
 		<form-login-config>
 			<form-login-page>/faces/login.jsp</form-login-page>
-			<form-error-page>/faces/login.jsp</form-error-page>
+			<form-error-page>/faces/login.failed.jsp</form-error-page>
 		</form-login-config>
 	</login-config>
 	<security-role>

@@ -4,9 +4,11 @@ import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.faces.application.Application;
+import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 import org.omg.CORBA.IntHolder;
 import org.omg.CORBA.StringHolder;
@@ -33,6 +35,7 @@ import com.foo_baz.v_q.ivqPackage.err_code;
 import com.foo_baz.v_q.ivqPackage.error;
 import com.foo_baz.v_q.ivqPackage.user_info;
 import com.foo_baz.v_q.ivqPackage.user_info_listHolder;
+import com.foo_baz.ihs.backing.Configuration;
 
 /**
  * @author $Author$
@@ -40,27 +43,32 @@ import com.foo_baz.v_q.ivqPackage.user_info_listHolder;
  */
 public class VirtualQmailMailService extends MailService {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs.mailservice");
-
+	protected Configuration conf;
+	
 	/**
 	 * 
 	 */
 	public VirtualQmailMailService() {
 		super();
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{backing_configuration}");
+		conf = (Configuration) binding.getValue(context);
 	}
 
 	/**
 	 * 
 	 * @return
-	 * @throws NamingException
+	 * @throws Exception 
 	 */
-	protected Context getNamingContext() throws NamingException {
+	protected Context getNamingContext() throws Exception {
 		org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init();
 		if( orb != null ) {
 			Hashtable env = new Hashtable();
-			env.put("org.omg.CORBA.ORBInitRef", "NameService=corbaloc::localhost:2809/NameService");
+			env.put("org.omg.CORBA.ORBInitRef", conf.getOrbInitRef());
 			env.put("java.naming.corba.orb", orb);
-			env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.cosnaming.CNCtxFactory");
-			env.put(Context.PROVIDER_URL, "iiop://localhost:2809");
+			env.put(Context.INITIAL_CONTEXT_FACTORY, conf.getOrbInitialContextFactory());
+			env.put(Context.PROVIDER_URL, conf.getOrbProviderUrl());
 			Context ic = new InitialContext(env);
 			return ic;
 		} else
@@ -69,20 +77,20 @@ public class VirtualQmailMailService extends MailService {
 	
 	private ivq vqo = null;
 	
-	protected ivq getVirtualQmail() throws NamingException {
+	protected ivq getVirtualQmail() throws Exception {
 		if( vqo == null ) {
 			Context ic = getNamingContext();
-			this.vqo = ivqHelper.narrow((org.omg.CORBA.Object) ic.lookup("VQ.ivq"));
+			this.vqo = ivqHelper.narrow((org.omg.CORBA.Object) ic.lookup(conf.getOrbVirtualQmail()));
 		}
 		return this.vqo;
 	}
 	
 	private ilogger logo = null;
 	
-	protected ilogger getVirtualQmailLogger() throws NamingException {
+	protected ilogger getVirtualQmailLogger() throws Exception {
 		if( logo == null ) {
 			Context ic = getNamingContext();
-			this.logo = iloggerHelper.narrow((org.omg.CORBA.Object) ic.lookup("Logger.ilogger"));
+			this.logo = iloggerHelper.narrow((org.omg.CORBA.Object) ic.lookup(conf.getOrbVirtualQmailLogger()));
 		}
 		return this.logo;
 	}
@@ -91,7 +99,7 @@ public class VirtualQmailMailService extends MailService {
 	 * @param domains Array of Domain objects
 	 * @see com.foo_baz.ihs.mailservice.Domain
 	 */
-	public OperationStatus getDomains( ArrayList domains ) throws NamingException {
+	public OperationStatus getDomains( ArrayList domains ) throws Exception {
 		ivq vq = getVirtualQmail();
 		
 		domain_info_listHolder diList = new domain_info_listHolder();

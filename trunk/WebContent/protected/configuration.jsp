@@ -67,6 +67,36 @@
 						</h:inputText>
 						<h:message styleClass="error" for="maxAdministratorsInList"/>
 						
+						<h:outputText value="#{msgs.configurationOrbInitRef}"/>
+						<h:inputText size="25" required="true" id="orbInitRef"
+							value="#{backing_configuration.orbInitRef}">
+						</h:inputText>
+						<h:message styleClass="error" for="orbInitRef"/>
+						
+						<h:outputText value="#{msgs.configurationOrbInitialContextFactory}"/>
+						<h:inputText size="25" required="true" id="orbInitialContextFactory"
+							value="#{backing_configuration.orbInitialContextFactory}">
+						</h:inputText>
+						<h:message styleClass="error" for="orbInitialContextFactory"/>
+						
+						<h:outputText value="#{msgs.configurationOrbProviderUrl}"/>
+						<h:inputText size="25" required="true" id="orbProviderUrl"
+							value="#{backing_configuration.orbProviderUrl}">
+						</h:inputText>
+						<h:message styleClass="error" for="orbProviderUrl"/>
+						
+						<h:outputText value="#{msgs.configurationOrbVirtualQmail}"/>
+						<h:inputText size="25" required="true" id="orbVirtualQmail"
+							value="#{backing_configuration.orbVirtualQmail}">
+						</h:inputText>
+						<h:message styleClass="error" for="orbVirtualQmail"/>
+						
+						<h:outputText value="#{msgs.configurationOrbVirtualQmailLogger}"/>
+						<h:inputText size="25" required="true" id="orbVirtualQmailLogger"
+							value="#{backing_configuration.orbVirtualQmailLogger}">
+						</h:inputText>
+						<h:message styleClass="error" for="orbVirtualQmailLogger"/>
+						
 						<f:facet name="footer">
 							<h:panelGroup>
 								<h:commandButton value="#{msgs.commonReload}"

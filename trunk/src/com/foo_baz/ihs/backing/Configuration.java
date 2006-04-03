@@ -47,6 +47,111 @@ public class Configuration {
 	}
 	
 	/**
+	 * @throws Exception
+	 */
+	public String getOrbInitRef() throws Exception {
+		if( ! fromIhs ) readFromIhs();
+		String field = "OrbInitRef"; 
+		String val = (String) config.get(field);
+		if( val == null || "".equals(val) ) {
+			val = Messages.getString(
+				"com.foo_baz.ihs.configuration", 
+				"ihsDefaultConfiguration_"+field, null);
+		}
+		return val;
+	}
+	/**
+	 */
+	public void setOrbInitRef(String val) {
+		String field = "OrbInitRef";
+		config.put(field, val);
+	}
+	
+	/**
+	 * @throws Exception
+	 */
+	public String getOrbInitialContextFactory() throws Exception {
+		if( ! fromIhs ) readFromIhs();
+		String field = "OrbInitialContextFactory"; 
+		String val = (String) config.get(field);
+		if( val == null || "".equals(val) ) {
+			val = Messages.getString(
+				"com.foo_baz.ihs.configuration", 
+				"ihsDefaultConfiguration_"+field, null);
+		}
+		return val;
+	}
+	/**
+	 */
+	public void setOrbInitialContextFactory(String val) {
+		String field = "OrbInitialContextFactory";
+		config.put(field, val);
+	}
+	
+	/**
+	 * @throws Exception
+	 */
+	public String getOrbVirtualQmail() throws Exception {
+		if( ! fromIhs ) readFromIhs();
+		String field = "OrbVirtualQmail"; 
+		String val = (String) config.get(field);
+		if( val == null || "".equals(val) ) {
+			val = Messages.getString(
+				"com.foo_baz.ihs.configuration", 
+				"ihsDefaultConfiguration_"+field, null);
+		}
+		return val;
+	}
+	/**
+	 */
+	public void setOrbVirtualQmail(String val) {
+		String field = "OrbVirtualQmail";
+		config.put(field, val);
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	public String getOrbVirtualQmailLogger() throws Exception {
+		if( ! fromIhs ) readFromIhs();
+		String field = "OrbVirtualQmailLogger"; 
+		String val = (String) config.get(field);
+		if( val == null || "".equals(val) ) {
+			val = Messages.getString(
+				"com.foo_baz.ihs.configuration", 
+				"ihsDefaultConfiguration_"+field, null);
+		}
+		return val;
+	}
+	/**
+	 */
+	public void setOrbVirtualQmailLogger(String val) {
+		String field = "OrbVirtualQmailLogger";
+		config.put(field, val);
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	public String getOrbProviderUrl() throws Exception {
+		if( ! fromIhs ) readFromIhs();
+		String field = "OrbProviderUrl"; 
+		String val = (String) config.get(field);
+		if( val == null || "".equals(val) ) {
+			val = Messages.getString(
+				"com.foo_baz.ihs.configuration", 
+				"ihsDefaultConfiguration_"+field, null);
+		}
+		return val;
+	}
+	/**
+	 */
+	public void setOrbProviderUrl(String val) {
+		String field = "OrbProviderUrl";
+		config.put(field, val);
+	}
+	
+	/**
 	 * @return Returns the maxDomainsInList.
 	 * @throws Exception
 	 */

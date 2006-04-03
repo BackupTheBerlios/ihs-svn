@@ -61,6 +61,16 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>	
 	
+	<!-- error handling -->
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/faces/exception.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/faces/exception.jsp</location>
+	</error-page>
+	
 	<!-- security -->
 	<security-constraint>
 		<web-resource-collection>

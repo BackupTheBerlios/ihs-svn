@@ -49,7 +49,7 @@
 					<h:outputText value="#{msgs.mailServiceLogsTitle}"/>
 				</h:commandLink>
 				
-				<h:commandLink immediate="true" action="#{backing_ihs.logout}">
+				<h:commandLink immediate="true" actionListener="#{backing_ihs.logout}">
 					<h:outputText value="#{msgs.logoutTitle}"/>
 				</h:commandLink>
 			</h:panelGrid>

@@ -3,9 +3,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.faces.application.Application;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
 import javax.faces.validator.ValidatorException;
 import javax.naming.NamingException;
 
@@ -20,10 +22,41 @@ import com.foo_baz.util.faces.Messages;
  * @version $Id$
  */
 public class AddDomain extends ExtendedDomain {
-	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
-	
+	private String result;
 	private HtmlInputText domainInput;
+	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
+	protected MailServiceSession controller = null;
+	
+	public AddDomain() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{mailService}");
+		controller = (MailServiceSession) binding.getValue(context);
 
+		if( controller.isUpdatingCurrentDomain() )
+			readDomain();
+	}
+	
+	protected void readDomain() throws Exception {
+		IncredibleHostingSystem usersDB = null;
+		this.setIdDomain(controller.getCurrentDomain().getIdDomain());
+		try {
+			usersDB = new IncredibleHostingSystem();
+			usersDB.open();
+			
+			MailService mailService = usersDB.getMailService();
+			
+			OperationStatus stat = mailService.getDomain(this);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
+				logger.info(this.getClass().getName()
+					+".getUser: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
+			}
+		} finally {
+			try { usersDB.close(); } catch (Exception e) {};
+		}
+	}
+	
 	/**
 	 * @return Returns the domainInput.
 	 */
@@ -96,18 +129,14 @@ public class AddDomain extends ExtendedDomain {
 	}
 	
 	public String addDomain() throws Exception {
-		return commonAddUpdate(isUpdating());
+		return commonAddUpdate(controller.isUpdatingCurrentDomain());
 	}
-
-	private String result;
 
 	/**
 	 * @return Returns the addAdministratorResult.
 	 */
 	public String getResult() {
-		String temp = result;
-		result = "";
-		return temp;
+		return result;
 	}
 	/**
 	 * @param addAdministratorResult The addAdministratorResult to set.
@@ -116,28 +145,11 @@ public class AddDomain extends ExtendedDomain {
 		this.result = addAdministratorResult;
 	}	
 	
-	private boolean updating = false;
-	
-	/**
-	 * @return Returns the updating.
-	 */
-	public boolean isUpdating() {
-		return updating;
-	}
-	/**
-	 * @param updating The updating to set.
-	 */
-	public void setUpdating(boolean updating) {
-		this.updating = updating;
-	}
-	
 	/**
 	 * 
 	 * @return action to perform
 	 */
 	public String cancel() {
-		clear();
-		setUpdating(false);
 		return "cancel";
 	}
 }

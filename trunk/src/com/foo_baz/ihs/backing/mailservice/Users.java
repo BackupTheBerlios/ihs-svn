@@ -26,13 +26,18 @@ import com.foo_baz.util.faces.Messages;
  */
 public class Users {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
+	protected MailServiceSession controller;
 
-	/**
-	 * Model representing table
-	 */
-	UsersDataModel usersModel;
+	public Users() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{mailService}");
+		controller = (MailServiceSession) binding.getValue(context);
+
+		readUsers();
+	}
 	
-	public DataModel getUsers() throws Exception {
+	protected void readUsers() throws Exception {
 		IncredibleHostingSystem usersDB = null;
 		ArrayList users = new ArrayList();
 		ArrayList extUsers = new ArrayList();
@@ -42,8 +47,8 @@ public class Users {
 			
 			MailService mailService = usersDB.getMailService();
 			
-			OperationStatus stat = mailService.getUsersInDomain(getIdDomain(), 
-				0, 0, users);
+			OperationStatus stat = mailService.getUsersInDomain(
+				controller.getCurrentDomain().getIdDomain(), 0, 0, users);
 			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 				logger.info(this.getClass().getName()
 					+".getUsers: Error: "+stat.getDescription());
@@ -59,10 +64,15 @@ public class Users {
 			try { usersDB.close(); } catch (Exception e) {};
 		}
 		usersModel = new UsersDataModel(new ListDataModel(extUsers));
-		FacesContext context = FacesContext.getCurrentInstance();
-		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_mailService}");
-		((MailServiceSession) binding.getValue(context)).getUsersSorting().sortDataModel(usersModel);
+	}
+	
+	/**
+	 * Model representing table
+	 */
+	private UsersDataModel usersModel;
+	
+	public DataModel getUsers() {
+		controller.getUsersSorting().sortDataModel(usersModel);
 		return usersModel;
 	}
 	
@@ -87,9 +97,7 @@ public class Users {
 	 * @return Returns the result.
 	 */
 	public String getResult() {
-		String temp = result;
-		result = "";
-		return temp;
+		return result;
 	}
 	/**
 	 * @param result The result to set.
@@ -160,6 +168,7 @@ public class Users {
 		} finally {
 			try { usersDB.close(); } catch (Exception e) {};
 		}
+		readUsers();
 		return "";
 	}
 	
@@ -167,14 +176,7 @@ public class Users {
 	 * 
 	 */
 	public String addUser() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_addUser}");
-		AddUser aa = (AddUser) binding.getValue(context);
-		aa.clear();
-		aa.setIdDomain(getIdDomain());
-		aa.setDomain(getDomain());
-		aa.setUpdating(false);
+		controller.setUpdatingCurrentUser(false);
 		return "addUser";
 	}
 	
@@ -185,44 +187,13 @@ public class Users {
 	public String editUser() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_addUser}");
 		ValueBinding login = app.createValueBinding("#{param.login}");
-		AddUser aa = (AddUser) binding.getValue(context);
-		aa.clear();
-		aa.setLogin((String) login.getValue(context));
-		aa.setIdDomain(getIdDomain());
-		aa.setDomain(getDomain());
-		aa.setUpdating(true);
+		User user = new User();
+		user.setLogin((String) login.getValue(context));
+		user.setIdDomain(controller.getCurrentDomain().getIdDomain());
+		user.setDomain(controller.getCurrentDomain().getDomain());
+		controller.setCurrentUser(user);
+		controller.setUpdatingCurrentUser(true);
 		return "editUser";
-	}
-	
-	private int idDomain;
-	
-	/**
-	 * @return Returns the idDomain.
-	 */
-	public int getIdDomain() {
-		return idDomain;
-	}
-	/**
-	 * @param idDomain The idDomain to set.
-	 */
-	public void setIdDomain(int idDomain) {
-		this.idDomain = idDomain;
-	}
-	
-	String domain;
-	
-	/**
-	 * @return Returns the domain.
-	 */
-	public String getDomain() {
-		return domain;
-	}
-	/**
-	 * @param domain The domain to set.
-	 */
-	public void setDomain(String domain) {
-		this.domain = domain;
 	}
 }

@@ -28,14 +28,18 @@ import com.foo_baz.util.faces.Messages;
  */
 public class Domains {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
+	protected MailServiceSession controller = null;
 
-	//@{
-	/**
-	 * Model representing table
-	 */
-	ExtendedDomainsDataModel domainsModel;
+	public Domains() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{mailService}");
+		controller = (MailServiceSession) binding.getValue(context);
+		
+		readDomains();
+	}
 	
-	public DataModel getDomains() throws Exception {
+	protected void readDomains() throws Exception {
 		IncredibleHostingSystem domainsDB = null;
 		ArrayList domains = new ArrayList();
 		ArrayList extDomains = new ArrayList();
@@ -62,7 +66,6 @@ public class Domains {
 					if( OperationStatus.SUCCESS.equals(stat) ) {
 						eobj.setNumberOfUsers(cnt.value);
 					}
-					
 					extDomains.add(eobj);
 				}
 			}
@@ -70,10 +73,15 @@ public class Domains {
 			try { domainsDB.close(); } catch (Exception e) {};
 		}
 		domainsModel = new ExtendedDomainsDataModel(new ListDataModel(extDomains));
-		FacesContext context = FacesContext.getCurrentInstance();
-		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_mailService}");
-		((MailServiceSession) binding.getValue(context)).getDomainsSorting().sortDataModel(domainsModel);
+	}
+	
+	/**
+	 * Model representing table
+	 */
+	ExtendedDomainsDataModel domainsModel;
+	
+	public DataModel getDomains() {
+		controller.getDomainsSorting().sortDataModel(domainsModel);
 		return domainsModel;
 	}
 	
@@ -90,18 +98,14 @@ public class Domains {
 		}
 		return ret;
 	}
-	//@}
 
-	//@{
 	private String result;
 	
 	/**
 	 * @return Returns the result.
 	 */
 	public String getResult() {
-		String temp = result;
-		result = "";
-		return temp;
+		return result;
 	}
 	/**
 	 * @param result The result to set.
@@ -170,20 +174,15 @@ public class Domains {
 		} finally {
 			try { domainsDB.close(); } catch (Exception e) {};
 		}
+		readDomains();
 		return "";
 	}
-	//@}
-	
+		
 	/**
 	 * 
 	 */
 	public String addDomain() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_addDomain}");
-		AddDomain aa = (AddDomain) binding.getValue(context);
-		aa.clear();
-		aa.setUpdating(false);
+		controller.setUpdatingCurrentDomain(false);
 		return "addDomain";
 	}
 	
@@ -194,19 +193,15 @@ public class Domains {
 	public String editDomain() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_addDomain}");
 		ValueBinding idDomain = app.createValueBinding("#{param.idDomain}");
 		
 		Domain dom = new Domain();
 		dom.setIdDomain(Integer.parseInt((String) idDomain.getValue(context)));
 		String act = fillNameOfDomain(dom);
 		if( ! act.equals("") ) return act;
-		
-		AddDomain aa = (AddDomain) binding.getValue(context);
-		aa.clear();
-		aa.setDomain(dom.getDomain());
-		aa.setIdDomain(dom.getIdDomain());
-		aa.setUpdating(true);
+
+		controller.setCurrentDomain(dom);
+		controller.setUpdatingCurrentDomain(true);
 		return "editDomain";
 	}
 	
@@ -217,16 +212,14 @@ public class Domains {
 	public String listUsers() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_users}");
 		ValueBinding idDomain = app.createValueBinding("#{param.idDomain}");
+		
 		Domain dom = new Domain();
 		dom.setIdDomain(Integer.parseInt((String) idDomain.getValue(context)));
 		String act = fillNameOfDomain(dom);
 		if( ! act.equals("") ) return act;
 		
-		Users aa = (Users) binding.getValue(context);
-		aa.setIdDomain(dom.getIdDomain());
-		aa.setDomain(dom.getDomain());
+		controller.setCurrentDomain(dom);
 		return "listUsers";
 	}
 	

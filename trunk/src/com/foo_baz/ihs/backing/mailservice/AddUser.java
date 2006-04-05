@@ -4,10 +4,12 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputSecret;
 import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 import javax.naming.NamingException;
@@ -24,8 +26,45 @@ import com.foo_baz.util.faces.Messages;
  */
 public class AddUser extends User {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
-	
 	private HtmlInputSecret passwordInput;
+	private HtmlInputSecret passwordConfirmInput;
+	private String result;
+	private boolean defaultDir = true;
+	protected MailServiceSession controller = null;
+
+	public AddUser() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{mailService}");
+		controller = (MailServiceSession) binding.getValue(context);
+
+		setIdDomain(controller.getCurrentDomain().getIdDomain());
+		setDomain(controller.getCurrentDomain().getDomain());
+		if( controller.isUpdatingCurrentUser() )
+			readUser();
+	}
+	
+	protected void readUser() throws Exception {
+		IncredibleHostingSystem usersDB = null;
+		this.setLogin(controller.getCurrentUser().getLogin());
+		try {
+			usersDB = new IncredibleHostingSystem();
+			usersDB.open();
+			
+			MailService mailService = usersDB.getMailService();
+			
+			OperationStatus stat = mailService.getUser(this);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
+				logger.info(this.getClass().getName()
+					+".getUser: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
+			}
+		} finally {
+			try { usersDB.close(); } catch (Exception e) {};
+			setPassword("");
+			setDefaultDir(false);
+		}
+	}
 
 	public void setPasswordInput(HtmlInputSecret inputText1) {
 		this.passwordInput = inputText1;
@@ -35,8 +74,6 @@ public class AddUser extends User {
 		return passwordInput;
 	}
 
-	private HtmlInputSecret passwordConfirmInput;
-
 	public void setPasswordConfirmInput(HtmlInputSecret inputSecret1) {
 		this.passwordConfirmInput = inputSecret1;
 	}
@@ -45,7 +82,6 @@ public class AddUser extends User {
 		return passwordConfirmInput;
 	}
 
-	//@{
 	public void validatePasswordConfirm( FacesContext context, 
 			UIComponent component, Object value) throws ValidatorException {
 	
@@ -71,9 +107,7 @@ public class AddUser extends User {
 			throw new ValidatorException(message);	
 		}
 	}
-	//@}
-	
-	//@{
+
 	protected String commonAddUpdate( boolean updating ) throws Exception {
 		IncredibleHostingSystem usersDB = null;
 		
@@ -88,7 +122,7 @@ public class AddUser extends User {
 			logger.info(this.getClass().getName()
 					+".addUser: going to: "+(updating ? "update" : "add"));
 			
-			if( defaultDir ) {
+			if( isDefaultDir() ) {
 				setDir("");
 			}
 			
@@ -125,18 +159,14 @@ public class AddUser extends User {
 	}
 	
 	public String addUser() throws Exception {
-		return commonAddUpdate(isUpdating());
+		return commonAddUpdate(controller.isUpdatingCurrentUser());
 	}
-
-	private String result;
 
 	/**
 	 * @return Returns the addUserResult.
 	 */
 	public String getResult() {
-		String temp = result;
-		result = "";
-		return temp;
+		return result;
 	}
 	/**
 	 * @param addUserResult The addUserResult to set.
@@ -145,36 +175,13 @@ public class AddUser extends User {
 		this.result = addUserResult;
 	}	
 	
-	//@}
-
-	//@{
-	private boolean updating = false;
-	
-	/**
-	 * @return Returns the updating.
-	 */
-	public boolean isUpdating() {
-		return updating;
-	}
-	
-	/**
-	 * @param updating The updating to set.
-	 */
-	public void setUpdating(boolean updating) {
-		this.updating = updating;
-	}
-	
 	/**
 	 * 
 	 * @return action to perform
 	 */
 	public String cancel() {
-		clear();
-		setUpdating(false);
 		return "cancel";
 	}
-	
-	private boolean defaultDir = true;
 	
 	/**
 	 * @return Returns the defaultDir.

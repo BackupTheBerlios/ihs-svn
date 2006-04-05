@@ -153,7 +153,7 @@ public class Logs {
 	public DataModel getLogs() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_mailService}");
+		ValueBinding binding = app.createValueBinding("#{mailService}");
 		((MailServiceSession) binding.getValue(context)).getLogsSorting().sortDataModel(logsModel);
 		return logsModel;
 	}

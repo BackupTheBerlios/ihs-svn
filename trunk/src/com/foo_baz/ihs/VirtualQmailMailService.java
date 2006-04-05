@@ -34,6 +34,7 @@ import com.foo_baz.v_q.ivqPackage.domain_info_listHolder;
 import com.foo_baz.v_q.ivqPackage.err_code;
 import com.foo_baz.v_q.ivqPackage.error;
 import com.foo_baz.v_q.ivqPackage.user_info;
+import com.foo_baz.v_q.ivqPackage.user_infoHolder;
 import com.foo_baz.v_q.ivqPackage.user_info_listHolder;
 import com.foo_baz.ihs.backing.Configuration;
 
@@ -123,6 +124,35 @@ public class VirtualQmailMailService extends MailService {
 			for( int i=0, s = diList.value.length; i<s; ++i ) {
 				domains.add(new Domain(diList.value[i]));
 			}
+			return OperationStatus.SUCCESS;
+		}
+		return new OperationStatus(OperationStatus.FAILURE, toString(err));
+	}
+
+	/**
+	 * @param domain idDomain must be set
+	 * @see com.foo_baz.ihs.mailservice.Domain
+	 */
+	public OperationStatus getDomain( Domain domain ) throws Exception {
+		ivq vq = getVirtualQmail();
+		
+		error err;
+		StringHolder domName = new StringHolder();
+		try {
+			err = vq.dom_name(domain.getIdDomain(), domName);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new OperationStatus(OperationStatus.FAILURE, e.toString());
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new OperationStatus(OperationStatus.FAILURE, e.toString());
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new OperationStatus(OperationStatus.FAILURE, e.toString());
+		}
+
+		if( err != null && err.ec == err_code.err_no ) {
+			domain.setDomain(domName.value);
 			return OperationStatus.SUCCESS;
 		}
 		return new OperationStatus(OperationStatus.FAILURE, toString(err));
@@ -311,6 +341,38 @@ public class VirtualQmailMailService extends MailService {
 			for( int i=0, s = uiList.value.length; i<s; ++i ) {
 				users.add(new User(uiList.value[i]));
 			}
+			return OperationStatus.SUCCESS;
+		}
+		return new OperationStatus( OperationStatus.FAILURE, toString(err));
+	}
+
+	/**
+	 * 
+	 */
+	public OperationStatus getUser( User user ) throws Exception {
+		ivq vq = getVirtualQmail();
+		
+		user_infoHolder ui = new user_infoHolder(new user_info());
+		ui.value.id_domain = user.getIdDomain();
+		ui.value.login = user.getLogin();
+		ui.value.pass = "";
+		ui.value.dir = "";
+		error err;
+		try {
+			err = vq.user_get(ui);
+		} catch (null_error e) {
+			logger.log(Level.SEVERE, "null_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (except e) {
+			logger.log(Level.SEVERE, "except", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		} catch (db_error e) {
+			logger.log(Level.SEVERE, "db_error", e);
+			return new OperationStatus( OperationStatus.FAILURE, e.toString());
+		}
+
+		if( err != null && err.ec == err_code.err_no ) {
+			user.setUserInfo(ui.value);
 			return OperationStatus.SUCCESS;
 		}
 		return new OperationStatus( OperationStatus.FAILURE, toString(err));

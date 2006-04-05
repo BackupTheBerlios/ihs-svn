@@ -32,6 +32,8 @@ public abstract class MailService implements Service {
 
 	/// Add domain
 	abstract public OperationStatus addDomain( Domain dom ) throws Exception;
+	/// Get domain
+	abstract public OperationStatus getDomain( Domain dom ) throws Exception;
 	/// Update domain
 	abstract public OperationStatus updateDomain( Domain dom ) throws Exception;
 	/// Removes domain
@@ -48,6 +50,8 @@ public abstract class MailService implements Service {
 	abstract public OperationStatus getNumberOfUsersInDomain( int dom_id, IntHolder cnt ) throws Exception;
 	/// Add user
 	abstract public OperationStatus addUser( User user ) throws Exception;
+	/// Get user
+	abstract public OperationStatus getUser( User user ) throws Exception;
 	/// Update user
 	abstract public OperationStatus updateUser( User user, boolean pass, boolean dir ) throws Exception;
 	/// Removes user

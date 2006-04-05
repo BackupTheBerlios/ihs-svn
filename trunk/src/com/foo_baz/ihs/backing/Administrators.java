@@ -32,7 +32,7 @@ public class Administrators {
 	 */
 	AdministratorsDataModel adminsModel;
 	
-	public Administrators() throws Exception {
+	public DataModel getAdministrators() throws Exception {
 		IncredibleHostingSystem adminsDB = null;
 		ArrayList admins = new ArrayList();
 		ArrayList extAdmins = new ArrayList();
@@ -60,9 +60,6 @@ public class Administrators {
 			try { adminsDB.close(); } catch (Exception e) {};
 		}
 		adminsModel = new AdministratorsDataModel(new ListDataModel(extAdmins));
-	}
-	
-	public DataModel getAdministrators() {
 		return adminsModel;
 	}
 	

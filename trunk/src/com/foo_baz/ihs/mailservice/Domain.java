@@ -7,7 +7,7 @@ import com.foo_baz.v_q.ivqPackage.domain_info;
  * @version $Id$
  */
 public class Domain implements Cloneable {
-	private domain_info di = null;
+	private domain_info domainInfo = null;
 
 	/**
 	 * 
@@ -30,25 +30,25 @@ public class Domain implements Cloneable {
 	 * @return Returns the domain.
 	 */
 	public String getDomain() {
-		return di.domain;
+		return domainInfo.domain;
 	}
 	/**
 	 * @param domain The domain to set.
 	 */
 	public void setDomain(String domain) {
-		this.di.domain = domain;
+		this.domainInfo.domain = domain;
 	}
 	/**
 	 * @return Returns the idDomain.
 	 */
 	public int getIdDomain() {
-		return di.id_domain;
+		return domainInfo.id_domain;
 	}
 	/**
 	 * @param idDomain The idDomain to set.
 	 */
 	public void setIdDomain(int idDomain) {
-		this.di.id_domain = idDomain;
+		this.domainInfo.id_domain = idDomain;
 	}
 	
 	/**
@@ -62,6 +62,14 @@ public class Domain implements Cloneable {
 	}
 	
 	public void clear() {
-		di = new domain_info();
+		domainInfo = new domain_info();
+	}
+
+	public domain_info getDomainInfo() {
+		return domainInfo;
+	}
+
+	public void setDomainInfo(domain_info domainInfo) {
+		this.domainInfo = domainInfo;
 	}
 }

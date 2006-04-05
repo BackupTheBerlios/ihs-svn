@@ -8,7 +8,7 @@ import com.foo_baz.v_q.ivqPackage.user_info;
  */
 public class User implements Cloneable
 {
-	private user_info ui = null;
+	private user_info userInfo = null;
 	private String domain;
 	
 	public User() {
@@ -33,84 +33,84 @@ public class User implements Cloneable
 	 */
 	public void setLogin(String login)
 	{
-		this.ui.login = login;
+		this.userInfo.login = login;
 	}
 	
 	public String getLogin()
 	{
-		return ui.login;
+		return userInfo.login;
 	}
 	
 	public java.lang.String getPassword()
 	{
-		return ui.pass;
+		return userInfo.pass;
 	}
 	
 	public void setPassword(String password)
 	{
-		this.ui.pass = password;
+		this.userInfo.pass = password;
 	}
 	
 	/**
 	 * @return Returns the dir.
 	 */
 	public String getDir() {
-		return ui.dir;
+		return userInfo.dir;
 	}
 	/**
 	 * @param dir The dir to set.
 	 */
 	public void setDir(String dir) {
-		this.ui.dir = dir;
+		this.userInfo.dir = dir;
 	}
 	/**
 	 * @return Returns the flags.
 	 */
 	public short getFlags() {
-		return ui.flags;
+		return userInfo.flags;
 	}
 	/**
 	 * @param flags The flags to set.
 	 */
 	public void setFlags(short flags) {
-		this.ui.flags = flags;
+		this.userInfo.flags = flags;
 	}
 	/**
 	 * @return Returns the idDomain.
 	 */
 	public int getIdDomain() {
-		return ui.id_domain;
+		return userInfo.id_domain;
 	}
 	/**
 	 * @param idDomain The idDomain to set.
 	 */
 	public void setIdDomain(int idDomain) {
-		this.ui.id_domain = idDomain;
+		this.userInfo.id_domain = idDomain;
 	}
 		
 	/**
 	 * @return Returns the gid.
 	 */
 	public short getGid() {
-		return ui.gid;
+		return userInfo.gid;
 	}
 	/**
 	 * @param gid The gid to set.
 	 */
 	public void setGid(short gid) {
-		this.ui.gid = gid;
+		this.userInfo.gid = gid;
 	}
 	/**
 	 * @return Returns the uid.
 	 */
 	public short getUid() {
-		return ui.uid;
+		return userInfo.uid;
 	}
 	/**
 	 * @param uid The uid to set.
 	 */
 	public void setUid(short uid) {
-		this.ui.uid = uid;
+		this.userInfo.uid = uid;
 	}
 	
 	/**
@@ -143,8 +143,16 @@ public class User implements Cloneable
 	}
 	
 	public void clear() {
-		ui = new user_info();
+		userInfo = new user_info();
 		domain = "";
+	}
+
+	public user_info getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(user_info userInfo) {
+		this.userInfo = userInfo;
 	}
 }
 

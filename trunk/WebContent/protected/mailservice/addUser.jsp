@@ -24,27 +24,27 @@
 				<h:form id="addUser">
 					<div id="content">
 						<h2>
-							<h:outputText rendered="#{!backing_addUser.updating}" value="#{msgs.mailServiceAddUserTitle}"/>
-							<h:outputText rendered="#{backing_addUser.updating}" value="#{msgs.mailServiceEditUserTitle}"/>
-							<h:commandLink action="#{backing_domains.editDomain}" value="#{backing_users.domain}">
-								<f:param name="idDomain" value="#{backing_users.idDomain}"/>
+							<h:outputText rendered="#{!mailService.updatingCurrentUser}" value="#{msgs.mailServiceAddUserTitle}"/>
+							<h:outputText rendered="#{mailService.updatingCurrentUser}" value="#{msgs.mailServiceEditUserTitle}"/>
+							<h:commandLink action="#{backing_domains.editDomain}" value="#{mailService.currentDomain.domain}">
+								<f:param name="idDomain" value="#{mailService.currentDomain.idDomain}"/>
 							</h:commandLink>
 						</h2>
 					</div>
 					<h:panelGrid>
-						<h:messages styleClass="error" globalOnly="true" layout="table"/>
+						<h:messages errorClass="error" fatalClass="fatal" globalOnly="true" layout="table"/>
 						<h:outputText value="#{backing_addUser.result}"/>
 					</h:panelGrid>
 
 					<h:panelGrid styleClass="editing" rowClasses="odd,even" columns="3">
 						<h:outputText value="#{msgs.mailServiceAddUserDomain}"/>
-						<h:outputText value="#{backing_addUser.domain}"/>
+						<h:outputText value="#{mailService.currentDomain.domain}"/>
 						<f:verbatim/>
 						
 						<h:outputText value="#{msgs.mailServiceAddUserLogin}"/>
 						<h:inputText size="25" required="true" id="login"
 							value="#{backing_addUser.login}"
-							disabled="#{backing_addUser.updating}">
+							disabled="#{mailService.updatingCurrentUser}">
 							<f:validateLength minimum="1" maximum="512"/>
 						</h:inputText>
 						<h:message styleClass="error" for="login"/>
@@ -71,7 +71,8 @@
 						<h:outputText value="#{msgs.mailServiceAddUserHomeDir}"/>
 						<h:panelGroup>
 							<h:selectBooleanCheckbox id="defaultDir" value="#{backing_addUser.defaultDir}"
-								onchange="submit()" immediate="true" valueChangeListener="#{backing_addUser.defaultDirChanged}"/>
+								onchange="submit()" immediate="true" valueChangeListener="#{backing_addUser.defaultDirChanged}"
+								disabled="#{mailService.updatingCurrentUser}"/>
 							<f:verbatim>&amp;nbsp;</f:verbatim>
 							<h:outputText value="#{msgs.mailServiceAddUserHomeDirDefault}"/>
 						</h:panelGroup>
@@ -87,7 +88,7 @@
 							<h:panelGroup>
 								<h:commandButton value="#{msgs.commonCancel}"
 									action="#{backing_addUser.cancel}" immediate="true"/>
-								<h:commandButton value="#{backing_addUser.updating ? msgs.commonUpdate : msgs.commonAdd}"
+								<h:commandButton value="#{mailService.updatingCurrentUser ? msgs.commonUpdate : msgs.commonAdd}"
 									immediate="false" action="#{backing_addUser.addUser}"/>
 							</h:panelGroup>
 						</f:facet>

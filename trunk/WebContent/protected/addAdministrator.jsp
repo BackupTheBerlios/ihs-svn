@@ -29,7 +29,7 @@
 				</div>
 				<h:form id="addAdministrator">
 					<h:panelGrid>
-						<h:messages styleClass="error" globalOnly="true" layout="table"/>
+						<h:messages errorClass="error" fatalClass="fatal" globalOnly="true" layout="table"/>
 						<h:outputText styleClass="message" value="#{backing_addAdministrator.result}"/>
 					</h:panelGrid>
 

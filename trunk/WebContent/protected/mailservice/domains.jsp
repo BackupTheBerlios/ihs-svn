@@ -29,7 +29,7 @@
 					<h:panelGrid>
 						<!-- result messages -->
 						<h:panelGrid>
-							<h:messages styleClass="error" globalOnly="false" layout="table"/>
+							<h:messages errorClass="error" fatalClass="fatal" globalOnly="false" layout="table"/>
 							<h:outputText styleClass="message" value="#{backing_domains.result}"/>
 						</h:panelGrid>
 		
@@ -46,13 +46,13 @@
 							<h:column>
 								<f:facet name="header">
 									<h:panelGroup>
-										<h:commandLink 
-											rendered="#{!backing_mailService.domainsSorting.sortedByDomain}"
-											actionListener="#{backing_mailService.domainsSorting.sortByDomain}">
+										<h:commandLink
+											rendered="#{!mailService.domainsSorting.sortedByDomain}"
+											actionListener="#{mailService.domainsSorting.sortByDomain}">
 											<h:outputText value="#{msgs.mailServiceDomainsDomainHeader}"/>
 										</h:commandLink>
 										<h:outputText 
-											rendered="#{backing_mailService.domainsSorting.sortedByDomain}"
+											rendered="#{mailService.domainsSorting.sortedByDomain}"
 											value="#{msgs.mailServiceDomainsDomainHeader}"/>
 									</h:panelGroup>
 								</f:facet>
@@ -64,12 +64,12 @@
 								<f:facet name="header">
 									<h:panelGroup>
 										<h:commandLink 
-											rendered="#{!backing_mailService.domainsSorting.sortedByNumberOfUsers}"
-											actionListener="#{backing_mailService.domainsSorting.sortByNumberOfUsers}">
+											rendered="#{!mailService.domainsSorting.sortedByNumberOfUsers}"
+											actionListener="#{mailService.domainsSorting.sortByNumberOfUsers}">
 											<h:outputText value="#{msgs.mailServiceDomainsUsersHeader}"/>
 										</h:commandLink>
 										<h:outputText 
-											rendered="#{backing_mailService.domainsSorting.sortedByNumberOfUsers}"
+											rendered="#{mailService.domainsSorting.sortedByNumberOfUsers}"
 											value="#{msgs.mailServiceDomainsUsersHeader}"/>
 									</h:panelGroup>
 								</f:facet>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="iso8859-2"?>
+<chapter id="users">
+	<title>Podręcznik użytkownika</title>
+
+	<section id="users.login">
+		<title>Logowanie się do systemu</title>
+		
+		<figure id="figure.users.loading">
+			<title>Ładowanie aplikacji</title>
+			<graphic fileref="../imgs/loading.png" format="PNG"/>
+		</figure>
+
+		<para>
+			<xref linkend="figure.users.loading"/> przedstawia pierwszą stonę, którą zobaczy użytkownik
+			po zainstalowaniu aplikacji. Zależnie od wydajności systemu strona może być widoczna przez kilka
+			do kilkuset sekund. W tym czasie serwer J2EE zajmuje się ładowaniem aplikacji do pamięci oraz
+			kompilacją niezbędnych elementów. Po załadowaniu aplikacji zazwyczaj trudno będzie znowu zobaczyć
+			tą stronę.
+		</para>
+
+		<figure id="figure.users.login">
+			<title>Strona logowania</title>
+			<graphic fileref="../imgs/pl.login.png" format="PNG"/>
+		</figure>
+
+		<para>
+			<xref linkend="figure.users.login"/> - strona logowania. Do systemu mogą logować się tylko użytkownicy
+			należący do grupy "administrator". Aktualnie zarządzanie grupami nie działa i wszyscy użytkownicy
+			rejestrowani w systemie automatycznie dodawani są do tej grupy.
+
+			<notice>
+				<para>
+					Domyślny użytkownik to: admin, hasło: admin. Po zalogowaniu najlepiej dodać innego użytkownika i usunąć domyślne konto.
+				</para>
+			</notice>
+		</para>
+
+		
+		
+		<figure id="figure.users.login.failed">
+			<title>Strona logowania z komunikatem</title>
+			<graphic fileref="../imgs/pl.login.failed.png" format="PNG"/>
+		</figure>
+
+		<para>
+			W przypadku podania nieprawidłowych danych lub błędu systemu podczas logowania zostanie wyświetlona
+			następująca strona <xref linkend="figure.users.login.failed"/>. Jeżeli problem się powtarza należy skontaktować się
+			z administratorem systemu.
+		</para>
+	</section>
+
+	<section id="users.conf">
+		<title>Panel konfiguracyjny</title>
+
+		<figure id="figure.users.configuration1">
+			<title>Panel konfiguracyjny</title>
+			<graphic fileref="../imgs/pl.configuration1.png" format="PNG"/>
+		</figure>
+
+		<para>
+			Panel konfiguracyjny (<xref linkend="figure.users.configuration"/>) umożliwia
+			ustawienie podstawowych parametrów niezbędnych do pracy systemu.
+		</para>
+		
+		<figure id="figure.users.configuration2">
+			<title>Panel konfiguracyjny: komunikat błędu</title>
+			<graphic fileref="../imgs/pl.configuration2.png" format="PNG"/>
+		</figure>
+
+		<para>
+			W przypadku podania nieprawidłowych wartości zostanie wyświetlony odpowiedni
+			komunikat, tak jak w przyładzie <xref linkend="figure.users.configuration2"/>. W takim przypadku żadne ustawienia
+			nie są zapisywane. Dopiero po poprawnym ustawieniu wszystkich wartości następuje zapis.
+		</para>
+		
+		<figure id="figure.users.configuration3">
+			<title>Panel konfiguracyjny: zapisano dane</title>
+			<graphic fileref="../imgs/pl.configuration3.png" format="PNG"/>
+		</figure>
+
+		<para>
+			Po wprowadzeniu poprawnych danych i kliknięcu "Modyfikuj" następuje zapis, po czym zostaje
+			wyświetlony odpowiedni komunikat - <xref linkend="figure.users.configuration3"/>.
+		</para>
+	</section>
+
+	<section id="users.admins">
+		<title>Zarządzanie administratorami</title>
+		
+		<figure id="figure.users.administrators">
+			<title>Lista administratorów</title>
+			<graphic fileref="../imgs/pl.administrators.png" format="PNG"/>
+		</figure>
+		<figure id="figure.users.administrators.rm1">
+			<title>Usuwanie administratora, krok 1</title>
+			<graphic fileref="../imgs/pl.administrators.rm1.png" format="PNG"/>
+		</figure>
+		<figure id="figure.users.administrators.rm2">
+			<title>Usuwanie administratora, krok 2</title>
+			<graphic fileref="../imgs/pl.administrators.rm2.png" format="PNG"/>
+		</figure>
+		<figure id="figure.users.addAdministrator1">
+			<title>Dodawanie administratora, krok 1</title>
+			<graphic fileref="../imgs/pl.addAdministrator1.png" format="PNG"/>
+		</figure>
+		<figure id="figure.users.addAdministrator2">
+			<title>Dodawanie administratora, krok 2</title>
+			<graphic fileref="../imgs/pl.addAdministrator2.png" format="PNG"/>
+		</figure>
+		<figure id="figure.users.addAdministrator3">
+			<title>Dodawanie administratora, krok 3</title>
+			<graphic fileref="../imgs/pl.addAdministrator3.png" format="PNG"/>
+		</figure>
+		<figure id="figure.users.addAdministrator4">
+			<title>Dodawanie administratora, krok 4</title>
+			<graphic fileref="../imgs/pl.addAdministrator4.png" format="PNG"/>
+		</figure>
+	</section>
+
+	<section id="users.domains">
+		<title>Zarządzanie domenami</title>
+
+		<figure id="figure.users.domains1">
+			<title>List domen</title>
+			<graphic fileref="../imgs/pl.domains1.png" format="PNG"/>
+		</figure>
+		<figure id="figure.users.domains.rm1">
+			<title>Usuwanie domeny, krok 1</title>
+			<graphic fileref="../imgs/pl.domains.rm1.png" format="PNG"/>
+		</figure>
+		<figure id="figure.users.domains.rm2">
+			<title>Usuwanie domeny, krok 2</title>
+			<graphic fileref="../imgs/pl.domains.rm2.png" format="PNG"/>
+		</figure>
+
+		<section id="users.domains.users">
+			<title>Zarządzanie użytkownikami</title>
+			
+			<figure id="figure.users.users">
+				<title>Lista użytkowników</title>
+				<graphic fileref="../imgs/pl.users.png" format="PNG"/>
+			</figure>
+			<figure id="figure.users.addUser1">
+				<title>Dodawanie użytkownika, krok 1</title>
+				<graphic fileref="../imgs/pl.addUser1.png" format="PNG"/>
+			</figure>
+			<figure id="figure.users.addUser">
+				<title>Dodawanie użytkownika, krok 2</title>
+				<graphic fileref="../imgs/pl.addUser.png" format="PNG"/>
+			</figure>
+		</section>
+	</section>
+
+	<section id="users.logs">
+		<title>Przeglądanie logów systemowych</title>
+
+		<figure id="figure.users.logs">
+			<title>Lista zdarzeń</title>
+			<graphic fileref="../imgs/pl.logs.png" format="PNG"/>
+		</figure>
+		<figure id="figure.users.logs1">
+			<title>Lista zdarzeń: filtrowanie</title>
+			<graphic fileref="../imgs/pl.logs1.png" format="PNG"/>
+		</figure>
+	</section>
+</chapter>

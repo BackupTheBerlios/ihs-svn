@@ -146,12 +146,20 @@ label.disabled { color: #d7d7d7 }
 }
 
 /* Styles for the error page (and rst errors) */
-#content.error .message, div.system-message {
+.error, .fatal, div.system-message {
  background: #fdc;
  border: 2px solid #d00;
  color: #500;
- padding: .5em;
+ padding: .25em;
  margin: 1em 0;
+ white-space: nowrap;
+}
+
+.message {
+ color: #500;
+ padding: .25em;
+ margin: 1em 0;
+ white-space: nowrap;
 }
 
 /* Styles for tabular listings such as those used for displaying directory

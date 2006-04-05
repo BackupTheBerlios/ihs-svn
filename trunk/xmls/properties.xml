@@ -16,7 +16,7 @@
 
 <!-- JADE configuration -->
 <property name="jade.bin" value="openjade"/>
-<property name="jade.xml_dcl" value="/usr/share/sgml/docbook/dsssl-stylesheets-1.78/dtds/decls/xml.dcl"/>
+<property name="jade.xml_dcl" value="/usr/share/sgml/docbook/dsssl-stylesheets-1.79/dtds/decls/xml.dcl"/>
 <property name="jade.catalog" value="/usr/share/sgml/CATALOG.db42xml:/usr/share/sgml/CATALOG.openjade:/usr/share/sgml/CATALOG.docbkdsl:/usr/share/sgml/CATALOG.iso_ent"/>
 
 <!-- installation -->

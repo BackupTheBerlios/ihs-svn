@@ -28,7 +28,7 @@
 				<h:form id="administrators">
 					<!-- result messages -->
 					<h:panelGrid>
-						<h:messages styleClass="error" globalOnly="false" layout="table"/>
+						<h:messages errorClass="error" fatalClass="fatal" globalOnly="false" layout="table"/>
 						<h:outputText styleClass="message" value="#{backing_administrators.result}"/>
 					</h:panelGrid>
 

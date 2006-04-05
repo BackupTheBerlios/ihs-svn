@@ -31,7 +31,7 @@
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
 			<to-view-id>/protected/mailservice/domains.jsp</to-view-id>
-		</navigation-case>
+		<redirect /></navigation-case>
 		<navigation-case>
 			<from-outcome>editDomain</from-outcome>
 			<to-view-id>/protected/mailservice/addDomain.jsp</to-view-id>
@@ -50,7 +50,7 @@
 		<navigation-case>
 			<from-outcome>reload</from-outcome>
 			<to-view-id>/protected/mailservice/users.jsp</to-view-id>
-		</navigation-case>
+		<redirect /></navigation-case>
 		<navigation-case>
 			<from-outcome>editUser</from-outcome>
 			<to-view-id>/protected/mailservice/addUser.jsp</to-view-id>
@@ -60,21 +60,6 @@
 			<to-view-id>/protected/mailservice/addDomain.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	<managed-bean><description>Logic behind administrators.jsp</description>
-		<managed-bean-name>backing_administrators</managed-bean-name>
-		<managed-bean-class>com.foo_baz.ihs.backing.Administrators</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean><description>Logic behind addAdministrator.jsp</description>
-		<managed-bean-name>backing_addAdministrator</managed-bean-name>
-		<managed-bean-class>com.foo_baz.ihs.backing.AddAdministrator</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean><description>Bean used to setup locale</description>
-		<managed-bean-name>locale</managed-bean-name>
-		<managed-bean-class>com.foo_baz.util.faces.ChangeLocaleBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>gotoConfiguration</from-outcome>
@@ -138,6 +123,13 @@
 			<to-view-id>/protected/mailservice/users.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/protected/mailservice/logs.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>reload</from-outcome>
+			<to-view-id>/protected/mailservice/logs.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	<application>
 		<message-bundle>com.foo_baz.ihs.application</message-bundle>
 		<locale-config>
@@ -146,6 +138,21 @@
 			<supported-locale>en</supported-locale>
 		</locale-config>
 	</application>
+	<managed-bean><description>Logic behind administrators.jsp</description>
+		<managed-bean-name>backing_administrators</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.Administrators</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean><description>Logic behind addAdministrator.jsp</description>
+		<managed-bean-name>backing_addAdministrator</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.AddAdministrator</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean><description>Bean used to setup locale</description>
+		<managed-bean-name>locale</managed-bean-name>
+		<managed-bean-class>com.foo_baz.util.faces.ChangeLocaleBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<managed-bean><description>Logic behind mailservice/domains.jsp</description>
 		<managed-bean-name>backing_domains</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.Domains</managed-bean-class>
@@ -154,17 +161,17 @@
 	<managed-bean><description>Logic behind mailservice/addDomain.jsp</description>
 		<managed-bean-name>backing_addDomain</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.AddDomain</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean><description>Logic behind mailservice/addUser.jsp</description>
 		<managed-bean-name>backing_addUser</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.AddUser</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean><description>Logic behind mailservice/users.jsp</description>
 		<managed-bean-name>backing_users</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.Users</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean><description>Logic behind configuration.jsp</description>
 		<managed-bean-name>backing_configuration</managed-bean-name>
@@ -176,30 +183,22 @@
 		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.Logs</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
-	<navigation-rule>
-		<from-view-id>/protected/mailservice/logs.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>reload</from-outcome>
-			<to-view-id>/protected/mailservice/logs.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 	<managed-bean>
 		<description>Common logic for mailservice/*.jsp</description>
-		<managed-bean-name>backing_mailService</managed-bean-name>
+		<managed-bean-name>mailService</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.MailServiceSession</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<description>Common logic for *.jsp</description>
-		<managed-bean-name>backing_ihs</managed-bean-name>
+		<managed-bean-name>ihs</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.IncredibleHostingSystemSession</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-		<managed-bean>
+	<managed-bean>
 		<description>Exception handling bean</description>
 		<managed-bean-name>exception</managed-bean-name>
 		<managed-bean-class>com.corejsf.ErrorBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 </faces-config>
-

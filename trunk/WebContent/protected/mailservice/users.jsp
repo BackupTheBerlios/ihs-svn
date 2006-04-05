@@ -26,14 +26,15 @@
 					<div id="content">
 						<h2>
 							<h:outputText value="#{msgs.mailServiceUsersTitle}"/>
-							<h:commandLink action="#{backing_domains.editDomain}" value="#{backing_users.domain}">
-								<f:param name="idDomain" value="#{backing_users.idDomain}"/>
+							<h:commandLink action="#{backing_domains.editDomain}" 
+								value="#{mailService.currentDomain.domain}">
+								<f:param name="idDomain" value="mailService.currentDomain.idDomain"/>
 							</h:commandLink>
 						</h2>
 					</div>
 					<!-- result messages -->
 					<h:panelGrid>
-						<h:messages styleClass="error" globalOnly="false" layout="table"/>
+						<h:messages errorClass="error" fatalClass="fatal" globalOnly="false" layout="table"/>
 						<h:outputText styleClass="message" value="#{backing_users.result}"/>
 					</h:panelGrid>
 					
@@ -51,12 +52,12 @@
 								<f:facet name="header">
 									<h:panelGroup>
 										<h:commandLink 
-											rendered="#{!backing_mailService.usersSorting.sortedByLogin}"
-											actionListener="#{backing_mailService.usersSorting.sortByLogin}">
+											rendered="#{!mailService.usersSorting.sortedByLogin}"
+											actionListener="#{mailService.usersSorting.sortByLogin}">
 											<h:outputText value="#{msgs.mailServiceUsersLoginHeader}"/>
 										</h:commandLink>
 										<h:outputText 
-											rendered="#{backing_mailService.usersSorting.sortedByLogin}"
+											rendered="#{mailService.usersSorting.sortedByLogin}"
 											value="#{msgs.mailServiceUsersLoginHeader}"/>
 									</h:panelGroup>
 								</f:facet>
@@ -68,12 +69,12 @@
 								<f:facet name="header">
 									<h:panelGroup>
 										<h:commandLink 
-											rendered="#{!backing_mailService.usersSorting.sortedByFlags}"
-											actionListener="#{backing_mailService.usersSorting.sortByFlags}">
+											rendered="#{!mailService.usersSorting.sortedByFlags}"
+											actionListener="#{mailService.usersSorting.sortByFlags}">
 											<h:outputText value="#{msgs.mailServiceUsersFlagsHeader}"/>
 										</h:commandLink>
 										<h:outputText 
-											rendered="#{backing_mailService.usersSorting.sortedByFlags}"
+											rendered="#{mailService.usersSorting.sortedByFlags}"
 											value="#{msgs.mailServiceUsersFlagsHeader}"/>
 									</h:panelGroup>
 								</f:facet>
@@ -83,12 +84,12 @@
 								<f:facet name="header">
 									<h:panelGroup>
 										<h:commandLink 
-											rendered="#{!backing_mailService.usersSorting.sortedByDir}"
-											actionListener="#{backing_mailService.usersSorting.sortByDir}">
+											rendered="#{!mailService.usersSorting.sortedByDir}"
+											actionListener="#{mailService.usersSorting.sortByDir}">
 											<h:outputText value="#{msgs.mailServiceUsersDirectoryHeader}"/>
 										</h:commandLink>
 										<h:outputText 
-											rendered="#{backing_mailService.usersSorting.sortedByDir}"
+											rendered="#{mailService.usersSorting.sortedByDir}"
 											value="#{msgs.mailServiceUsersDirectoryHeader}"/>
 									</h:panelGroup>
 								</f:facet>
@@ -98,12 +99,12 @@
 								<f:facet name="header">
 									<h:panelGroup>
 										<h:commandLink 
-											rendered="#{!backing_mailService.usersSorting.sortedByUid}"
-											actionListener="#{backing_mailService.usersSorting.sortByUid}">
+											rendered="#{!mailService.usersSorting.sortedByUid}"
+											actionListener="#{mailService.usersSorting.sortByUid}">
 											<h:outputText value="#{msgs.mailServiceUsersUidHeader}"/>
 										</h:commandLink>
 										<h:outputText 
-											rendered="#{backing_mailService.usersSorting.sortedByUid}"
+											rendered="#{mailService.usersSorting.sortedByUid}"
 											value="#{msgs.mailServiceUsersUidHeader}"/>
 									</h:panelGroup>
 								</f:facet>
@@ -113,12 +114,12 @@
 								<f:facet name="header">
 									<h:panelGroup>
 										<h:commandLink 
-											rendered="#{!backing_mailService.usersSorting.sortedByGid}"
-											actionListener="#{backing_mailService.usersSorting.sortByGid}">
+											rendered="#{!mailService.usersSorting.sortedByGid}"
+											actionListener="#{mailService.usersSorting.sortByGid}">
 											<h:outputText value="#{msgs.mailServiceUsersGidHeader}"/>
 										</h:commandLink>
 										<h:outputText 
-											rendered="#{backing_mailService.usersSorting.sortedByGid}"
+											rendered="#{mailService.usersSorting.sortedByGid}"
 											value="#{msgs.mailServiceUsersGidHeader}"/>
 									</h:panelGroup>
 								</f:facet>

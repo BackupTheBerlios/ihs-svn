@@ -27,7 +27,7 @@
 				</div>
 				<h:form id="configuration">
 					<h:panelGrid>
-						<h:messages styleClass="error" globalOnly="true" layout="table"/>
+						<h:messages errorClass="error" fatalClass="fatal" globalOnly="true" layout="table"/>
 						<h:outputText styleClass="message" value="#{backing_configuration.result}"/>
 					</h:panelGrid>
 

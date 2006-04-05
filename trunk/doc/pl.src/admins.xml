@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-2"?>
+<?xml version="1.0" encoding="iso8859-2"?>
 <chapter id="admins">
 	<title>Podręcznik administratora</title>
 
@@ -138,4 +138,7 @@
 			jednym z elementów menu będzie odnośnik do strony konfiguracyjnej.
 		</para>
 	</section>
+
 </chapter>
+
+

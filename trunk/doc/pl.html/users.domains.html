@@ -2,7 +2,7 @@
 <HTML
 ><HEAD
 ><TITLE
->Future plans</TITLE
+>Zarz±dzanie domenami</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
@@ -10,19 +10,19 @@ REL="HOME"
 TITLE="Incredible Hosting System"
 HREF="index.html"><LINK
 REL="UP"
-TITLE="Developers guide"
-HREF="devs.html"><LINK
+TITLE="Podrêcznik u¿ytkownika"
+HREF="users.html"><LINK
 REL="PREVIOUS"
-TITLE="Strategies"
-HREF="strategies.html"><LINK
+TITLE="Zarz±dzanie administratorami"
+HREF="users.admins.html"><LINK
 REL="NEXT"
-TITLE="Errors handling"
-HREF="strategies.errors.html"><LINK
+TITLE="Przegl±danie logów systemowych"
+HREF="users.logs.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-04-04T20:04:54"><META
+CONTENT="2006-04-04T20:04:37"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -52,23 +52,23 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="strategies.html"
+HREF="users.admins.html"
 ACCESSKEY="P"
->Prev</A
+>Poprzedni</A
 ></TD
 ><TD
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
->Chapter 4. Developers guide</TD
+>Rozdzia&#322; 3. Podrêcznik u¿ytkownika</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="strategies.errors.html"
+HREF="users.logs.html"
 ACCESSKEY="N"
->Next</A
+>Nast&#281;pny</A
 ></TD
 ></TR
 ></TABLE
@@ -80,71 +80,95 @@ CLASS="section"
 ><H1
 CLASS="section"
 ><A
-NAME="future"
->4.3. Future plans</A
+NAME="users.domains"
+>3.4. Zarz±dzanie domenami</A
 ></H1
 ><DIV
-CLASS="formalpara"
+CLASS="figure"
+><A
+NAME="figure.users.domains1"
+></A
 ><P
 ><B
->Increasing security. </B
->
-				At this time connections between IHS and Virtual Qmail are not secured. CORBA includes some mechanisms to
-				authenticate users and protect communication by encryption it's worth to make it possible to use them.
-			</P
+>Rysunek 3-14. List domen</B
+></P
+><P
+><IMG
+SRC="../imgs/pl.domains1.png"></P
 ></DIV
 ><DIV
-CLASS="formalpara"
+CLASS="figure"
+><A
+NAME="figure.users.domains.rm1"
+></A
 ><P
 ><B
->Support for other database systems. </B
->
-				MySQL 5 introduces views, triggers and stored procedures, so it should have technical capatibilities
-				required by IHS and Virtual Qmail. Also DB2 support would be worth having.
-			</P
+>Rysunek 3-15. Usuwanie domeny, krok 1</B
+></P
+><P
+><IMG
+SRC="../imgs/pl.domains.rm1.png"></P
 ></DIV
 ><DIV
-CLASS="formalpara"
+CLASS="figure"
+><A
+NAME="figure.users.domains.rm2"
+></A
 ><P
 ><B
->Integration with other systems. </B
->
-				IHS in future will be an interface that will allow to manage hosting system in whole.
-				It's going to be a complex system including support for virtual WWW servers (Apache, Tomcat, etc.), FTP servers
-				(ProFTPD, pureftpd, etc.) and other network services. It will allows to monitor system, create
-				statistics and reports.
-			</P
+>Rysunek 3-16. Usuwanie domeny, krok 2</B
+></P
+><P
+><IMG
+SRC="../imgs/pl.domains.rm2.png"></P
 ></DIV
 ><DIV
-CLASS="formalpara"
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="users.domains.users"
+>3.4.1. Zarz±dzanie u¿ytkownikami</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.users.users"
+></A
 ><P
 ><B
->Better installation. </B
->
-				It would be nice to have easier installation process. There's an idea to
-				make installation process operated by web browser.
-			</P
+>Rysunek 3-17. Lista u¿ytkowników</B
+></P
+><P
+><IMG
+SRC="../imgs/pl.users.png"></P
 ></DIV
 ><DIV
-CLASS="formalpara"
+CLASS="figure"
+><A
+NAME="figure.users.addUser1"
+></A
 ><P
 ><B
->Plug-ins support. </B
->
-				System should be easy to extend. One of elements needed for it it's flexible system of plug-ins.
-				Plug-ins will add new features or change existing. It shoule be possible to add or remove them on the fly.
-			</P
+>Rysunek 3-18. Dodawanie u¿ytkownika, krok 1</B
+></P
+><P
+><IMG
+SRC="../imgs/pl.addUser1.png"></P
 ></DIV
 ><DIV
-CLASS="formalpara"
+CLASS="figure"
+><A
+NAME="figure.users.addUser"
+></A
 ><P
 ><B
->Themes support. </B
->
-				It would be nice to have some mechanism to customize look of application.
-				Each user should be able to select the most suitable theme. CSS will help in
-				achieving this.
-			</P
+>Rysunek 3-19. Dodawanie u¿ytkownika, krok 2</B
+></P
+><P
+><IMG
+SRC="../imgs/pl.addUser.png"></P
+></DIV
 ></DIV
 ></DIV
 ><DIV
@@ -163,9 +187,9 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="strategies.html"
+HREF="users.admins.html"
 ACCESSKEY="P"
->Prev</A
+>Poprzedni</A
 ></TD
 ><TD
 WIDTH="34%"
@@ -174,16 +198,16 @@ VALIGN="top"
 ><A
 HREF="index.html"
 ACCESSKEY="H"
->Home</A
+>Spis tre&#347;ci</A
 ></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="strategies.errors.html"
+HREF="users.logs.html"
 ACCESSKEY="N"
->Next</A
+>Nast&#281;pny</A
 ></TD
 ></TR
 ><TR
@@ -191,21 +215,21 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Strategies</TD
+>Zarz±dzanie administratorami</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
 ><A
-HREF="devs.html"
+HREF="users.html"
 ACCESSKEY="U"
->Up</A
+>Pocz&#261;tek rozdzia&#322;u</A
 ></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Errors handling</TD
+>Przegl±danie logów systemowych</TD
 ></TR
 ></TABLE
 ></DIV

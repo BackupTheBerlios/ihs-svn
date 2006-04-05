@@ -3,6 +3,7 @@
 	[
 	<!ENTITY biblio SYSTEM "biblio.xml">
 	<!ENTITY admins SYSTEM "admins.xml">
+	<!ENTITY users SYSTEM "users.xml">
 	<!ENTITY devs SYSTEM "devs.xml">
 	]
 >
@@ -174,7 +175,8 @@
 			oraz utrzymaniem IHS w ¶rodowisku klienta.
 		</para>
 	</chapter>
-	
+
+	&users;
 	&admins;
 	&devs;
 	&biblio;

@@ -33,13 +33,13 @@ public class AddDomain extends ExtendedDomain {
 		ValueBinding binding = app.createValueBinding("#{mailService}");
 		controller = (MailServiceSession) binding.getValue(context);
 
-		if( controller.isUpdatingCurrentDomain() )
+		if( controller.isUpdatingSelectedDomain() )
 			readDomain();
 	}
 	
 	protected void readDomain() throws Exception {
 		IncredibleHostingSystem usersDB = null;
-		this.setIdDomain(controller.getCurrentDomain().getIdDomain());
+		this.setIdDomain(controller.getSelectedDomain().getIdDomain());
 		try {
 			usersDB = new IncredibleHostingSystem();
 			usersDB.open();
@@ -129,7 +129,7 @@ public class AddDomain extends ExtendedDomain {
 	}
 	
 	public String addDomain() throws Exception {
-		return commonAddUpdate(controller.isUpdatingCurrentDomain());
+		return commonAddUpdate(controller.isUpdatingSelectedDomain());
 	}
 
 	/**

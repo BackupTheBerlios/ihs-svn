@@ -25,14 +25,20 @@ import com.foo_baz.util.faces.Messages;
  */
 public class Administrators {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
+	protected IncredibleHostingSystemSession controller = null;
+	protected AdministratorsDataModel adminsModel;
+	private String result;
 
-	//@{
-	/**
-	 * Model representing table
-	 */
-	AdministratorsDataModel adminsModel;
+	public Administrators() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{ihs}");
+		controller = (IncredibleHostingSystemSession) binding.getValue(context);
+		
+		readAdministrators();
+	}
 	
-	public DataModel getAdministrators() throws Exception {
+	protected void readAdministrators() throws Exception {
 		IncredibleHostingSystem adminsDB = null;
 		ArrayList admins = new ArrayList();
 		ArrayList extAdmins = new ArrayList();
@@ -60,6 +66,12 @@ public class Administrators {
 			try { adminsDB.close(); } catch (Exception e) {};
 		}
 		adminsModel = new AdministratorsDataModel(new ListDataModel(extAdmins));
+	}
+	
+	/**
+	 * Model representing table
+	 */
+	public DataModel getAdministrators() throws Exception {
 		return adminsModel;
 	}
 	
@@ -77,18 +89,12 @@ public class Administrators {
 		}
 		return ret;
 	}
-	//@}
-
-	//@{
-	private String result;
 	
 	/**
 	 * @return Returns the removeAdministratorsResult.
 	 */
 	public String getResult() {
-		String temp = result;
-		result = "";
-		return temp;
+		return result;
 	}
 	/**
 	 * @param removeAdministratorsResult The removeAdministratorsResult to set.
@@ -156,21 +162,15 @@ public class Administrators {
 		} finally {
 			try { adminsDB.close(); } catch (Exception e) {};
 		}
-		
+		readAdministrators();
 		return "";
 	}
-	//@}
 	
 	/**
 	 * 
 	 */
 	public String addAdministrator() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_addAdministrator}");
-		AddAdministrator aa = (AddAdministrator) binding.getValue(context);
-		aa.clear();
-		aa.setUpdating(false);
+		controller.setUpdatingSelectedUser(false);
 		return "addAdministrator";
 	}
 	
@@ -181,12 +181,13 @@ public class Administrators {
 	public String editAdministrator() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
-		ValueBinding binding = app.createValueBinding("#{backing_addAdministrator}");
 		ValueBinding login = app.createValueBinding("#{param.login}");
-		AddAdministrator aa = (AddAdministrator) binding.getValue(context);
-		aa.clear();
-		aa.setLogin((String) login.getValue(context));
-		aa.setUpdating(true);
+		
+		Administrator admin = new Administrator();
+		admin.setLogin((String) login.getValue(context));
+		
+		controller.setUpdatingSelectedUser(true);
+		controller.setSelectedUser(admin);
 		return "editAdministrator";
 	}
 }

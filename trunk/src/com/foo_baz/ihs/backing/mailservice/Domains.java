@@ -29,6 +29,8 @@ import com.foo_baz.util.faces.Messages;
 public class Domains {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
 	protected MailServiceSession controller = null;
+	protected ExtendedDomainsDataModel domainsModel;
+	private String result;
 
 	public Domains() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -78,8 +80,6 @@ public class Domains {
 	/**
 	 * Model representing table
 	 */
-	ExtendedDomainsDataModel domainsModel;
-	
 	public DataModel getDomains() {
 		controller.getDomainsSorting().sortDataModel(domainsModel);
 		return domainsModel;
@@ -99,8 +99,6 @@ public class Domains {
 		return ret;
 	}
 
-	private String result;
-	
 	/**
 	 * @return Returns the result.
 	 */
@@ -182,7 +180,7 @@ public class Domains {
 	 * 
 	 */
 	public String addDomain() {
-		controller.setUpdatingCurrentDomain(false);
+		controller.setUpdatingSelectedDomain(false);
 		return "addDomain";
 	}
 	
@@ -200,8 +198,8 @@ public class Domains {
 		String act = fillNameOfDomain(dom);
 		if( ! act.equals("") ) return act;
 
-		controller.setCurrentDomain(dom);
-		controller.setUpdatingCurrentDomain(true);
+		controller.setSelectedDomain(dom);
+		controller.setUpdatingSelectedDomain(true);
 		return "editDomain";
 	}
 	
@@ -219,7 +217,7 @@ public class Domains {
 		String act = fillNameOfDomain(dom);
 		if( ! act.equals("") ) return act;
 		
-		controller.setCurrentDomain(dom);
+		controller.setSelectedDomain(dom);
 		return "listUsers";
 	}
 	

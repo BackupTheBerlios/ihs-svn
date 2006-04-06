@@ -24,8 +24,8 @@
 				<h:form id="addUser">
 					<div id="content">
 						<h2>
-							<h:outputText rendered="#{!mailService.updatingCurrentUser}" value="#{msgs.mailServiceAddUserTitle}"/>
-							<h:outputText rendered="#{mailService.updatingCurrentUser}" value="#{msgs.mailServiceEditUserTitle}"/>
+							<h:outputText rendered="#{!mailService.updatingSelectedUser}" value="#{msgs.mailServiceAddUserTitle}"/>
+							<h:outputText rendered="#{mailService.updatingSelectedUser}" value="#{msgs.mailServiceEditUserTitle}"/>
 							<h:commandLink action="#{backing_domains.editDomain}" value="#{mailService.currentDomain.domain}">
 								<f:param name="idDomain" value="#{mailService.currentDomain.idDomain}"/>
 							</h:commandLink>
@@ -44,7 +44,7 @@
 						<h:outputText value="#{msgs.mailServiceAddUserLogin}"/>
 						<h:inputText size="25" required="true" id="login"
 							value="#{backing_addUser.login}"
-							disabled="#{mailService.updatingCurrentUser}">
+							disabled="#{mailService.updatingSelectedUser}">
 							<f:validateLength minimum="1" maximum="512"/>
 						</h:inputText>
 						<h:message styleClass="error" for="login"/>
@@ -72,7 +72,7 @@
 						<h:panelGroup>
 							<h:selectBooleanCheckbox id="defaultDir" value="#{backing_addUser.defaultDir}"
 								onchange="submit()" immediate="true" valueChangeListener="#{backing_addUser.defaultDirChanged}"
-								disabled="#{mailService.updatingCurrentUser}"/>
+								disabled="#{mailService.updatingSelectedUser}"/>
 							<f:verbatim>&amp;nbsp;</f:verbatim>
 							<h:outputText value="#{msgs.mailServiceAddUserHomeDirDefault}"/>
 						</h:panelGroup>
@@ -88,7 +88,7 @@
 							<h:panelGroup>
 								<h:commandButton value="#{msgs.commonCancel}"
 									action="#{backing_addUser.cancel}" immediate="true"/>
-								<h:commandButton value="#{mailService.updatingCurrentUser ? msgs.commonUpdate : msgs.commonAdd}"
+								<h:commandButton value="#{mailService.updatingSelectedUser ? msgs.commonUpdate : msgs.commonAdd}"
 									immediate="false" action="#{backing_addUser.addUser}"/>
 							</h:panelGroup>
 						</f:facet>

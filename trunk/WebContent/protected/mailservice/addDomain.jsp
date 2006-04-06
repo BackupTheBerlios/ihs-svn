@@ -23,8 +23,8 @@
 			<div id="main">
 				<div id="content">
 					<h2>
-						<h:outputText rendered="#{!mailService.updatingCurrentDomain}" value="#{msgs.mailServiceAddDomainTitle}"/>
-						<h:outputText rendered="#{mailService.updatingCurrentDomain}" value="#{msgs.mailServiceEditDomainTitle}"/>
+						<h:outputText rendered="#{!mailService.updatingSelectedDomain}" value="#{msgs.mailServiceAddDomainTitle}"/>
+						<h:outputText rendered="#{mailService.updatingSelectedDomain}" value="#{msgs.mailServiceEditDomainTitle}"/>
 					</h2>
 				</div>
 				<h:form id="addDomain">
@@ -37,7 +37,7 @@
 						<h:outputText value="#{msgs.mailServiceAddDomainDomain}"/>
 						<h:inputText size="25" required="true" id="domain"
 							value="#{backing_addDomain.domain}"
-							disabled="#{mailService.updatingCurrentDomain}"
+							disabled="#{mailService.updatingSelectedDomain}"
 							validator="#{backing_addDomain.validateDomain}">
 							<f:validateLength minimum="1" maximum="512"/>
 						</h:inputText>
@@ -47,13 +47,13 @@
 							<h:panelGroup>
 								<h:commandButton value="#{msgs.commonCancel}"
 									action="#{backing_addDomain.cancel}" immediate="true"/>
-								<h:commandButton value="#{mailService.updatingCurrentDomain ? msgs.commonUpdate : msgs.commonAdd}"
+								<h:commandButton value="#{mailService.updatingSelectedDomain ? msgs.commonUpdate : msgs.commonAdd}"
 									immediate="false" action="#{backing_addDomain.addDomain}"/>
 							</h:panelGroup>
 						</f:facet>
 					</h:panelGrid>
 					
-					<h:panelGrid styleClass="related" rendered="#{mailService.updatingCurrentDomain}">
+					<h:panelGrid styleClass="related" rendered="#{mailService.updatingSelectedDomain}">
 						<h:commandLink action="#{backing_domains.listUsers}">
 							<h:outputText value="#{msgs.mailServiceUsersTitle}"/>
 							<h:outputText value="#{backing_addDomain.domain}"/>

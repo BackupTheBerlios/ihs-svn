@@ -23,8 +23,8 @@
 			<div id="main">
 				<div id="content">
 					<h2>
-						<h:outputText rendered="#{!backing_addAdministrator.updating}" value="#{msgs.addAdministratorTitle}"/>
-						<h:outputText rendered="#{backing_addAdministrator.updating}" value="#{msgs.editAdministratorTitle}"/>
+						<h:outputText rendered="#{!ihs.updatingSelectedUser}" value="#{msgs.addAdministratorTitle}"/>
+						<h:outputText rendered="#{ihs.updatingSelectedUser}" value="#{msgs.editAdministratorTitle}"/>
 					</h2>
 				</div>
 				<h:form id="addAdministrator">
@@ -37,7 +37,7 @@
 						<h:outputText value="#{msgs.addAdministratorLogin}"/>
 						<h:inputText size="25" required="true" id="login"
 							value="#{backing_addAdministrator.login}"
-							disabled="#{backing_addAdministrator.updating}">
+							disabled="#{ihs.updatingSelectedUser}">
 							<f:validateLength minimum="1" maximum="512"/>
 						</h:inputText>
 						<h:message styleClass="error" for="login"/>
@@ -61,7 +61,7 @@
 							<h:panelGroup>
 								<h:commandButton value="#{msgs.commonCancel}"
 									action="#{backing_addAdministrator.cancel}" immediate="true"/>
-								<h:commandButton value="#{backing_addAdministrator.updating ? msgs.commonUpdate : msgs.commonAdd}"
+								<h:commandButton value="#{ihs.updatingSelectedUser ? msgs.commonUpdate : msgs.commonAdd}"
 									immediate="false" action="#{backing_addAdministrator.addAdministrator}"/>
 							</h:panelGroup>
 						</f:facet>

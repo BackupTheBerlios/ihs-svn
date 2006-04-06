@@ -38,15 +38,15 @@ public class AddUser extends User {
 		ValueBinding binding = app.createValueBinding("#{mailService}");
 		controller = (MailServiceSession) binding.getValue(context);
 
-		setIdDomain(controller.getCurrentDomain().getIdDomain());
-		setDomain(controller.getCurrentDomain().getDomain());
-		if( controller.isUpdatingCurrentUser() )
+		setIdDomain(controller.getSelectedDomain().getIdDomain());
+		setDomain(controller.getSelectedDomain().getDomain());
+		if( controller.isUpdatingSelectedUser() )
 			readUser();
 	}
 	
 	protected void readUser() throws Exception {
 		IncredibleHostingSystem usersDB = null;
-		this.setLogin(controller.getCurrentUser().getLogin());
+		this.setLogin(controller.getSelectedUser().getLogin());
 		try {
 			usersDB = new IncredibleHostingSystem();
 			usersDB.open();
@@ -159,7 +159,7 @@ public class AddUser extends User {
 	}
 	
 	public String addUser() throws Exception {
-		return commonAddUpdate(controller.isUpdatingCurrentUser());
+		return commonAddUpdate(controller.isUpdatingSelectedUser());
 	}
 
 	/**

@@ -1,13 +1,15 @@
 package com.foo_baz.ihs.backing;
-//import javax.faces.component.*;
+
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.*;
 import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
 import javax.faces.validator.ValidatorException;
 import javax.naming.NamingException;
 
@@ -22,9 +24,42 @@ import com.foo_baz.util.faces.Messages;
  */
 public class AddAdministrator extends Administrator {
 	protected Logger logger = Logger.getLogger("com.foo_baz.ihs");
-	
+	private HtmlInputSecret addAdministratorPasswordInput;
 	private HtmlMessage addAdministratorLoginMessage;
+	private String result;
+	private HtmlMessage validatePasswordConfirmMessage;
+	private HtmlInputSecret addAdministratorPasswordConfirmInput;
+	protected IncredibleHostingSystemSession controller = null;
 
+	public AddAdministrator() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ValueBinding binding = app.createValueBinding("#{ihs}");
+		controller = (IncredibleHostingSystemSession) binding.getValue(context);
+		
+		if( controller.isUpdatingSelectedUser() )
+			readUser();
+	}
+	
+	protected void readUser() throws Exception {
+		IncredibleHostingSystem usersDB = null;
+		this.setLogin(controller.getSelectedUser().getLogin());
+		try {
+			usersDB = new IncredibleHostingSystem();
+			usersDB.open();
+			
+			OperationStatus stat = usersDB.getAdministrator(this);
+			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
+				logger.info(this.getClass().getName()
+					+".getAdministrator: Error: "+stat.getDescription());
+				this.setResult(stat.getDescription());
+			}
+		} finally {
+			try { usersDB.close(); } catch (Exception e) {};
+			setPassword("");
+		}
+	}
+	
 	public void setAddAdministratorLoginMessage(HtmlMessage message1) {
 		this.addAdministratorLoginMessage = message1;
 	}
@@ -32,8 +67,6 @@ public class AddAdministrator extends Administrator {
 	public HtmlMessage getAddAdministratorLoginMessage() {
 		return addAdministratorLoginMessage;
 	}
-
-	private HtmlInputSecret addAdministratorPasswordInput;
 
 	public void setAddAdministratorPasswordInput(HtmlInputSecret inputText1) {
 		this.addAdministratorPasswordInput = inputText1;
@@ -43,8 +76,6 @@ public class AddAdministrator extends Administrator {
 		return addAdministratorPasswordInput;
 	}
 
-	private HtmlInputSecret addAdministratorPasswordConfirmInput;
-
 	public void setAddAdministratorPasswordConfirmInput(HtmlInputSecret inputSecret1) {
 		this.addAdministratorPasswordConfirmInput = inputSecret1;
 	}
@@ -52,9 +83,6 @@ public class AddAdministrator extends Administrator {
 	public HtmlInputSecret getAddAdministratorPasswordConfirmInput() {
 		return addAdministratorPasswordConfirmInput;
 	}
-
-	//@{
-	private HtmlMessage validatePasswordConfirmMessage;
 
 	public void setValidatePasswordConfirmMessage(HtmlMessage message1) {
 		this.validatePasswordConfirmMessage = message1;
@@ -89,9 +117,7 @@ public class AddAdministrator extends Administrator {
 			throw new ValidatorException(message);	
 		}
 	}
-	//@}
-	
-	//@{
+
 	protected String commonAddUpdate( boolean updating ) throws Exception {
 		IncredibleHostingSystem adminsDB = null;
 		
@@ -133,18 +159,14 @@ public class AddAdministrator extends Administrator {
 	}
 	
 	public String addAdministrator() throws Exception {
-		return commonAddUpdate(isUpdating());
+		return commonAddUpdate(controller.isUpdatingSelectedUser());
 	}
-
-	private String result;
 
 	/**
 	 * @return Returns the addAdministratorResult.
 	 */
 	public String getResult() {
-		String temp = result;
-		result = "";
-		return temp;
+		return result;
 	}
 	/**
 	 * @param addAdministratorResult The addAdministratorResult to set.
@@ -153,31 +175,11 @@ public class AddAdministrator extends Administrator {
 		this.result = addAdministratorResult;
 	}	
 	
-	//@}
-
-	//@{
-	private boolean updating = false;
-	
-	/**
-	 * @return Returns the updating.
-	 */
-	public boolean isUpdating() {
-		return updating;
-	}
-	/**
-	 * @param updating The updating to set.
-	 */
-	public void setUpdating(boolean updating) {
-		this.updating = updating;
-	}
-	
 	/**
 	 * 
 	 * @return action to perform
 	 */
 	public String cancel() {
-		clear();
-		setUpdating(false);
 		return "cancel";
 	}
 }

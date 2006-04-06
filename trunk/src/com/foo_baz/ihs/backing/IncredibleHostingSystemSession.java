@@ -10,12 +10,16 @@ import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 
+import com.foo_baz.ihs.Administrator;
+
 /**
  * @author $Author$
  * @version $Id$
  */
 public class IncredibleHostingSystemSession {
 	protected static final Logger logger = Logger.getLogger("com.foo_baz.ihs");
+	private Administrator selectedUser;
+	private boolean updatingSelectedUser = false;
 	
 	public void logout(ActionEvent event) throws AbortProcessingException {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -36,6 +40,22 @@ public class IncredibleHostingSystemSession {
 			throw new FacesException("Can't redirect to '" + forward + "'");
 		}
 		facesContext.responseComplete();
+	}
+
+	public Administrator getSelectedUser() {
+		return selectedUser;
+	}
+
+	public void setSelectedUser(Administrator currentUser) {
+		this.selectedUser = currentUser;
+	}
+
+	public boolean isUpdatingSelectedUser() {
+		return updatingSelectedUser;
+	}
+
+	public void setUpdatingSelectedUser(boolean updatingCurrentUser) {
+		this.updatingSelectedUser = updatingCurrentUser;
 	}
 	
 }

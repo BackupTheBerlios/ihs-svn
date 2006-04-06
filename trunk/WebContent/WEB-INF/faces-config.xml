@@ -146,7 +146,7 @@
 	<managed-bean><description>Logic behind addAdministrator.jsp</description>
 		<managed-bean-name>backing_addAdministrator</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.AddAdministrator</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean><description>Bean used to setup locale</description>
 		<managed-bean-name>locale</managed-bean-name>

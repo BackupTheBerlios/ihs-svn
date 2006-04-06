@@ -11,10 +11,10 @@ public class MailServiceSession {
 	private ExtendedDomainsDataModelConfiguration domainsSorting = new ExtendedDomainsDataModelConfiguration();
 	private UsersDataModelConfiguration usersSorting = new UsersDataModelConfiguration();
 	private ExtendedLogsDataModelConfiguration logsSorting = new ExtendedLogsDataModelConfiguration();
-	private Domain currentDomain = new Domain();
-	private boolean updatingCurrentDomain = false;
-	private User currentUser = new User();
-	private boolean updatingCurrentUser = false;
+	private Domain selectedDomain = new Domain();
+	private boolean updatingSelectedDomain = false;
+	private User selectedUser = new User();
+	private boolean updatingSelectedUser = false;
 	
 	public ExtendedDomainsDataModelConfiguration getDomainsSorting() {
 		return domainsSorting;
@@ -28,36 +28,36 @@ public class MailServiceSession {
 		return logsSorting;
 	}
 	
-	public Domain getCurrentDomain() {
-		return currentDomain;
+	public Domain getSelectedDomain() {
+		return selectedDomain;
 	}
 	
-	public void setCurrentDomain( Domain domain ) {
-		currentDomain = domain;
+	public void setSelectedDomain( Domain domain ) {
+		selectedDomain = domain;
 	}
 
-	public boolean isUpdatingCurrentDomain() {
-		return updatingCurrentDomain;
+	public boolean isUpdatingSelectedDomain() {
+		return updatingSelectedDomain;
 	}
 
-	public void setUpdatingCurrentDomain(boolean updatingCurrentDomain) {
-		this.updatingCurrentDomain = updatingCurrentDomain;
+	public void setUpdatingSelectedDomain(boolean updatingCurrentDomain) {
+		this.updatingSelectedDomain = updatingCurrentDomain;
 	}
 
-	public User getCurrentUser() {
-		return currentUser;
+	public User getSelectedUser() {
+		return selectedUser;
 	}
 
-	public void setCurrentUser(User currentUser) {
-		this.currentUser = currentUser;
+	public void setSelectedUser(User currentUser) {
+		this.selectedUser = currentUser;
 	}
 
-	public boolean isUpdatingCurrentUser() {
-		return updatingCurrentUser;
+	public boolean isUpdatingSelectedUser() {
+		return updatingSelectedUser;
 	}
 
-	public void setUpdatingCurrentUser(boolean updatingCurrentUser) {
-		this.updatingCurrentUser = updatingCurrentUser;
+	public void setUpdatingSelectedUser(boolean updatingCurrentUser) {
+		this.updatingSelectedUser = updatingCurrentUser;
 	}
 		
 }

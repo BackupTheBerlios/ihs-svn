@@ -308,6 +308,7 @@ implements Administrators {
 			res = st.executeQuery();
 			
 			if( res.next() ) {
+				idx = 1;
 				administrator.setPassword( res.getString(idx++) );
 				if( res.wasNull() ) administrator.setPassword("");
 			} else {

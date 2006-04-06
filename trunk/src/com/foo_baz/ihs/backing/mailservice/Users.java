@@ -48,7 +48,7 @@ public class Users {
 			MailService mailService = usersDB.getMailService();
 			
 			OperationStatus stat = mailService.getUsersInDomain(
-				controller.getCurrentDomain().getIdDomain(), 0, 0, users);
+				controller.getSelectedDomain().getIdDomain(), 0, 0, users);
 			if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 				logger.info(this.getClass().getName()
 					+".getUsers: Error: "+stat.getDescription());
@@ -176,7 +176,7 @@ public class Users {
 	 * 
 	 */
 	public String addUser() {
-		controller.setUpdatingCurrentUser(false);
+		controller.setUpdatingSelectedUser(false);
 		return "addUser";
 	}
 	
@@ -190,10 +190,10 @@ public class Users {
 		ValueBinding login = app.createValueBinding("#{param.login}");
 		User user = new User();
 		user.setLogin((String) login.getValue(context));
-		user.setIdDomain(controller.getCurrentDomain().getIdDomain());
-		user.setDomain(controller.getCurrentDomain().getDomain());
-		controller.setCurrentUser(user);
-		controller.setUpdatingCurrentUser(true);
+		user.setIdDomain(controller.getSelectedDomain().getIdDomain());
+		user.setDomain(controller.getSelectedDomain().getDomain());
+		controller.setSelectedUser(user);
+		controller.setUpdatingSelectedUser(true);
 		return "editUser";
 	}
 }

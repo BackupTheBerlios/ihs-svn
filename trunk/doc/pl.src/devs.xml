@@ -561,10 +561,10 @@
 			</section>
 
 			<section id="strategies.products.jsf">
-				<title>Java Server Faces</title>
+				<title>JavaServer Faces</title>
 				<para>
 					Aby upro¶ciæ tworzenie aplikacji internetowej zdecydowano siê na wykorzystanie zyskuj±cego na popularno¶ci
-					i ustandaryzowanego frameworka zwanego Java Server Faces. Jest to dodatkowa warstwa mo¿liwa do wykorzystania
+					i ustandaryzowanego frameworka zwanego JavaServer Faces. Jest to dodatkowa warstwa mo¿liwa do wykorzystania
 					w czasie tworzenia stron JSP, która zapewnia obiektow± otoczkê do standardowych elementów dostêpnych w jêzyku HTML
 					oraz JSP. Umo¿liwia równie¿ separacjê logiki biznesowej od warstwy prezentacji.
 				</para>
@@ -981,7 +981,7 @@
 				<title>Configuration</title>
 				<para>
 					Konfiguracja u¿ywana przez serwer J2EE oraz pliki
-					wykorzystywane przez Java Server Faces.
+					wykorzystywane przez JavaServer Faces.
 				</para>
 			</formalpara>
 			<formalpara>

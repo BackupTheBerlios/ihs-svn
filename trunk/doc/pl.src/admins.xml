@@ -24,7 +24,7 @@
 
 			<para>
 				Mo¿esz równie¿ ¶ci±gn±æ najnowsz± wersjê wprost z repozytorium
-				Subversion znajduj±cego siê pod adresem
+				<ulink url="http://subversion.tigris.org">Subversion</ulink> znajduj±cego siê pod adresem
 				<ulink url="http://svn.berlios.de/svnroot/repos/ihs/trunk">
 				http://svn.berlios.de/svnroot/repos/ihs/trunk
 				</ulink>
@@ -59,6 +59,12 @@
 							ni¿ ta u¿ywana przez Virtual Qmail);
 						</para>
 					</listitem>
+					<listitem>
+						<para>
+							nastêpuj±ce biblioteki (zainstalowane na serwerze J2EE): jakarta-commons-logging, 
+							jmx, servletapi5, jakarta-commons-beanutils-core, jakarta-taglibs-standard;
+						</para>
+					</listitem>
 				</itemizedlist>
 			</para>
 		</section>
@@ -80,7 +86,93 @@
 				<para>
 					Najprostrz± metod± instalacji jest skopiowanie
 					pliku WAR do katalogu <filename>webapps</filename>.
-					Po restarcie Tomcat powinien rozpakowaæ aplikacjê.
+					Po restarcie Tomcat powinien rozpakowaæ aplikacjê. Niezbêdna mo¿e
+					byæ dodatkowa konfiguracja - ¼ród³a danych oraz mechanizmu autentykacji. 
+				</para>
+
+				<para>
+					Aby skonfigurowaæ bazê danych oraz autentykacjê nale¿y otworzyæ plik <filename>ihs.xml</filename>.
+					Zazwyczaj jest on umieszczany w katalogu z konfiguracj± serwera Tomcat, np. w podkatalogu <filename>Catalina/localhost</filename>.
+ 					Przyk³adowy plik wygl±da nastêpuj±co:
+				</para>
+<!--INSERT:../../WebContent/META-INF/context.xml-->
+<programlisting><![CDATA[
+<Context path="/ihs">
+	<Resource name="jdbc/ihsDB" auth="Container"
+		type="javax.sql.DataSource"/>
+	<ResourceParams name="jdbc/ihsDB">
+		<parameter>
+			<name>factory</name>
+			<value>org.apache.commons.dbcp.BasicDataSourceFactory</value>
+		</parameter>
+		<parameter>
+			<name>driverClassName</name>
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</parameter>
+		<parameter>
+			<name>url</name>
+			<value>jdbc:oracle:thin:@127.0.0.1:1521:orcl</value>
+		</parameter>
+		<parameter>
+			<name>username</name>
+			<value>ihs</value>
+		</parameter>
+		<parameter>
+			<name>password</name>
+			<value>ihs</value>
+		</parameter>
+		<parameter>
+			<name>maxActive</name>
+			<value>20</value>
+		</parameter>
+		<parameter>
+			<name>maxIdle</name>
+			<value>10</value>
+		</parameter>
+		<parameter>
+			<name>poolPreparedStatements</name>
+			<value>true</value>
+		</parameter>		
+	</ResourceParams>
+
+	<!-- configure login realm -->
+	<Realm name="IhsUserRealm" className="org.apache.catalina.realm.JDBCRealm"
+		driverName="oracle.jdbc.driver.OracleDriver"
+		connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:orcl"
+		connectionName="ihs"
+		connectionPassword="ihs"
+		userTable="ihs_view_administrators" userNameCol="login" userCredCol="password"
+		userRoleTable="ihs_view_admins_groups" roleNameCol="group_name"/>
+
+</Context>
+
+]]></programlisting>
+				<para>
+					Sekcja ResourceParams dotyczy konfiguracji zasobów z jakich aplikacja korzysta, miêdzy innymi
+					bazy danych - zasób "jdbc/ihsDB" okre¶la domy¶ln± bazê danych wykorzystywan± przez IHS. Sekcja Realm
+					okresl± ¼ród³o informacji o u¿ytkownikach, domy¶lnie przyjmuje siê, ¿e jest to tabela zarz±dzana przez IHS. Jednak¿e
+					istnieje mo¿liwo¶æ korzystania z innego ¼ród³a.
+				</para>
+
+				<para>
+					Po instalacji nale¿y pamiêtaæ o zabezpieczeniu bazy danych wykorzystywanej przez IHS - nale¿y co najmniej zmieniæ
+					domy¶lne has³o. Zalecana jest równie¿ zmiana nazwy u¿ytkownika.
+					<note>
+						<para>
+							Domy¶lnie w przypadku ka¿dej bazy danych u¿ytkownik nazywa siê: ihs i jego has³o brzmi ihs.
+						</para>
+					</note>
+				</para>
+				
+				<para>
+					Nale¿y równie¿ pamiêtaæ o zainstalowaniu odpowiedniego
+					sterownika bazy danych. W Tomcat zazwyczaj
+					instalowane s± one w katalogu <filename>common/lib</filename>.
+				</para>
+
+				<para>
+					Szczegó³y dotycz±ce konfiguracji znajduj± siê w konfiguracji
+					serwera Tomcat.
 				</para>
 			</section>
 
@@ -90,7 +182,7 @@
 				<para>
 					Aktualnie nie wspierane s± ¿adne inne serwery aplikacji
 					oprócz Tomcat. W przysz³ych wersjach planowana jest obs³uga
-					innych popularnych serwerów.
+					innych popularnych serwerów takich jak JBoss, WebSphere i WebLogic.
 				</para>
 			</section>
 		</section>
@@ -110,21 +202,22 @@
 			</para>
 
 			<para>
-				Konfiguracja JNDI ró¿ni siê miêdzy serwerami. Dla Tomcat
-				przyk³adowe pliki konfiguracyjne (dla Oracle i PostgreSQL)
-				znajduj± siê w katalogu <filename>META-INF</filename>.
+				Konfiguracja JNDI ró¿ni siê miêdzy serwerami. Szczegó³owe
+				informacje mo¿na znale¼æ w sekcjach po¶wiêconych konkretnym
+				serwerom J2EE, jak i w dokumentacji tych¿e serwerów.
 			</para>
 
 			<para>
 				Nale¿y pamiêtaæ, ¿e sterowniki JDBC nie s± rozprowadzane
 				razem z IHS, nale¿y je zainstalowaæ zgodnie z procedur±
-				odpowiedni± dla danego serwera J2EE. W Tomcat zazwyczaj
-				instalowane s± one w katalogu <filename>common/lib</filename>.
+				odpowiedni± dla danego serwera J2EE.
 			</para>
 
 			<para>
 				Do utworzenia obiektów w bazie danych nale¿y pos³u¿yæ
-				siê skryptami <filename>oracle.sql</filename> lub <filename>pgsql.sql</filename>.
+				siê skryptami <filename>oracle.sql</filename> 
+				lub <filename>pgsql.sql</filename>. Aktualnie nie istnieje mo¿liwo¶æ
+				aktualizacji istniej±cej bazy danych.
 			</para>
 		</section>
 	</section>
@@ -135,7 +228,8 @@
 		<para>
 			Po zainstalowaniu oprogramowania nale¿y uruchomiæ
 			przegl±darkê internetow± i otworzyæ g³ówn± stronê systemu,
-			jednym z elementów menu bêdzie odno¶nik do strony konfiguracyjnej.
+			jednym z elementów menu bêdzie odno¶nik do strony konfiguracyjnej. 
+			Zobacz <xref linkend="users.conf"/>
 		</para>
 	</section>
 

@@ -656,7 +656,7 @@
 
         <figure id="figure.architecture.overall">
             <title>High-level system architecture</title>
-            <graphic fileref="../imgs/Overall_architecture.png" format="PNG"/>
+            <graphic fileref="../imgs/Overallarchitecture.png" format="PNG"/>
         </figure>
 
 		<para>	

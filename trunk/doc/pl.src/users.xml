@@ -11,7 +11,7 @@
 		</figure>
 
 		<para>
-			<xref linkend="figure.users.loading"/> przedstawia pierwsz± stonê, któr± zobaczy u¿ytkownik
+			<xref linkend="figure.users.loading"/> przedstawia pierwsz± stronê, któr± zobaczy u¿ytkownik
 			po zainstalowaniu aplikacji. Zale¿nie od wydajno¶ci systemu strona mo¿e byæ widoczna przez kilka
 			do kilkuset sekund. W tym czasie serwer J2EE zajmuje siê ³adowaniem aplikacji do pamiêci oraz
 			kompilacj± niezbêdnych elementów. Po za³adowaniu aplikacji zazwyczaj trudno bêdzie znowu zobaczyæ
@@ -35,7 +35,17 @@
 			</note>
 		</para>
 
-		
+		<figure id="figure.users.lang">
+			<title>Wybór jêzyka</title>
+			<graphic fileref="../imgs/pl.lang.png" format="PNG"/>
+		</figure>
+
+		<para>
+			<xref linkend="figure.users.lang"/> przedstawia ikony umo¿liwiaj±ce zmianê jêzyka komunikacji
+			z u¿ytkownikiem. S± one dostêpne przez ca³y czas, u¿ytkownik mo¿e w dowolnym momencie wybraæ inny jêzyk.
+			Domy¶lny jêzyk ustawiany jest na podstawie informacji przekazanych przez przegl±darkê u¿ytkownika.
+		</para>
+	
 		
 		<figure id="figure.users.login.failed">
 			<title>Strona logowania z komunikatem</title>
@@ -70,7 +80,7 @@
 
 		<para>
 			W przypadku podania nieprawid³owych warto¶ci zostanie wy¶wietlony odpowiedni
-			komunikat, tak jak w przy³adzie <xref linkend="figure.users.configuration2"/>. W takim przypadku ¿adne ustawienia
+			komunikat, tak jak w przyk³adzie <xref linkend="figure.users.configuration2"/>. W takim przypadku ¿adne ustawienia
 			nie s± zapisywane. Dopiero po poprawnym ustawieniu wszystkich warto¶ci nastêpuje zapis.
 		</para>
 		
@@ -145,7 +155,7 @@
 		</figure>
 
 		<para>
-			<xref linkend="figure.users.addAdministrator2"/> - w przypadku wprowadzenia nieprawdi³owych danych zostanie wy¶wietlona
+			<xref linkend="figure.users.addAdministrator2"/> - w przypadku wprowadzenia nieprawid³owych danych zostanie wy¶wietlona
 			odpowiednia informacja.
 		</para>
 		

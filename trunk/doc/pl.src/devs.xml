@@ -564,7 +564,8 @@
 				<title>JavaServer Faces</title>
 				<para>
 					Aby upro¶ciæ tworzenie aplikacji internetowej zdecydowano siê na wykorzystanie zyskuj±cego na popularno¶ci
-					i ustandaryzowanego frameworka zwanego JavaServer Faces. Jest to dodatkowa warstwa mo¿liwa do wykorzystania
+					i bêd±cego oficjalnym standardem frameworka zwanego JavaServer Faces. Jest to dodatkowa warstwa mo¿liwa 
+					do wykorzystania
 					w czasie tworzenia stron JSP, która zapewnia obiektow± otoczkê do standardowych elementów dostêpnych w jêzyku HTML
 					oraz JSP. Umo¿liwia równie¿ separacjê logiki biznesowej od warstwy prezentacji.
 				</para>
@@ -726,7 +727,7 @@
 
         <figure id="figure.architecture.overall">
             <title>Wysokopoziomowa architektura systemu</title>
-            <graphic fileref="../imgs/Overall_architecture.png" format="PNG"/>
+            <graphic fileref="../imgs/Overallarchitecture.png" format="PNG"/>
         </figure>
 
 		<para>	
@@ -865,7 +866,10 @@
 
 	        <figure id="figure.architecture.ihsdb.details">
         	    <title>Logiczny model bazy danych IHS</title>
-	            <graphic fileref="../imgs/IHSDBLogicalmodel.png" format="PNG"/>
+	            <graphic fileref="../imgs/IHSDBLogicalmodel1.png" format="PNG"/>
+	            <graphic fileref="../imgs/IHSDBLogicalmodel2.png" format="PNG"/>
+	            <graphic fileref="../imgs/IHSDBLogicalmodel3.png" format="PNG"/>
+	            <graphic fileref="../imgs/IHSDBLogicalmodel4.png" format="PNG"/>
 	        </figure>
 	
 			<para>	

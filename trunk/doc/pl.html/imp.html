@@ -16,13 +16,13 @@ REL="PREVIOUS"
 TITLE="Obowi±zuj±ce wytyczne"
 HREF="policies.html"><LINK
 REL="NEXT"
-TITLE="Bibliografia"
-HREF="biblio.html"><LINK
+TITLE="Podsumowanie"
+HREF="summary.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-04-08T12:52:28"><META
+CONTENT="2006-04-14T17:57:42"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -66,7 +66,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="biblio.html"
+HREF="summary.html"
 ACCESSKEY="N"
 >Nast&#281;pny</A
 ></TD
@@ -122,8 +122,23 @@ CLASS="formalpara"
 					Interfejs, za pomoc± którego mo¿na obs³ugiwaæ konfiguracjê
 					- dodawaæ, aktualizowaæ czy usuwaæ parametry. Domy¶lnie
 					konfiguracja przechowywana jest w bazie danych.
-					Interfejs zawiera tylko podstawowe operacje do
-					przechowywania ³añcuchów znakowych.
+					Interfejs zawiera operacje do obs³ugi podstawowych typów danych.
+					Na bazie implementacji tego interfejsu mo¿na stworzyæ obs³ugê opcji konfiguracyjnych
+					poszczególnych wtyczek.
+					</P><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Notatka: </B
+>
+							Do obs³ugi opcji konfiguracyjnych zaleca siê korzystanie z tego interfejsu, odradzane jest
+							u¿ywanie w³asnych mechanizmów.
+						</P
+></BLOCKQUOTE
+></DIV
+><P>
 				</P
 ></DIV
 ><DIV
@@ -185,7 +200,8 @@ CLASS="formalpara"
 >ExtendedAdministrator. </B
 >
 					Administrator wzbogacony o dodatkowe informacje 
-					u¿ywane przez GUI.
+					u¿ywane przez GUI. Np. czy administrator zosta³ zaznaczony
+					przez u¿ytkownika, itp.
 				</P
 ></DIV
 ></DIV
@@ -195,7 +211,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="imp.ui"
->5.8.2. Interejs u¿ytkownika</A
+>5.8.2. Interfejs u¿ytkownika</A
 ></H2
 ><DIV
 CLASS="figure"
@@ -236,10 +252,106 @@ HREF="imp.html#figure.imp.com.foo_baz.ihs.backing.mailservice"
 				przedstawiaj± elementy, które po¶rednicz± miêdzy g³ównymi
 				czê¶ciami systemu (np. z pakietów com.foo_baz.ihs i com.foo_baz.ihs.mailservice)
 				a interfejsem u¿ytkownika reprezentowanym przez strony JSF.
-				Elementy te maj± ró¿ny czas ¿ycia, niektóre z nich 
-				tworzone s± dla ka¿dego ¿±dania, inne dla sesji u¿ytkownika.
-				W wiêkszo¶ci wypadków ka¿dej ze stron JSF przypada
-				co najmniej jeden element.
+			</P
+><P
+>&#13;				Elementy te stanowi± bezpo¶rednie zaplecze stron JSF wykorzystywanych
+				przez aplikacjê. Dla przyk³adu strona <TT
+CLASS="filename"
+>addDomain.jsp</TT
+>
+				jest odwzorowywana jako com.foo_baz.ihs.backing.mailservice.AddDomain.
+				Wszelkie informacje wpisywane w formularzu s± przekazywane do tej¿e
+				klasy.
+			</P
+><P
+>&#13;				Klasy zwi±zane bezpo¶rednio z obs³ug± stron (tzn. odpowiadaj±ce
+				logicznie stronom) powinny byæ bezstanowe, ich cykl ¿ycia powinien
+				byæ zwi±zany tylko i wy³±cznie z pojedynczym ¿±daniem.
+			</P
+><P
+>&#13;				Logika aplikacji znajduje siê tylko, w niektórych specjalnie
+				do tego celu zaprojektowanych elementach. Wiêkszo¶æ z nich
+				zwi±zanych jest z sesj± u¿ytkownika. Zawieraj± one stan aplikacji,
+				który u¿ywany jest do kontrolowania poszczególnych widoków (stron JSF).
+				Dla przyk³adu takimi kontrolerami s± klasy: com.foo_baz.ihs.backing.IncredibleHostingSystemSession,
+				com.foo_baz.ihs.backing.mailservice.MailServiceSession. W dalszej czê¶ci
+				rozdzia³u znajduje siê osobna sekcja po¶wiêcona zarz±dzaniu
+				stanem aplikacji.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.state"
+>5.8.3. Kontrola stanu systemu</A
+></H2
+><P
+>&#13;				Aby zapewniæ p³ynne zarz±dzanie systemem oraz interakcjê
+				z u¿ytkownikiem IHS musi zapamiêtywaæ, niektóre wybory dokonane
+				przez u¿ytkownika. Dla przyk³adu: jêzyk w jakim u¿ytkownik
+				pragnie komunikowaæ siê z systemem, domenê która aktualnie
+				jest przegl±dana przez u¿ytkownika, itp.
+			</P
+><P
+>&#13;				Niezbêdne jest zapamiêtywanie tych informacji w specjalnie
+				do tego celu przeznaczonych obiektach. Pomys³em na
+				rozwi±zanie tego problemu mog³oby byæ na przyk³ad wykorzystanie
+				ju¿ istniej±cych elementów. Dla przyk³adu skoro chcemy
+				zapamiêtywaæ informacje o wybranej domenie, dlaczego nie
+				u¿yæ obiektu zwi±zanego ze stron± do wy¶wietlania listy domen?
+			</P
+><P
+>&#13;				Takie podej¶cie na pocz±tku zdaje siê byæ dobrym rozwi±zaniem.
+				Jednak¿e w miarê rozrastania siê aplikacji, oraz interakcji
+				miêdzy poszczególnymi elementami zauwa¿yæ mo¿na, ¿e niestety
+				rozwi±zanie nie skaluje siê, a wrêcz z czasem prowadzi do problemów.
+				Kontynuuj±c przyk³ad z list± domen, za³ó¿my ¿e obiekt stoj±cy 
+				za t± list± nazywa siê Domains. Aby móg³ on przechowywaæ informacje
+				o wyborze dokonanym przez u¿ytkownika powinien on zostaæ
+				zwi±zany z sesj± u¿ytkownika - czyli obiekt taki bêdzie
+				istnia³ pomimo przechodzenia i powracania do strony
+				z list± domen.
+			</P
+><P
+>&#13;				Przyjmijmy teraz, ¿e na li¶cie domen mo¿na wykonywaæ jakie¶
+				operacje, dla przyk³adu usuwaæ u¿ytkowników. Nale¿y w zwi±zku
+				z tym zarz±dzaæ b³êdami, nale¿y stworzyæ odpowiednie pole 
+				wykorzystywane do prezentacji rezultatu.			
+			</P
+><P
+>&#13;				Za³ó¿my teraz, ¿e u¿ytkownik usun±³ kilka domen, pojawi³
+				siê komunikat o poprawnym wykonaniu operacji. Nastêpnie u¿ytkownik
+				przechodzi do innych stron, po czym wraca do tej samej listy
+				i znów widzi komunikat. Dzieje siê tak dlatego, ¿e obiekt
+				zwi±zany jest z sesj±, nie zosta³ on usuniêty po wykonaniu
+				operacji. W zwi±zku z tym opracowaæ nale¿y jaki¶ mechanizm
+				resetowania pola z komunikatem. Ca³a klasa stoj±ca za tym
+				obiektem siê komplikuje. W przypadku wiêkszej ilo¶ci pól,
+				lub bardziej z³o¿onych operacji ro¶nie ilo¶æ poprawek, które
+				trzeba nanosiæ na taki obiekt. Obiektów wraz ze stronami przybywa,
+				niektóre zaczynaj± duplikowaæ niektóre informacje. W koñcu
+				system trudno obj±æ poniewa¿ istnieje tyle interakcji i zale¿no¶ci
+				miêdzy obiektami.
+			</P
+><P
+>&#13;				Du¿o ³atwiej odseparowaæ czê¶æ zwi±zan± z logik± i stanem
+				aplikacji w wyspecjalizowane klasy i obiekty. Najlepiej
+				tylko jeden dla ca³ej aplikacji, ewentualnie pojedyncze obiekty
+				zwi±zane z poszczególnymi wtyczkami.
+			</P
+><P
+>&#13;				Takie podej¶cie powoduje, ¿e ³atwo tworzyæ klasy odpowiedzialne
+				za poszczególne strony. £atwo równie¿ zauwa¿yæ, które elementy
+				wp³ywaj± na ca³± aplikacjê, jak s± one od siebie zale¿ne.
+				Poniewa¿ znajduj± siê one w wyra¼nie wyodrêbnionych sekcjach
+				³atwiej nimi zarz±dzaæ.
+			</P
+><P
+>&#13;				Aktualnie g³ównym obiektem, który zajmuje siê
+				zarz±dzaniem aplikacj± jest bean o nazwie ihs. Jest on
+				instancj± klasy com.foo_baz.ihs.backing.IncredibleSystemHostingSession.
 			</P
 ></DIV
 ><DIV
@@ -248,7 +360,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="imp.plugins"
->5.8.3. Wtyczki</A
+>5.8.4. Wtyczki</A
 ></H2
 ><P
 >&#13;				Poni¿ej znajduje siê lista wtyczek instalowanych wraz
@@ -260,7 +372,7 @@ CLASS="section"
 CLASS="section"
 ><A
 NAME="imp.plugins.v_q"
->5.8.3.1. VirtualQmailMailService</A
+>5.8.4.1. VirtualQmailMailService</A
 ></H3
 ><P
 >&#13;					Implementacja interfejsu MailService, która oparta
@@ -316,7 +428,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="biblio.html"
+HREF="summary.html"
 ACCESSKEY="N"
 >Nast&#281;pny</A
 ></TD
@@ -340,7 +452,7 @@ ACCESSKEY="U"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Bibliografia</TD
+>Podsumowanie</TD
 ></TR
 ></TABLE
 ></DIV

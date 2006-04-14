@@ -99,7 +99,7 @@
 				rozpoznawana. Jedna instalacja IHS musi byæ
 				w stanie obs³u¿yæ ka¿dy rodzaj u¿ytkownika, na podstawie
 				informacji przekazywanych od niego ustalana jest
-				przynale¼no¶æ do danej grupy oraz adaptowane s± 
+				przynale¿no¶æ do danej grupy oraz adaptowane s± 
 				udostêpniane funkcje. Powinna istnieæ równie¿ mo¿liwo¶æ
 				limitowania dostêpu do danej instalacji tylko do
 				u¿ytkowników wybranej grupy.
@@ -127,52 +127,52 @@
 						</thead>
 						<tbody>
 							<row>
-								<entry>RS-1</entry>
+								<entry id="RS-1">RS-1</entry>
 								<entry>1</entry>
 								<entry>Program bêdzie dzia³a³ pod systemami Linux, dystrybucja SuSe >= 9.3 oraz Fedora Core >= 4</entry>
 							</row>
 							<row>
-								<entry>RS-2</entry>
+								<entry id="RS-2">RS-2</entry>
 								<entry>2</entry>
 								<entry>Program bêdzie dzia³a³ pod systemami OpenBSD >= 3.8, NetBSD >= 3.0</entry>
 							</row>
 							<row>
-								<entry>RS-3</entry>
+								<entry id="RS-3">RS-3</entry>
 								<entry>3</entry>
 								<entry>Program bêdzie dzia³a³ pod innymi systemami Unix (np. Solaris, HP-UX)</entry>
 							</row>
 							<row>
-								<entry>RS-4</entry>
+								<entry id="RS-4">RS-4</entry>
 								<entry>1</entry>
 								<entry>Program bêdzie dzia³a³ pod serwerem Tomcat >= 5</entry>
 							</row>
 							<row>
-								<entry>RS-5</entry>
+								<entry id="RS-5">RS-5</entry>
 								<entry>2</entry>
 								<entry>Program bêdzie dzia³a³ pod serwerem JBoss</entry>
 							</row>
 							<row>
-								<entry>RS-6</entry>
+								<entry id="RS-6">RS-6</entry>
 								<entry>3</entry>
 								<entry>Program bêdzie dzia³a³ pod serwerami Oracle Application Server, WebLogic, Websphere</entry>
 							</row>
 							<row>
-								<entry>RS-7</entry>
+								<entry id="RS-7">RS-7</entry>
 								<entry>1</entry>
 								<entry>Mo¿liwe bêdzie wykorzystanie bazy danych Oracle</entry>
 							</row>
 							<row>
-								<entry>RS-8</entry>
+								<entry id="RS-8">RS-8</entry>
 								<entry>1</entry>
 								<entry>Mo¿liwe bêdzie wykorzystanie bazy danych PostgreSQL</entry>
 							</row>
 							<row>
-								<entry>RS-9</entry>
+								<entry id="RS-9">RS-9</entry>
 								<entry>2</entry>
 								<entry>Mo¿liwe bêdzie wykorzystanie bazy danych DB2</entry>
 							</row>
 							<row>
-								<entry>RS-10</entry>
+								<entry id="RS-10">RS-10</entry>
 								<entry>1</entry>
 								<entry>Domy¶ln± platform± jest x86, testy wydajno¶ciowe musz± byæ spe³nione na maszynie P4 >= 3GHz, 512MB >= RAM</entry>
 							</row>
@@ -199,72 +199,72 @@
 						</thead>
 						<tbody>
 							<row>
-								<entry>RG-1</entry>
+								<entry id="RG-1">RG-1</entry>
 								<entry>1</entry>
 								<entry>Istnieje mo¿liwo¶æ wyboru jêzyka, za pomoc± którego komunikujemy siê z serwisem</entry>
 							</row>
 							<row>
-								<entry>RG-2</entry>
+								<entry id="RG-2">RG-2</entry>
 								<entry>1</entry>
 								<entry>Zostanie utworzony polski i angielski interfejs u¿ytkownika</entry>
 							</row>
 							<row>
-								<entry>RG-3</entry>
+								<entry id="RG-3">RG-3</entry>
 								<entry>1</entry>
 								<entry>System umo¿liwia dodanie nowej domeny</entry>
 							</row>
 							<row>
-								<entry>RG-4</entry>
+								<entry id="RG-4">RG-4</entry>
 								<entry>1</entry>
 								<entry>System umo¿liwia usuniêcie istniej±cej domeny</entry>
 							</row>
 							<row>
-								<entry>RG-5</entry>
+								<entry id="RG-5">RG-5</entry>
 								<entry>1</entry>
 								<entry>System umo¿liwia dodanie u¿ytkownika do domeny</entry>
 							</row>
 							<row>
-								<entry>RG-6</entry>
+								<entry id="RG-6">RG-6</entry>
 								<entry>1</entry>
 								<entry>System umo¿liwia zmianê parametrów konta u¿ytkownika</entry>
 							</row>
 							<row>
-								<entry>RG-7</entry>
+								<entry id="RG-7">RG-7</entry>
 								<entry>1</entry>
 								<entry>Istnieje mo¿liwo¶æ usuniêcia konta u¿ytkownika</entry>
 							</row>
 							<row>
-								<entry>RG-8</entry>
+								<entry id="RG-8">RG-8</entry>
 								<entry>1</entry>
 								<entry>Istnieje mo¿liwo¶æ przegl±dania zarejestrowanych domen</entry>
 							</row>
 							<row>
-								<entry>RG-9</entry>
+								<entry id="RG-9">RG-9</entry>
 								<entry>1</entry>
 								<entry>Istnieje mo¿liwo¶æ przegl±dania zarejestrowanych u¿ytkowników</entry>
 							</row>
 							<row>
-								<entry>RG-10</entry>
+								<entry id="RG-10">RG-10</entry>
 								<entry>1</entry>
 								<entry>Istnieje mo¿liwo¶æ przegl±dania logów tworzonych przez Virtual Qmail</entry>
 							</row>
 							<row>
-								<entry>RG-11</entry>
+								<entry id="RG-11">RG-11</entry>
 								<entry>2</entry>
 								<entry>Istnieje mo¿liwo¶æ definiowania w³asnych raportów opartych o logu Virtual Qmail</entry>
 							</row>
 							<row>
-								<entry>RG-12</entry>
+								<entry id="RG-12">RG-12</entry>
 								<entry>1</entry>
 								<entry>Istnieje mo¿liwo¶æ dodania administratora systemu</entry>
 							</row>
 							<row>
-								<entry>RG-13</entry>
+								<entry id="RG-13">RG-13</entry>
 								<entry>1</entry>
 								<entry>Istnieje mo¿liwo¶æ usuniêcia administratora systemu</entry>
 							</row>
 							<row>
-								<entry>RG-14</entry>
+								<entry id="RG-14">RG-14</entry>
 								<entry>1</entry>
 								<entry>Istnieje mo¿liwo¶æ zmiany konta administratora systemu</entry>
 							</row>
@@ -291,27 +291,27 @@
 						</thead>
 						<tbody>
 							<row>
-								<entry>RP-1</entry>
+								<entry id="RP-1">RP-1</entry>
 								<entry>2</entry>
 								<entry>System powinien byæ w stanie odpowiadaæ w czasie mniejszym ni¿ 30 sekund gdy zarejestrowanych jest 1000 domen</entry>
 							</row>
 							<row>
-								<entry>RP-2</entry>
+								<entry id="RP-2">RP-2</entry>
 								<entry>2</entry>
 								<entry>System powinien byæ w stanie odpowiadaæ w czasie mniejszym ni¿ 30 sekund gdy w domenie zarejestrowanych jest 10000 u¿ytkowników</entry>
 							</row>
 							<row>
-								<entry>RP-3</entry>
+								<entry id="RP-3">RP-3</entry>
 								<entry>1</entry>
 								<entry>Dodawanie domeny nie mo¿e trwaæ wiêcej ni¿ 30 sekund, niezale¿nie od ilo¶ci zarejestrowanych domen</entry>
 							</row>
 							<row>
-								<entry>RP-4</entry>
+								<entry id="RP-4">RP-4</entry>
 								<entry>1</entry>
 								<entry>Dodawanie u¿ytkownika nie mo¿e trwaæ wiêcej ni¿ 30 sekund, niezale¿nie od ilo¶ci zarejestrowanych u¿ytkowników</entry>
 							</row>
 							<row>
-								<entry>RP-5</entry>
+								<entry id="RP-5">RP-5</entry>
 								<entry>1</entry>
 								<entry>Zmiana has³a u¿ytkownika nie mo¿e trwaæ wiêcej ni¿ 15 sekund, niezale¿nie od ilo¶ci zarejestrowanych u¿ytkowników</entry>
 							</row>
@@ -338,7 +338,7 @@
 						</thead>
 						<tbody>
 							<row>
-								<entry>RS-1</entry>
+								<entry id="RA-1">RA-1</entry>
 								<entry>2</entry>
 								<entry>
 									Dostêp do systemu oparty bêdzie o u¿ytkowników i role, 
@@ -346,19 +346,19 @@
 									swoj± to¿samo¶æ, system na podstawie konfiguracji okre¶li role nadane danemu u¿ytkownikowi</entry>
 							</row>
 							<row>
-								<entry>RS-2</entry>
+								<entry id="RA-2">RA-2</entry>
 								<entry>2</entry>
 								<entry>Nowy typ administratora systemu - "zwyk³y", który nie ma mo¿liwo¶ci zmiany danych innych administratorów</entry>
 							</row>
 							<row>
-								<entry>RS-3</entry>
+								<entry id="RA-3">RA-3</entry>
 								<entry>2</entry>
 								<entry>Nowy typ administratora system - "super", który ma mo¿liwo¶æ zmiany danych innych administratorów, oraz super administratorów</entry>
 							</row>
 							<row>
-								<entry>RS-4</entry>
+								<entry id="RA-4">RA-4</entry>
 								<entry>2</entry>
-								<entry>Wprowadzenie autoryzacji has³em</entry>
+								<entry>Autentykacja u¿ytkowników oparta o login i has³o</entry>
 							</row>
 						</tbody>
 					</tgroup>
@@ -498,7 +498,7 @@
 					IHS stanowi interfejs u¿ytkownika, który miêdzy innymi s³u¿yæ ma do zarz±dzania systemem Virtual Qmail.
 					Na rynku istnieje kilka innych, podobnych do Virtual Qmail, systemów. Zdecydowano siê na wybór
 					tej aplikacji poniewa¿ stanowi ona autorskie rozwi±zanie zrealizowane podczas wcze¶niejszego
-					projektu, patrz NIE-2002.
+					projektu, patrz NIE-2003.
 				</para>
 			</section>
 
@@ -526,7 +526,7 @@
 
 				<para>
 					Innymi mo¿liwymi do wykorzystania jêzykami by³y C++, PERL, PHP czy python. Na ich niekorzy¶æ
-					przemawia³y m.in. nastêpuj±ce argumenty: 
+					przemawia³y miêdzy innymi nastêpuj±ce argumenty: 
 					<itemizedlist>
 						<listitem>
 							<para>
@@ -571,10 +571,34 @@
 				</para>
 
 				<para>
-					Niestety w czasie implementacji wykorzystuj±cej JSF napotkano na kilka problemów, które
-					spowodowa³y opó¼nienie projektu. Na podstawie nabytych do¶wiadczeñ stwierdzono, ¿e nadal
-					niektóre elementy nie s± dopracowane, brakuje pewnych mechanizmów, wszystko to powoduje, ¿e
-					przy bardziej skompilowanych projektach warto zastanowiæ siê nad wykorzystaniem np. Struts.
+					Zalet± JSF w stosunku do innych podobnych rozwi±zañ jest ³atwo¶æ integracji istniej±cych technologii. £atwo
+					mo¿na wykorzystywaæ technologie takie jak Struts, biblioteki znaczników (np. JSTL), itp. Istnieje równie¿
+					mo¿liwo¶æ rozwijania i dodawania w³asnych rozwi±zañ. Mo¿na tworzyæ w³asne walidatory, konwertery czy nawet nowe elementy
+					takie jak zaawansowane tabele, listy wyboru, itp.
+				</para>
+
+				<para>
+					Poniewa¿ jest to oficjalny standard technologia ta nie stanowi ¶lepego zau³ku, wrêcz przeciwnie - nale¿y siê spodziewaæ,
+					¿e serwery aplikacji bêd± domy¶lnie posiada³y odpowiednie biblioteki. Czyli instalacja aplikacji mo¿e byæ ³atwiejsza
+					ni¿ w przypadku innych rozwi±zañ.
+				</para>
+
+				<para>
+					Nie jest to narzêdzie doskona³e - brakuje pewnych elementów, obs³uga mieszanych elementów HTML i JSF czasami wymaga
+					dodatkowego wysi³ku. Dla przyk³adu zagnie¿d¿anie elementów HTML wewn±trz elementów JSF wymaga u¿ycia specjalnego tagu verbatim.
+					W przypadku gdy go brakuje kod HTML zostanie wygenerowany niepoprawnie. Nie jest to problemem w przypadku prostych stron HTML,
+					natomiast czasami potrafi prowadziæ do tego, ¿e kod JSP strony wygl±da dosyæ zagmatwanie.
+				</para>
+
+				<para>
+					W czasie realizacji projektu wykorzystywana by³a domy¶lna implementacja dostêpna na stronie firmy Sun. Zauwa¿ono,
+					¿e sposób implementacji, w niektórych przypadkach powoduje trudno¶ci w lokalizacji b³êdów programistycznych - czasami wyj±tki i 
+					komunikaty generowane sugeruj± (lub wrêcz nie sugeruj± w ogóle) mylnie ¼ród³a b³êdów.
+				</para>
+
+				<para>
+					Warto nadmieniæ, ¿e trwaj± prace nad now± wersj± standardu, zwiêksza siê liczba u¿ytkowników oraz rozwi±zañ
+					bazuj±cych na nim co oznacza, ¿e by³ to dobry wybór.
 				</para>
 			</section>
 
@@ -707,7 +731,7 @@
 		<para>
 			Systemy, z którymi IHS bêdzie zintegrowany, np. Virtual Qmail,
 			mog± posiadaæ swoje w³asne bazy danych. Je¿eli istnieje
-			taka mo¿liwo¶æ nie powinny one byæ wykorzystywane bezpro¶rednio
+			taka mo¿liwo¶æ nie powinny one byæ wykorzystywane bezpo¶rednio
 			lecz przy u¿yciu API dostarczanego przez dan± aplikacjê.
 			Takie podej¶cie umo¿liwi ³atwiejsz± konfiguracjê i utrzymanie.
 		</para>
@@ -744,7 +768,7 @@
 		</para>
 
 		<para>
-			W przysz³o¶ci w miarê rozstastania siê mo¿liwo¶ci IHS i 
+			W przysz³o¶ci w miarê rozrastania siê mo¿liwo¶ci IHS i 
 			integrowania go z innymi us³ugami architektura systemu mo¿e
 			zawieraæ znacznie wiêcej elementów.
 		</para>
@@ -1237,7 +1261,7 @@
 			<para>
 <screen><userinput>ant deploy</userinput></screen>
 				spróbuje zainstalowaæ aplikacjê zgodnie z ustawieniami
-				zawartymie w pliku <filename>build.properties</filename>.
+				zawartymi w pliku <filename>build.properties</filename>.
 			</para>
 
 			<para>
@@ -1258,12 +1282,26 @@
 			<para>
 				Wykonanie polecenia:
 <screen><userinput>ant pkg-rpm</userinput></screen>
-				wygeneruje pakiet RPM.
+				wygeneruje pakiet RPM. 
+				<note>
+					<para>
+						Nale¿y wykonywaæ to polecenie tylko z
+						lokalnej kopii repozytorium, poniewa¿ do tworzenia listy plików
+						do spakowania u¿ywanie jest polecenie <command>svn export</command>.
+					</para>
+				</note>
 			</para>
 
 			<para>
 <screen><userinput>ant pkg-tgz</userinput></screen>
-				wygeneruje spakowane archiwum z kodem.
+				wygeneruje spakowane archiwum z kodem. 
+				<note>
+					<para>
+						Tak samo jak w przypadku
+						polecenia <command>ant pkg-rpm</command> nale¿y je
+						wykonywaæ z lokalnej kopii repozytorium.
+					</para>
+				</note>
 			</para>
 
 			<para>
@@ -1299,8 +1337,15 @@
 					Interfejs, za pomoc± którego mo¿na obs³ugiwaæ konfiguracjê
 					- dodawaæ, aktualizowaæ czy usuwaæ parametry. Domy¶lnie
 					konfiguracja przechowywana jest w bazie danych.
-					Interfejs zawiera tylko podstawowe operacje do
-					przechowywania ³añcuchów znakowych.
+					Interfejs zawiera operacje do obs³ugi podstawowych typów danych.
+					Na bazie implementacji tego interfejsu mo¿na stworzyæ obs³ugê opcji konfiguracyjnych
+					poszczególnych wtyczek.
+					<note>
+						<para>
+							Do obs³ugi opcji konfiguracyjnych zaleca siê korzystanie z tego interfejsu, odradzane jest
+							u¿ywanie w³asnych mechanizmów.
+						</para>
+					</note>
 				</para>
 			</formalpara>
 			<formalpara>
@@ -1344,13 +1389,14 @@
 				<title>ExtendedAdministrator</title>
 				<para>
 					Administrator wzbogacony o dodatkowe informacje 
-					u¿ywane przez GUI.
+					u¿ywane przez GUI. Np. czy administrator zosta³ zaznaczony
+					przez u¿ytkownika, itp.
 				</para>
 			</formalpara>
 		</section>
 
 		<section id="imp.ui">
-			<title>Interejs u¿ytkownika</title>
+			<title>Interfejs u¿ytkownika</title>
 			
 			<figure id="figure.imp.com.foo_baz.ihs.backing">
 				<title>Pakiet com.foo_baz.ihs.backing</title>
@@ -1368,11 +1414,110 @@
 				przedstawiaj± elementy, które po¶rednicz± miêdzy g³ównymi
 				czê¶ciami systemu (np. z pakietów com.foo_baz.ihs i com.foo_baz.ihs.mailservice)
 				a interfejsem u¿ytkownika reprezentowanym przez strony JSF.
-				Elementy te maj± ró¿ny czas ¿ycia, niektóre z nich 
-				tworzone s± dla ka¿dego ¿±dania, inne dla sesji u¿ytkownika.
-				W wiêkszo¶ci wypadków ka¿dej ze stron JSF przypada
-				co najmniej jeden element.
+			</para>
+
+			<para>
+				Elementy te stanowi± bezpo¶rednie zaplecze stron JSF wykorzystywanych
+				przez aplikacjê. Dla przyk³adu strona <filename>addDomain.jsp</filename>
+				jest odwzorowywana jako com.foo_baz.ihs.backing.mailservice.AddDomain.
+				Wszelkie informacje wpisywane w formularzu s± przekazywane do tej¿e
+				klasy.
 			</para>	
+
+			<para>
+				Klasy zwi±zane bezpo¶rednio z obs³ug± stron (tzn. odpowiadaj±ce
+				logicznie stronom) powinny byæ bezstanowe, ich cykl ¿ycia powinien
+				byæ zwi±zany tylko i wy³±cznie z pojedynczym ¿±daniem.
+			</para>
+
+			<para>
+				Logika aplikacji znajduje siê tylko, w niektórych specjalnie
+				do tego celu zaprojektowanych elementach. Wiêkszo¶æ z nich
+				zwi±zanych jest z sesj± u¿ytkownika. Zawieraj± one stan aplikacji,
+				który u¿ywany jest do kontrolowania poszczególnych widoków (stron JSF).
+				Dla przyk³adu takimi kontrolerami s± klasy: com.foo_baz.ihs.backing.IncredibleHostingSystemSession,
+				com.foo_baz.ihs.backing.mailservice.MailServiceSession. W dalszej czê¶ci
+				rozdzia³u znajduje siê osobna sekcja po¶wiêcona zarz±dzaniu
+				stanem aplikacji.
+			</para>
+		</section>
+
+		<section id="imp.state">
+			<title>Kontrola stanu systemu</title>
+
+			<para>
+				Aby zapewniæ p³ynne zarz±dzanie systemem oraz interakcjê
+				z u¿ytkownikiem IHS musi zapamiêtywaæ, niektóre wybory dokonane
+				przez u¿ytkownika. Dla przyk³adu: jêzyk w jakim u¿ytkownik
+				pragnie komunikowaæ siê z systemem, domenê która aktualnie
+				jest przegl±dana przez u¿ytkownika, itp.
+			</para>
+
+			<para>
+				Niezbêdne jest zapamiêtywanie tych informacji w specjalnie
+				do tego celu przeznaczonych obiektach. Pomys³em na
+				rozwi±zanie tego problemu mog³oby byæ na przyk³ad wykorzystanie
+				ju¿ istniej±cych elementów. Dla przyk³adu skoro chcemy
+				zapamiêtywaæ informacje o wybranej domenie, dlaczego nie
+				u¿yæ obiektu zwi±zanego ze stron± do wy¶wietlania listy domen?
+			</para>
+
+			<para>
+				Takie podej¶cie na pocz±tku zdaje siê byæ dobrym rozwi±zaniem.
+				Jednak¿e w miarê rozrastania siê aplikacji, oraz interakcji
+				miêdzy poszczególnymi elementami zauwa¿yæ mo¿na, ¿e niestety
+				rozwi±zanie nie skaluje siê, a wrêcz z czasem prowadzi do problemów.
+				Kontynuuj±c przyk³ad z list± domen, za³ó¿my ¿e obiekt stoj±cy 
+				za t± list± nazywa siê Domains. Aby móg³ on przechowywaæ informacje
+				o wyborze dokonanym przez u¿ytkownika powinien on zostaæ
+				zwi±zany z sesj± u¿ytkownika - czyli obiekt taki bêdzie
+				istnia³ pomimo przechodzenia i powracania do strony
+				z list± domen.
+			</para>
+
+			<para>
+				Przyjmijmy teraz, ¿e na li¶cie domen mo¿na wykonywaæ jakie¶
+				operacje, dla przyk³adu usuwaæ u¿ytkowników. Nale¿y w zwi±zku
+				z tym zarz±dzaæ b³êdami, nale¿y stworzyæ odpowiednie pole 
+				wykorzystywane do prezentacji rezultatu.			
+			</para>
+
+			<para>
+				Za³ó¿my teraz, ¿e u¿ytkownik usun±³ kilka domen, pojawi³
+				siê komunikat o poprawnym wykonaniu operacji. Nastêpnie u¿ytkownik
+				przechodzi do innych stron, po czym wraca do tej samej listy
+				i znów widzi komunikat. Dzieje siê tak dlatego, ¿e obiekt
+				zwi±zany jest z sesj±, nie zosta³ on usuniêty po wykonaniu
+				operacji. W zwi±zku z tym opracowaæ nale¿y jaki¶ mechanizm
+				resetowania pola z komunikatem. Ca³a klasa stoj±ca za tym
+				obiektem siê komplikuje. W przypadku wiêkszej ilo¶ci pól,
+				lub bardziej z³o¿onych operacji ro¶nie ilo¶æ poprawek, które
+				trzeba nanosiæ na taki obiekt. Obiektów wraz ze stronami przybywa,
+				niektóre zaczynaj± duplikowaæ niektóre informacje. W koñcu
+				system trudno obj±æ poniewa¿ istnieje tyle interakcji i zale¿no¶ci
+				miêdzy obiektami.
+			</para>
+
+			<para>
+				Du¿o ³atwiej odseparowaæ czê¶æ zwi±zan± z logik± i stanem
+				aplikacji w wyspecjalizowane klasy i obiekty. Najlepiej
+				tylko jeden dla ca³ej aplikacji, ewentualnie pojedyncze obiekty
+				zwi±zane z poszczególnymi wtyczkami.
+			</para>
+
+			<para>
+				Takie podej¶cie powoduje, ¿e ³atwo tworzyæ klasy odpowiedzialne
+				za poszczególne strony. £atwo równie¿ zauwa¿yæ, które elementy
+				wp³ywaj± na ca³± aplikacjê, jak s± one od siebie zale¿ne.
+				Poniewa¿ znajduj± siê one w wyra¼nie wyodrêbnionych sekcjach
+				³atwiej nimi zarz±dzaæ.
+			</para>
+
+			<para>
+				Aktualnie g³ównym obiektem, który zajmuje siê
+				zarz±dzaniem aplikacj± jest bean o nazwie ihs. Jest on
+				instancj± klasy com.foo_baz.ihs.backing.IncredibleSystemHostingSession.
+			</para>
 		</section>
 
 		<section id="imp.plugins">

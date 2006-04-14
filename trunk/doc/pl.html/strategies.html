@@ -22,7 +22,7 @@ REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
 NAME="creation"
-CONTENT="2006-04-08T12:52:28"><META
+CONTENT="2006-04-14T17:57:42"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
@@ -179,7 +179,7 @@ NAME="strategies.products.v-q"
 >&#13;					IHS stanowi interfejs u¿ytkownika, który miêdzy innymi s³u¿yæ ma do zarz±dzania systemem Virtual Qmail.
 					Na rynku istnieje kilka innych, podobnych do Virtual Qmail, systemów. Zdecydowano siê na wybór
 					tej aplikacji poniewa¿ stanowi ona autorskie rozwi±zanie zrealizowane podczas wcze¶niejszego
-					projektu, patrz NIE-2002.
+					projektu, patrz NIE-2003.
 				</P
 ></DIV
 ><DIV
@@ -215,7 +215,7 @@ NAME="strategies.products.java"
 				</P
 ><P
 >&#13;					Innymi mo¿liwymi do wykorzystania jêzykami by³y C++, PERL, PHP czy python. Na ich niekorzy¶æ
-					przemawia³y m.in. nastêpuj±ce argumenty: 
+					przemawia³y miêdzy innymi nastêpuj±ce argumenty: 
 					<P
 ></P
 ></P><UL
@@ -260,15 +260,36 @@ NAME="strategies.products.jsf"
 ></H3
 ><P
 >&#13;					Aby upro¶ciæ tworzenie aplikacji internetowej zdecydowano siê na wykorzystanie zyskuj±cego na popularno¶ci
-					i ustandaryzowanego frameworka zwanego JavaServer Faces. Jest to dodatkowa warstwa mo¿liwa do wykorzystania
+					i bêd±cego oficjalnym standardem frameworka zwanego JavaServer Faces. Jest to dodatkowa warstwa mo¿liwa 
+					do wykorzystania
 					w czasie tworzenia stron JSP, która zapewnia obiektow± otoczkê do standardowych elementów dostêpnych w jêzyku HTML
 					oraz JSP. Umo¿liwia równie¿ separacjê logiki biznesowej od warstwy prezentacji.
 				</P
 ><P
->&#13;					Niestety w czasie implementacji wykorzystuj±cej JSF napotkano na kilka problemów, które
-					spowodowa³y opó¼nienie projektu. Na podstawie nabytych do¶wiadczeñ stwierdzono, ¿e nadal
-					niektóre elementy nie s± dopracowane, brakuje pewnych mechanizmów, wszystko to powoduje, ¿e
-					przy bardziej skompilowanych projektach warto zastanowiæ siê nad wykorzystaniem np. Struts.
+>&#13;					Zalet± JSF w stosunku do innych podobnych rozwi±zañ jest ³atwo¶æ integracji istniej±cych technologii. £atwo
+					mo¿na wykorzystywaæ technologie takie jak Struts, biblioteki znaczników (np. JSTL), itp. Istnieje równie¿
+					mo¿liwo¶æ rozwijania i dodawania w³asnych rozwi±zañ. Mo¿na tworzyæ w³asne walidatory, konwertery czy nawet nowe elementy
+					takie jak zaawansowane tabele, listy wyboru, itp.
+				</P
+><P
+>&#13;					Poniewa¿ jest to oficjalny standard technologia ta nie stanowi ¶lepego zau³ku, wrêcz przeciwnie - nale¿y siê spodziewaæ,
+					¿e serwery aplikacji bêd± domy¶lnie posiada³y odpowiednie biblioteki. Czyli instalacja aplikacji mo¿e byæ ³atwiejsza
+					ni¿ w przypadku innych rozwi±zañ.
+				</P
+><P
+>&#13;					Nie jest to narzêdzie doskona³e - brakuje pewnych elementów, obs³uga mieszanych elementów HTML i JSF czasami wymaga
+					dodatkowego wysi³ku. Dla przyk³adu zagnie¿d¿anie elementów HTML wewn±trz elementów JSF wymaga u¿ycia specjalnego tagu verbatim.
+					W przypadku gdy go brakuje kod HTML zostanie wygenerowany niepoprawnie. Nie jest to problemem w przypadku prostych stron HTML,
+					natomiast czasami potrafi prowadziæ do tego, ¿e kod JSP strony wygl±da dosyæ zagmatwanie.
+				</P
+><P
+>&#13;					W czasie realizacji projektu wykorzystywana by³a domy¶lna implementacja dostêpna na stronie firmy Sun. Zauwa¿ono,
+					¿e sposób implementacji, w niektórych przypadkach powoduje trudno¶ci w lokalizacji b³êdów programistycznych - czasami wyj±tki i 
+					komunikaty generowane sugeruj± (lub wrêcz nie sugeruj± w ogóle) mylnie ¼ród³a b³êdów.
+				</P
+><P
+>&#13;					Warto nadmieniæ, ¿e trwaj± prace nad now± wersj± standardu, zwiêksza siê liczba u¿ytkowników oraz rozwi±zañ
+					bazuj±cych na nim co oznacza, ¿e by³ to dobry wybór.
 				</P
 ></DIV
 ><DIV

@@ -96,7 +96,7 @@
 
 		<para>
 			Jest to skomplikowane zadanie wymagaj±ce wykorzystania
-			i integracji wielu istniej±cych programów, nale¿y m.in.
+			i integracji wielu istniej±cych programów, nale¿y miêdzy innymi
 			po³±czyæ takie systemy jak: serwer WWW, agent pocztowy,
 			serwer FTP, bazy danych. Zale¿nie od wymagañ musi istnieæ
 			mo¿liwo¶æ integracji systemu z innymi aplikacjami
@@ -179,6 +179,30 @@
 	&users;
 	&admins;
 	&devs;
+
+	<chapter id="summary">
+		<title>Podsumowanie</title>
+
+		<para>
+			W wyniku realizacji pracy zosta³y zaimplementowane nastêpuj±ce
+			wymagania postawione systemowi: RS-1, RS-4, RS-7, RS-8, RG-1, RG-2, 
+			RG-3, RG-4, RG-5, RG-6, RG-7, RG-8, RG-9, RG-10, RG-12, RG-13, RG-14,
+			RP-3, RP-4, RP-5, RA-1, RA-4.
+		</para>
+
+		<para>
+			System oferuje najwa¿niejsze funkcje, które powinien
+			spe³niaæ panel administracyjny systemu poczty darmowej. Dziêki odpowiedniej
+			architekturze istnieje mo¿liwo¶æ rozwijania systemu. W obecnym stanie
+			istnieje mo¿liwo¶æ wykorzystywania systemów w rzeczywistym ¶rodowisku.
+		</para>
+
+		<para>
+			Postawione w pracy magisterskiej zadanie zosta³o zrealizowane za pomoc±
+			przedstawionego rozwi±zania.
+		</para>
+	</chapter>
+	
 	&biblio;
 </book>
 

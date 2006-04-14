@@ -84,7 +84,7 @@
 				<title>Tomcat</title>
 
 				<para>
-					Najprostrz± metod± instalacji jest skopiowanie
+					Najprostsz± metod± instalacji jest skopiowanie
 					pliku WAR do katalogu <filename>webapps</filename>.
 					Po restarcie Tomcat powinien rozpakowaæ aplikacjê. Niezbêdna mo¿e
 					byæ dodatkowa konfiguracja - ¼ród³a danych oraz mechanizmu autentykacji. 
@@ -150,7 +150,7 @@
 				<para>
 					Sekcja ResourceParams dotyczy konfiguracji zasobów z jakich aplikacja korzysta, miêdzy innymi
 					bazy danych - zasób "jdbc/ihsDB" okre¶la domy¶ln± bazê danych wykorzystywan± przez IHS. Sekcja Realm
-					okresl± ¼ród³o informacji o u¿ytkownikach, domy¶lnie przyjmuje siê, ¿e jest to tabela zarz±dzana przez IHS. Jednak¿e
+					okre¶la ¼ród³o informacji o u¿ytkownikach, domy¶lnie przyjmuje siê, ¿e jest to tabela zarz±dzana przez IHS. Jednak¿e
 					istnieje mo¿liwo¶æ korzystania z innego ¼ród³a.
 				</para>
 

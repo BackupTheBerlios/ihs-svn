@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Strategia realizacji</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Podrêcznik programisty"
+HREF="devs.html"><LINK
+REL="PREVIOUS"
+TITLE="Podrêcznik programisty"
+HREF="devs.html"><LINK
+REL="NEXT"
+TITLE="Plany na przysz³o¶æ"
+HREF="future.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-04-14T17:57:42"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="devs.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Rozdzia&#322; 5. Podrêcznik programisty</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="future.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="strategies"
+>5.2. Strategia realizacji</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="strategies.products"
+>5.2.1. Wykorzystane produkty</A
+></H2
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="strategies.products.linux"
+>5.2.1.1. Linux</A
+></H3
+><P
+>&#13;					Pierwszym z obs³ugiwanych przez IHS systemów operacyjnych bêdzie
+					Linux. Decyzja taka podjêta zosta³a dlatego, ¿e jest to jeden z
+					najbardziej popularnych systemów operacyjnych instalowanych na serwerach
+					w Internecie.
+				</P
+><P
+>&#13;					Zdecydowano siê na wspieranie tylko 2 spo¶ród kilkuset istniej±cych
+					dystrybucji Linuksa, s± to dwie najbardziej popularne dystrybucje: Fedora Core 
+					(darmowa wersja, na której bazuje Red Hat Enterprise Linux) oraz OpenSuSe (darmowa
+					wersja, na której bazuje SuSe Linux Enterprise Server). S± one dosyæ podobne do siebie
+					co upraszcza proces tworzenia i dystrybucji oprogramowania.
+				</P
+><P
+>&#13;					Obie dystrybucje oparte s± o menad¿era pakietów zwanego RPM, dziêki czemu
+					³atwo utworzyæ wersjê instalacyjn±. U³atwia to zarz±dzanie oprogramowaniem,
+					zachêca do wypróbowania produktu (poniewa¿ ³atwo mo¿na go odinstalowaæ).
+					Pakiety tworzone przez ten program zawieraj± informacje o zale¿no¶ciach, 
+					operacjach wymaganych przy aktualizacji, itp.
+				</P
+><P
+>&#13;					Oprócz wybranych systemów planowana jest w przysz³o¶ci obs³uga innych
+					Uniksów. System operacyjny Windows najprawdopodobniej nie bêdzie 
+					oficjalnie wspierany.
+				</P
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="strategies.products.databases"
+>5.2.1.2. PostgreSQL, Oracle</A
+></H3
+><P
+>&#13;					Jak ka¿dy z³o¿ony system, IHS potrzebuje do swojego dzia³ania
+					bazê danych. S³u¿y ona jako magazyn dla wszelkich danych konfiguracyjnych,
+					zawiera informacje o u¿ytkownikach, oraz wszelkie inne dane, które musz± byæ
+					stale dostêpne.
+				</P
+><P
+>&#13;					Zdecydowano siê na wykorzystanie dwóch ró¿nych relacyjnych baz danych, dziêki
+					czemu mo¿na dopasowaæ system do w³asnych potrzeb. Oracle jest liderem
+					na rynku komercyjnych baz danych, dlatego wybrano go jako zaplecze dla
+					korporacyjnych instalacji. PostgreSQL natomiast stanowi lidera je¿eli chodzi
+					o zaawansowane bazy z otwartym kodem ¼ród³owym. Ma on stanowiæ zaplecze
+					dla wdro¿eñ w ¶rednich i ma³ych firmach, które nie potrzebuj± funkcjonalno¶ci
+					oferowanej przez Oracle.
+				</P
+><P
+>&#13;					Wybór podyktowany by³ równie¿ pewnym podobieñstwem obu tych systemów - oferuj± 
+					podobne cechy takie jak widoki, procedury uruchamiane po stronie serwera, mechanizm
+					spustowy. Funkcje te zosta³y wykorzystane w czasie realizacji systemu. Dlatego równie¿ MySQL,
+					czyli najpopularniejsza bazy danych z otwartym kodem ¼ród³owym, nie jest aktualnie obs³ugiwana.
+					Wsparcie dla tej bazy danych wymaga³oby zmianê architektury systemu.
+				</P
+><P
+>&#13;					Argumentem za takim wyborem by³y równie¿ mo¿liwo¶ci systemu Virtual Qmail - system ten
+					aktualnie obs³uguje tylko bazy Oracle i PostgreSQL. Poniewa¿ stanowi on integraln± czê¶æ
+					IHS nale¿a³o zaimplementowaæ ich obs³ugê - aby u³atwiæ administracjê oraz zapewniæ
+					jak najlepsz± integracjê.
+				</P
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="strategies.products.v-q"
+>5.2.1.3. Virtual Qmail</A
+></H3
+><P
+>&#13;					J±drem systemu jest Virtual Qmail - jest to aplikacja u¿ywana do zarz±dzania systemem pocztowym.
+					Zajmuje siê ona miêdzy innymi takimi rzeczami jak rejestrowanie czy usuwanie u¿ytkowników lub domen.
+					Wraz z MTA tworzy system pocztowy, który jest ³atwy w obs³udze.
+				</P
+><P
+>&#13;					IHS stanowi interfejs u¿ytkownika, który miêdzy innymi s³u¿yæ ma do zarz±dzania systemem Virtual Qmail.
+					Na rynku istnieje kilka innych, podobnych do Virtual Qmail, systemów. Zdecydowano siê na wybór
+					tej aplikacji poniewa¿ stanowi ona autorskie rozwi±zanie zrealizowane podczas wcze¶niejszego
+					projektu, patrz NIE-2003.
+				</P
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="strategies.products.corba"
+>5.2.1.4. CORBA</A
+></H3
+><P
+>&#13;					W celu umo¿liwienia jak naj³atwiejszej integracji Virtual Qmail z innymi systemami, np. takimi
+					jak IHS, zmodernizowano komunikacjê miêdzy elementami i wprowadzono obs³ugê CORBA.
+				</P
+><P
+>&#13;					Rozdzielono ca³y system na niezale¿ne us³ugi, które komunikuj± siê w razie potrzeby ze sob±.
+					Ca³a komunikacja opiera siê na wywo³aniu metod za po¶rednictwem protoko³u CORBA.
+					Taka implementacja pozwala na ³±czenie ze sob± czê¶ci napisanych w ró¿nych jêzykach.
+				</P
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="strategies.products.java"
+>5.2.1.5. Java</A
+></H3
+><P
+>&#13;					Jako jêzyk implementacji systemu wybrano Java. Decyzja podyktowana by³a
+					popularno¶ci± danego jêzyka w krêgu twórców serwisów internetowych, mo¿liwo¶ci±
+					³atwego tworzenia aplikacji oraz pó¼niejszego utrzymania.
+				</P
+><P
+>&#13;					Innymi mo¿liwymi do wykorzystania jêzykami by³y C++, PERL, PHP czy python. Na ich niekorzy¶æ
+					przemawia³y miêdzy innymi nastêpuj±ce argumenty: 
+					<P
+></P
+></P><UL
+><LI
+><P
+>&#13;								C++ - niewielkie wsparcie dla tworzenia zaawansowanych serwisów internetowych, d³u¿szy ni¿ w przypadku innych jêzyków
+								czas wytwarzania aplikacji spowodowany wiêkszym skompilowaniem jêzyka, brakiem bibliotek oraz ¶rodowiska podobnego do J2EE;
+							</P
+></LI
+><LI
+><P
+>&#13;								PERL - nieprzystosowanie jêzyka do tworzenia zaawansowanych systemów obiektowych, brak tak rozbudowanego
+								¶rodowiska jak J2EE;
+							</P
+></LI
+><LI
+><P
+>&#13;								PHP - niekompletne wsparcie dla CORBA;
+							</P
+></LI
+><LI
+><P
+>&#13;								python - niezbêdny dodatkowy czas na poznanie jêzyka, Zope (platforma podobna do J2EE) jest mniej popularne od J2EE;
+							</P
+></LI
+></UL
+><P>
+				</P
+><P
+>&#13;					Java w porównaniu z innymi jêzykami oferuje ³atwo¶æ tworzenia aplikacji, bardzo dobre zaplecze je¿eli chodzi o 
+					sam± platformê - J2EE, jak i o dokumentacjê czy porady do¶wiadczonych u¿ytkowników. Posiada równie¿ standardowo
+					obs³ugê CORBA, dziêki standardowy JDBC bardzo ³atwo tworzyæ aplikacje bazodanowe wspó³pracuj±ce z ró¿nymi RDBMS.
+				</P
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="strategies.products.jsf"
+>5.2.1.6. JavaServer Faces</A
+></H3
+><P
+>&#13;					Aby upro¶ciæ tworzenie aplikacji internetowej zdecydowano siê na wykorzystanie zyskuj±cego na popularno¶ci
+					i bêd±cego oficjalnym standardem frameworka zwanego JavaServer Faces. Jest to dodatkowa warstwa mo¿liwa 
+					do wykorzystania
+					w czasie tworzenia stron JSP, która zapewnia obiektow± otoczkê do standardowych elementów dostêpnych w jêzyku HTML
+					oraz JSP. Umo¿liwia równie¿ separacjê logiki biznesowej od warstwy prezentacji.
+				</P
+><P
+>&#13;					Zalet± JSF w stosunku do innych podobnych rozwi±zañ jest ³atwo¶æ integracji istniej±cych technologii. £atwo
+					mo¿na wykorzystywaæ technologie takie jak Struts, biblioteki znaczników (np. JSTL), itp. Istnieje równie¿
+					mo¿liwo¶æ rozwijania i dodawania w³asnych rozwi±zañ. Mo¿na tworzyæ w³asne walidatory, konwertery czy nawet nowe elementy
+					takie jak zaawansowane tabele, listy wyboru, itp.
+				</P
+><P
+>&#13;					Poniewa¿ jest to oficjalny standard technologia ta nie stanowi ¶lepego zau³ku, wrêcz przeciwnie - nale¿y siê spodziewaæ,
+					¿e serwery aplikacji bêd± domy¶lnie posiada³y odpowiednie biblioteki. Czyli instalacja aplikacji mo¿e byæ ³atwiejsza
+					ni¿ w przypadku innych rozwi±zañ.
+				</P
+><P
+>&#13;					Nie jest to narzêdzie doskona³e - brakuje pewnych elementów, obs³uga mieszanych elementów HTML i JSF czasami wymaga
+					dodatkowego wysi³ku. Dla przyk³adu zagnie¿d¿anie elementów HTML wewn±trz elementów JSF wymaga u¿ycia specjalnego tagu verbatim.
+					W przypadku gdy go brakuje kod HTML zostanie wygenerowany niepoprawnie. Nie jest to problemem w przypadku prostych stron HTML,
+					natomiast czasami potrafi prowadziæ do tego, ¿e kod JSP strony wygl±da dosyæ zagmatwanie.
+				</P
+><P
+>&#13;					W czasie realizacji projektu wykorzystywana by³a domy¶lna implementacja dostêpna na stronie firmy Sun. Zauwa¿ono,
+					¿e sposób implementacji, w niektórych przypadkach powoduje trudno¶ci w lokalizacji b³êdów programistycznych - czasami wyj±tki i 
+					komunikaty generowane sugeruj± (lub wrêcz nie sugeruj± w ogóle) mylnie ¼ród³a b³êdów.
+				</P
+><P
+>&#13;					Warto nadmieniæ, ¿e trwaj± prace nad now± wersj± standardu, zwiêksza siê liczba u¿ytkowników oraz rozwi±zañ
+					bazuj±cych na nim co oznacza, ¿e by³ to dobry wybór.
+				</P
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="strategies.products.tomcat"
+>5.2.1.7. Tomcat 5</A
+></H3
+><P
+>&#13;					Tomcat jest jednym z najpopularniejszych serwerów servletów dostêpnych na rynku. Jego popularno¶æ umotywowana
+					jest miêdzy innymi tym, ¿e jest on stale rozwijany, dostêpny za darmo, posiada równie¿ dobr± dokumentacjê i
+					du¿e grono u¿ytkowników.
+				</P
+><P
+>&#13;					Dodatkowo jest ³atwy w konfiguracji, posiada akceptowaln± wydajno¶æ oraz wszystkie niezbêdne funkcje, które
+					wymagane s± przez projekt.
+				</P
+><P
+>&#13;					W przysz³o¶ci planowana jest obs³uga innych serwerów J2EE, natomiast w chwili obecnej system jest przetestowany
+					tylko z tym serwerem.
+				</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="devs.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Spis tre&#347;ci</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="future.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Podrêcznik programisty</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="devs.html"
+ACCESSKEY="U"
+>Pocz&#261;tek rozdzia&#322;u</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Plany na przysz³o¶æ</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

@@ -5,6 +5,7 @@
 	<!ENTITY admins SYSTEM "admins.xml">
 	<!ENTITY users SYSTEM "users.xml">
 	<!ENTITY devs SYSTEM "devs.xml">
+	<!ENTITY glossary SYSTEM "glossary.xml">
 	]
 >
 <book lang="pl">
@@ -18,6 +19,7 @@
 		</authorgroup>
 		<copyright>
 			<year>2005</year>
+			<year>2006</year>
 			<holder><ulink url="http://foo-baz.com">foo-baz.com</ulink></holder>
 		</copyright>
 	</bookinfo>
@@ -26,60 +28,42 @@
 		<title>S³owo wstêpne</title>
 
 		<para>
+			Niniejszy dokument stanowi pracê magistersk± wykonan± przez Paw³a Niewiadomskiego. Jest to zwieñczenie studiów
+			na Politechnice Poznañskiej, na kierunku Projektowanie i Eksploatacja Systemów Informatycznych. 
+			Promotorem pracy jest prof. dr hab. in¿. Zbyszko Królikowski.
+		</para>
+
+		<para>
+			Temat pracy zosta³ podjêty w zwi±zku z poprzednio realizowanym przez Paw³a Niewiadomskiego projektem
+			pt. System poczty darmowej - NIE-2003. W wyniku realizacji tego projektu powstanie nowy produkt integruj±cy siê
+			z poprzednio wykonanym systemem umo¿liwiaj±cy zarz±dzanie nim za pomoc± przegl±darki WWW. Stworzona aplikacja
+			pos³u¿yæ ma w przysz³o¶ci jako ¶rodowisko umo¿liwiaj±ce komplementarne zarz±dzanie systemem pocztowym czy hostingowym.
+		</para>
+
+		<para>
+			Poniewa¿ realizowany projekt bêdzie rozprowadzany w sieci Internet a czê¶æ niniejszego dokumentu
+			s³u¿yæ bêdzie jako podrêcznik dla u¿ytkowników, administratorów i programistów przyjêto, ¿e w dalszej
+			czê¶ci dokumentu autor pos³ugiwa³ siê bêdzie oficjaln± nazw± projektu - Incredible Hosting System, w skrócie <glossterm>IHS</glossterm>.
+			Czê¶ci± IHS jest panel administracyjny s³u¿±cy do zarz±dzania poczt± darmow± przez strony WWW.
+			Panel ten stanowi cze¶æ systemu realizowan± jako temat pracy magisterskiej. Poniewa¿ ten element nie mo¿e
+			istnieæ bez innych czê¶ci wchodz±cych w sk³ad IHS dokument ten zawiera opis ca³ego systemu.
+		</para>
+		
+		<para>
+			Celem pracy jest zaprojektowanie i implementacja serwisu WWW umo¿liwiaj±cego zarz±dzanie systemem poczty darmowej.
+		</para>
+
+		<para>
+			Struktura pracy jest nastêpuj±ca. <xref linkend="glossary"/> zawiera przegl±d pojêæ oraz skrótów u¿ywanych w dokumencie.
+			<xref linkend="overview"/> zawiera podstawowe wymagania oraz ograniczenia na³o¿one na realizowany projekt.
+			<xref linkend="users"/> zawiera opis interfejsu u¿ytkownika stworzonego systemu.
+			<xref linkend="admins"/> przeznaczony jest dla administratorów, zawiera informacje na temat konfiguracji.
+			<xref linkend="devs"/> to dyskusja na temat wewnêtrznej struktury systemu.
+			Ostatnim rozdzia³em jest wykaz ¼róde³ - <xref linkend="biblio"/>.
 		</para>
 	</preface>
 
-	<chapter id="intro">
-		<title>Wprowadzenie</title>
-
-		<para>
-			Nastêpuj±cy rozdzia³ zawiera krótki opis projektu. Przedstawienie
-			najwa¿niejszy wymagañ oraz ograniczeñ. Platformê u¿yt±
-			w czasie realizacji. Zawiera równie¿ obja¶nienie
-			najwa¿niejszych terminów.
-		</para>
-		
-		<para>
-			Dokument reprezentuje dokumentacjê projektow±
-			zwi±zan± z realizowanym projektem. Kolejno s±
-			to: wprowadzenie do systemu, rozwa¿ania projektowe,
-			architektura systemu, polityki i strategie realizacji, 
-			dok³adny projekt systemu, s³ownik terminów, bibliografia.
-		</para>
-
-		<para>
-			Dokument skierowany jest przede wszystkim do 
-			odbiorców zwi±zanych z informatyk±, st±d czêste wystêpowanie
-			terminów u¿ywanych w tej dziedzinie. Grup± docelow±
-			stanowi± administratorzy korzystaj±cy z systemu, programi¶ci
-			chc±cy rozwijaæ system. Czê¶æ informacji mo¿e byæ równie¿
-			przydatna dla u¿ytkowników takiego systemu.
-		</para>
-
-		<para>
-			Realizowany projekt, który opisany jest niniejszym
-			dokumencie, prezentowany jest w Sieci jako Incredible Hosting
-			System, w skrócie <glossterm>IHS</glossterm>, w zwi±zku z tym taka nazwa bêdzie
-			czêsto wykorzystywana bêdzie jako odwo³anie siê do ca³o¶ci systemu.
-			Czê¶ci± IHS jest panel administracyjny s³u¿±cy do
-			zarz±dzania poczt± darmow± oraz p³atn± przez strony WWW.
-			Panel ten stanowi cze¶æ systemu realizowan± jako
-			temat pracy magisterskiej. Poniewa¿ ten element nie mo¿e
-			istnieæ bez innych czê¶ci wchodz±cych w sk³ad IHS dokument
-			ten zawiera opis ca³ego systemu.
-		</para>
-		
-		<para>
-			Aby dok³adniej zrozumieæ specyfikê projektu, podjête
-			decyzje projektowe oraz zapoznaæ siê z czê¶ci±
-			wykorzystanego oprogramowania warto zapoznaæ siê
-			z poprzednio realizowan± prac± pt. System poczty darmowej - NIE-2003.
-			IHS oparty jest na do¶wiadczeniach uzyskanych w czasie realizacji
-			poprzedniego systemu, jest to kolejny krok maj±cy na celu
-			zapewnienie zintegrowanego ¶rodowiska do zarz±dzania u¿ytkownikami
-			w systemach pocztowych czy hostingowych.
-		</para>
-	</chapter>
+	&glossary;
 
 	<chapter id="overview">
 		<title>Wprowadzenie do systemu</title>
@@ -184,22 +168,27 @@
 		<title>Podsumowanie</title>
 
 		<para>
-			W wyniku realizacji pracy zosta³y zaimplementowane nastêpuj±ce
-			wymagania postawione systemowi: RS-1, RS-4, RS-7, RS-8, RG-1, RG-2, 
-			RG-3, RG-4, RG-5, RG-6, RG-7, RG-8, RG-9, RG-10, RG-12, RG-13, RG-14,
-			RP-3, RP-4, RP-5, RA-1, RA-4.
+			Podstawowymi funkcjami, które powinien oferowaæ projekt zgodnie z za³o¿eniami jest mo¿liwo¶æ
+			zarz±dzania domenami i u¿ytkownikami w ramach zarejestrowanych w systemie domen. Cel ten zosta³ zrealizowany
+			przez przedstawiony projekt.
+		</para>
+
+		<para>
+			Zgodnie z przyjêt± list± wymagañ, zrealizowane zosta³y nastêpuj±ce wymagania:
+			RS-1, RS-4, RS-7, RS-8, RG-1, RG-2, RG-3, RG-4, RG-5, RG-6, RG-7, RG-8, RG-9, 
+			RG-10, RG-12, RG-13, RG-14,
+			RP-3, RP-4, RP-5, RA-1, RA-4. <xref linkend="design.reqs"/> zawiera szczegó³owe informacje.
 		</para>
 
 		<para>
 			System oferuje najwa¿niejsze funkcje, które powinien
 			spe³niaæ panel administracyjny systemu poczty darmowej. Dziêki odpowiedniej
-			architekturze istnieje mo¿liwo¶æ rozwijania systemu. W obecnym stanie
-			istnieje mo¿liwo¶æ wykorzystywania systemów w rzeczywistym ¶rodowisku.
+			architekturze istnieje mo¿liwo¶æ rozwijania systemu. 
 		</para>
 
 		<para>
-			Postawione w pracy magisterskiej zadanie zosta³o zrealizowane za pomoc±
-			przedstawionego rozwi±zania.
+			Autor planuje dalszy rozwój systemu. Chcia³by rozszerzyæ jego funkcjonalno¶æ miêdzy innymi o zarz±dzanie
+			systemem kontroli wersji Subversion.
 		</para>
 	</chapter>
 	

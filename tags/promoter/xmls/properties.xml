@@ -1,0 +1,45 @@
+<!-- Local system paths -->
+<property name="webroot.dir" value="${basedir}/WebContent"/>
+<property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
+<property name="build.dir" value="build"/>
+<property name="tmp.dir" value="tmp"/>
+<loadfile property="project.version" srcFile="${basedir}/VERSION">
+	<filterchain>
+		<striplinebreaks/>
+	</filterchain>
+</loadfile>
+
+<!-- tomcat -->
+<property name="manager.url" value="http://127.0.0.1:8080/manager/"/>
+<property name="username" value="tomcat"/>
+<property name="password" value="tomcat"/>
+
+<!-- JADE configuration -->
+<property name="jade.bin" value="openjade"/>
+<property name="jade.xml_dcl" value="/usr/share/sgml/docbook/dsssl-stylesheets-1.79/dtds/decls/xml.dcl"/>
+<property name="jade.catalog" value="/usr/share/sgml/CATALOG.db42xml:/usr/share/sgml/CATALOG.openjade:/usr/share/sgml/CATALOG.docbkdsl:/usr/share/sgml/CATALOG.iso_ent"/>
+
+<!-- installation -->
+<property name="install.distdir" value=""/>
+<property name="install.prefix" value="/usr"/>
+<property name="install.docdir" value="${install.prefix}/doc"/>
+<property name="install.datadir" value="${install.prefix}/share"/>
+<property name="install.tomcatdir" value="${install.datadir}/tomcat5"/>
+<property name="install.webappsdir" value="${install.tomcatdir}/webapps"/>
+<property name="install.docdir" value="${install.prefix}/doc"/>
+
+<!-- external libraries -->
+<property name="commons.dir" value="/usr/share/java"/>
+<property name="commons-beanutils.jar" value="${commons.dir}/jakarta-commons-beanutils.jar"/>
+<property name="commons-collections.jar" value="${commons.dir}/jakarta-commons-collections.jar"/>
+<property name="commons-digester.jar" value="${commons.dir}/jakarta-commons-digester.jar"/>
+<property name="commons-logging.jar" value="${commons.dir}/jakarta-commons-logging.jar"/>
+<property name="catalina.jar" value="${install.tomcatdir}/server/lib/catalina.jar"/>
+<property name="jmxri.jar" value="${commons.dir}/jmxri.jar"/>
+<property name="jspapi.jar" value="${commons.dir}/jspapi.jar"/>
+<property name="jsf-api.jar" value="${webinf.dir}/lib/jsf-api.jar"/>
+<property name="jsf-impl.jar" value="${webinf.dir}/lib/jsf-impl.jar"/>
+<property name="jstl.jar" value="${webinf.dir}/lib/jstl.jar"/>
+<property name="taglibs-standard.jar" value="${commons.dir}/jakarta-taglibs-standard.jar"/>
+<property name="servletapi5.jar" value="${commons.dir}/servletapi5.jar"/>
+

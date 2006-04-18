@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Podrêcznik u¿ytkownika</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Wprowadzenie do systemu"
+HREF="overview.html"><LINK
+REL="NEXT"
+TITLE="Panel konfiguracyjny"
+HREF="users.conf.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-04-18T19:49:53"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="overview.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="users.conf.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="users"
+></A
+>Rozdzia&#322; 2. Podrêcznik u¿ytkownika</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Spis tre&#347;ci</B
+></DT
+><DT
+>2.1. <A
+HREF="users.html#users.login"
+>Logowanie siê do systemu</A
+></DT
+><DT
+>2.2. <A
+HREF="users.conf.html"
+>Panel konfiguracyjny</A
+></DT
+><DT
+>2.3. <A
+HREF="users.admins.html"
+>Zarz±dzanie administratorami</A
+></DT
+><DT
+>2.4. <A
+HREF="users.domains.html"
+>Zarz±dzanie domenami</A
+></DT
+><DT
+>2.5. <A
+HREF="users.logs.html"
+>Przegl±danie logów systemowych</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="users.login"
+>2.1. Logowanie siê do systemu</A
+></H1
+><DIV
+CLASS="figure"
+><A
+NAME="figure.users.loading"
+></A
+><P
+><B
+>Rysunek 2-1. £adowanie aplikacji</B
+></P
+><P
+><IMG
+SRC="../imgs/loading.png"></P
+></DIV
+><P
+>&#13;			<A
+HREF="users.html#figure.users.loading"
+>Rysunek 2-1</A
+> przedstawia pierwsz± stronê, któr± zobaczy u¿ytkownik
+			po zainstalowaniu aplikacji. Zale¿nie od wydajno¶ci systemu strona mo¿e byæ widoczna przez kilka
+			do kilkuset sekund. W tym czasie serwer J2EE zajmuje siê ³adowaniem aplikacji do pamiêci oraz
+			kompilacj± niezbêdnych elementów. Po za³adowaniu aplikacji zazwyczaj trudno bêdzie znowu zobaczyæ
+			t± stronê.
+		</P
+><DIV
+CLASS="figure"
+><A
+NAME="figure.users.login"
+></A
+><P
+><B
+>Rysunek 2-2. Strona logowania</B
+></P
+><P
+><IMG
+SRC="../imgs/pl.login.png"></P
+></DIV
+><P
+>&#13;			<A
+HREF="users.html#figure.users.login"
+>Rysunek 2-2</A
+> - strona logowania. Do systemu mog± logowaæ siê tylko u¿ytkownicy
+			nale¿±cy do grupy "administrator". Aktualnie zarz±dzanie grupami nie dzia³a i wszyscy u¿ytkownicy
+			rejestrowani w systemie automatycznie dodawani s± do tej grupy.
+
+			</P><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Notatka: </B
+>
+					Domy¶lny u¿ytkownik to: admin, has³o: admin. Po zalogowaniu najlepiej dodaæ innego u¿ytkownika i usun±æ domy¶lne konto.
+				</P
+></BLOCKQUOTE
+></DIV
+><P>
+		</P
+><DIV
+CLASS="figure"
+><A
+NAME="figure.users.lang"
+></A
+><P
+><B
+>Rysunek 2-3. Wybór jêzyka</B
+></P
+><P
+><IMG
+SRC="../imgs/pl.lang.png"></P
+></DIV
+><P
+>&#13;			<A
+HREF="users.html#figure.users.lang"
+>Rysunek 2-3</A
+> przedstawia ikony umo¿liwiaj±ce zmianê jêzyka komunikacji
+			z u¿ytkownikiem. S± one dostêpne przez ca³y czas, u¿ytkownik mo¿e w dowolnym momencie wybraæ inny jêzyk.
+			Domy¶lny jêzyk ustawiany jest na podstawie informacji przekazanych przez przegl±darkê u¿ytkownika.
+		</P
+><DIV
+CLASS="figure"
+><A
+NAME="figure.users.login.failed"
+></A
+><P
+><B
+>Rysunek 2-4. Strona logowania z komunikatem</B
+></P
+><P
+><IMG
+SRC="../imgs/pl.login.failed.png"></P
+></DIV
+><P
+>&#13;			W przypadku podania nieprawid³owych danych lub b³êdu systemu podczas logowania zostanie wy¶wietlona
+			nastêpuj±ca strona <A
+HREF="users.html#figure.users.login.failed"
+>Rysunek 2-4</A
+>. Je¿eli problem siê powtarza nale¿y skontaktowaæ siê
+			z administratorem systemu poniewa¿ mo¿e to ¶wiadczyæ o nieprawid³owej konfiguracji lub
+			problemach.
+		</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="overview.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Spis tre&#347;ci</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="users.conf.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Wprowadzenie do systemu</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Panel konfiguracyjny</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

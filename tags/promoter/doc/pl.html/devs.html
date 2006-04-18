@@ -1,0 +1,997 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Podrêcznik programisty</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Konfiguracja"
+HREF="admins.conf.html"><LINK
+REL="NEXT"
+TITLE="Strategia realizacji"
+HREF="strategies.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-04-18T19:49:53"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="admins.conf.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="strategies.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="devs"
+></A
+>Rozdzia&#322; 4. Podrêcznik programisty</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Spis tre&#347;ci</B
+></DT
+><DT
+>4.1. <A
+HREF="devs.html#design"
+>Rozwa¿ania projektowe</A
+></DT
+><DD
+><DL
+><DT
+>4.1.1. <A
+HREF="devs.html#design.related"
+>Oprogramowanie i sprzêt</A
+></DT
+><DT
+>4.1.2. <A
+HREF="devs.html#design.users"
+>U¿ytkownicy systemu</A
+></DT
+><DT
+>4.1.3. <A
+HREF="devs.html#design.reqs"
+>Analiza wymagañ</A
+></DT
+><DT
+>4.1.4. <A
+HREF="devs.html#design.goals"
+>Gole i wytyczne</A
+></DT
+></DL
+></DD
+><DT
+>4.2. <A
+HREF="strategies.html"
+>Strategia realizacji</A
+></DT
+><DT
+>4.3. <A
+HREF="future.html"
+>Plany na przysz³o¶æ</A
+></DT
+><DT
+>4.4. <A
+HREF="strategies.errors.html"
+>Obs³uga b³êdów</A
+></DT
+><DT
+>4.5. <A
+HREF="strategies.database.html"
+>Baza danych</A
+></DT
+><DT
+>4.6. <A
+HREF="architecture.html"
+>Architektura systemu</A
+></DT
+><DD
+><DL
+><DT
+>4.6.1. <A
+HREF="architecture.html#architecture.v_q"
+>Architektura Virtual Qmail</A
+></DT
+><DT
+>4.6.2. <A
+HREF="architecture.html#subarch.ihsdb"
+>Baza danych IHS</A
+></DT
+><DT
+>4.6.3. <A
+HREF="architecture.html#subarch.ihs"
+>Architektura IHS</A
+></DT
+></DL
+></DD
+><DT
+>4.7. <A
+HREF="policies.html"
+>Obowi±zuj±ce wytyczne</A
+></DT
+><DD
+><DL
+><DT
+>4.7.1. <A
+HREF="policies.html#policies.software"
+>Wykorzystywane oprogramowanie</A
+></DT
+><DT
+>4.7.2. <A
+HREF="policies.html#policies.tree"
+>Organizacja struktury katalogów</A
+></DT
+><DT
+>4.7.3. <A
+HREF="policies.html#policies.building"
+>Kompilacja</A
+></DT
+><DT
+>4.7.4. <A
+HREF="policies.html#policies.packages"
+>Tworzenie pakietów</A
+></DT
+></DL
+></DD
+><DT
+>4.8. <A
+HREF="imp.html"
+>Szczegó³y implementacji IHS</A
+></DT
+><DD
+><DL
+><DT
+>4.8.1. <A
+HREF="imp.html#imp.core"
+>G³ówna czê¶æ systemu</A
+></DT
+><DT
+>4.8.2. <A
+HREF="imp.html#imp.ui"
+>Interfejs u¿ytkownika</A
+></DT
+><DT
+>4.8.3. <A
+HREF="imp.html#imp.state"
+>Kontrola stanu systemu</A
+></DT
+><DT
+>4.8.4. <A
+HREF="imp.html#imp.plugins"
+>Wtyczki</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="design"
+>4.1. Rozwa¿ania projektowe</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="design.related"
+>4.1.1. Oprogramowanie i sprzêt</A
+></H2
+><P
+>&#13;				Podstaw± IHS bêdzie stanowi³ system operacyjny kompatybilny
+				z Uniksem, w tym wypadku domy¶lnie bêdzie to Linux. Docelowo
+				wspierane bêd± równie¿ takie systemy jak OpenBSD (rodzina *BSD),
+				Solaris. Wykorzystywane bêd± dwie dystrybucje Linuksa - SuSe
+				oraz Fedora Core (poniewa¿ s± to jedne z najpopularniejszych
+				dystrybucji, czêsto u¿ywane s± na serwerach).
+			</P
+><P
+>&#13;				IHS opiera³ siê bêdzie o takie elementy jak serwer aplikacji J2EE, 
+				MTA, Virtual Qmail. Zak³adana jest 
+				mo¿liwo¶æ wymiany ka¿dej z aplikacji odpowiedzialnych
+				za poszczególne funkcje - dlatego projekt bêdzie musia³
+				byæ modularny, z wymiennymi, kompatybilnymi ze sob±
+				czê¶ciami.
+			</P
+><P
+>&#13;				Poniewa¿ jedyn± dostêpn± w czasie realizacji projektu,
+				platform± sprzêtow± jest x86 projekt bêdzie realizowany w oparciu o ni±.
+				Nie wykluczone jest natomiast u¿ywanie systemu na
+				innych architekturach. Poniewa¿ na serwerach coraz
+				czê¶ciej wykorzystywane s± procesory IA-64 warto by³oby
+				jak najszybciej przygotowywaæ system w wersji na t±
+				architekturê.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="design.users"
+>4.1.2. U¿ytkownicy systemu</A
+></H2
+><P
+>&#13;				Docelowymi grupami u¿ytkowników s±:
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Normalni u¿ytkownicy. </B
+>
+					Nie posiadaj±, lub posiadaj±
+					znikom± wiedzê na temat funkcjonowania systemu, 
+					zainteresoany s± tylko wykorzystaniem
+					¶wiadczonych przez system us³ug, wiedza
+					informatyczna nie jest od nich wymagana; najmniejsze
+					uprawnienia;
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Administratorzy domen. </B
+>
+					Posiadaj± wiedzê
+					na temat opcji oferowanych przez system,
+					ich wykorzystywania w zakresie prowadzonej
+					przez nich dzia³alno¶ci, zainteresowani
+					s± wykorzystywaniem us³ug udostêpnianych przez
+					serwer oraz ich podstawow± konfiguracj± (w³±czanie,
+					wy³±czanie, itp.), wiedza informatyczna nie jest
+					od nich wymagana; uprawnienia poszerzone o zarz±dzanie
+					us³ugami zwi±zanymi z zarz±dzan± domen±;
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Administratorzy systemu. </B
+>
+					Posiadaj± wiedzê
+					na temat ¶rodowiska w jakim pracuje
+					IHS,  instalacji oraz konfiguracji
+					oprogramowania w tym ¶rodowisku, wymagana
+					jest podstawowa znajomo¶æ wykorzystywanego
+					przez IHS oprogramowania (np. instalacja
+					wymaganych programów), znajomo¶æ systemu IHS;
+					posiadaj± nieograniczone prawa;
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Programi¶ci. </B
+>
+					Posiadaj± wiedzê na temat
+					funkcji oferowanych przez IHS, 
+					architektury systemu, wykorzystywanych
+					baz danych, opcji konfiguracyjnych, protoko³ó³
+					komunikacyjnych, udostêpnianego API; znajomo¶æ
+					informacji takich jak system operacyjny danej
+					instalacji, wykorzystywane programy powinny
+					byæ dla nich bez znaczenia; nie stanowi± bezpo¶rednich
+					u¿ytkowników systemu;
+				</P
+></DIV
+><P
+>&#13;				Ka¿da z grup u¿ytkowników musi byæ dynamicznie
+				rozpoznawana. Jedna instalacja IHS musi byæ
+				w stanie obs³u¿yæ ka¿dy rodzaj u¿ytkownika, na podstawie
+				informacji przekazywanych od niego ustalana jest
+				przynale¿no¶æ do danej grupy oraz adaptowane s± 
+				udostêpniane funkcje. Powinna istnieæ równie¿ mo¿liwo¶æ
+				limitowania dostêpu do danej instalacji tylko do
+				u¿ytkowników wybranej grupy.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="design.reqs"
+>4.1.3. Analiza wymagañ</A
+></H2
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="design.reqs.soft"
+>4.1.3.1. Wymagania dotycz±ce sprzêtu i oprogramowania</A
+></H3
+><DIV
+CLASS="table"
+><A
+NAME="tab.reqs.soft"
+></A
+><P
+><B
+>Tabela 4-1. Wymagania dotycz±ce sprzêtu i oprogramowania</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><COL
+WIDTH="8*"><THEAD
+><TR
+><TH
+>Id.</TH
+><TH
+>Priorytet</TH
+><TH
+>Wymaganie</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><A
+NAME="RS-1"
+></A
+><TD
+>RS-1</TD
+><TD
+>1</TD
+><TD
+>Program bêdzie dzia³a³ pod systemami Linux, dystrybucja SuSe &#62;= 9.3 oraz Fedora Core &#62;= 4</TD
+></TR
+><TR
+><A
+NAME="RS-2"
+></A
+><TD
+>RS-2</TD
+><TD
+>2</TD
+><TD
+>Program bêdzie dzia³a³ pod systemami OpenBSD &#62;= 3.8, NetBSD &#62;= 3.0</TD
+></TR
+><TR
+><A
+NAME="RS-3"
+></A
+><TD
+>RS-3</TD
+><TD
+>3</TD
+><TD
+>Program bêdzie dzia³a³ pod innymi systemami Unix (np. Solaris, HP-UX)</TD
+></TR
+><TR
+><A
+NAME="RS-4"
+></A
+><TD
+>RS-4</TD
+><TD
+>1</TD
+><TD
+>Program bêdzie dzia³a³ pod serwerem Tomcat &#62;= 5</TD
+></TR
+><TR
+><A
+NAME="RS-5"
+></A
+><TD
+>RS-5</TD
+><TD
+>2</TD
+><TD
+>Program bêdzie dzia³a³ pod serwerem JBoss</TD
+></TR
+><TR
+><A
+NAME="RS-6"
+></A
+><TD
+>RS-6</TD
+><TD
+>3</TD
+><TD
+>Program bêdzie dzia³a³ pod serwerami Oracle Application Server, WebLogic, Websphere</TD
+></TR
+><TR
+><A
+NAME="RS-7"
+></A
+><TD
+>RS-7</TD
+><TD
+>1</TD
+><TD
+>Mo¿liwe bêdzie wykorzystanie bazy danych Oracle</TD
+></TR
+><TR
+><A
+NAME="RS-8"
+></A
+><TD
+>RS-8</TD
+><TD
+>1</TD
+><TD
+>Mo¿liwe bêdzie wykorzystanie bazy danych PostgreSQL</TD
+></TR
+><TR
+><A
+NAME="RS-9"
+></A
+><TD
+>RS-9</TD
+><TD
+>2</TD
+><TD
+>Mo¿liwe bêdzie wykorzystanie bazy danych DB2</TD
+></TR
+><TR
+><A
+NAME="RS-10"
+></A
+><TD
+>RS-10</TD
+><TD
+>1</TD
+><TD
+>Domy¶ln± platform± jest x86, testy wydajno¶ciowe musz± byæ spe³nione na maszynie P4 &#62;= 3GHz, 512MB &#62;= RAM</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="design.reqs.general"
+>4.1.3.2. Wymagania ogólne</A
+></H3
+><DIV
+CLASS="table"
+><A
+NAME="tab.reqs.general"
+></A
+><P
+><B
+>Tabela 4-2. Wymagania ogólne</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><COL
+WIDTH="8*"><THEAD
+><TR
+><TH
+>Id.</TH
+><TH
+>Priorytet</TH
+><TH
+>Wymaganie</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><A
+NAME="RG-1"
+></A
+><TD
+>RG-1</TD
+><TD
+>1</TD
+><TD
+>Istnieje mo¿liwo¶æ wyboru jêzyka, za pomoc± którego komunikujemy siê z serwisem</TD
+></TR
+><TR
+><A
+NAME="RG-2"
+></A
+><TD
+>RG-2</TD
+><TD
+>1</TD
+><TD
+>Zostanie utworzony polski i angielski interfejs u¿ytkownika</TD
+></TR
+><TR
+><A
+NAME="RG-3"
+></A
+><TD
+>RG-3</TD
+><TD
+>1</TD
+><TD
+>System umo¿liwia dodanie nowej domeny</TD
+></TR
+><TR
+><A
+NAME="RG-4"
+></A
+><TD
+>RG-4</TD
+><TD
+>1</TD
+><TD
+>System umo¿liwia usuniêcie istniej±cej domeny</TD
+></TR
+><TR
+><A
+NAME="RG-5"
+></A
+><TD
+>RG-5</TD
+><TD
+>1</TD
+><TD
+>System umo¿liwia dodanie u¿ytkownika do domeny</TD
+></TR
+><TR
+><A
+NAME="RG-6"
+></A
+><TD
+>RG-6</TD
+><TD
+>1</TD
+><TD
+>System umo¿liwia zmianê parametrów konta u¿ytkownika</TD
+></TR
+><TR
+><A
+NAME="RG-7"
+></A
+><TD
+>RG-7</TD
+><TD
+>1</TD
+><TD
+>Istnieje mo¿liwo¶æ usuniêcia konta u¿ytkownika</TD
+></TR
+><TR
+><A
+NAME="RG-8"
+></A
+><TD
+>RG-8</TD
+><TD
+>1</TD
+><TD
+>Istnieje mo¿liwo¶æ przegl±dania zarejestrowanych domen</TD
+></TR
+><TR
+><A
+NAME="RG-9"
+></A
+><TD
+>RG-9</TD
+><TD
+>1</TD
+><TD
+>Istnieje mo¿liwo¶æ przegl±dania zarejestrowanych u¿ytkowników</TD
+></TR
+><TR
+><A
+NAME="RG-10"
+></A
+><TD
+>RG-10</TD
+><TD
+>1</TD
+><TD
+>Istnieje mo¿liwo¶æ przegl±dania logów tworzonych przez Virtual Qmail</TD
+></TR
+><TR
+><A
+NAME="RG-11"
+></A
+><TD
+>RG-11</TD
+><TD
+>2</TD
+><TD
+>Istnieje mo¿liwo¶æ definiowania w³asnych raportów opartych o logu Virtual Qmail</TD
+></TR
+><TR
+><A
+NAME="RG-12"
+></A
+><TD
+>RG-12</TD
+><TD
+>1</TD
+><TD
+>Istnieje mo¿liwo¶æ dodania administratora systemu</TD
+></TR
+><TR
+><A
+NAME="RG-13"
+></A
+><TD
+>RG-13</TD
+><TD
+>1</TD
+><TD
+>Istnieje mo¿liwo¶æ usuniêcia administratora systemu</TD
+></TR
+><TR
+><A
+NAME="RG-14"
+></A
+><TD
+>RG-14</TD
+><TD
+>1</TD
+><TD
+>Istnieje mo¿liwo¶æ zmiany konta administratora systemu</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="design.reqs.performance"
+>4.1.3.3. Wymagania dotycz±ce wydajno¶ci</A
+></H3
+><DIV
+CLASS="table"
+><A
+NAME="tab.reqs.performance"
+></A
+><P
+><B
+>Tabela 4-3. Wymagania dotycz±ce wydajno¶ci</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><COL
+WIDTH="8*"><THEAD
+><TR
+><TH
+>Id.</TH
+><TH
+>Priorytet</TH
+><TH
+>Wymaganie</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><A
+NAME="RP-1"
+></A
+><TD
+>RP-1</TD
+><TD
+>2</TD
+><TD
+>System powinien byæ w stanie odpowiadaæ w czasie mniejszym ni¿ 30 sekund gdy zarejestrowanych jest 1000 domen</TD
+></TR
+><TR
+><A
+NAME="RP-2"
+></A
+><TD
+>RP-2</TD
+><TD
+>2</TD
+><TD
+>System powinien byæ w stanie odpowiadaæ w czasie mniejszym ni¿ 30 sekund gdy w domenie zarejestrowanych jest 10000 u¿ytkowników</TD
+></TR
+><TR
+><A
+NAME="RP-3"
+></A
+><TD
+>RP-3</TD
+><TD
+>1</TD
+><TD
+>Dodawanie domeny nie mo¿e trwaæ wiêcej ni¿ 30 sekund, niezale¿nie od ilo¶ci zarejestrowanych domen</TD
+></TR
+><TR
+><A
+NAME="RP-4"
+></A
+><TD
+>RP-4</TD
+><TD
+>1</TD
+><TD
+>Dodawanie u¿ytkownika nie mo¿e trwaæ wiêcej ni¿ 30 sekund, niezale¿nie od ilo¶ci zarejestrowanych u¿ytkowników</TD
+></TR
+><TR
+><A
+NAME="RP-5"
+></A
+><TD
+>RP-5</TD
+><TD
+>1</TD
+><TD
+>Zmiana has³a u¿ytkownika nie mo¿e trwaæ wiêcej ni¿ 15 sekund, niezale¿nie od ilo¶ci zarejestrowanych u¿ytkowników</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="design.reqs.security"
+>4.1.3.4. Wymagania dotycz±ce bezpieczeñstwa</A
+></H3
+><DIV
+CLASS="table"
+><A
+NAME="tab.reqs.security"
+></A
+><P
+><B
+>Tabela 4-4. Wymagania dotycz±ce bezpieczeñstwa</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><COL
+WIDTH="8*"><THEAD
+><TR
+><TH
+>Id.</TH
+><TH
+>Priorytet</TH
+><TH
+>Wymaganie</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><A
+NAME="RA-1"
+></A
+><TD
+>RA-1</TD
+><TD
+>2</TD
+><TD
+>&#13;									Dostêp do systemu oparty bêdzie o u¿ytkowników i role, 
+									przed skorzystaniem z systemu u¿ytkownik bêdzie musia³ potwierdziæ 
+									swoj± to¿samo¶æ, system na podstawie konfiguracji okre¶li role nadane danemu u¿ytkownikowi</TD
+></TR
+><TR
+><A
+NAME="RA-2"
+></A
+><TD
+>RA-2</TD
+><TD
+>2</TD
+><TD
+>Nowy typ administratora systemu - "zwyk³y", który nie ma mo¿liwo¶ci zmiany danych innych administratorów</TD
+></TR
+><TR
+><A
+NAME="RA-3"
+></A
+><TD
+>RA-3</TD
+><TD
+>2</TD
+><TD
+>Nowy typ administratora system - "super", który ma mo¿liwo¶æ zmiany danych innych administratorów, oraz super administratorów</TD
+></TR
+><TR
+><A
+NAME="RA-4"
+></A
+><TD
+>RA-4</TD
+><TD
+>2</TD
+><TD
+>Autentykacja u¿ytkowników oparta o login i has³o</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="design.goals"
+>4.1.4. Gole i wytyczne</A
+></H2
+><P
+>&#13;				W czasie realizacji projektu nale¿y braæ pod uwagê nastêpuj±ce
+				wytyczne.
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Zasada KISS. </B
+>
+					Zachowanie zasady KISS (ang. keep it simple stupid!) - 
+					architektura, algorytmy, mechanizmy u¿yte w czasie
+					implementacji powinny byæ jak najprostrze. Dziêki temu
+					powstanie produkt ³atwy w utrzymaniu, rozszerzaniu i
+					instalacji.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Brak przedwczesnej optymalizacji. </B
+>
+					Optymalizacja
+					mo¿e mieæ miejsce tylko i wy³±cznie po stwierdzeniu
+					empirycznie faktu i¿ jest ona niezbêdna. Implementacja
+					powinna skupiaæ siê na poprawno¶ci dzia³ania i 
+					czytelno¶ci kodu, szybko¶æ jest spraw± nieistotn±.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Szybko¶æ zwracania wszystkich wyników vs szybko¶æ zwracania pierwszych. </B
+>
+					Liczy siê wygl±d i odczuwanie programu - powinna istnieæ
+					mo¿liwo¶æ zmiany ca³ego wygl±du aplikacji zgodnie
+					z ¿yczeniem klienta. W czasie operacji wykonywanych
+					przy udziale u¿ytkownika system musi dzia³aæ szybko 
+					- u¿ytkownik nie mo¿e byæ zmuszony do d³u¿szego czekania
+					na wyniki. Istotny jest czas otrzymania pierwszych
+					wyników.
+				</P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="admins.conf.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Spis tre&#347;ci</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="strategies.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Konfiguracja</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Strategia realizacji</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

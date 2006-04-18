@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+	[
+	<!ENTITY biblio SYSTEM "biblio.xml">
+	<!ENTITY admins SYSTEM "admins.xml">
+	<!ENTITY users SYSTEM "users.xml">
+	<!ENTITY devs SYSTEM "devs.xml">
+	<!ENTITY glossary SYSTEM "glossary.xml">
+	]
+>
+<book lang="pl">
+	<bookinfo>
+		<title>Incredible Hosting System</title>
+		<authorgroup>
+			<author>
+				<firstname>Paweł</firstname>
+				<surname>Niewiadomski</surname>
+			</author>
+		</authorgroup>
+		<copyright>
+			<year>2005</year>
+			<year>2006</year>
+			<holder><ulink url="http://foo-baz.com">foo-baz.com</ulink></holder>
+		</copyright>
+	</bookinfo>
+
+	<preface id="foreword">
+		<title>Słowo wstępne</title>
+
+		<para>
+			Niniejszy dokument stanowi pracę magisterską wykonaną przez Pawła Niewiadomskiego. Jest to zwieńczenie studiów
+			na Politechnice Poznańskiej, na kierunku Projektowanie i Eksploatacja Systemów Informatycznych. 
+			Promotorem pracy jest prof. dr hab. inż. Zbyszko Królikowski.
+		</para>
+
+		<para>
+			Temat pracy został podjęty w związku z poprzednio realizowanym przez Pawła Niewiadomskiego projektem
+			pt. System poczty darmowej - NIE-2003. W wyniku realizacji tego projektu powstanie nowy produkt integrujący się
+			z poprzednio wykonanym systemem umożliwiający zarządzanie nim za pomocą przeglądarki WWW. Stworzona aplikacja
+			posłużyć ma w przyszłości jako środowisko umożliwiające komplementarne zarządzanie systemem pocztowym czy hostingowym.
+		</para>
+
+		<para>
+			Ponieważ realizowany projekt będzie rozprowadzany w sieci Internet a część niniejszego dokumentu
+			służyć będzie jako podręcznik dla użytkowników, administratorów i programistów przyjęto, że w dalszej
+			części dokumentu autor posługiwał się będzie oficjalną nazwą projektu - Incredible Hosting System, w skrócie <glossterm>IHS</glossterm>.
+			Częścią IHS jest panel administracyjny służący do zarządzania pocztą darmową przez strony WWW.
+			Panel ten stanowi cześć systemu realizowaną jako temat pracy magisterskiej. Ponieważ ten element nie może
+			istnieć bez innych części wchodzących w skład IHS dokument ten zawiera opis całego systemu.
+		</para>
+		
+		<para>
+			Celem pracy jest zaprojektowanie i implementacja serwisu WWW umożliwiającego zarządzanie systemem poczty darmowej.
+		</para>
+
+		<para>
+			Struktura pracy jest następująca. <xref linkend="glossary"/> zawiera przegląd pojęć oraz skrótów używanych w dokumencie.
+			<xref linkend="overview"/> zawiera podstawowe wymagania oraz ograniczenia nałożone na realizowany projekt.
+			<xref linkend="users"/> zawiera opis interfejsu użytkownika stworzonego systemu.
+			<xref linkend="admins"/> przeznaczony jest dla administratorów, zawiera informacje na temat konfiguracji.
+			<xref linkend="devs"/> to dyskusja na temat wewnętrznej struktury systemu.
+			Ostatnim rozdziałem jest wykaz źródeł - <xref linkend="biblio"/>.
+		</para>
+	</preface>
+
+	&glossary;
+
+	<chapter id="overview">
+		<title>Wprowadzenie do systemu</title>
+
+		<para>
+			IHS stanowić ma platformę do implementacji i 
+			wdrażania systemów pocztowych czy hostingowych w różnych
+			środowiskach - małych i średnich firmach potrzebujących
+			środowiska do zarządzania kontami dla swoich pracowników,
+			firmach realizujących usługi oparte na systemie dla
+			wszystkich zainteresowanych - niezależnie czy to będą
+			usługi płatne czy darmowe.
+		</para>
+
+		<para>
+			Jest to skomplikowane zadanie wymagające wykorzystania
+			i integracji wielu istniejących programów, należy między innymi
+			połączyć takie systemy jak: serwer WWW, agent pocztowy,
+			serwer FTP, bazy danych. Zależnie od wymagań musi istnieć
+			możliwość integracji systemu z innymi aplikacjami
+			działającymi w środowisku, w którym będzie on wdrażany.
+		</para>
+
+		<para>
+			Poza integracją tych systemów zbudowana musi zostać
+			platforma umożliwiająca zarządzanie całością systemu
+			niezależnie od elementów wykorzystanych w danym wdrożeniu.
+			Ma ona stanowić scentralizowane i ujednolicone
+			środowisko tak użytkownika jak i programistyczne.
+			Oznacza to, że niezależnie od wykorzystanych elementów (np.
+			różnych dostawców baz danych) użytkownik powinien mieć
+			dostęp do tego samego interfejsu. Programista natomiast
+			ma mieć możliwość wykorzystania stałego i elastycznego
+			API umożliwiającego rozszerzanie czy łączenie systemu z
+			innymi aplikacjami.
+		</para>
+
+		<para>
+			IHS będzie oparty między innymi na następujących
+			aplikacjach, technologiach:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Apache jako serwer WWW;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						PostgreSQL jako domyślna baza danych;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						ProFTPD jako domyślny serwer FTP;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						qmail oraz Virtual Qmail jako agent poczty;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						CORBA jako protokół komunikacji między usługami;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						J2EE jako platforma, na której działać będzie
+						zintegrowany system zarządzania usługami.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+
+		<para>
+			Wykorzystywane będą również inne aplikacje
+			bez których realizacja projektu byłaby niemożliwa,
+			powyższa lista zawiera te najważniejsze, tworzące
+			jądro systemu.
+		</para>
+
+		<para>
+			Realizacja oparta jest wyłącznie na otwartym
+			lub bezpłatny oprogramowaniu, wszelkie utworzone
+			oprogramowanie będzie rozprowadzane wraz z
+			kodem źródłowym. Podejście takie gwarantuje 
+			maksymalną elastyczność systemu oraz możliwość
+			dopasowywania go do potrzeb danego środowiska, w którym
+			system będzie wdrażany. Firma 
+			<ulink url="http://foo-baz.com/">foo-baz.com</ulink>
+			świadczy usługi związane z instalacją, integracją
+			oraz utrzymaniem IHS w środowisku klienta.
+		</para>
+	</chapter>
+
+	&users;
+	&admins;
+	&devs;
+
+	<chapter id="summary">
+		<title>Podsumowanie</title>
+
+		<para>
+			Podstawowymi funkcjami, które powinien oferować projekt zgodnie z założeniami jest możliwość
+			zarządzania domenami i użytkownikami w ramach zarejestrowanych w systemie domen. Cel ten został zrealizowany
+			przez przedstawiony projekt.
+		</para>
+
+		<para>
+			Zgodnie z przyjętą listą wymagań, zrealizowane zostały następujące wymagania:
+			RS-1, RS-4, RS-7, RS-8, RG-1, RG-2, RG-3, RG-4, RG-5, RG-6, RG-7, RG-8, RG-9, 
+			RG-10, RG-12, RG-13, RG-14,
+			RP-3, RP-4, RP-5, RA-1, RA-4. <xref linkend="design.reqs"/> zawiera szczegółowe informacje.
+		</para>
+
+		<para>
+			System oferuje najważniejsze funkcje, które powinien
+			spełniać panel administracyjny systemu poczty darmowej. Dzięki odpowiedniej
+			architekturze istnieje możliwość rozwijania systemu. 
+		</para>
+
+		<para>
+			Autor planuje dalszy rozwój systemu. Chciałby rozszerzyć jego funkcjonalność między innymi o zarządzanie
+			systemem kontroli wersji Subversion.
+		</para>
+	</chapter>
+	
+	&biblio;
+</book>
+

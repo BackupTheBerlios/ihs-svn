@@ -16,8 +16,13 @@
 
 <!-- JADE configuration -->
 <property name="jade.bin" value="openjade"/>
-<property name="jade.xml_dcl" value="/usr/share/sgml/docbook/dsssl-stylesheets-1.79/dtds/decls/xml.dcl"/>
-<property name="jade.catalog" value="/usr/share/sgml/CATALOG.db42xml:/usr/share/sgml/CATALOG.openjade:/usr/share/sgml/CATALOG.docbkdsl:/usr/share/sgml/CATALOG.iso_ent"/>
+<property name="jade.xml_dcl" value="/usr/share/sgml/docbook/dsssl-stylesheets/dtds/decls/xml.dcl"/>
+
+<!-- Works in SuSe -->
+<!--<property name="jade.catalog" value="/usr/share/sgml/CATALOG.db42xml:/usr/share/sgml/CATALOG.openjade:/usr/share/sgml/CATALOG.docbkdsl:/usr/share/sgml/CATALOG.iso_ent"/>-->
+
+<!-- Works in Fedora Core 5 -->
+<property name="jade.catalog" value="/usr/share/sgml/docbook/xml-dtd-4.2-1.0-30/catalog:/usr/share/sgml/openjade-1.3.2/catalog:/usr/share/sgml/docbook/dsssl-stylesheets/catalog:/usr/share/sgml/sgml-iso-entities-8879.1986/catalog"/>
 
 <!-- installation -->
 <property name="install.distdir" value=""/>

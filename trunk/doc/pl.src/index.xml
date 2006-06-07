@@ -160,9 +160,9 @@
 		</para>
 	</chapter>
 
-	&users;
-	&admins;
 	&devs;
+	&admins;
+	&users;
 
 	<chapter id="summary">
 		<title>Podsumowanie</title>

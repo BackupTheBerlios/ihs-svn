@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<glossary id="glossary">
+	<title>Słownik terminów</title>
+	
+	<glossdiv>
+		<title>A</title>
+
+		<glossentry>
+			<glossterm>API</glossterm>
+			<glosssee otherterm="api"/>	
+		</glossentry>
+		
+		<glossentry id="api">
+			<glossterm>Application Program Interface</glossterm>
+			<glossdef>
+				<para>
+					Zestaw funkcji, obiektów, struktur danych udostępniany w postaci bibliotek rozszerzający możliwości języka. Również
+					rozumiany jako interfejs biblioteki, systemu udostępniany na zewnątrz.
+				</para>
+			</glossdef>
+		</glossentry>
+	</glossdiv>
+
+	<glossdiv>
+		<title>C</title>
+
+		<glossentry id="corba">
+			<glossterm>Common Object Request Broker Architecture</glossterm>
+			<glossdef>
+				<para>
+					Jest to niezależny od języka programowania model obiektowy oraz implementacja przeznaczona
+					do tworzenia rozproszonych systemów informatycznych.
+				</para>
+				<glossseealso><ulink url="http://www.omg.org">OMG</ulink></glossseealso>
+			</glossdef>
+		</glossentry>
+
+		<glossentry>
+			<glossterm>CORBA</glossterm>
+			<glosssee otherterm="corba"/>
+		</glossentry>
+	</glossdiv>
+
+	<glossdiv>
+		<title>I</title>
+
+		<glossentry>
+			<glossterm>IDL</glossterm>
+			<glosssee otherterm="idl"/>
+		</glossentry>
+		
+		<glossentry id="idl">
+			<glossterm>Interface Definition Language</glossterm>
+			<glossdef>
+				<para>
+					Język opisu interfejsu używany między innymi w CORBA do opisu komponentów systemu.
+				</para>
+				<glossseealso><ulink url="http://en.wikipedia.org/wiki/Interface_Definition_Language">Wikipedia</ulink></glossseealso>
+			</glossdef>
+		</glossentry>
+
+		<glossentry>
+			<glossterm>IHS</glossterm>
+			<glosssee otherterm="ihs"/>
+		</glossentry>
+		
+		<glossentry id="ihs">
+			<glossterm>Incredible Hosting System</glossterm>
+			<glossdef>
+				<para>
+					System wykonywany w ramach pracy magisterskiej.
+				</para>
+			</glossdef>
+		</glossentry>
+	</glossdiv>
+	
+	<glossdiv>
+		<title>J</title>
+
+		<glossentry id="jndi">
+			<glossterm>Java Naming and Directory Interface</glossterm>
+			<glossdef>
+				<para>
+					API umożliwiające wykrywanie i wyszukiwanie danych i obiektów po nazwie. Jest to również interfejs
+					umożliwiający tworzenie dostawców implementacji tejże usługi.
+				</para>
+				<glossseealso><ulink url="http://en.wikipedia.org/wiki/JNDI">Wikipedia</ulink></glossseealso>
+			</glossdef>
+		</glossentry>
+
+		<glossentry>
+			<glossterm>JNDI</glossterm>
+			<glosssee otherterm="jndi"/>
+		</glossentry>
+
+		<glossentry id="jsf">
+			<glossterm>JavaServer Faces</glossterm>
+			<glosssee><xref linkend="products.jsf"/></glosssee>
+		</glossentry>
+
+		<glossentry>
+			<glossterm>JSF</glossterm>
+			<glosssee otherterm="jsf"/>
+		</glossentry>
+	</glossdiv>
+
+	<glossdiv>
+		<title>M</title>
+
+		<glossentry id="mta">
+			<glossterm>Mail Transfer Agent</glossterm>
+			<glossdef>
+				<para>
+					Agent przesyłania poczty elektronicznej - oprogramowanie zajmujące się przesyłaniem
+					poczty elektronicznej od adresata do nadawcy.
+				</para>
+			</glossdef>
+		</glossentry>
+
+		<glossentry>
+			<glossterm>MTA</glossterm>
+			<glosssee otherterm="mta"/>
+		</glossentry>
+	</glossdiv>
+
+	<glossdiv>
+		<title>P</title>
+
+		<glossentry>
+			<glossterm>P4</glossterm>
+			<glosssee otherterm="p4"/>
+		</glossentry>
+		
+		<glossentry id="p4">
+			<glossterm>Pentium 4</glossterm>
+			<glossdef><para/></glossdef>
+		</glossentry>
+	</glossdiv>
+
+	<glossdiv>
+		<title>R</title>
+
+		<glossentry id="rpm">
+			<glossterm>RedHat Package Manager</glossterm>
+			<glossdef>
+				<para>
+					System zarządzania pakietami instalacyjnymi stworzony przez firmę RedHat.
+					Jest to popularny system dystrybucji oprogramowania dla systemu Linux.
+				</para>
+				<glossseealso><ulink url="http://www.rpm.org">Strona RPM</ulink></glossseealso>
+			</glossdef>
+		</glossentry>
+
+		<glossentry>
+			<glossterm>RPM</glossterm>
+			<glosssee otherterm="rpm"/>
+		</glossentry>
+	</glossdiv>
+
+	<glossdiv>
+		<title>V</title>
+
+		<glossentry>
+			<glossterm>v-q</glossterm>
+			<glosssee otherterm="v-q"/>
+		</glossentry>
+		
+		<glossentry id="v-q">
+			<glossterm>Virtual Qmail</glossterm>
+			<glossdef>
+				<para>
+					System pocztowy, którym IHS zarządza.
+				</para>
+				<glossseealso><ulink url="http://v-q.foo-baz.com">Strona projektu</ulink></glossseealso>
+			</glossdef>
+		</glossentry>
+	</glossdiv>
+</glossary>

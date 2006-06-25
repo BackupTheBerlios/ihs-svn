@@ -1,0 +1,610 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Detailed Document Description</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+HREF="index.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-06-25T12:49:07"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="index.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+>&nbsp;</TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="AEN74"
+>2. Detailed Document Description</A
+></H1
+><P
+>This section describes the contents of each section of the Software Design Specification. </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN77"
+>2.1. Introduction</A
+></H2
+><P
+>Provide an overview of the entire document: </P
+><P
+></P
+><UL
+><LI
+><P
+>Describe the purpose of this document </P
+></LI
+><LI
+><P
+>Describe the scope of this document </P
+></LI
+><LI
+><P
+>Describe this document's intended audience </P
+></LI
+><LI
+><P
+>Identify the system/product using any applicable names and/or version numbers. </P
+></LI
+><LI
+><P
+>Provide references for any other pertinent documents such as: </P
+></LI
+><LI
+><P
+>Related and/or companion documents </P
+></LI
+><LI
+><P
+>Prerequisite documents </P
+></LI
+><LI
+><P
+>Documents which provide background and/or context for this document </P
+></LI
+><LI
+><P
+>Documents that result from this document (e.g. a test plan or a development plan) </P
+></LI
+><LI
+><P
+>Define any important terms, acronyms, or abbreviations </P
+></LI
+><LI
+><P
+>Summarize (or give an abstract for) the contents of this document. </P
+></LI
+></UL
+><P
+>Note: </P
+><P
+>For the remaining sections of this document, it is conceivable (and perhaps even desirable) that one or more of the section topics are discussed in a separate design document within the project. For each section where such a document exists, a reference to the appropriate design document is all that is necessary. All such external (or fragmented) design documents should probably be provided with this document at any design reviews. </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN105"
+>2.2. System Overview</A
+></H2
+><P
+>Provide a general description of the software system including its functionality and matters related to the overall system and its design (perhaps including a discussion of the basic design approach or organization). Feel free to split this discussion up into subsections (and subsubsections, etc ...). </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN108"
+>2.3. Design Considerations</A
+></H2
+><P
+>This section describes many of the issues which need to be addressed or resolved before attempting to devise a complete design solution. </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN111"
+>2.3.1. Assumptions and Dependencies</A
+></H3
+><P
+>Describe any assumptions or dependencies regarding the software and its use. These may concern such issues as: </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN114"
+>2.3.2. Related software or hardware</A
+></H3
+><P
+>Operating systems </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN117"
+>2.3.3. End-user characteristics</A
+></H3
+><P
+>Possible and/or probable changes in functionality </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN120"
+>2.3.4. General Constraints</A
+></H3
+><P
+>Describe any global limitations or constraints that have a significant impact on the design of the system's software (and describe the associated impact). Such constraints may be imposed by any of the following (the list is not exhaustive): </P
+><P
+></P
+><UL
+><LI
+><P
+>Hardware or software environment </P
+></LI
+><LI
+><P
+>End-user environment </P
+></LI
+><LI
+><P
+>Availability or volatility of resources </P
+></LI
+><LI
+><P
+>Standards compliance </P
+></LI
+><LI
+><P
+>Interoperability requirements </P
+></LI
+><LI
+><P
+>Interface/protocol requirements </P
+></LI
+><LI
+><P
+>Data repository and distribution requirements </P
+></LI
+><LI
+><P
+>Security requirements (or other such regulations) </P
+></LI
+><LI
+><P
+>Memory and other capacity limitations </P
+></LI
+><LI
+><P
+>Performance requirements </P
+></LI
+><LI
+><P
+>Network communications </P
+></LI
+><LI
+><P
+>Verification and validation requirements (testing) </P
+></LI
+><LI
+><P
+>Other means of addressing quality goals </P
+></LI
+><LI
+><P
+>Other requirements described in the requirements specification </P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN152"
+>2.3.5. Goals and Guidelines</A
+></H3
+><P
+>Describe any goals, guidelines, principles, or priorities which dominate or embody the design of the system's software. Such goals might be: </P
+><P
+></P
+><UL
+><LI
+><P
+>The KISS principle ("Keep it simple stupid!") </P
+></LI
+><LI
+><P
+>Emphasis on speed versus memory use </P
+></LI
+><LI
+><P
+>Working, looking, or "feeling" like an existing product </P
+></LI
+></UL
+><P
+>For each such goal or guideline, unless it is implicitly obvious, describe the reason for its desirability. Feel free to state and describe each goal in its own subsubsection if you wish. </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN163"
+>2.3.6. Development Methods</A
+></H3
+><P
+>Briefly describe the method or approach used for this software design. If one or more formal/published methods were adopted or adapted, then include a reference to a more detailed description of these methods. If several methods were seriously considered, then each such method should be mentioned, along with a brief explanation of why all or part of it was used or not used. </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN166"
+>2.4. Architectural Strategies</A
+></H2
+><P
+>Describe any design decisions and/or strategies that affect the overall organization of the system and its higher-level structures. These strategies should provide insight into the key abstractions and mechanisms used in the system architecture. Describe the reasoning employed for each decision and/or strategy (possibly referring to previously stated design goals and principles) and how any design goals or priorities were balanced or traded-off. Such decisions might concern (but are not limited to) things like the following: </P
+><P
+></P
+><UL
+><LI
+><P
+>Use of a particular type of product (programming language, database, library, etc. ...) </P
+></LI
+><LI
+><P
+>Reuse of existing software components to implement various parts/features of the system </P
+></LI
+><LI
+><P
+>Future plans for extending or enhancing the software </P
+></LI
+><LI
+><P
+>User interface paradigms (or system input and output models) </P
+></LI
+><LI
+><P
+>Hardware and/or software interface paradigms </P
+></LI
+><LI
+><P
+>Error detection and recovery </P
+></LI
+><LI
+><P
+>Memory management policies </P
+></LI
+><LI
+><P
+>External databases and/or data storage management and persistence </P
+></LI
+><LI
+><P
+>Distributed data or control over a network </P
+></LI
+><LI
+><P
+>Generalized approaches to control </P
+></LI
+><LI
+><P
+>Concurrency and synchronization </P
+></LI
+><LI
+><P
+>Communication mechanisms </P
+></LI
+><LI
+><P
+>Management of other resources </P
+></LI
+></UL
+><P
+>Each significant strategy employed should probably be discussed in its own subsection, or (if it is complex enough) in a separate design document (with an appropriate reference here of course). Make sure that when describing a design decision that you also discuss any other significant alternatives that were considered, and your reasons for rejecting them (as well as your reasons for accepting the alternative you finally chose). Sometimes it will be most effective to employ the "pattern format" for describing a strategy. </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN197"
+>2.5. System Architecture</A
+></H2
+><P
+>This section should provide a high-level overview of how the functionality and responsibilities of the system were partitioned and then assigned to subsystems or components. Don't go into too much detail about the individual components themselves (there is a subsequent section for detailed component descriptions). The main purpose here is to gain a general understanding of how and why the system was decomposed, and how the individual parts work together to provide the desired functionality. </P
+><P
+>At the top-most level, describe the major responsibilities that the software must undertake and the various roles that the system (or portions of the system) must play. Describe how the system was broken down into its components/subsystems (identifying each top-level component/subsystem and the roles/responsibilities assigned to it). Describe how the higher-level components collaborate with each other in order to achieve the required results. Don't forget to provide some sort of rationale for choosing this particular decomposition of the system (perhaps discussing other proposed decompositions and why they were rejected). Feel free to make use of design patterns, either in describing parts of the architecture (in pattern format), or for referring to elements of the architecture that employ them. </P
+><P
+>If there are any diagrams, models, flowcharts, documented scenarios or use-cases of the system behavior and/or structure, they may be included here (unless you feel they are complex enough to merit being placed in the Detailed System Design section). Diagrams that describe a particular component or subsystem should be included within the particular subsection that describes that component or subsystem. </P
+><P
+>Note: </P
+><P
+>This section (and its subsections) really applies only to newly developed (or yet-to-be developed) portions of the system. If there are parts of the system that already existed before this development effort began, then you only need to describe the pre-existing parts that the new parts of the system depend upon, and only in enough detail sufficient to describe the relationships and interactions between the old parts and the new parts. Pre-existing parts that are modified or enhanced need to be described only to the extent that is necessary for the reader to gain a sufficient understanding of the nature of the changes that were made. </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN204"
+>2.5.1. Subsystem Architecture</A
+></H3
+><P
+>If a particular component is one which merits a more detailed discussion than what was presented in the System Architecture section, provide that more detailed discussion in a subsection of the System Architecture section (or it may even be more appropriate to describe the component in its own design document). If necessary, describe how the component was further divided into subcomponents, and the relationships and interactions between the subcomponents (similar to what was done for top-level components in the System Architecture section). </P
+><P
+>If any subcomponents are also deemed to merit further discussion, then describe them in a separate subsection of this section (and in a similar fashion). Proceed to go into as many levels/subsections of discussion as needed in order for the reader to gain a high-level understanding of the entire system or subsystem (but remember to leave the gory details for the Detailed System Design section). </P
+><P
+>If this component is very large and/or complex, you may want to consider documenting its design in a separate document and simply including a reference to it in this section. If this is the option you choose, the design document for this component should have an organizational format that is very similar (if not identical to) this document. </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN209"
+>2.6. Policies and Tactics</A
+></H2
+><P
+>Describe any design policies and/or tactics that do not have sweeping architectural implications (meaning they would not significantly affect the overall organization of the system and its high-level structures), but which nonetheless affect the details of the interface and/or implementation of various aspects of the system. Such decisions might concern (but are not limited to) things like the following: </P
+><P
+></P
+><UL
+><LI
+><P
+>Choice of which specific product to use (compiler, interpreter, database, library, etc. ...) </P
+></LI
+><LI
+><P
+>Engineering trade-offs </P
+></LI
+><LI
+><P
+>Coding guidelines and conventions </P
+></LI
+><LI
+><P
+>The protocol of one or more subsystems, modules, or subroutines </P
+></LI
+><LI
+><P
+>The choice of a particular algorithm or programming idiom (design pattern) to implement portions of the system's functionality </P
+></LI
+><LI
+><P
+>Plans for ensuring requirements traceability </P
+></LI
+><LI
+><P
+>Plans for testing the software </P
+></LI
+><LI
+><P
+>Plans for maintaining the software </P
+></LI
+><LI
+><P
+>Interfaces for end-users, software, hardware, and communications </P
+></LI
+><LI
+><P
+>Hierarchical organization of the source code into its physical components (files and directories). </P
+></LI
+><LI
+><P
+>How to build and/or generate the system's deliverables (how to compile, link, load, etc. ...) </P
+></LI
+></UL
+><P
+>Each particular policy or set of tactics employed should probably be discussed in its own subsection, or (if it is large or complex enough) in a separate design document (with an appropriate reference here of course). Make sure that when describing a design decision that you also discuss any other significant alternatives that were considered, and your reasons for rejecting them (as well as your reasons for accepting the alternative you finally chose). For this reason, it may frequently be convenient to use one of the more popular "pattern formats" to describe a given tactic. </P
+><P
+>For this particular section, it may become difficult to decide whether a particular policy or set of tactics should be discussed in this section, or in the System Architecture section, or in the Detailed System Design section for the appropriate component. You will have to use your own "best" judgement to decide this. There will usually be some global policies and tactics that should be discussed here, but decisions about interfaces, algorithms, and/or data structures might be more appropriately discussed in the same (sub)section as its corresponding software component in one of these other sections. </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN237"
+>2.7. Detailed System Design</A
+></H2
+><P
+>Most components described in the System Architecture section will require a more detailed discussion. Other lower-level components and subcomponents may need to be described as well. Each subsection of this section will refer to or contain a detailed description of a system software component. The discussion provided should cover the following software component attributes: </P
+><P
+>Classification </P
+><P
+>The kind of component, such as a subsystem, module, class, package, function, file, etc. .... </P
+><P
+>Definition </P
+><P
+>The specific purpose and semantic meaning of the component. This may need to refer back to the requirements specification. </P
+><P
+>Responsibilities </P
+><P
+>The primary responsibilities and/or behavior of this component. What does this component accomplish? What roles does it play? What kinds of services does it provide to its clients? For some components, this may need to refer back to the requirements specification. </P
+><P
+>Constraints </P
+><P
+>Any relevant assumptions, limitations, or constraints for this component. This should include constraints on timing, storage, or component state, and might include rules for interacting with this component (encompassing preconditions, postconditions, invariants, other constraints on input or output values and local or global values, data formats and data access, synchronization, exceptions, etc.) </P
+><P
+>Composition </P
+><P
+>A description of the use and meaning of the subcomponents that are a part of this component. </P
+><P
+>Uses/Interactions </P
+><P
+>A description of this components collaborations with other components. What other components is this entity used by? What other components does this entity use (this would include any side-effects this entity might have on other parts of the system)? This concerns the method of interaction as well as the interaction itself. Object-oriented designs should include a description of any known or anticipated subclasses, superclasses, and metaclasses. </P
+><P
+>Resources </P
+><P
+>A description of any and all resources that are managed, affected, or needed by this entity. Resources are entities external to the design such as memory, processors, printers, databases, or a software library. This should include a discussion of any possible race conditions and/or deadlock situations, and how they might be resolved. </P
+><P
+>Processing </P
+><P
+>A description of precisely how this components goes about performing the duties necessary to fulfill its responsibilities. This should encompass a description of any algorithms used; changes of state; relevant time or space complexity; concurrency; methods of creation, initialization, and cleanup; and handling of exceptional conditions. </P
+><P
+>Interface/Exports </P
+><P
+>The set of services (resources, data, types, constants, subroutines, and exceptions) that are provided by this component. The precise definition or declaration of each such element should be present, along with comments or annotations describing the meanings of values, parameters, etc. .... For each service element described, include (or provide a reference) in its discussion a description of its important software component attributes (Classification, Definition, Responsibilities, Constraints, Composition, Uses, Resources, Processing, and Interface). </P
+><P
+>Much of the information that appears in this section is not necessarily expected to be kept separate from the source code. In fact, much of the information can be gleaned from the source itself (especially if it is adequately commented). This section should not copy or reproduce information that can be easily obtained from reading the source code (this would be an unwanted and unnecessary duplication of effort and would be very difficult to keep up-to-date). It is recommended that most of this information be contained in the source (with appropriate comments for each component, subsystem, module, and subroutine). Hence, it is expected that this section will largely consist of references to or excerpts of annotated diagrams and source code. Any referenced diagrams or source code excerpts should be provided at any design reviews. </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN259"
+>2.7.1. Detailed Subsystem Design</A
+></H3
+><P
+>Provide a detailed description of this software component (or a reference to such a description). Complex diagrams showing the details of component structure, behavior, or information/control flow may be included in the subsection devoted to that particular component (although, unless they are very large or complex, some of these diagrams might be more appropriately included in the System Architecture section. The description should cover any applicable software component attributes (some of which may be adequately described solely by a source code declaration or excerpt). </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN262"
+>2.8. Glossary</A
+></H2
+><P
+>An ordered list of defined terms and concepts used throughout the document. </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN265"
+>2.9. Bibliography</A
+></H2
+><P
+>A list of referenced and/or related publications. </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

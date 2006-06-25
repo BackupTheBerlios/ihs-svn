@@ -1,0 +1,860 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Developers guide</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Configuration"
+HREF="admins.conf.html"><LINK
+REL="NEXT"
+TITLE="Strategies"
+HREF="strategies.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-06-25T12:49:04"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="admins.conf.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="strategies.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="devs"
+></A
+>Chapter 4. Developers guide</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>4.1. <A
+HREF="devs.html#design"
+>Design considerations</A
+></DT
+><DD
+><DL
+><DT
+>4.1.1. <A
+HREF="devs.html#design.related"
+>Software and hardware</A
+></DT
+><DT
+>4.1.2. <A
+HREF="devs.html#design.users"
+>Users groups</A
+></DT
+><DT
+>4.1.3. <A
+HREF="devs.html#design.reqs"
+>Design constraints</A
+></DT
+><DT
+>4.1.4. <A
+HREF="devs.html#design.goals"
+>Goals and policies</A
+></DT
+></DL
+></DD
+><DT
+>4.2. <A
+HREF="strategies.html"
+>Strategies</A
+></DT
+><DT
+>4.3. <A
+HREF="future.html"
+>Future plans</A
+></DT
+><DT
+>4.4. <A
+HREF="strategies.errors.html"
+>Errors handling</A
+></DT
+><DT
+>4.5. <A
+HREF="strategies.database.html"
+>Database</A
+></DT
+><DT
+>4.6. <A
+HREF="architecture.html"
+>System architecture</A
+></DT
+><DD
+><DL
+><DT
+>4.6.1. <A
+HREF="architecture.html#architecture.v_q"
+>Architecture of Virtual Qmail</A
+></DT
+><DT
+>4.6.2. <A
+HREF="architecture.html#subarch.ihsdb"
+>Database used by IHS</A
+></DT
+><DT
+>4.6.3. <A
+HREF="architecture.html#subarch.ihs"
+>IHS architecture</A
+></DT
+></DL
+></DD
+><DT
+>4.7. <A
+HREF="policies.html"
+>Policies and guidelines</A
+></DT
+><DD
+><DL
+><DT
+>4.7.1. <A
+HREF="policies.html#policies.software"
+>Used software</A
+></DT
+><DT
+>4.7.2. <A
+HREF="policies.html#policies.tree"
+>Filesystem structure</A
+></DT
+><DT
+>4.7.3. <A
+HREF="policies.html#policies.building"
+>Compilation</A
+></DT
+><DT
+>4.7.4. <A
+HREF="policies.html#policies.packages"
+>Creating packges</A
+></DT
+></DL
+></DD
+><DT
+>4.8. <A
+HREF="imp.html"
+>Implementation details for IHS</A
+></DT
+><DD
+><DL
+><DT
+>4.8.1. <A
+HREF="imp.html#imp.core"
+>Core of the system</A
+></DT
+><DT
+>4.8.2. <A
+HREF="imp.html#imp.ui"
+>User interface</A
+></DT
+><DT
+>4.8.3. <A
+HREF="imp.html#imp.plugins"
+>Plug-ins</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="design"
+>4.1. Design considerations</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="design.related"
+>4.1.1. Software and hardware</A
+></H2
+><P
+>&#13;				IHS is based on operating system compatible with Unix.
+				By default it's Linux. Target group includes also
+				OpenBSD (all BSD family), Solaris. Two distributions of Linux
+				are targeted by default - Fedora Core and SuSe (because
+				they are most popular).
+			</P
+><P
+>&#13;				IHS requires elements like J2EE application server, MTA,
+				Virtual Qmail. Applications responsible for elements
+				should be changeable - system must be modular, with replaceable
+				and compatible parts.
+			</P
+><P
+>&#13;				During implementation only x86 architecture is accessible
+				it doesn't mean that system doesn't run on any other.
+				Servers usually include now x86_64 or IA-64 and IHS must
+				be portable to those architectures.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="design.users"
+>4.1.2. Users groups</A
+></H2
+><P
+>&#13;				Target groups are:
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Normal users. </B
+>
+					They don't have or have limited knowledge about
+					system, they are interested only in service, IT
+					knowledge can be limited and should not be required
+					from them; lowest privileges;
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Domains administrators. </B
+>
+					They have knowledge about features realized by system.
+					They are interested in using and managing
+					services provided by system. IT knowledge
+					is not required from them; priviledges extended by
+					domain administration;
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>System administrators. </B
+>
+					They have knowledge about environment IHS is working in.
+					They are familiar with installation and configuration
+					not only IHS but other applications used by system;
+					they have unlimited access in IHS;
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Developers. </B
+>
+					They know system's internals, architecture,
+					databases used, configuration, communication protocols,
+					available API; they may not be faimiliar with operating
+					system or applications used by IHS; they are not
+					direct users of the system;
+				</P
+></DIV
+><P
+>&#13;				Every group of users must be dynamically recognized.
+				One IHS instance must be able to handle any type of user based
+				on information passed from user and configuration stored
+				on server. There should be option to limit access to users
+				of specified type.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="design.reqs"
+>4.1.3. Design constraints</A
+></H2
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="design.reqs.soft"
+>4.1.3.1. Software and hardware requirements</A
+></H3
+><DIV
+CLASS="table"
+><A
+NAME="tab.reqs.soft"
+></A
+><P
+><B
+>Table 4-1. Software and hardware requirements</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><COL
+WIDTH="8*"><THEAD
+><TR
+><TH
+>Id.</TH
+><TH
+>Importance</TH
+><TH
+>Requirement</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>RS-1</TD
+><TD
+>1</TD
+><TD
+>System will work under Linux distros: SuSe &#62;= 9.3 and Fedora Core &#62;= 4</TD
+></TR
+><TR
+><TD
+>RS-2</TD
+><TD
+>2</TD
+><TD
+>Application will work under OpenBSD &#62;= 3.8, NetBSD &#62;= 3.0</TD
+></TR
+><TR
+><TD
+>RS-3</TD
+><TD
+>3</TD
+><TD
+>Application will work under other Unix systems (i.e. Solaris, HP-UX)</TD
+></TR
+><TR
+><TD
+>RS-4</TD
+><TD
+>1</TD
+><TD
+>Application will work under Tomcat &#62;= 5</TD
+></TR
+><TR
+><TD
+>RS-5</TD
+><TD
+>2</TD
+><TD
+>Application will work under JBoss</TD
+></TR
+><TR
+><TD
+>RS-6</TD
+><TD
+>3</TD
+><TD
+>Application will work under Oracle Application Server, WebLogic, Websphere</TD
+></TR
+><TR
+><TD
+>RS-7</TD
+><TD
+>1</TD
+><TD
+>Oracle database will be supported</TD
+></TR
+><TR
+><TD
+>RS-8</TD
+><TD
+>1</TD
+><TD
+>PostgreSQL database will be supported</TD
+></TR
+><TR
+><TD
+>RS-9</TD
+><TD
+>2</TD
+><TD
+>DB2 database will be supported</TD
+></TR
+><TR
+><TD
+>RS-10</TD
+><TD
+>1</TD
+><TD
+>x86 is default architecture, performance tests will be done on P4 &#62;= 3GHz, 512MB &#62;= RAM</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="design.reqs.general"
+>4.1.3.2. General requirements</A
+></H3
+><DIV
+CLASS="table"
+><A
+NAME="tab.reqs.general"
+></A
+><P
+><B
+>Table 4-2. General requirements</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><COL
+WIDTH="8*"><THEAD
+><TR
+><TH
+>Id.</TH
+><TH
+>Importance</TH
+><TH
+>Requirement</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>RG-1</TD
+><TD
+>1</TD
+><TD
+>It's possible to select language of communication</TD
+></TR
+><TR
+><TD
+>RG-2</TD
+><TD
+>1</TD
+><TD
+>There's Polish and English version</TD
+></TR
+><TR
+><TD
+>RG-3</TD
+><TD
+>1</TD
+><TD
+>It's possible to create new domain</TD
+></TR
+><TR
+><TD
+>RG-4</TD
+><TD
+>1</TD
+><TD
+>It's possible to remove a domain</TD
+></TR
+><TR
+><TD
+>RG-5</TD
+><TD
+>1</TD
+><TD
+>It's possible to add a user to a domain</TD
+></TR
+><TR
+><TD
+>RG-6</TD
+><TD
+>1</TD
+><TD
+>It's possible to change user's configuration</TD
+></TR
+><TR
+><TD
+>RG-7</TD
+><TD
+>1</TD
+><TD
+>It's possible to remove a user</TD
+></TR
+><TR
+><TD
+>RG-8</TD
+><TD
+>1</TD
+><TD
+>It's possible to browse registered domains</TD
+></TR
+><TR
+><TD
+>RG-9</TD
+><TD
+>1</TD
+><TD
+>It's possible to browse registered users</TD
+></TR
+><TR
+><TD
+>RG-10</TD
+><TD
+>1</TD
+><TD
+>It's possible to browse logs created by Virtual Qmail</TD
+></TR
+><TR
+><TD
+>RG-11</TD
+><TD
+>2</TD
+><TD
+>It's possible to create customized reports for logs of Virtual Qmail</TD
+></TR
+><TR
+><TD
+>RG-12</TD
+><TD
+>1</TD
+><TD
+>It's possible to add a system administrator</TD
+></TR
+><TR
+><TD
+>RG-13</TD
+><TD
+>1</TD
+><TD
+>It's possible to remove a system administrator</TD
+></TR
+><TR
+><TD
+>RG-14</TD
+><TD
+>1</TD
+><TD
+>It's possible to alter a system administrator's account</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="design.reqs.performance"
+>4.1.3.3. Performance requirements</A
+></H3
+><DIV
+CLASS="table"
+><A
+NAME="tab.reqs.performance"
+></A
+><P
+><B
+>Table 4-3. Performance requirements</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><COL
+WIDTH="8*"><THEAD
+><TR
+><TH
+>Id.</TH
+><TH
+>Importance</TH
+><TH
+>Requirement</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>RP-1</TD
+><TD
+>2</TD
+><TD
+>System must respond in time lower than 30 seconds when there are 1000 domains registered</TD
+></TR
+><TR
+><TD
+>RP-2</TD
+><TD
+>2</TD
+><TD
+>System must respond in time lower than 30 seconds when there are 10000 users registered for a domain</TD
+></TR
+><TR
+><TD
+>RP-3</TD
+><TD
+>1</TD
+><TD
+>Adding a domain must not last longer than 30 seconds, it should not depend on number of already registered domains</TD
+></TR
+><TR
+><TD
+>RP-4</TD
+><TD
+>1</TD
+><TD
+>Adding a user must not last longer than 30 seconds, it should not depend on number of already registered users</TD
+></TR
+><TR
+><TD
+>RP-5</TD
+><TD
+>1</TD
+><TD
+>Password change must not last longer than 15 seconds, it should not depends on number of already registered users</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="design.reqs.security"
+>4.1.3.4. Security requirements</A
+></H3
+><DIV
+CLASS="table"
+><A
+NAME="tab.reqs.security"
+></A
+><P
+><B
+>Table 4-4. Security requirements</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><COL
+WIDTH="8*"><THEAD
+><TR
+><TH
+>Id.</TH
+><TH
+>Importance</TH
+><TH
+>Requirement</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>RS-1</TD
+><TD
+>2</TD
+><TD
+>&#13;									Access to system will be based on user authentication and authorization,
+									when accessing system user should authenticate and system must apply configured role to user
+								</TD
+></TR
+><TR
+><TD
+>RS-2</TD
+><TD
+>2</TD
+><TD
+>New type of system administrator - "regular", it doesn't have ability to alter other system administrators</TD
+></TR
+><TR
+><TD
+>RS-3</TD
+><TD
+>2</TD
+><TD
+>New type of system administrator - "super",  it's able to alter all users, even other super system administrators</TD
+></TR
+><TR
+><TD
+>RS-4</TD
+><TD
+>2</TD
+><TD
+>Password based authentication</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="design.goals"
+>4.1.4. Goals and policies</A
+></H2
+><P
+>&#13;				Following guidelines should be kept in mind during implementation.
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>KISS rule. </B
+>
+					Remember and follow KISS (keep it simple stupid!) - architecture, algorithms,
+					mechanisms should be simple. Make prodcut easy to maintain and extend.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Don't optimize. </B
+>
+					Optymalization can be done only when there's clear need to do so.
+					Implementation must be simple and valid, speed is less important.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Speed of whole operation vs speed of first results. </B
+>
+					Look and feel matters - it easier to use systems that communicate
+					with user as soon as possible. Because this is a web application
+					user should first results as soon as possible. Overall speed can be lower but
+					it will be nicer.
+				</P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="admins.conf.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="strategies.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuration</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Strategies</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

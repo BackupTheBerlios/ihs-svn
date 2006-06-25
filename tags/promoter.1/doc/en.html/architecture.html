@@ -1,0 +1,565 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>System architecture</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Developers guide"
+HREF="devs.html"><LINK
+REL="PREVIOUS"
+TITLE="Database"
+HREF="strategies.database.html"><LINK
+REL="NEXT"
+TITLE="Policies and guidelines"
+HREF="policies.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-06-25T12:49:04"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="strategies.database.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Developers guide</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="policies.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="architecture"
+>4.6. System architecture</A
+></H1
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.overall"
+></A
+><P
+><IMG
+SRC="../imgs/Overallarchitecture.png"></P
+><P
+><B
+>Figure 4-1. High-level system architecture</B
+></P
+></DIV
+><P
+>	
+			<A
+HREF="architecture.html#figure.architecture.overall"
+>Figure 4-1</A
+> 
+			presents one of the most complex situations when every component
+			is located on each own computer.
+		</P
+><P
+>&#13;			System allows to easily move services from machine to machine
+			to use available power. Altought it's possible to distribute 
+			everything usually all components will be placed on single
+			machine.
+		</P
+><P
+>&#13;			In future as system grows and number of supported applications
+			grows architecture can be more complex, it may include much
+			more elements.
+		</P
+><P
+>&#13;			Virtual Qmail and IHS communicate with CORBA, databases are
+			usually accessed with JDBC (but in case of Virtual Qmail
+			it depends of configuration).
+		</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Virtual Qmail. </B
+>
+				Application is responsible for managing mail system.
+				It keeps track on configuration files, filesystem structures.
+				It includes authentication and authorization module.
+				It has also ability to log actions performed by users.
+			</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Virtual Qmail DB. </B
+>
+				Database used by Virtual Qmail. 
+				Keeps information about domains, users, configuration.
+				IHS should not access it directyl but use API provided
+				by V-Q. In rare cases direct access may be required.
+			</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Incredible Hosting System. </B
+>
+				WWW interface allowing administration of Virtual Qmail and
+				in the future also other applications.
+				Runs in J2EE environment. Includes JSP pages, Servlets
+				and static files.
+			</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Incredible Hosting System DB. </B
+>
+				Database used only by IHS.
+			</P
+></DIV
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.ihsdb"
+></A
+><P
+><IMG
+SRC="../imgs/IHSDatabaseArchitecture.png"></P
+><P
+><B
+>Figure 4-2. Architecture of database used by IHS</B
+></P
+></DIV
+><P
+>	
+			<A
+HREF="architecture.html#figure.architecture.ihsdb"
+>Figure 4-2</A
+> presents elements
+			of database. IHS uses tables, views, stored procedures.
+			Everything is written that elements are not tied with
+			database structure - all operations are performed through
+			stored procedures, selects are done using views. This way
+			it's possible to change database layout without impacting IHS
+			or other tools. You can for example optimize database structure.
+			Another advantage of this is that system is easier to maintain
+			and extend.
+		</P
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="architecture.v_q"
+>4.6.1. Architecture of Virtual Qmail</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.v_q"
+></A
+><P
+><IMG
+SRC="../imgs/VirtualQmailArchitecture.png"></P
+><P
+><B
+>Figure 4-3. Architecture of Virtual Qmail</B
+></P
+></DIV
+><P
+>	
+				<A
+HREF="architecture.html#figure.architecture.v_q"
+>Figure 4-3</A
+> shows elements
+				that are required by IHS. Virtual Qmail itself may include
+				other elements, be more complex, but full architecture
+				is not important from IHS point of view. All elements
+				communicate via CORBA.
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ivq. </B
+>
+					Main part of the system. This service is responsible
+					for handling domains or users management.
+					Request processed by this service impact system directly,
+					usually at the moment they arrive.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ilogger. </B
+>
+					Gives access to statistics and logs created during
+					execution of Virtual Qmail. Using this service you can
+					get information about number of users that sent mail in
+					last 5 minutes, or list of users which weren't able to login, etc.
+				</P
+></DIV
+><P
+>&#13;				Database user by Virtual Qmail won't be described here
+				because it's out of scope of this document.
+				Usually there no need to be familiar with it.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="subarch.ihsdb"
+>4.6.2. Database used by IHS</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.ihsdb.details"
+></A
+><P
+><IMG
+SRC="../imgs/IHSDBLogicalmodel.png"></P
+><P
+><B
+>Figure 4-4. Logical model of database used by IHS</B
+></P
+></DIV
+><P
+>	
+				<A
+HREF="architecture.html#figure.architecture.ihsdb.details"
+>Figure 4-4</A
+> 
+				shows logical model of a database.
+			</P
+><P
+>&#13;				Types presented are at this time defined as following:
+			</P
+><DIV
+CLASS="table"
+><A
+NAME="tab.architecture.ihsdb.details"
+></A
+><P
+><B
+>Table 4-5. Data types used in IHS database</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"><COL
+WIDTH="1*"><THEAD
+><TR
+><TH
+>Type</TH
+><TH
+>Definition (for Oracle)</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>ihs_config_key_type</TD
+><TD
+>varchar2(1024)</TD
+></TR
+><TR
+><TD
+>ihs_config_value_type</TD
+><TD
+>varchar2(1024)</TD
+></TR
+><TR
+><TD
+>ihs_administrator_login_type</TD
+><TD
+>varchar2(512)</TD
+></TR
+><TR
+><TD
+>ihs_administrator_password_type</TD
+><TD
+>varchar2(512)</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_config_set. </B
+>
+					Procedures. They are used to manage configuration.
+					Don't use tables directly.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_config_tuple. </B
+>
+					Definition of tuple stored in ihs_config table.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_config. </B
+>
+					Table keeping configuration.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_view_config. </B
+>
+					View used to access configuration.
+					Don't use table directly.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_administrator_add, ihs_administrator_rm, ihs_administrator_change. </B
+>
+					Procedures. They are used to manage list of administrators.
+					Don't use tables directly.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_administrator_tuple. </B
+>
+					Definition of tuple stored in ihs_administrators table.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_administrators. </B
+>
+					Table with system administrators.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ihs_view_administrators. </B
+>
+					View for accessing administrators.
+					Don't use table directly.
+				</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="subarch.ihs"
+>4.6.3. IHS architecture</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.architecture.ihs.details"
+></A
+><P
+><IMG
+SRC="../imgs/IHSArchitecture.png"></P
+><P
+><B
+>Figure 4-5. IHS architecture</B
+></P
+></DIV
+><P
+>	
+				<A
+HREF="architecture.html#figure.architecture.ihs.details"
+>Figure 4-5</A
+> presents
+				high-level architecture of IHS itself. Following is a description
+				of main components.
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Configuration. </B
+>
+					Configuraion used by J2EE server and files used
+					by Java Server Faces.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Static Files. </B
+>
+					Files including translations, CSS stylesheets, graphics.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>JSF pages. </B
+>
+					They describe user interface.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Libraries. </B
+>
+					Core of the system. Libraries include code communicating
+					with databases, Virtual Qmail. Part of files is created
+					from IDL.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Backing beans. </B
+>
+					They are layer between UI and core. Here you can find
+					objects handling user session.
+				</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="strategies.database.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="policies.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Database</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="devs.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Policies and guidelines</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

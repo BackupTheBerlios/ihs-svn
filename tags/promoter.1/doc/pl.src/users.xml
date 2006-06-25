@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="iso8859-2"?>
+<chapter id="users">
+	<title>Podręcznik użytkownika</title>
+
+	<section id="users.login">
+		<title>Logowanie się do systemu</title>
+		
+		<figure id="figure.users.loading">
+			<title>Ładowanie aplikacji</title>
+			<graphic align="center" fileref="../imgs/loading.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.lang">
+			<title>Wybór języka</title>
+			<graphic align="center" fileref="../imgs/pl.lang.png" format="PNG"/>
+		</figure>
+
+		<para>
+			<xref linkend="figure.users.loading"/> przedstawia pierwszą stronę, którą zobaczy użytkownik
+			po zainstalowaniu aplikacji. Zależnie od wydajności systemu strona może być widoczna przez kilka
+			do kilkuset sekund. W tym czasie serwer J2EE zajmuje się ładowaniem aplikacji do pamięci oraz
+			kompilacją niezbędnych elementów. Po załadowaniu aplikacji zazwyczaj trudno będzie znowu zobaczyć
+			tą stronę.
+		</para>
+
+		<figure id="figure.users.login">
+			<title>Strona logowania</title>
+			<graphic align="center" fileref="../imgs/pl.login.png" format="PNG"/>
+		</figure>
+
+		<para>
+			<xref linkend="figure.users.login"/> - strona logowania. Do systemu mogą logować się tylko użytkownicy
+			należący do grupy "administrator". Aktualnie zarządzanie grupami nie działa i wszyscy użytkownicy
+			rejestrowani w systemie automatycznie dodawani są do tej grupy.
+
+			<note>
+				<para>
+					Domyślny użytkownik to: admin, hasło: admin. Po zalogowaniu najlepiej dodać innego użytkownika i usunąć domyślne konto.
+				</para>
+			</note>
+		</para>
+
+		<para>
+			<xref linkend="figure.users.lang"/> przedstawia ikony umożliwiające zmianę języka komunikacji
+			z użytkownikiem. Są one dostępne przez cały czas, użytkownik może w dowolnym momencie wybrać inny język.
+			Domyślny język ustawiany jest na podstawie informacji przekazanych przez przeglądarkę użytkownika.
+		</para>
+	
+		
+		<figure id="figure.users.login.failed">
+			<title>Strona logowania z komunikatem</title>
+			<graphic align="center" fileref="../imgs/pl.login.failed.png" format="PNG"/>
+		</figure>
+
+		<para>
+			W przypadku podania nieprawidłowych danych lub błędu systemu podczas logowania zostanie wyświetlona
+			następująca strona <xref linkend="figure.users.login.failed"/>. Jeżeli problem się powtarza należy skontaktować się
+			z administratorem systemu ponieważ może to świadczyć o nieprawidłowej konfiguracji lub
+			problemach.
+		</para>
+	</section>
+
+	<section id="users.conf">
+		<title>Panel konfiguracyjny</title>
+
+		<para>
+			Panel konfiguracyjny (<xref linkend="figure.users.configuration1"/>) umożliwia
+			ustawienie podstawowych parametrów niezbędnych do pracy systemu.
+		</para>
+
+		<para>
+			W przypadku podania nieprawidłowych wartości zostanie wyświetlony odpowiedni
+			komunikat, tak jak w przykładzie <xref linkend="figure.users.configuration2"/>. W takim przypadku żadne ustawienia
+			nie są zapisywane. Dopiero po poprawnym ustawieniu wszystkich wartości następuje zapis.
+		</para>
+	
+		<para>
+			Po wprowadzeniu poprawnych danych i kliknięciu "Modyfikuj" następuje zapis, po czym zostaje
+			wyświetlony odpowiedni komunikat - <xref linkend="figure.users.configuration3"/>. Ustawione wartości są od razu wykorzystywane.
+		</para>
+
+		<figure id="figure.users.configuration1">
+			<title>Panel konfiguracyjny</title>
+			<graphic align="center" fileref="../imgs/pl.configuration1.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.configuration3">
+			<title>Panel konfiguracyjny: zapisano dane</title>
+			<graphic align="center" fileref="../imgs/pl.configuration3.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.configuration2">
+			<title>Panel konfiguracyjny: komunikat błędu</title>
+			<graphic align="center" fileref="../imgs/pl.configuration2.png" format="PNG"/>
+		</figure>
+	</section>
+
+	<section id="users.admins">
+		<title>Zarządzanie administratorami</title>
+		
+		<figure id="figure.users.administrators">
+			<title>Lista administratorów</title>
+			<graphic align="center" fileref="../imgs/pl.administrators.png" format="PNG"/>
+		</figure>
+
+		<para>
+			Aktualnie zarządzanie administratorami jest ograniczone do dodawania, usuwania i zmiany hasła. <xref linkend="figure.users.administrators"/> 
+			pokazuje listę administratorów. Z tego widoku można dodawać nowych administratorów jak również modyfikować istniejących (po kliknięciu na nazwie
+			administratora).
+			<note>
+				<para>
+					Aktualnie każdy administrator widzi tą listę i ma prawo modyfikowania innych kont. W przyszłości wprowadzone zostaną
+					prawa dostępu, które będą ograniczały operacje możliwe do wykonania przez użytkowników.
+				</para>
+			</note>
+		</para>
+	
+		<para>
+			W każdej chwili można usunąć jednego lub kilku administratorów, wystarczy zaznaczyć użytkowników i
+			nacisnąć odpowiedni przycisk, tak jak jest to pokazane na <xref linkend="figure.users.administrators.rm1"/>.
+		</para>
+		
+		<para>
+			Wykonanie operacji spowoduje wyświetlenie odpowiedniego komunikatu, patrz <xref linkend="figure.users.administrators.rm2"/>.
+			<warning>
+				<para>
+					System nie prosi o potwierdzenie przy usuwaniu wpisów.
+				</para>
+			</warning>
+		</para>
+
+
+		<figure id="figure.users.administrators.rm1">
+			<title>Usuwanie administratora, krok 1</title>
+			<graphic align="center" fileref="../imgs/pl.administrators.rm1.png" format="PNG"/>
+		</figure>
+	
+		<figure id="figure.users.administrators.rm2">
+			<title>Usuwanie administratora, krok 2</title>
+			<graphic align="center" fileref="../imgs/pl.administrators.rm2.png" format="PNG"/>
+		</figure>
+
+		<para>
+			Dodawanie administratora jest bardzo łatwe, aktualnie jedynymi wymaganymi informacjami są login i hasło. System rozróżnia
+			małe i wielkie litery w nazwach użytkowników. Formularze rejestracyjny pokazany jest na <xref linkend="figure.users.addAdministrator1"/>.
+		</para>
+	
+		<para>
+			<xref linkend="figure.users.addAdministrator2"/> - w przypadku wprowadzenia nieprawidłowych danych zostanie wyświetlona
+			odpowiednia informacja.
+		</para>
+
+		<para>
+			<xref linkend="figure.users.addAdministrator3"/> - po dodaniu administratora wyświetlany jest odpowiedni komunikat. Formularz
+			można ponownie wypełnić i dodać następnego administratora. Wybranie przycisku Anuluj spowoduje odesłanie użytkownika
+			do listy administratorów.
+		</para>
+	
+		<figure id="figure.users.addAdministrator1">
+			<title>Dodawanie administratora, krok 1</title>
+			<graphic align="center" fileref="../imgs/pl.addAdministrator1.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.addAdministrator2">
+			<title>Dodawanie administratora, krok 2</title>
+			<graphic align="center" fileref="../imgs/pl.addAdministrator2.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.addAdministrator3">
+			<title>Dodawanie administratora, krok 3</title>
+			<graphic align="center" fileref="../imgs/pl.addAdministrator3.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.addAdministrator4">
+			<title>Modyfikowanie administratora</title>
+			<graphic align="center" fileref="../imgs/pl.addAdministrator4.png" format="PNG"/>
+		</figure>
+
+		<para>
+			<xref linkend="figure.users.addAdministrator4"/> - ten sam formularz służy do modyfikacji ustawień konta. 
+			<note>
+				<para>
+					W przypadku istniejących wpisów nie istnieje możliwość zmiany kluczy identyfikujących wpisy. Czyli nie ma możliwości zmiany
+					loginu administratora (czy nazwy domeny).
+				</para>
+			</note>
+		</para>
+	</section>
+
+	<section id="users.domains">
+		<title>Zarządzanie domenami</title>
+
+		<para>
+			<xref linkend="figure.users.domains1"/> przedstawia stronę listującą zarejestrowane w systemie domeny. Jest to
+			punkt wyjściowy do zarządzania domenami, jak i użytkownikami zarejestrowanymi w każdej z pokazanych domen.
+			<note>
+				<para>
+					Nagłówki kolumn służą również do wyboru kolumny, po której odbywa się sortowanie.
+				</para>
+			</note>
+		</para>
+
+		<figure id="figure.users.domains1">
+			<title>Lista domen</title>
+			<graphic align="center" fileref="../imgs/pl.domains1.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.domains.rm1">
+			<title>Usuwanie domeny, krok 1</title>
+			<graphic align="center" fileref="../imgs/pl.domains.rm1.png" format="PNG"/>
+		</figure>
+
+		<para>
+			<xref linkend="figure.users.domains.rm1"/> i <xref linkend="figure.users.domains.rm2"/> pokazują kroki, które należy wykonać
+			aby usunąć wybrane domeny.
+			<warning>
+				<para>
+					System nie prosi o potwierdzenie przy usuwaniu wpisów.
+				</para>
+			</warning>
+		</para>
+	
+		<figure id="figure.users.domains.rm2">
+			<title>Usuwanie domeny, krok 2</title>
+			<graphic align="center" fileref="../imgs/pl.domains.rm2.png" format="PNG"/>
+		</figure>
+
+	
+		<section id="users.domains.users">
+			<title>Zarządzanie użytkownikami</title>
+		
+			<para>
+				Do listy użytkowników można przenieść się na dwa sposoby: wybrać nazwę domeny, co spowoduje przedstawienie strony
+				ze szczegółami gdzie znajduje się link do listy użytkowników; można również kliknąć na liczbę użytkowników w liście domen.
+				Przykładowa lista użytkowników pokazana jest na <xref linkend="figure.users.users"/>.
+			</para>
+
+			<figure id="figure.users.users">
+				<title>Lista użytkowników</title>
+				<graphic align="center" fileref="../imgs/pl.users.png" format="PNG"/>
+			</figure>
+
+			<para>
+				Do dodawania użytkowników służy formularz przedstawiony na <xref linkend="figure.users.addUser"/>.
+				W czasie dodawania użytkowników istnieje możliwość ustawienia flag związanych z kontem, niestety obecnie
+				wymaga to znajomości numerycznych odpowiedników poszczególnych flag. Pole związane z katalogiem użytkownika jest
+				domyślnie wyłączone, co oznacza, że system utworzy domyślny katalog. W przypadku podania katalogu należy
+				samemu zadbać o to aby podany katalog istniał i miał odpowiednie prawa.
+			</para>
+	
+			<figure id="figure.users.addUser">
+				<title>Dodawanie użytkownika</title>
+				<graphic align="center" fileref="../imgs/pl.addUser.png" format="PNG"/>
+			</figure>
+	
+			<para>
+				<xref linkend="figure.users.addUser1"/> przedstawia formularz służący do zmiany parametrów konta użytkownika. 
+				W przypadku gdy administrator nie poda hasła zostanie zachowane aktualnie ustawione. Podanie nowego hasła powoduje zmianę
+				aktualnego hasła.
+				<warning>
+					<para>
+						Należy zauważyć, że zmiana katalogu wymaga samodzielnych operacji związanych z przeniesieniem danych użytkownika.
+						Zmienianie katalogu użytkownika nie jest zalecane.
+					</para>
+				</warning>
+			</para>
+	
+			<figure id="figure.users.addUser1">
+				<title>Modyfikacja użytkownika</title>
+				<graphic align="center" fileref="../imgs/pl.addUser1.png" format="PNG"/>
+			</figure>
+		</section>
+	</section>
+
+	<section id="users.logs">
+		<title>Przeglądanie logów systemowych</title>
+
+		<figure id="figure.users.logs">
+			<title>Lista zdarzeń</title>
+			<graphic align="center" fileref="../imgs/pl.logs.png" format="PNG"/>
+		</figure>
+
+		<para>
+			<xref linkend="figure.users.logs"/> przedstawia listę zdarzeń związanych z systemem pocztowym.
+			Domyślnie lista posortowana jest według czasu - najnowsze zdarzenia są na początku, najstarsze na końcu.
+			Istnieje możliwość zmiany metody sortowania danych. Istnieje również możliwość filtrowania listy, np. zdarzenia tylko dla danej domeny,
+			czy dla usługi. <xref linkend="figure.users.logs1"/> pokazuje listę filtrowaną według domeny, której dotyczą zdarzenia.
+		</para>
+		
+		<figure id="figure.users.logs1">
+			<title>Lista zdarzeń: filtrowanie</title>
+			<graphic align="center" fileref="../imgs/pl.logs1.png" format="PNG"/>
+		</figure>
+	</section>
+</chapter>

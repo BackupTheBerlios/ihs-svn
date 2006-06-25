@@ -1,0 +1,465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Szczegó³y implementacji IHS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Administracja z poziomu WWW w systemie poczty darmowej"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Dokumentacja techniczna"
+HREF="devs.html"><LINK
+REL="PREVIOUS"
+TITLE="Organizacja projektu"
+HREF="policies.html"><LINK
+REL="NEXT"
+TITLE="Podrêcznik u¿ytkownika"
+HREF="users.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-06-25T12:48:57"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Administracja z poziomu WWW w systemie poczty darmowej: Praca dyplomowa magisterska</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="policies.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Rozdzia&#322; 3. Dokumentacja techniczna</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="users.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="imp"
+>3.6. Szczegó³y implementacji IHS</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.core"
+>3.6.1. G³ówna czê¶æ systemu</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.imp.com.foo_baz.ihs"
+></A
+><P
+><IMG
+SRC="../imgs/PackageOverviewcomfoo_bazihs.png"
+ALIGN="center"></P
+><P
+><B
+>Rysunek 3-6. Pakiet com.foo_baz.ihs</B
+></P
+></DIV
+><P
+>&#13;				G³ówna czê¶æ systemu zawarta jest w pakiecie com.foo_baz.ihs,
+				rysunek <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs"
+>Rysunek 3-6</A
+> przedstawia
+				zawarte w tym pakiecie elementy. Poni¿ej znajduje siê krótki
+				opis ka¿dego z nich.
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Configuration. </B
+>
+					Interfejs, za pomoc± którego mo¿na obs³ugiwaæ konfiguracjê
+					- dodawaæ, aktualizowaæ czy usuwaæ parametry. Domy¶lnie
+					konfiguracja przechowywana jest w bazie danych.
+					Interfejs zawiera operacje do obs³ugi podstawowych typów danych.
+					Na bazie implementacji tego interfejsu mo¿na stworzyæ obs³ugê opcji konfiguracyjnych
+					poszczególnych wtyczek.
+					</P><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Notatka: </B
+>
+							Do obs³ugi opcji konfiguracyjnych zaleca siê korzystanie z tego interfejsu, odradzane jest
+							u¿ywanie w³asnych mechanizmów.
+						</P
+></BLOCKQUOTE
+></DIV
+><P>
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Service. </B
+>
+					Interfejs, który musz± implementowaæ wszystkie
+					wtyczki dla systemu IHS. Za jego pomoc± IHS odwo³uje siê
+					do wtyczek.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>MailService. </B
+>
+					Interfejs reprezentuj±cy wtyczkê obs³uguj±ca system
+					pocztowy, zawiera on dodatkowe metody, które s±
+					niezbêdne do poprawnej obs³ugi takiego systemu.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Administrators. </B
+>
+					Interfejs reprezentuj±cy wszystkie mo¿liwe operacje,
+					które mo¿na przeprowadzaæ na kontach administratorów.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>IncredibleSystemHosting. </B
+>
+					G³ówne j±dro systemu, implementuje interfejs Administrators.
+					Zajmuje siê do tego obs³ug± wtyczek, dostarcza 
+					implementacjê interfejsu Configuration.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Administrator. </B
+>
+					Reprezentuje informacje przechowywane o administratorach.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ExtendedAdministrator. </B
+>
+					Administrator wzbogacony o dodatkowe informacje 
+					u¿ywane przez GUI. Np. czy administrator zosta³ zaznaczony
+					przez u¿ytkownika, itp.
+				</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.ui"
+>3.6.2. Interfejs u¿ytkownika</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.imp.com.foo_baz.ihs.backing"
+></A
+><P
+><IMG
+SRC="../imgs/PackageOverviewcomfoo_bazihsbacking.png"
+ALIGN="center"></P
+><P
+><B
+>Rysunek 3-7. Pakiet com.foo_baz.ihs.backing</B
+></P
+></DIV
+><DIV
+CLASS="figure"
+><A
+NAME="figure.imp.com.foo_baz.ihs.backing.mailservice"
+></A
+><P
+><IMG
+SRC="../imgs/PackageOverviewcomfoo_bazihsbackingmailservice.png"
+ALIGN="center"></P
+><P
+><B
+>Rysunek 3-8. Pakiet com.foo_baz.ihs.backing.mailservice</B
+></P
+></DIV
+><P
+>	
+				<A
+HREF="imp.html#figure.imp.com.foo_baz.ihs.backing"
+>Rysunek 3-7</A
+> 
+				i <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs.backing.mailservice"
+>Rysunek 3-8</A
+> 
+				przedstawiaj± elementy, które po¶rednicz± miêdzy g³ównymi
+				czê¶ciami systemu (np. z pakietów com.foo_baz.ihs i com.foo_baz.ihs.mailservice)
+				a interfejsem u¿ytkownika reprezentowanym przez strony JSF.
+			</P
+><P
+>&#13;				Elementy te stanowi± bezpo¶rednie zaplecze stron JSF wykorzystywanych
+				przez aplikacjê. Dla przyk³adu strona <TT
+CLASS="filename"
+>addDomain.jsp</TT
+>
+				jest odwzorowywana jako com.foo_baz.ihs.backing.mailservice.AddDomain.
+				Wszelkie informacje wpisywane w formularzu s± przekazywane do tej¿e
+				klasy.
+			</P
+><P
+>&#13;				Klasy zwi±zane bezpo¶rednio z obs³ug± stron (tzn. odpowiadaj±ce
+				logicznie stronom) powinny byæ bezstanowe, ich cykl ¿ycia powinien
+				byæ zwi±zany tylko i wy³±cznie z pojedynczym ¿±daniem.
+			</P
+><P
+>&#13;				Logika aplikacji znajduje siê tylko, w niektórych specjalnie
+				do tego celu zaprojektowanych elementach. Wiêkszo¶æ z nich
+				zwi±zanych jest z sesj± u¿ytkownika. Zawieraj± one stan aplikacji,
+				który u¿ywany jest do kontrolowania poszczególnych widoków (stron JSF).
+				Dla przyk³adu takimi kontrolerami s± klasy: com.foo_baz.ihs.backing.IncredibleHostingSystemSession,
+				com.foo_baz.ihs.backing.mailservice.MailServiceSession. W dalszej czê¶ci
+				rozdzia³u znajduje siê osobna sekcja po¶wiêcona zarz±dzaniu
+				stanem aplikacji.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.state"
+>3.6.3. Kontrola stanu systemu</A
+></H2
+><P
+>&#13;				Aby zapewniæ p³ynne zarz±dzanie systemem oraz interakcjê
+				z u¿ytkownikiem IHS musi zapamiêtywaæ, niektóre wybory dokonane
+				przez u¿ytkownika. Dla przyk³adu: jêzyk w jakim u¿ytkownik
+				pragnie komunikowaæ siê z systemem, domenê która aktualnie
+				jest przegl±dana przez u¿ytkownika, itp.
+			</P
+><P
+>&#13;				Niezbêdne jest zapamiêtywanie tych informacji w specjalnie
+				do tego celu przeznaczonych obiektach. Pomys³em na
+				rozwi±zanie tego problemu mog³oby byæ na przyk³ad wykorzystanie
+				ju¿ istniej±cych elementów. Dla przyk³adu skoro chcemy
+				zapamiêtywaæ informacje o wybranej domenie, dlaczego nie
+				u¿yæ obiektu zwi±zanego ze stron± do wy¶wietlania listy domen?
+			</P
+><P
+>&#13;				Takie podej¶cie na pocz±tku zdaje siê byæ dobrym rozwi±zaniem.
+				Jednak¿e w miarê rozrastania siê aplikacji, oraz interakcji
+				miêdzy poszczególnymi elementami zauwa¿yæ mo¿na, ¿e niestety
+				rozwi±zanie nie skaluje siê, a wrêcz z czasem prowadzi do problemów.
+				Kontynuuj±c przyk³ad z list± domen, za³ó¿my ¿e obiekt stoj±cy 
+				za t± list± nazywa siê Domains. Aby móg³ on przechowywaæ informacje
+				o wyborze dokonanym przez u¿ytkownika powinien on zostaæ
+				zwi±zany z sesj± u¿ytkownika - czyli obiekt taki bêdzie
+				istnia³ pomimo przechodzenia i powracania do strony
+				z list± domen.
+			</P
+><P
+>&#13;				Przyjmijmy teraz, ¿e na li¶cie domen mo¿na wykonywaæ jakie¶
+				operacje, dla przyk³adu usuwaæ u¿ytkowników. Nale¿y w zwi±zku
+				z tym zarz±dzaæ b³êdami, nale¿y stworzyæ odpowiednie pole 
+				wykorzystywane do prezentacji rezultatu.			
+			</P
+><P
+>&#13;				Za³ó¿my teraz, ¿e u¿ytkownik usun±³ kilka domen, pojawi³
+				siê komunikat o poprawnym wykonaniu operacji. Nastêpnie u¿ytkownik
+				przechodzi do innych stron, po czym wraca do tej samej listy
+				i znów widzi komunikat. Dzieje siê tak dlatego, ¿e obiekt
+				zwi±zany jest z sesj±, nie zosta³ on usuniêty po wykonaniu
+				operacji. W zwi±zku z tym opracowaæ nale¿y jaki¶ mechanizm
+				resetowania pola z komunikatem. Ca³a klasa stoj±ca za tym
+				obiektem siê komplikuje. W przypadku wiêkszej ilo¶ci pól,
+				lub bardziej z³o¿onych operacji ro¶nie ilo¶æ poprawek, które
+				trzeba nanosiæ na taki obiekt. Obiektów wraz ze stronami przybywa,
+				niektóre zaczynaj± duplikowaæ niektóre informacje. W koñcu
+				system trudno obj±æ poniewa¿ istnieje tyle interakcji i zale¿no¶ci
+				miêdzy obiektami.
+			</P
+><P
+>&#13;				Du¿o ³atwiej odseparowaæ czê¶æ zwi±zan± z logik± i stanem
+				aplikacji w wyspecjalizowane klasy i obiekty. Najlepiej
+				tylko jeden dla ca³ej aplikacji, ewentualnie pojedyncze obiekty
+				zwi±zane z poszczególnymi wtyczkami.
+			</P
+><P
+>&#13;				Takie podej¶cie powoduje, ¿e ³atwo tworzyæ klasy odpowiedzialne
+				za poszczególne strony. £atwo równie¿ zauwa¿yæ, które elementy
+				wp³ywaj± na ca³± aplikacjê, jak s± one od siebie zale¿ne.
+				Poniewa¿ znajduj± siê one w wyra¼nie wyodrêbnionych sekcjach
+				³atwiej nimi zarz±dzaæ.
+			</P
+><P
+>&#13;				Aktualnie g³ównym obiektem, który zajmuje siê
+				zarz±dzaniem aplikacj± jest bean o nazwie ihs. Jest on
+				instancj± klasy com.foo_baz.ihs.backing.IncredibleSystemHostingSession.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.plugins"
+>3.6.4. Wtyczki</A
+></H2
+><P
+>&#13;				Poni¿ej znajduje siê lista wtyczek instalowanych wraz
+				z IHS.
+			</P
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="imp.plugins.v_q"
+>3.6.4.1. VirtualQmailMailService</A
+></H3
+><P
+>&#13;					Implementacja interfejsu MailService, która oparta
+					jest o system Virtual Qmail. Komunikacja odbywa siê
+					za pomoc± us³ug dostêpnych poprzez CORBA.
+				</P
+><P
+>&#13;					Pliki znajduj±ce siê w pakiecie com.foo_baz.ihs.mailservice
+					oraz com.foo_baz.ihs.VirtualQmailMailService odpowiedzialne
+					s± za interakcjê z systemem Virtual Qmail. Pakiet
+					com.foo_baz.ihs.backing.mailservice 
+					po¶redniczy w obs³udze interfejsu u¿ytkownika.
+					Interfejs u¿ytkownika obs³ugiwany jest przez strony
+					JSF znajduj±ce siê w katalogu <TT
+CLASS="filename"
+>mailserver</TT
+>.
+				</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="policies.html"
+ACCESSKEY="P"
+>Poprzedni</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Spis tre&#347;ci</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="users.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Organizacja projektu</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="devs.html"
+ACCESSKEY="U"
+>Pocz&#261;tek rozdzia&#322;u</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Podrêcznik u¿ytkownika</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

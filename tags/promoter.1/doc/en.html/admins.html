@@ -1,0 +1,373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Administrators guide</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Overview of the system"
+HREF="overview.html"><LINK
+REL="NEXT"
+TITLE="Configuration"
+HREF="admins.conf.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-06-25T12:49:04"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="overview.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="admins.conf.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="admins"
+></A
+>Chapter 3. Administrators guide</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>3.1. <A
+HREF="admins.html#admins.install"
+>Installation</A
+></DT
+><DD
+><DL
+><DT
+>3.1.1. <A
+HREF="admins.html#admins.install.download"
+>Downloading</A
+></DT
+><DT
+>3.1.2. <A
+HREF="admins.html#admins.install.depends"
+>Dependencies</A
+></DT
+><DT
+>3.1.3. <A
+HREF="admins.html#admins.install.compilation"
+>Compilation, packaging</A
+></DT
+><DT
+>3.1.4. <A
+HREF="admins.html#admins.install.j2ee"
+>Deploying on J2EE server</A
+></DT
+><DT
+>3.1.5. <A
+HREF="admins.html#admins.install.db"
+>Database setup</A
+></DT
+></DL
+></DD
+><DT
+>3.2. <A
+HREF="admins.conf.html"
+>Configuration</A
+></DT
+></DL
+></DIV
+><P
+>&#13;	</P
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="admins.install"
+>3.1. Installation</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="admins.install.download"
+>3.1.1. Downloading</A
+></H2
+><P
+>&#13;				It's worth checking
+				<A
+HREF="http://ihs.foo-baz.com"
+TARGET="_top"
+>project's page</A
+>.
+			</P
+><P
+>&#13;				<A
+HREF="http://sourceforge.net/project/showfiles.php?group_id=134802"
+TARGET="_top"
+>Released files</A
+>
+				are kept on SourceForge. Check if there's newer version.
+			</P
+><P
+>&#13;				You can also access repository with newest version - 
+				<A
+HREF="http://svn.berlios.de/svnroot/repos/ihs/trunk"
+TARGET="_top"
+>&#13;				http://svn.berlios.de/svnroot/repos/ihs/trunk
+				</A
+>
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="admins.install.depends"
+>3.1.2. Dependencies</A
+></H2
+><P
+>&#13;				Main dependencies:
+				<P
+></P
+></P><UL
+><LI
+><P
+>&#13;							Java Runtime at least 1.4;
+						</P
+></LI
+><LI
+><P
+>&#13;							J2EE application server, at this time system is tested only with
+							Tomcat 5;
+						</P
+></LI
+><LI
+><P
+>&#13;							Virtual Qmail at least 11;
+						</P
+></LI
+><LI
+><P
+>&#13;							Oracle or PostgreSQL database (can be different than instance
+							used by Virtual Qmail);
+						</P
+></LI
+></UL
+><P>
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="admins.install.compilation"
+>3.1.3. Compilation, packaging</A
+></H2
+><P
+>&#13;				Compilation is described in <A
+HREF="policies.html#policies.building"
+>Section 4.7.3</A
+>.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="admins.install.j2ee"
+>3.1.4. Deploying on J2EE server</A
+></H2
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="admins.install.j2ee.tomcat"
+>3.1.4.1. Tomcat</A
+></H3
+><P
+>&#13;					The easiest way is to copy WAR
+					to <TT
+CLASS="filename"
+>webapps</TT
+> directory in Tomcat installation
+				</P
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="admins.install.j2ee.other"
+>3.1.4.2. Other application servers</A
+></H3
+><P
+>&#13;					There's no support for other J2EE servers. In future versions there
+					will be support for other popular applications.
+				</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="admins.install.db"
+>3.1.5. Database setup</A
+></H2
+><P
+>&#13;				After IHS is installed you should setup database link and create object in database that
+				are needed by IHS.
+			</P
+><P
+>&#13;				IHS uses 
+				jdbc/ihsDB resource as a link to database. Resource is looked up in JNDI directory.
+			</P
+><P
+>&#13;				JNDI configuration differs betweem servers. Example
+				files for Tomcat are located in 
+				<TT
+CLASS="filename"
+>META-INF</TT
+> directory.
+			</P
+><P
+>&#13;				You should remember that JDBC drivers are not distributed with IHS.
+				You must aquire them from other sources. For Tomcat you can usually
+				put them into <TT
+CLASS="filename"
+>common/lib</TT
+> directory.
+			</P
+><P
+>&#13;				Use 
+				<TT
+CLASS="filename"
+>oracle.sql</TT
+> or <TT
+CLASS="filename"
+>pgsql.sql</TT
+> scripts to create objects
+				in database.
+			</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="overview.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="admins.conf.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Overview of the system</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuration</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

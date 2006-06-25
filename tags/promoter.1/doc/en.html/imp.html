@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Implementation details for IHS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Incredible Hosting System"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Developers guide"
+HREF="devs.html"><LINK
+REL="PREVIOUS"
+TITLE="Policies and guidelines"
+HREF="policies.html"><LINK
+REL="NEXT"
+TITLE="Bibliography"
+HREF="biblio.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-06-25T12:49:04"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Incredible Hosting System</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="policies.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Developers guide</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="biblio.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="imp"
+>4.8. Implementation details for IHS</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.core"
+>4.8.1. Core of the system</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.imp.com.foo_baz.ihs"
+></A
+><P
+><IMG
+SRC="../imgs/PackageOverviewcomfoo_bazihs.png"></P
+><P
+><B
+>Figure 4-6. Package com.foo_baz.ihs</B
+></P
+></DIV
+><P
+>&#13;				Main part of the system resides in com.foo_baz.ihs package,
+				picture <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs"
+>Figure 4-6</A
+> 
+				shows elements included in this package. Followin is a short
+				description of each of them:
+			</P
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Configuration. </B
+>
+					This is an interface to configuration - it allows to
+					add, update or remove parameters. By default configuration
+					is kept in database. Interface handles only strings.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Service. </B
+>
+					This interface must be implemented by any plug-ins
+					for IHS. It's used for communication between plug-in
+					and system.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>MailService. </B
+>
+					Interface representing plug-in handling mail system.
+					It includes some additional methods.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Administrators. </B
+>
+					Interface representing service managing administrators's
+					accounts.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>IncredibleSystemHosting. </B
+>
+					Core of the system. Implements Administrators interface.
+					Includes code managing plug-ins, implements Configuration.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>Administrator. </B
+>
+					Represents information stored about administrator.
+				</P
+></DIV
+><DIV
+CLASS="formalpara"
+><P
+><B
+>ExtendedAdministrator. </B
+>
+					Administrator extended with some data used by GUI.
+				</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.ui"
+>4.8.2. User interface</A
+></H2
+><DIV
+CLASS="figure"
+><A
+NAME="figure.imp.com.foo_baz.ihs.backing"
+></A
+><P
+><IMG
+SRC="../imgs/PackageOverviewcomfoo_bazihsbacking.png"></P
+><P
+><B
+>Figure 4-7. Package com.foo_baz.ihs.backing</B
+></P
+></DIV
+><DIV
+CLASS="figure"
+><A
+NAME="figure.imp.com.foo_baz.ihs.backing.mailservice"
+></A
+><P
+><IMG
+SRC="../imgs/PackageOverviewcomfoo_bazihsbackingmailservice.png"></P
+><P
+><B
+>Figure 4-8. Package com.foo_baz.ihs.backing.mailservice</B
+></P
+></DIV
+><P
+>	
+				<A
+HREF="imp.html#figure.imp.com.foo_baz.ihs.backing"
+>Figure 4-7</A
+> 
+				and <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs.backing.mailservice"
+>Figure 4-8</A
+> 
+				include elements that are used as a mediator between core
+				of the system and user interface represented by JSF pages.
+				Elements have different scope, some are created for every
+				request, some for every session. Usually any JSF pages
+				uses one of them.
+			</P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="imp.plugins"
+>4.8.3. Plug-ins</A
+></H2
+><P
+>&#13;				Here's list of plug-ins installed with IHS:
+			</P
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="imp.plugins.v_q"
+>4.8.3.1. VirtualQmailMailService</A
+></H3
+><P
+>&#13;					Implements MailService interface. Uses Virtual Qmail
+					as a backend for mail system. Communication is CORBA based.
+				</P
+><P
+>&#13;					Files in packages com.foo_baz.ihs.mailservice and
+					com.foo_baz.ihs.VirtualQmailMailService include implementation
+					of this plug-in.
+				</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="policies.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="biblio.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Policies and guidelines</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="devs.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Bibliography</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

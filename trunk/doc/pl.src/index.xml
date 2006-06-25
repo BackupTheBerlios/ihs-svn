@@ -10,13 +10,28 @@
 >
 <book lang="pl">
 	<bookinfo>
-		<title>Incredible Hosting System</title>
+		<title>Administracja z poziomu WWW w systemie poczty darmowej</title>
+		<subtitle>Praca dyplomowa magisterska</subtitle>
 		<authorgroup>
 			<author>
+				<honorific>in¿.</honorific>
 				<firstname>Pawe³</firstname>
 				<surname>Niewiadomski</surname>
+				<affiliation>
+					<jobtitle>Autor</jobtitle>
+				</affiliation>
+			</author>
+			<author>
+				<honorific>dr hab. in¿.</honorific>
+				<firstname>Zbyszko</firstname>
+				<surname>Królikowski</surname>
+				<affiliation>
+					<shortaffil>Prof. Nadzw. PP</shortaffil>
+					<jobtitle>Promotor</jobtitle>
+				</affiliation>
 			</author>
 		</authorgroup>
+		<pubdate>Poznañ 2006</pubdate>
 		<copyright>
 			<year>2005</year>
 			<year>2006</year>
@@ -24,145 +39,65 @@
 		</copyright>
 	</bookinfo>
 
-	<preface id="foreword">
-		<title>S³owo wstêpne</title>
+	<chapter id="foreword">
+		<title>Wstêp</title>
 
-		<para>
-			Niniejszy dokument stanowi pracê magistersk± wykonan± przez Paw³a Niewiadomskiego. Jest to zwieñczenie studiów
-			na Politechnice Poznañskiej, na kierunku Projektowanie i Eksploatacja Systemów Informatycznych. 
-			Promotorem pracy jest prof. dr hab. in¿. Zbyszko Królikowski.
-		</para>
+		<section id="foreword.intro">
+			<title>Zarys problemu</title>
 
-		<para>
-			Temat pracy zosta³ podjêty w zwi±zku z poprzednio realizowanym przez Paw³a Niewiadomskiego projektem
-			pt. System poczty darmowej - NIE-2003. W wyniku realizacji tego projektu powstanie nowy produkt integruj±cy siê
-			z poprzednio wykonanym systemem umo¿liwiaj±cy zarz±dzanie nim za pomoc± przegl±darki WWW. Stworzona aplikacja
-			pos³u¿yæ ma w przysz³o¶ci jako ¶rodowisko umo¿liwiaj±ce komplementarne zarz±dzanie systemem pocztowym czy hostingowym.
-		</para>
+			<para>
+				Od roku 2002 w firmie Stowarzyszenie Architektów Polskich podjêto prace nad systemem poczty darmowej [NIE-2003]. 
+				W wyniku realizacji tego projektu powsta³ zestaw aplikacji
+				umo¿liwiaj±cy zarz±dzanie systemem pocztowym. Jedn± z jego istotnych wad by³ brak elastycznego i wygodnego
+				w u¿yciu oraz mo¿liwego do rozszerzania interfejsu dla administratorów dostêpnego za pomoc± przegl±darki WWW. Systemem
+				mo¿na by³o wygodnie zarz±dzaæ tylko za pomoc± linii poleceñ. Za pomoc± przegl±darki istnia³a mo¿liwo¶æ zarz±dzania poszczególnymi
+				skrzynkami pocztowymi przez ich w³a¶cicieli (w ograniczonym zakresie).
+			</para>
 
-		<para>
-			Poniewa¿ realizowany projekt bêdzie rozprowadzany w sieci Internet a czê¶æ niniejszego dokumentu
-			s³u¿yæ bêdzie jako podrêcznik dla u¿ytkowników, administratorów i programistów przyjêto, ¿e w dalszej
-			czê¶ci dokumentu autor pos³ugiwa³ siê bêdzie oficjaln± nazw± projektu - Incredible Hosting System, w skrócie <glossterm>IHS</glossterm>.
-			Czê¶ci± IHS jest panel administracyjny s³u¿±cy do zarz±dzania poczt± darmow± przez strony WWW.
-			Panel ten stanowi cze¶æ systemu realizowan± jako temat pracy magisterskiej. Poniewa¿ ten element nie mo¿e
-			istnieæ bez innych czê¶ci wchodz±cych w sk³ad IHS dokument ten zawiera opis ca³ego systemu.
-		</para>
+			<para>
+				W wyniku realizacji niniejszej pracy powsta³ nowy produkt integruj±cy siê
+				z poprzednio wykonanym systemem umo¿liwiaj±cy administratorom zarz±dzanie za pomoc± przegl±darki WWW. 
+				Zalet± nowej aplikacji jest rozszerzalno¶æ, czyli mo¿liwo¶æ ³atwego dodawania nowej funkcjonalno¶ci (np. zarz±dzania
+				innymi systemami na serwerze), wygoda u¿ycia oraz ³atwo¶æ instalacji.
+			</para>
+
+			<para>
+				Produkt, którego czê¶æ powsta³a w ramach niniejszej pracy bêdzie rozprowadzany w sieci 
+				Internet pod nazw± "Incredible Hosting System",	w skrócie <glossterm>IHS</glossterm>.
+				G³ówn± czê¶ci± IHS jest panel administracyjny s³u¿±cy do zarz±dzania poczt± darmow± przez strony WWW.
+				Panel ten stanowi cze¶æ systemu zrealizowan± jako temat niniejszej pracy.
+			</para>
+		</section>
+
+		<section id="foreword.struct">
+			<title>Cel, zakres i struktura pracy</title>
 		
-		<para>
-			Celem pracy jest zaprojektowanie i implementacja serwisu WWW umo¿liwiaj±cego zarz±dzanie systemem poczty darmowej.
-		</para>
+			<para>
+				Podstawowym celem niniejszej pracy jest stworzenie oprogramowania umo¿liwiaj±cego zarz±dzanie
+				systemem poczty darmowej. Utworzona aplikacja powinna umo¿liwiaæ dodawanie i usuwanie
+				u¿ytkowników i domen oraz inne czynno¶ci administracyjne.
+			</para>
 
-		<para>
-			Struktura pracy jest nastêpuj±ca. <xref linkend="glossary"/> zawiera przegl±d pojêæ oraz skrótów u¿ywanych w dokumencie.
-			<xref linkend="overview"/> zawiera podstawowe wymagania oraz ograniczenia na³o¿one na realizowany projekt.
-			<xref linkend="users"/> zawiera opis interfejsu u¿ytkownika stworzonego systemu.
-			<xref linkend="admins"/> przeznaczony jest dla administratorów, zawiera informacje na temat konfiguracji.
-			<xref linkend="devs"/> to dyskusja na temat wewnêtrznej struktury systemu.
-			Ostatnim rozdzia³em jest wykaz ¼róde³ - <xref linkend="biblio"/>.
-		</para>
-	</preface>
+			<para>
+				Ponadto w wyniku realizacji pracy powinna zostaæ utworzona dokumentacja techniczna,
+				podrêcznika administratora i u¿ytkownika.
+			</para>
 
-	&glossary;
-
-	<chapter id="overview">
-		<title>Wprowadzenie do systemu</title>
-
-		<para>
-			IHS stanowiæ ma platformê do implementacji i 
-			wdra¿ania systemów pocztowych czy hostingowych w ró¿nych
-			¶rodowiskach - ma³ych i ¶rednich firmach potrzebuj±cych
-			¶rodowiska do zarz±dzania kontami dla swoich pracowników,
-			firmach realizuj±cych us³ugi oparte na systemie dla
-			wszystkich zainteresowanych - niezale¿nie czy to bêd±
-			us³ugi p³atne czy darmowe.
-		</para>
-
-		<para>
-			Jest to skomplikowane zadanie wymagaj±ce wykorzystania
-			i integracji wielu istniej±cych programów, nale¿y miêdzy innymi
-			po³±czyæ takie systemy jak: serwer WWW, agent pocztowy,
-			serwer FTP, bazy danych. Zale¿nie od wymagañ musi istnieæ
-			mo¿liwo¶æ integracji systemu z innymi aplikacjami
-			dzia³aj±cymi w ¶rodowisku, w którym bêdzie on wdra¿any.
-		</para>
-
-		<para>
-			Poza integracj± tych systemów zbudowana musi zostaæ
-			platforma umo¿liwiaj±ca zarz±dzanie ca³o¶ci± systemu
-			niezale¿nie od elementów wykorzystanych w danym wdro¿eniu.
-			Ma ona stanowiæ scentralizowane i ujednolicone
-			¶rodowisko tak u¿ytkownika jak i programistyczne.
-			Oznacza to, ¿e niezale¿nie od wykorzystanych elementów (np.
-			ró¿nych dostawców baz danych) u¿ytkownik powinien mieæ
-			dostêp do tego samego interfejsu. Programista natomiast
-			ma mieæ mo¿liwo¶æ wykorzystania sta³ego i elastycznego
-			API umo¿liwiaj±cego rozszerzanie czy ³±czenie systemu z
-			innymi aplikacjami.
-		</para>
-
-		<para>
-			IHS bêdzie oparty miêdzy innymi na nastêpuj±cych
-			aplikacjach, technologiach:
-			<itemizedlist>
-				<listitem>
-					<para>
-						Apache jako serwer WWW;
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						PostgreSQL jako domy¶lna baza danych;
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						ProFTPD jako domy¶lny serwer FTP;
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						qmail oraz Virtual Qmail jako agent poczty;
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						CORBA jako protokó³ komunikacji miêdzy us³ugami;
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						J2EE jako platforma, na której dzia³aæ bêdzie
-						zintegrowany system zarz±dzania us³ugami.
-					</para>
-				</listitem>
-			</itemizedlist>
-		</para>
-
-		<para>
-			Wykorzystywane bêd± równie¿ inne aplikacje
-			bez których realizacja projektu by³aby niemo¿liwa,
-			powy¿sza lista zawiera te najwa¿niejsze, tworz±ce
-			j±dro systemu.
-		</para>
-
-		<para>
-			Realizacja oparta jest wy³±cznie na otwartym
-			lub bezp³atny oprogramowaniu, wszelkie utworzone
-			oprogramowanie bêdzie rozprowadzane wraz z
-			kodem ¼ród³owym. Podej¶cie takie gwarantuje 
-			maksymaln± elastyczno¶æ systemu oraz mo¿liwo¶æ
-			dopasowywania go do potrzeb danego ¶rodowiska, w którym
-			system bêdzie wdra¿any. Firma 
-			<ulink url="http://foo-baz.com/">foo-baz.com</ulink>
-			¶wiadczy us³ugi zwi±zane z instalacj±, integracj±
-			oraz utrzymaniem IHS w ¶rodowisku klienta.
-		</para>
+			<para>
+				Struktura pracy jest nastêpuj±ca.
+				<xref linkend="products"/> zawiera opis produktów u¿ywanych podczas realizacji projektu.
+				<xref linkend="devs"/> to dyskusja na temat wewnêtrznej struktury systemu.
+				<xref linkend="users"/> zawiera opis interfejsu u¿ytkownika stworzonego systemu.
+				<xref linkend="admins"/> przeznaczony jest dla administratorów, zawiera informacje na temat konfiguracji oraz instalacji aplikacji.
+				Na koñcu pracy znajduj± siê: <xref linkend="summary"/>, <xref linkend="biblio"/>, <xref linkend="glossary"/> zawieraj±cy 
+				przegl±d pojêæ oraz skrótów u¿ywanych w dokumencie oraz lista za³±czników - <link linkend="attachments">Za³±czniki</link>.
+			</para>
+		</section>
 	</chapter>
 
 	&devs;
-	&admins;
 	&users;
+	&admins;
 
 	<chapter id="summary">
 		<title>Podsumowanie</title>
@@ -187,11 +122,39 @@
 		</para>
 
 		<para>
-			Autor planuje dalszy rozwój systemu. Chcia³by rozszerzyæ jego funkcjonalno¶æ miêdzy innymi o zarz±dzanie
-			systemem kontroli wersji Subversion.
+			Autor planuje dalszy rozwój systemu. Chcia³by rozszerzyæ jego funkcjonalno¶æ miêdzy innymi o:
+			<itemizedlist>
+				<listitem><para>zarz±dzanie systemem kontroli wersji Subversion;</para></listitem>
+				<listitem><para>obs³ugê bazy danych MySQL 5, która posiada funkcjonalno¶æ wymagan± przez system (widok, procedury sk³adowane);</para></listitem>
+				<listitem><para>obs³ugê bazy danych DB2;</para></listitem>
+				<listitem>
+					<para>
+						obs³ugê tematów graficznych - po¿±dan± cech± systemu jest mo¿liwo¶æ dostosowania wygl±du aplikacji
+						do upodobañ poszczególnych u¿ytkowników;</para>
+				</listitem>
+			</itemizedlist>
 		</para>
 	</chapter>
 	
 	&biblio;
+	&glossary;
+
+	<appendix label="" id="attachments">
+		<title>Za³±czniki</title>
+
+		<orderedlist>
+			<listitem><para>Karta pracy dyplomowej</para></listitem>
+			<listitem>
+				<para>
+					P³yta CD-ROM zawieraj±ca:
+					<itemizedlist>
+						<listitem><para><filename>/thesis</filename> - praca pisemna w postaci dokumentu OpenOffice.org 2.0 oraz Adobe PDF;</para></listitem>
+						<listitem><para><filename>/source</filename> - kod ¼ród³owy aplikacji oraz dokumentacja w formacie Docbook;</para></listitem>
+						<listitem><para><filename>/bin</filename> - aplikacja w postaci binarnej (plik WAR);</para></listitem>
+					</itemizedlist>
+				</para>
+			</listitem>
+		</orderedlist>
+	</appendix>
 </book>
 

@@ -7,7 +7,12 @@
 		
 		<figure id="figure.users.loading">
 			<title>£adowanie aplikacji</title>
-			<graphic fileref="../imgs/loading.png" format="PNG"/>
+			<graphic align="center" fileref="../imgs/loading.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.lang">
+			<title>Wybór jêzyka</title>
+			<graphic align="center" fileref="../imgs/pl.lang.png" format="PNG"/>
 		</figure>
 
 		<para>
@@ -20,7 +25,7 @@
 
 		<figure id="figure.users.login">
 			<title>Strona logowania</title>
-			<graphic fileref="../imgs/pl.login.png" format="PNG"/>
+			<graphic align="center" fileref="../imgs/pl.login.png" format="PNG"/>
 		</figure>
 
 		<para>
@@ -35,11 +40,6 @@
 			</note>
 		</para>
 
-		<figure id="figure.users.lang">
-			<title>Wybór jêzyka</title>
-			<graphic fileref="../imgs/pl.lang.png" format="PNG"/>
-		</figure>
-
 		<para>
 			<xref linkend="figure.users.lang"/> przedstawia ikony umo¿liwiaj±ce zmianê jêzyka komunikacji
 			z u¿ytkownikiem. S± one dostêpne przez ca³y czas, u¿ytkownik mo¿e w dowolnym momencie wybraæ inny jêzyk.
@@ -49,7 +49,7 @@
 		
 		<figure id="figure.users.login.failed">
 			<title>Strona logowania z komunikatem</title>
-			<graphic fileref="../imgs/pl.login.failed.png" format="PNG"/>
+			<graphic align="center" fileref="../imgs/pl.login.failed.png" format="PNG"/>
 		</figure>
 
 		<para>
@@ -63,36 +63,36 @@
 	<section id="users.conf">
 		<title>Panel konfiguracyjny</title>
 
-		<figure id="figure.users.configuration1">
-			<title>Panel konfiguracyjny</title>
-			<graphic fileref="../imgs/pl.configuration1.png" format="PNG"/>
-		</figure>
-
 		<para>
 			Panel konfiguracyjny (<xref linkend="figure.users.configuration1"/>) umo¿liwia
 			ustawienie podstawowych parametrów niezbêdnych do pracy systemu.
 		</para>
-		
-		<figure id="figure.users.configuration2">
-			<title>Panel konfiguracyjny: komunikat b³êdu</title>
-			<graphic fileref="../imgs/pl.configuration2.png" format="PNG"/>
-		</figure>
 
 		<para>
 			W przypadku podania nieprawid³owych warto¶ci zostanie wy¶wietlony odpowiedni
 			komunikat, tak jak w przyk³adzie <xref linkend="figure.users.configuration2"/>. W takim przypadku ¿adne ustawienia
 			nie s± zapisywane. Dopiero po poprawnym ustawieniu wszystkich warto¶ci nastêpuje zapis.
 		</para>
-		
-		<figure id="figure.users.configuration3">
-			<title>Panel konfiguracyjny: zapisano dane</title>
-			<graphic fileref="../imgs/pl.configuration3.png" format="PNG"/>
-		</figure>
-
+	
 		<para>
 			Po wprowadzeniu poprawnych danych i klikniêciu "Modyfikuj" nastêpuje zapis, po czym zostaje
 			wy¶wietlony odpowiedni komunikat - <xref linkend="figure.users.configuration3"/>. Ustawione warto¶ci s± od razu wykorzystywane.
 		</para>
+
+		<figure id="figure.users.configuration1">
+			<title>Panel konfiguracyjny</title>
+			<graphic align="center" fileref="../imgs/pl.configuration1.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.configuration3">
+			<title>Panel konfiguracyjny: zapisano dane</title>
+			<graphic align="center" fileref="../imgs/pl.configuration3.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.configuration2">
+			<title>Panel konfiguracyjny: komunikat b³êdu</title>
+			<graphic align="center" fileref="../imgs/pl.configuration2.png" format="PNG"/>
+		</figure>
 	</section>
 
 	<section id="users.admins">
@@ -100,7 +100,7 @@
 		
 		<figure id="figure.users.administrators">
 			<title>Lista administratorów</title>
-			<graphic fileref="../imgs/pl.administrators.png" format="PNG"/>
+			<graphic align="center" fileref="../imgs/pl.administrators.png" format="PNG"/>
 		</figure>
 
 		<para>
@@ -114,65 +114,66 @@
 				</para>
 			</note>
 		</para>
-		
-		<figure id="figure.users.administrators.rm1">
-			<title>Usuwanie administratora, krok 1</title>
-			<graphic fileref="../imgs/pl.administrators.rm1.png" format="PNG"/>
-		</figure>
-
+	
 		<para>
 			W ka¿dej chwili mo¿na usun±æ jednego lub kilku administratorów, wystarczy zaznaczyæ u¿ytkowników i
 			nacisn±æ odpowiedni przycisk, tak jak jest to pokazane na <xref linkend="figure.users.administrators.rm1"/>.
 		</para>
 		
-		<figure id="figure.users.administrators.rm2">
-			<title>Usuwanie administratora, krok 2</title>
-			<graphic fileref="../imgs/pl.administrators.rm2.png" format="PNG"/>
-		</figure>
-
 		<para>
-			Wykonanie operacji spowoduje wy¶wietlenie odpowiedniego komunikatu.
+			Wykonanie operacji spowoduje wy¶wietlenie odpowiedniego komunikatu, patrz <xref linkend="figure.users.administrators.rm2"/>.
 			<warning>
 				<para>
 					System nie prosi o potwierdzenie przy usuwaniu wpisów.
 				</para>
 			</warning>
 		</para>
-		
-		<figure id="figure.users.addAdministrator1">
-			<title>Dodawanie administratora, krok 1</title>
-			<graphic fileref="../imgs/pl.addAdministrator1.png" format="PNG"/>
+
+
+		<figure id="figure.users.administrators.rm1">
+			<title>Usuwanie administratora, krok 1</title>
+			<graphic align="center" fileref="../imgs/pl.administrators.rm1.png" format="PNG"/>
+		</figure>
+	
+		<figure id="figure.users.administrators.rm2">
+			<title>Usuwanie administratora, krok 2</title>
+			<graphic align="center" fileref="../imgs/pl.administrators.rm2.png" format="PNG"/>
 		</figure>
 
 		<para>
 			Dodawanie administratora jest bardzo ³atwe, aktualnie jedynymi wymaganymi informacjami s± login i has³o. System rozró¿nia
 			ma³e i wielkie litery w nazwach u¿ytkowników. Formularze rejestracyjny pokazany jest na <xref linkend="figure.users.addAdministrator1"/>.
 		</para>
-		
-		<figure id="figure.users.addAdministrator2">
-			<title>Dodawanie administratora, krok 2</title>
-			<graphic fileref="../imgs/pl.addAdministrator2.png" format="PNG"/>
-		</figure>
-
+	
 		<para>
 			<xref linkend="figure.users.addAdministrator2"/> - w przypadku wprowadzenia nieprawid³owych danych zostanie wy¶wietlona
 			odpowiednia informacja.
 		</para>
-		
-		<figure id="figure.users.addAdministrator3">
-			<title>Dodawanie administratora, krok 3</title>
-			<graphic fileref="../imgs/pl.addAdministrator3.png" format="PNG"/>
-		</figure>
 
 		<para>
 			<xref linkend="figure.users.addAdministrator3"/> - po dodaniu administratora wy¶wietlany jest odpowiedni komunikat. Formularz
 			mo¿na ponownie wype³niæ i dodaæ nastêpnego administratora. Wybranie przycisku Anuluj spowoduje odes³anie u¿ytkownika
 			do listy administratorów.
 		</para>
-		
+	
+		<figure id="figure.users.addAdministrator1">
+			<title>Dodawanie administratora, krok 1</title>
+			<graphic align="center" fileref="../imgs/pl.addAdministrator1.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.addAdministrator2">
+			<title>Dodawanie administratora, krok 2</title>
+			<graphic align="center" fileref="../imgs/pl.addAdministrator2.png" format="PNG"/>
+		</figure>
+
+		<figure id="figure.users.addAdministrator3">
+			<title>Dodawanie administratora, krok 3</title>
+			<graphic align="center" fileref="../imgs/pl.addAdministrator3.png" format="PNG"/>
+		</figure>
+
 		<figure id="figure.users.addAdministrator4">
 			<title>Modyfikowanie administratora</title>
-			<graphic fileref="../imgs/pl.addAdministrator4.png" format="PNG"/>
+			<graphic align="center" fileref="../imgs/pl.addAdministrator4.png" format="PNG"/>
 		</figure>
 
 		<para>
@@ -189,11 +190,6 @@
 	<section id="users.domains">
 		<title>Zarz±dzanie domenami</title>
 
-		<figure id="figure.users.domains1">
-			<title>List domen</title>
-			<graphic fileref="../imgs/pl.domains1.png" format="PNG"/>
-		</figure>
-
 		<para>
 			<xref linkend="figure.users.domains1"/> przedstawia stronê listuj±c± zarejestrowane w systemie domeny. Jest to
 			punkt wyj¶ciowy do zarz±dzania domenami, jak i u¿ytkownikami zarejestrowanymi w ka¿dej z pokazanych domen.
@@ -203,14 +199,15 @@
 				</para>
 			</note>
 		</para>
-		
+
+		<figure id="figure.users.domains1">
+			<title>Lista domen</title>
+			<graphic align="center" fileref="../imgs/pl.domains1.png" format="PNG"/>
+		</figure>
+
 		<figure id="figure.users.domains.rm1">
 			<title>Usuwanie domeny, krok 1</title>
-			<graphic fileref="../imgs/pl.domains.rm1.png" format="PNG"/>
-		</figure>
-		<figure id="figure.users.domains.rm2">
-			<title>Usuwanie domeny, krok 2</title>
-			<graphic fileref="../imgs/pl.domains.rm2.png" format="PNG"/>
+			<graphic align="center" fileref="../imgs/pl.domains.rm1.png" format="PNG"/>
 		</figure>
 
 		<para>
@@ -222,7 +219,13 @@
 				</para>
 			</warning>
 		</para>
-		
+	
+		<figure id="figure.users.domains.rm2">
+			<title>Usuwanie domeny, krok 2</title>
+			<graphic align="center" fileref="../imgs/pl.domains.rm2.png" format="PNG"/>
+		</figure>
+
+	
 		<section id="users.domains.users">
 			<title>Zarz±dzanie u¿ytkownikami</title>
 		
@@ -231,15 +234,12 @@
 				ze szczegó³ami gdzie znajduje siê link do listy u¿ytkowników; mo¿na równie¿ klikn±æ na liczbê u¿ytkowników w li¶cie domen.
 				Przyk³adowa lista u¿ytkowników pokazana jest na <xref linkend="figure.users.users"/>.
 			</para>
+
 			<figure id="figure.users.users">
 				<title>Lista u¿ytkowników</title>
-				<graphic fileref="../imgs/pl.users.png" format="PNG"/>
+				<graphic align="center" fileref="../imgs/pl.users.png" format="PNG"/>
 			</figure>
 
-			<figure id="figure.users.addUser">
-				<title>Dodawanie u¿ytkownika</title>
-				<graphic fileref="../imgs/pl.addUser.png" format="PNG"/>
-			</figure>
 			<para>
 				Do dodawania u¿ytkowników s³u¿y formularz przedstawiony na <xref linkend="figure.users.addUser"/>.
 				W czasie dodawania u¿ytkowników istnieje mo¿liwo¶æ ustawienia flag zwi±zanych z kontem, niestety obecnie
@@ -247,12 +247,12 @@
 				domy¶lnie wy³±czone, co oznacza, ¿e system utworzy domy¶lny katalog. W przypadku podania katalogu nale¿y
 				samemu zadbaæ o to aby podany katalog istnia³ i mia³ odpowiednie prawa.
 			</para>
-			
-			<figure id="figure.users.addUser1">
-				<title>Modyfikacja u¿ytkownika</title>
-				<graphic fileref="../imgs/pl.addUser1.png" format="PNG"/>
+	
+			<figure id="figure.users.addUser">
+				<title>Dodawanie u¿ytkownika</title>
+				<graphic align="center" fileref="../imgs/pl.addUser.png" format="PNG"/>
 			</figure>
-
+	
 			<para>
 				<xref linkend="figure.users.addUser1"/> przedstawia formularz s³u¿±cy do zmiany parametrów konta u¿ytkownika. 
 				W przypadku gdy administrator nie poda has³a zostanie zachowane aktualnie ustawione. Podanie nowego has³a powoduje zmianê
@@ -264,6 +264,11 @@
 					</para>
 				</warning>
 			</para>
+	
+			<figure id="figure.users.addUser1">
+				<title>Modyfikacja u¿ytkownika</title>
+				<graphic align="center" fileref="../imgs/pl.addUser1.png" format="PNG"/>
+			</figure>
 		</section>
 	</section>
 
@@ -272,7 +277,7 @@
 
 		<figure id="figure.users.logs">
 			<title>Lista zdarzeñ</title>
-			<graphic fileref="../imgs/pl.logs.png" format="PNG"/>
+			<graphic align="center" fileref="../imgs/pl.logs.png" format="PNG"/>
 		</figure>
 
 		<para>
@@ -284,7 +289,7 @@
 		
 		<figure id="figure.users.logs1">
 			<title>Lista zdarzeñ: filtrowanie</title>
-			<graphic fileref="../imgs/pl.logs1.png" format="PNG"/>
+			<graphic align="center" fileref="../imgs/pl.logs1.png" format="PNG"/>
 		</figure>
 	</section>
 </chapter>

@@ -2,19 +2,22 @@
 <HTML
 ><HEAD
 ><TITLE
->Podsumowanie</TITLE
+>Java</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
 REL="HOME"
 TITLE="Administracja z poziomu WWW w systemie poczty darmowej"
 HREF="index.html"><LINK
+REL="UP"
+TITLE="¦rodowisko i technologie wykorzystane do realizacji projektu"
+HREF="products.html"><LINK
 REL="PREVIOUS"
-TITLE="Konfiguracja"
-HREF="admins.conf.html"><LINK
+TITLE="CORBA"
+HREF="products.corba.html"><LINK
 REL="NEXT"
-TITLE="Bibliografia"
-HREF="biblio.html"><LINK
+TITLE="JavaServer Faces"
+HREF="products.jsf.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
 HREF="stylesheet.css"><META
@@ -23,7 +26,7 @@ CONTENT="2006-06-25T12:48:57"><META
 HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=ISO-8859-2"></HEAD
 ><BODY
-CLASS="chapter"
+CLASS="section"
 BGCOLOR="#FFFFFF"
 TEXT="#000000"
 LINK="#0000FF"
@@ -49,7 +52,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="admins.conf.html"
+HREF="products.corba.html"
 ACCESSKEY="P"
 >Poprzedni</A
 ></TD
@@ -57,13 +60,13 @@ ACCESSKEY="P"
 WIDTH="80%"
 ALIGN="center"
 VALIGN="bottom"
-></TD
+>Rozdzia&#322; 2. ¦rodowisko i technologie wykorzystane do realizacji projektu</TD
 ><TD
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="biblio.html"
+HREF="products.jsf.html"
 ACCESSKEY="N"
 >Nast&#281;pny</A
 ></TD
@@ -73,56 +76,53 @@ ACCESSKEY="N"
 ALIGN="LEFT"
 WIDTH="100%"></DIV
 ><DIV
-CLASS="chapter"
+CLASS="section"
 ><H1
+CLASS="section"
 ><A
-NAME="summary"
-></A
->Rozdzia&#322; 6. Podsumowanie</H1
+NAME="products.java"
+>2.5. Java</A
+></H1
 ><P
->&#13;			Podstawowymi funkcjami, które powinien oferowaæ projekt zgodnie z za³o¿eniami jest mo¿liwo¶æ
-			zarz±dzania domenami i u¿ytkownikami w ramach zarejestrowanych w systemie domen. Cel ten zosta³ zrealizowany
-			przez przedstawiony projekt.
+>&#13;			Jako jêzyk implementacji systemu wybrano Java. Decyzja podyktowana by³a
+			popularno¶ci± danego jêzyka w krêgu twórców serwisów internetowych, mo¿liwo¶ci±
+			³atwego tworzenia aplikacji oraz pó¼niejszego utrzymania.
 		</P
 ><P
->&#13;			Zgodnie z przyjêt± list± wymagañ, zrealizowane zosta³y nastêpuj±ce wymagania:
-			RS-1, RS-4, RS-7, RS-8, RG-1, RG-2, RG-3, RG-4, RG-5, RG-6, RG-7, RG-8, RG-9, 
-			RG-10, RG-12, RG-13, RG-14,
-			RP-3, RP-4, RP-5, RA-1, RA-4. <A
-HREF="devs.html#design.reqs"
->Sekcja 3.1.3</A
-> zawiera szczegó³owe informacje.
-		</P
-><P
->&#13;			System oferuje najwa¿niejsze funkcje, które powinien
-			spe³niaæ panel administracyjny systemu poczty darmowej. Dziêki odpowiedniej
-			architekturze istnieje mo¿liwo¶æ rozwijania systemu. 
-		</P
-><P
->&#13;			Autor planuje dalszy rozwój systemu. Chcia³by rozszerzyæ jego funkcjonalno¶æ miêdzy innymi o:
+>&#13;			Innymi mo¿liwymi do wykorzystania jêzykami by³y C++, PERL, PHP czy python. Na ich niekorzy¶æ
+			przemawia³y miêdzy innymi nastêpuj±ce argumenty: 
 			<P
 ></P
 ></P><UL
 ><LI
 ><P
->zarz±dzanie systemem kontroli wersji Subversion;</P
+>&#13;						C++ - niewielkie wsparcie dla tworzenia zaawansowanych serwisów internetowych, d³u¿szy ni¿ w przypadku innych jêzyków
+						czas wytwarzania aplikacji spowodowany wiêkszym skompilowaniem jêzyka, brakiem bibliotek oraz ¶rodowiska podobnego do J2EE;
+					</P
 ></LI
 ><LI
 ><P
->obs³ugê bazy danych MySQL 5, która posiada funkcjonalno¶æ wymagan± przez system (widok, procedury sk³adowane);</P
+>&#13;						PERL - nieprzystosowanie jêzyka do tworzenia zaawansowanych systemów obiektowych, brak tak rozbudowanego
+						¶rodowiska jak J2EE;
+					</P
 ></LI
 ><LI
 ><P
->obs³ugê bazy danych DB2</P
+>&#13;						PHP - niekompletne wsparcie dla CORBA;
+					</P
 ></LI
 ><LI
 ><P
->&#13;						obs³ugê tematów graficznych - po¿±dan± cech± systemu jest mo¿liwo¶æ dostosowania wygl±du aplikacji
-						do upodobañ poszczególnych u¿ytkowników. Dziêki zastosowaniu CSS
-						wprowadzenie takiego mechanizmu powinno byæ ³atwe;</P
+>&#13;						python - niezbêdny dodatkowy czas na poznanie jêzyka, Zope (platforma podobna do J2EE) jest mniej popularne od J2EE;
+					</P
 ></LI
 ></UL
 ><P>
+		</P
+><P
+>&#13;			Java w porównaniu z innymi jêzykami oferuje ³atwo¶æ tworzenia aplikacji, bardzo dobre zaplecze je¿eli chodzi o 
+			sam± platformê - J2EE, jak i o dokumentacjê czy porady do¶wiadczonych u¿ytkowników. Posiada równie¿ standardowo
+			obs³ugê CORBA, dziêki standardowy JDBC bardzo ³atwo tworzyæ aplikacje bazodanowe wspó³pracuj±ce z ró¿nymi RDBMS.
 		</P
 ></DIV
 ><DIV
@@ -141,7 +141,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="admins.conf.html"
+HREF="products.corba.html"
 ACCESSKEY="P"
 >Poprzedni</A
 ></TD
@@ -159,7 +159,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="biblio.html"
+HREF="products.jsf.html"
 ACCESSKEY="N"
 >Nast&#281;pny</A
 ></TD
@@ -169,17 +169,21 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Konfiguracja</TD
+>CORBA</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="products.html"
+ACCESSKEY="U"
+>Pocz&#261;tek rozdzia&#322;u</A
+></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Bibliografia</TD
+>JavaServer Faces</TD
 ></TR
 ></TABLE
 ></DIV

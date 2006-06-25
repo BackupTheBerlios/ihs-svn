@@ -95,7 +95,7 @@
 
 		<glossentry id="jsf">
 			<glossterm>JavaServer Faces</glossterm>
-			<glosssee><xref linkend="strategies.products.jsf"/></glosssee>
+			<glosssee><xref linkend="products.jsf"/></glosssee>
 		</glossentry>
 
 		<glossentry>

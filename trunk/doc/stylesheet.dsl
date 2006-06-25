@@ -60,6 +60,8 @@
 (element type ($mono-seq$))
 (element (programlisting emphasis) ($bold-seq$)) ;; to highlight sections of code
 
+;; List of objects having title after main part)
+(define ($object-titles-after$) (list (normalize "figure")))
 
 ;; Bibliography things
 
@@ -130,6 +132,16 @@
   (element (para productname) ($charseq$)))
 ;; Add more here if needed...
 
+(define (book-titlepage-recto-elements)
+	(list (normalize "mediaobject")
+		(normalize "subtitle")
+		(normalize "title")
+		(normalize "corpname")
+		(normalize "corpauthor")
+		(normalize "authorgroup")
+		(normalize "author")
+		(normalize "editor")
+		(normalize "pubdate")))
 
 <!-- HTML output customization ..................................... -->
 
@@ -247,6 +259,28 @@
 (define %indent-screen-lines% "    ")
 (define %indent-synopsis-lines% "    ")
 
+;; Set left-margin
+(define %left-margin% 8pi)
+
+;; Set size to 12pt
+(define %visual-acuity% "presbyopic")
+
+;; Don't indent body text
+(define %body-start-indent% 0pi)
+
+;; Indent all para elements
+(define %para-indent-firstpara% 1em)
+(define %para-indent% 1em)
+
+;; Set line spacing to 1.5
+(define %line-spacing-factor% 1.5)
+
+(define %hsize-bump-factor% 1.1)
+
+
+;; Don't generate lists of elements like tables, etc.
+(define ($generate-book-lot-list$) '())
+
 
 ;; Default graphic format: Jadetex wants eps, pdfjadetex wants pdf.
 ;; (Note that pdfjadetex will not accept eps, that's why we need to
@@ -264,6 +298,100 @@
 (define preferred-mediaobject-extensions
   (list "eps" "ps" "jpg" "jpeg" "pdf" "png"))
 
+(mode formal-object-title-mode
+  (element title
+    (let* ((object (parent (current-node)))
+	   (nsep   (gentext-label-title-sep (gi object))))
+      (make paragraph
+	font-weight: %formal-object-title-font-weight%
+	quadding: 'center
+	space-before: (if (object-title-after (parent (current-node)))
+			  %para-sep%
+			  0pt)
+	space-after: (if (object-title-after (parent (current-node)))
+			 0pt
+			 %para-sep%)
+	start-indent: (+ %block-start-indent% (inherited-start-indent))
+	keep-with-next?: (not (object-title-after (parent (current-node))))
+	(if (member (gi object) (named-formal-objects))
+	    (make sequence
+	      (literal (gentext-element-name object))
+	      (if (string=? (element-label object) "")
+		  (literal nsep)
+		  (literal " " (element-label object) nsep)))
+	    (empty-sosofo))
+	(process-children))))
+)
+
+(element table 
+  ;; can't be a "formal-object" because it requires special handling for
+  ;; the PGWIDE attribute
+  (let* ((nsep   (gentext-label-title-sep (gi)))
+	 (pgwide (attribute-string (normalize "pgwide")))
+	 (indent (lambda () (if (not (equal? pgwide "1"))
+				(+ %block-start-indent% 
+				   (inherited-start-indent))
+				%cals-pgwide-start-indent%)))
+	 (rule-before? %table-rules%)
+	 (rule-after? %table-rules%)
+	 (title-sosofo (make paragraph
+			 font-weight: %table-title-font-weight%
+			 quadding: 'center
+			 space-before: (if (object-title-after)
+					   %para-sep%
+					   0pt)
+			 space-after: (if (object-title-after)
+					  0pt
+					  %para-sep%)
+			 start-indent: (indent)
+			  keep-with-next?: (not (object-title-after))
+			  (literal (gentext-element-name (current-node)))
+			  (if (string=? (element-label) "")
+			      (literal nsep)
+			      (literal " " (element-label) nsep))
+			  (element-title-sosofo)))
+	  (table-sosofo (make display-group
+			  font-weight: 'bold
+			  space-before: 0pt
+			  space-after: 0pt
+			  start-indent: (indent)
+			  keep-with-next?: (object-title-after)
+			  (process-children)))
+	  (table (make display-group
+		   start-indent: (+ %block-start-indent%
+				    (inherited-start-indent))
+		   space-before: %block-sep%
+		   space-after: %block-sep%
+		   (if rule-before?
+		       (make rule
+			 orientation: 'horizontal
+			 line-thickness: %object-rule-thickness%
+			 display-alignment: 'center
+			 space-after: (/ %block-sep% 2)
+			 keep-with-next?: #t)
+		       (empty-sosofo))
+		   (if (object-title-after)
+		       (make sequence
+			 table-sosofo
+			 title-sosofo)
+		       (make sequence
+			 title-sosofo
+			 table-sosofo))
+		   (if rule-after?
+		       (make rule
+			 orientation: 'horizontal
+			 line-thickness: %object-rule-thickness%
+			 display-alignment: 'center
+			 space-before: (/ %block-sep% 2)
+			 keep-with-previous?: #t)
+		       (empty-sosofo)))))
+    (if (and (equal? (print-backend) 'tex)
+	     formal-object-float
+	     (float-object (current-node)))
+	(make page-float
+	  table)
+	table)))
+
 
 ;; Don't show links when citing a bibliography entry.  This fouls up
 ;; the footnumber counting.  To get the link, one can still look into
@@ -272,6 +400,11 @@
   (element ulink
     (process-children)))
 
+;; Returns the depth of auto TOC that should be made at the nd-level
+(define (toc-depth nd)
+  (if (string=? (gi nd) (normalize "book"))
+      3
+      1))
 
 ;; Format legalnotice justified and with space between paragraphs.
 (mode book-titlepage-verso-mode

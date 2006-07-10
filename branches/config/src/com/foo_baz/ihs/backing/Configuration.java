@@ -2,14 +2,20 @@ package com.foo_baz.ihs.backing;
 
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.faces.context.FacesContext;
+import javax.faces.application.Application;
+import javax.faces.el.ValueBinding;
+import javax.faces.event.ActionEvent;
 import javax.naming.NamingException;
 
 import com.foo_baz.ihs.IncredibleHostingSystem;
+import com.foo_baz.ihs.plugin.Plugin;
 import com.foo_baz.util.OperationStatus;
 import com.foo_baz.util.faces.Messages;
 
@@ -293,7 +299,7 @@ public class Configuration {
 			String key;
 			while( keysIter.hasNext() ) {
 				key = (String) keysIter.next();
-				stat = ihsConfig.set(key, (String) config.get(key));
+				stat = ihsConfig.set(IncredibleHostingSystem.class, key, config.get(key));
 				
 				if ( ! OperationStatus.SUCCESS.equals(stat) ) {
 					logger.info(this.getClass().getName()
@@ -341,5 +347,59 @@ public class Configuration {
 	 */
 	public void setResult(String addAdministratorResult) {
 		this.result = addAdministratorResult;
-	}	
+	}
+	
+	public Plugin[] getConfigurationManagers() {
+		Plugin[] plugins = {
+				new Plugin() {
+					public String getTitle() {
+						return Messages.getString("com.foo_baz.ihs.messages", "configurationPluginsTitle", null);
+					}
+					
+					public String getDescription() {
+						return Messages.getString("com.foo_baz.ihs.messages", "configurationPluginsDescription", null);
+					}
+					
+					public String getViewId() {
+						return FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() 
+							+ "/faces/protected/configuration/plugins.jsp";
+					}
+				},
+				new Plugin() {
+					public String getTitle() {
+						return "title 1";
+					}
+
+					public String getDescription() {
+						return "description 1";
+					}
+					
+					public String getViewId() {
+						return "gotoAdministrators";
+					}
+					
+					public String getHandler() {
+						return null;
+					}
+				},
+				new Plugin() {
+					public String getTitle() {
+						return "title 2";
+					}
+
+					public String getDescription() {
+						return "description 2";
+					}
+					
+					public String getViewId() {
+						return "gotoDomains";
+					}
+					
+					public String getHandler() {
+						return null;
+					}
+				}
+		};
+		return plugins;
+	}
 }

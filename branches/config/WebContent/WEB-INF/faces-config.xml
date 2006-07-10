@@ -178,6 +178,11 @@
 		<managed-bean-class>com.foo_baz.ihs.backing.Configuration</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean><description>Logic behind configuration/plugins.jsp</description>
+		<managed-bean-name>backing_configurationPlugins</managed-bean-name>
+		<managed-bean-class>com.foo_baz.ihs.backing.ConfigurationPlugins</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 	<managed-bean><description>Logic behind mailservice/logs.jsp</description>
 		<managed-bean-name>backing_logs</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.mailservice.Logs</managed-bean-class>
@@ -194,6 +199,13 @@
 		<managed-bean-name>ihs</managed-bean-name>
 		<managed-bean-class>com.foo_baz.ihs.backing.IncredibleHostingSystemSession</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>initialPluginList</property-name>
+			<list-entries>
+				<value-class>java.lang.String</value-class>
+				<value>com.foo_baz.ihs.plugin.PluginManager</value>
+			</list-entries>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<description>Exception handling bean</description>

@@ -5,6 +5,17 @@ import com.foo_baz.util.faces.Messages;
 import com.foo_baz.ihs.Administrators;
 import com.foo_baz.ihs.Administrator;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.io.StringBufferInputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,7 +59,6 @@ implements Administrators {
 	 * @throws Exception
 	 */
 	protected void addServices() throws Exception {
-		services.put(Service.MAIL_SERVICE, new VirtualQmailMailService());
 	}
 	
 	/**
@@ -339,40 +349,32 @@ implements Administrators {
 	public void setServices(Hashtable services) {
 		this.services = services;
 	}
-	
-	public MailService getMailService() throws Exception {
-		MailService ser = (MailService) services.get(Service.MAIL_SERVICE);
-		if( ser != null && ! ser.isOpen() ) {
-			ser.open();
-		}
-		return ser;
-	}
-	
-	public void setMailService( MailService ms ) {
-		services.put(Service.MAIL_SERVICE, ms);
-	}
-	
+
 	public Configuration getConfiguration() {
 		return new Configuration() {
-			public String get( String key ) throws SQLException {
+			public OperationStatus get( Class type, String key, Object value ) throws SQLException, IOException, ClassNotFoundException {
+				OperationStatus stat = OperationStatus.SUCCESS;
 				PreparedStatement st = null;
 				ResultSet res = null;
 				
-				String ret = null;
 				try {
 					int idx = 1;
 					st = dbCon.prepareStatement("SELECT value FROM ihs_view_config WHERE key=?");
-					st.setString(idx++, key);
+					st.setString(idx++, type.getName()+"."+key);
 					res = st.executeQuery();
 					
 					if( res.next() ) {
-						ret = res.getString(idx++);
+						String fv = res.getString(idx++);
+						if(res.wasNull()) return OperationStatus.FAILURE;
+						InputStream is = new StringBufferInputStream(fv);  
+						ObjectInputStream ois = new ObjectInputStream(is);
+						value = ois.readObject();
 					}
 				} finally {
 					try { if( res!=null ) res.close(); } catch( Exception e ) {};
 					try { if( st!= null) st.close(); } catch( Exception e ) {};
 				}
-				return ret;
+				return stat;
 			}
 			
 			public Map getAll() throws SQLException {
@@ -398,17 +400,21 @@ implements Administrators {
 				return ret;
 			}
 			
-			public OperationStatus set( String key, String value ) throws SQLException {
+			public OperationStatus set( Class type, String key, Serializable value ) throws SQLException, IOException {
 				String func = "IHS_CONFIG_SET";
 				CallableStatement call = null;
 				OperationStatus stat = OperationStatus.SUCCESS;
 				
 				try {
+					OutputStream os = new ByteArrayOutputStream();
+					ObjectOutputStream oos = new ObjectOutputStream(os);
+					oos.writeObject(value);
+					
 					call = dbCon.prepareCall("{? = call "+ func +"(?, ?)}");
 					int idx = 1;
 					call.registerOutParameter(idx++, Types.INTEGER);
-					call.setString(idx++, key);
-					call.setString(idx++, value);
+					call.setString(idx++, type.getName()+"."+key);
+					call.setString(idx++, os.toString());
 					call.execute();
 					
 					int res = call.getInt(1);
@@ -433,6 +439,11 @@ implements Administrators {
 					try { if( call!= null) call.close(); } catch( Exception e ) {};
 				}
 				return stat;
+			}
+
+			public OperationStatus set(Class type, String key, Object value) throws SQLException {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		};
 	}

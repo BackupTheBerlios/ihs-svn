@@ -10,9 +10,9 @@
 </loadfile>
 
 <!-- tomcat -->
-<property name="manager.url" value="http://127.0.0.1:8080/manager/"/>
-<property name="username" value="tomcat"/>
-<property name="password" value="tomcat"/>
+<property name="manager.url" value="http://users.home:8080/manager/"/>
+<property name="username" value="manager"/>
+<property name="password" value="manager"/>
 
 <!-- JADE configuration -->
 <property name="jade.bin" value="openjade"/>

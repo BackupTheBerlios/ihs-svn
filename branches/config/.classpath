@@ -2,10 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/common/lib/[servletapi5].jar"/>
-	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/common/lib/[jspapi].jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsf-api.jar"/>
-	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/server/lib/catalina.jar"/>
-	<classpathentry exported="true" kind="lib" path="/usr/share/tomcat5/server/lib/[jmxri].jar"/>
+	<classpathentry kind="lib" exported="true" path="/usr/share/tomcat5/server/lib/catalina.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/servletapi5.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/jspapi.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/jmxri.jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>

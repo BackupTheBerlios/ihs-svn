@@ -1,5 +1,6 @@
 package com.foo_baz.ihs;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
 
@@ -11,9 +12,11 @@ import com.foo_baz.util.OperationStatus;
  */
 public interface Configuration {
 	
-	public OperationStatus set( String key, String value ) throws SQLException;
+	public OperationStatus set( Class type, String key, Object value ) 
+		throws SQLException, IOException, ClassNotFoundException;
 	
-	public String get( String key ) throws SQLException;
+	public OperationStatus get( Class type, String key, Object value ) 
+		throws SQLException, IOException, ClassNotFoundException;
 	
 	public Map getAll() throws SQLException;
 

@@ -25,6 +25,23 @@
 				<div id="content">
 					<h2><h:outputText value="#{msgs.configurationTitle}"/></h2>
 				</div>
+				
+				<h:form id="configurationManagers">
+					<h:dataTable id="configurationManagers"
+						var="curItem"
+						value="#{backing_configuration.configurationManagers}"
+						styleClass="listing" rowClasses="odd,even">
+						<h:column>
+							<h:panelGrid>
+								<h:outputLink value="#{curItem.viewId}">
+									<h:outputText value="#{curItem.title}"/>
+								</h:outputLink>
+								<h:outputText value="#{curItem.description}"/>
+							</h:panelGrid>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+				
 				<h:form id="configuration">
 					<h:panelGrid>
 						<h:messages errorClass="error" fatalClass="fatal" globalOnly="true" layout="table"/>

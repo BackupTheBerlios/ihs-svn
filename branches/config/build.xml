@@ -10,12 +10,6 @@
 	<!-- Project settings -->
 	<property name="project.distname" value="ihs"/>
 
-	<taskdef name="idlcheck" classname="idldepend.IDLCheckerTask">
- 		<classpath>
-			<pathelement location="lib/idldepend-0-8-1.jar"/>
-		</classpath>
-	</taskdef>
-
 	<taskdef resource="net/sf/antcontrib/antlib.xml">
 		<classpath>
 			<pathelement location="lib/ant-contrib.jar"/>
@@ -60,19 +54,8 @@
 			</copy>
 	</target>
 	
-	<!-- Generate Java source from IDL -->
-	<target name="idl">
-		<idlcheck compiler="jdk" force="false" checkAll="true" verbose="basic"
-			targetDir="src">
-			<fileset dir=".">
-				<include name="*.idl"/>
-			</fileset>
-			<translate module="vq" package="com.foo_baz.v_q"/>
-		</idlcheck>
-	</target>
-
 	<!-- Normal build of application -->
-	<target name="compile" depends="prepare,resources,idl">
+	<target name="compile" depends="prepare,resources">
 			<javac srcdir="src" destdir="${webinf.dir}/classes">
 			    <classpath refid="classpath"/>
 			</javac>

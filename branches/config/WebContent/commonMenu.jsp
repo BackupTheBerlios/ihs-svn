@@ -11,20 +11,36 @@
 		<f:verbatim><![CDATA[<div id="menu">]]></f:verbatim>
 		<h:form id="commonMenu">
 			<h:panelGrid>
-				<h:panelGroup>
-					<h:panelGrid columns="2" id="localeGrid">
-						<h:commandLink id="en" immediate="true" 
-							actionListener="#{locale.changeLocale}">
-							<h:graphicImage value="/images/i18n/flags/en.png" style="border: 0px"/>
-						</h:commandLink>
-						
-						<h:commandLink id="pl" immediate="true" 
-							actionListener="#{locale.changeLocale}">
-							<h:graphicImage value="/images/i18n/flags/pl.png" style="border: 0px"/>
-						</h:commandLink>
+				<h:panelGrid columns="2" id="localeGrid">
+					<h:commandLink id="en" immediate="true" 
+						actionListener="#{locale.changeLocale}">
+						<h:graphicImage value="/images/i18n/flags/en.png" style="border: 0px"/>
+					</h:commandLink>
+					
+					<h:commandLink id="pl" immediate="true" 
+						actionListener="#{locale.changeLocale}">
+						<h:graphicImage value="/images/i18n/flags/pl.png" style="border: 0px"/>
+					</h:commandLink>
+				</h:panelGrid>
+			
+				<h:commandLink immediate="true" actionListener="#{backing_ihs.logout}">
+					<h:outputText value="#{msgs.logoutTitle}"/>
+					</h:commandLink>
+			</h:panelGrid>
+			
+			<h:dataTable id="menuElements"
+				var="curItem"
+				value="#{ihs.menuElements}">
+				<h:column>
+					<h:panelGrid>
+						<h:outputLink value="#{curItem.viewId}">
+							<h:outputText value="#{curItem.title}"/>
+						</h:outputLink>
+						<h:outputText value="#{curItem.description}"/>
 					</h:panelGrid>
-				</h:panelGroup>
-				
+				</h:column>
+			</h:dataTable>
+<!--			
 				<h:commandLink immediate="true" action="gotoConfiguration">
 					<h:outputText value="#{msgs.configurationTitle}"/>
 				</h:commandLink>
@@ -48,11 +64,7 @@
 				<h:commandLink immediate="true" action="gotoMailServiceLogs">
 					<h:outputText value="#{msgs.mailServiceLogsTitle}"/>
 				</h:commandLink>
-				
-				<h:commandLink immediate="true" actionListener="#{backing_ihs.logout}">
-					<h:outputText value="#{msgs.logoutTitle}"/>
-				</h:commandLink>
-			</h:panelGrid>
+-->
 		</h:form>
 		<f:verbatim><![CDATA[</div>]]></f:verbatim>
 	</f:subview>

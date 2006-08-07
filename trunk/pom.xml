@@ -7,6 +7,18 @@
 	<version>1.0</version>
 	<name>Incredible Hosting System</name>
 	<url>http://ihs.foo-baz.com</url>
+	<description>Generic framework for managing server's services.</description>
+	<organization>
+		<name>http://foo-baz.com</name>
+		<url>http://foo-baz.com</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>LGPL</name>
+			<url>http://www.gnu.org/copyleft/lesser.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<issueManagement>
 		<system>SF.net Bugs</system>
 		<url>http://sourceforge.net/tracker/?atid=731096&amp;group_id=134802&amp;func=browse</url>

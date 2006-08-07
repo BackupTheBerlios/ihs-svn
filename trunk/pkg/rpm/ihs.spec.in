@@ -1,0 +1,53 @@
+%define project ihs
+%define webapps_dir /usr/share/tomcat5/webapps/
+
+%ifarch ia64
+# disable debuginfo on IA64
+%define debug_package %{nil}
+%endif
+
+Summary: Incredible Hosting System
+Name: %{project}
+Version: @VERSION@
+Release: 1
+URL: http://ihs.foo-baz.com/
+Vendor: http://foo-baz.com/
+Packager: Pawel Niewiadomski <new@foo-baz.com>
+Source0: %{project}-%{version}.tar.gz
+License: GPL
+Group: Applications/System
+BuildRoot: %{_tmppath}/%{project}-root
+BuildPrereq: java2 >= 1.4.2, ant >= 1.6.2
+Requires: java2 >= 1.4.2, tomcat5 >= 5.0.27
+Requires: v-q-ivq >= 10
+Requires: jakarta-commons-logging >= 1.0.4, jmx >= 1.2.1, servletapi5 >= 5.0.18
+Requires: jakarta-commons-beanutils-core >= 1.7.0, jakarta-taglibs-standard >= 1.1.1
+BuildArch: noarch
+
+%description
+Incredible Hosting System is a graphical user interface for
+administrators of Virtual Qmail. It allows you to add, remove and
+change domains and users.
+
+%prep
+%setup -q
+
+%build
+ant build
+
+%install
+mkdir -p $RPM_BUILD_ROOT/%{webapps_dir}
+ant -Dinstall.prefix=%{_prefix} -Dinstall.docdir=%{_docdir} -Dinstall.datadir=%{_datadir} -Dinstall.distdir=$RPM_BUILD_ROOT/ -Ddeploy.dir=%{webapps_dir} install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+%attr(0644,-,-) %{webapps_dir}/ihs.war
+%doc %{_docdir}/%{project}-%{version}
+
+%changelog
+* Wed Dec 21 2005 Pawel Niewiadosmki <new@foo-baz.com> 1
+- First version
+

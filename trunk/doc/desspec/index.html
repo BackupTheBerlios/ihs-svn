@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+></TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="NEXT"
+TITLE="Detailed Document Description"
+HREF="x74.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-04-14T17:58:10"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="article"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="AEN2"
+>1. Software Design Specification</A
+></H1
+><P
+>by Brad Appleton &#60;bradapp@enteract.com&#62;</P
+><P
+>http://www.enteract.com/~bradapp</P
+><P
+>Copyright © 1994-1997 by Bradford D. Appleton </P
+><P
+>Permission is hereby granted to make and distribute verbatim copies of this document provided the copyright notice and this permission notice are preserved on all copies.</P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN8"
+>1.1. Overview</A
+></H2
+><P
+>The following is an attempt to put together a complete, yet reasonably flexible template for the specification of software designs. Wherever possible, I have tried to provide guidelines (instead of prescribing requirements) for the contents of various sections and subsections of the document. Some may prefer to require more detailed subsections of a particular section, choosing one or more of the subsection topics from the list of guidelines provided. In this sense, this document is really a template for a template. </P
+><P
+>In devising this template, I have gleaned information from many sources, including various texts on Software Engineering (Pressman, Sommerville, and Van Vliet), Object-Oriented Development (Booch, Rumbaugh, Berard, and Wirfs-Brock), various SEI reports, DoD-Std and Mil-Std documentation requirements (2167/2167A), and IEEE documentation standards (particularly IEEE-1016 for software designs, and IEEE-830 for software requirements). I have made every effort not to assume or impose a particular software development methodology or paradigm, and to place more emphasis on content than on format. </P
+><P
+>It is my desire that a completed Software Design Specification meet the following criteria: </P
+><P
+>It should be able to adequately serve as training material for new project members, imparting to them enough information and understanding about the project implementation, so that they are able to understand what is being said in design meetings, and won't feel as if they are drowning when they are first asked to create or modify source code. </P
+><P
+>It should serve as "objective evidence" that the designers and/or implementors are following through on their commitment to implement the functionality described in the requirements specification. </P
+><P
+>It needs to be as detailed as possible, while at the same time not imposing too much of a burden on the designers and/or implementors that it becomes overly difficult to create or maintain. </P
+><P
+>Please note that there are no sections in this document for describing administrative or business duties, or for proposing plans or schedules for testing or development. The sections in this document are concerned solely with the design of the software. While there are places in this document where it is appropriate to discuss the effects of such plans on the software design, it is this author's opinion that most of the details concerning such plans belong in one or more separate documents. </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN17"
+>1.2. Document Outline</A
+></H2
+><P
+>Here is the outline of the Software Design Specification template. Please note that many parts of the document may be extracted automatically from other sources and/or may be contained in other, smaller documents. What follows is just one suggested outline format to use when attempting to present the architecture and design of the entire system as one single document. This by no means implies that it literally is a single document (that would not be my personal preference): </P
+><P
+></P
+><UL
+><LI
+><P
+>Introduction </P
+></LI
+><LI
+><P
+>System Overview </P
+></LI
+><LI
+><P
+>Design Considerations </P
+></LI
+><LI
+><P
+>Assumptions and Dependencies </P
+></LI
+><LI
+><P
+>General Constraints </P
+></LI
+><LI
+><P
+>Goals and Guidelines </P
+></LI
+><LI
+><P
+>Development Methods </P
+></LI
+><LI
+><P
+>Architectural Strategies </P
+></LI
+><LI
+><P
+>strategy-1 name or description </P
+></LI
+><LI
+><P
+>strategy-2 name or description </P
+></LI
+><LI
+><P
+>... </P
+></LI
+><LI
+><P
+>System Architecture </P
+></LI
+><LI
+><P
+>component-1 name or description </P
+></LI
+><LI
+><P
+>component-2 name or description </P
+></LI
+><LI
+><P
+>... </P
+></LI
+><LI
+><P
+>Policies and Tactics </P
+></LI
+><LI
+><P
+>policy/tactic-1 name or description </P
+></LI
+><LI
+><P
+>policy/tactic-2 name or description </P
+></LI
+><LI
+><P
+>... </P
+></LI
+><LI
+><P
+>Detailed System Design </P
+></LI
+><LI
+><P
+>module-1 name or description </P
+></LI
+><LI
+><P
+>module-2 name or description </P
+></LI
+><LI
+><P
+>... </P
+></LI
+><LI
+><P
+>Glossary </P
+></LI
+><LI
+><P
+>Bibliography </P
+></LI
+></UL
+><P
+>The above outline is by no means exclusive. A particular numbering scheme is not necessarily required and you are more than welcome to add your own sections or subsections where you feel they are appropriate. In particular you may wish to move the bibliography and glossary to the beginning of the document instead of placing them at the end. </P
+><P
+>The same template is intended to be used for both high-level design and low-level design. The design document used for high-level design is a "living document" in that it gradually evolves to include low-level design details (although perhaps the "Detailed Design" section may not yet be appropriate at the high-level design phase). </P
+><P
+>The ordering of the sections in this document attempts to correspond to the order in which issues are addressed and in which decisions are made during the actual design process. Of course it is understood that software designs frequently (and often fortunately) don't always proceed in this order (or in any linear, or even predictable order). However, it is useful for the purpose of comprehending the design of the system to present them as if they did. Frequently, one of the best ways to document a project's design is to keep a detailed project journal, log, or diary of issues as they are mulled over and bandied about and to record the decisions made (and the reasons why) in the journal. Unfortunately, the journal format is not usually organized the way most people would like it for a formal review. In such cases, for the purpose of review, the journal can be condensed and/or portions of it extracted and reorganized according to this outline. However, if this is done then you need to choose whether to update and maintain the design document in the journal format, or the formal review format. It is not advisable to try and maintain the design document in both formats. (If you have an automated method of converting the journal into a formal document, then this problem is solved.) </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x74.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Detailed Document Description</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,576 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Incredible Hosting System</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="NEXT"
+TITLE="S³owo wstêpne"
+HREF="foreword.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-04-14T17:57:42"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=ISO-8859-2"></HEAD
+><BODY
+CLASS="book"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="BOOK"
+><A
+NAME="AEN1"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+><A
+NAME="AEN2"
+>Incredible Hosting System</A
+></H1
+><H3
+CLASS="author"
+><A
+NAME="AEN5"
+></A
+>Pawe³ Niewiadomski</H3
+><P
+CLASS="copyright"
+>Copyright &copy; 2005 <A
+HREF="http://foo-baz.com"
+TARGET="_top"
+>foo-baz.com</A
+></P
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Spis tre&#347;ci</B
+></DT
+><DT
+><A
+HREF="foreword.html"
+>S³owo wstêpne</A
+></DT
+><DT
+>1. <A
+HREF="intro.html"
+>Wprowadzenie</A
+></DT
+><DT
+>2. <A
+HREF="overview.html"
+>Wprowadzenie do systemu</A
+></DT
+><DT
+>3. <A
+HREF="users.html"
+>Podrêcznik u¿ytkownika</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="users.html#users.login"
+>Logowanie siê do systemu</A
+></DT
+><DT
+>3.2. <A
+HREF="users.conf.html"
+>Panel konfiguracyjny</A
+></DT
+><DT
+>3.3. <A
+HREF="users.admins.html"
+>Zarz±dzanie administratorami</A
+></DT
+><DT
+>3.4. <A
+HREF="users.domains.html"
+>Zarz±dzanie domenami</A
+></DT
+><DD
+><DL
+><DT
+>3.4.1. <A
+HREF="users.domains.html#users.domains.users"
+>Zarz±dzanie u¿ytkownikami</A
+></DT
+></DL
+></DD
+><DT
+>3.5. <A
+HREF="users.logs.html"
+>Przegl±danie logów systemowych</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="admins.html"
+>Podrêcznik administratora</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="admins.html#admins.install"
+>Instalacja</A
+></DT
+><DD
+><DL
+><DT
+>4.1.1. <A
+HREF="admins.html#admins.install.download"
+>¦ci±ganie</A
+></DT
+><DT
+>4.1.2. <A
+HREF="admins.html#admins.install.depends"
+>Zale¿no¶ci</A
+></DT
+><DT
+>4.1.3. <A
+HREF="admins.html#admins.install.compilation"
+>Kompilacja, tworzenie pakietów</A
+></DT
+><DT
+>4.1.4. <A
+HREF="admins.html#admins.install.j2ee"
+>Instalacja na serwerze J2EE</A
+></DT
+><DT
+>4.1.5. <A
+HREF="admins.html#admins.install.db"
+>Instalacja bazy danych</A
+></DT
+></DL
+></DD
+><DT
+>4.2. <A
+HREF="admins.conf.html"
+>Konfiguracja</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="devs.html"
+>Podrêcznik programisty</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="devs.html#design"
+>Rozwa¿ania projektowe</A
+></DT
+><DD
+><DL
+><DT
+>5.1.1. <A
+HREF="devs.html#design.related"
+>Oprogramowanie i sprzêt</A
+></DT
+><DT
+>5.1.2. <A
+HREF="devs.html#design.users"
+>U¿ytkownicy systemu</A
+></DT
+><DT
+>5.1.3. <A
+HREF="devs.html#design.reqs"
+>Analiza wymagañ</A
+></DT
+><DT
+>5.1.4. <A
+HREF="devs.html#design.goals"
+>Gole i wytyczne</A
+></DT
+></DL
+></DD
+><DT
+>5.2. <A
+HREF="strategies.html"
+>Strategia realizacji</A
+></DT
+><DD
+><DL
+><DT
+>5.2.1. <A
+HREF="strategies.html#strategies.products"
+>Wykorzystane produkty</A
+></DT
+></DL
+></DD
+><DT
+>5.3. <A
+HREF="future.html"
+>Plany na przysz³o¶æ</A
+></DT
+><DT
+>5.4. <A
+HREF="strategies.errors.html"
+>Obs³uga b³êdów</A
+></DT
+><DT
+>5.5. <A
+HREF="strategies.database.html"
+>Baza danych</A
+></DT
+><DT
+>5.6. <A
+HREF="architecture.html"
+>Architektura systemu</A
+></DT
+><DD
+><DL
+><DT
+>5.6.1. <A
+HREF="architecture.html#architecture.v_q"
+>Architektura Virtual Qmail</A
+></DT
+><DT
+>5.6.2. <A
+HREF="architecture.html#subarch.ihsdb"
+>Baza danych IHS</A
+></DT
+><DT
+>5.6.3. <A
+HREF="architecture.html#subarch.ihs"
+>Architektura IHS</A
+></DT
+></DL
+></DD
+><DT
+>5.7. <A
+HREF="policies.html"
+>Obowi±zuj±ce wytyczne</A
+></DT
+><DD
+><DL
+><DT
+>5.7.1. <A
+HREF="policies.html#policies.software"
+>Wykorzystywane oprogramowanie</A
+></DT
+><DT
+>5.7.2. <A
+HREF="policies.html#policies.tree"
+>Organizacja struktury katalogów</A
+></DT
+><DT
+>5.7.3. <A
+HREF="policies.html#policies.building"
+>Kompilacja</A
+></DT
+><DT
+>5.7.4. <A
+HREF="policies.html#policies.packages"
+>Tworzenie pakietów</A
+></DT
+></DL
+></DD
+><DT
+>5.8. <A
+HREF="imp.html"
+>Szczegó³y implementacji IHS</A
+></DT
+><DD
+><DL
+><DT
+>5.8.1. <A
+HREF="imp.html#imp.core"
+>G³ówna czê¶æ systemu</A
+></DT
+><DT
+>5.8.2. <A
+HREF="imp.html#imp.ui"
+>Interfejs u¿ytkownika</A
+></DT
+><DT
+>5.8.3. <A
+HREF="imp.html#imp.state"
+>Kontrola stanu systemu</A
+></DT
+><DT
+>5.8.4. <A
+HREF="imp.html#imp.plugins"
+>Wtyczki</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>6. <A
+HREF="summary.html"
+>Podsumowanie</A
+></DT
+><DT
+><A
+HREF="biblio.html"
+>Bibliografia</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="LOT"
+><DL
+CLASS="LOT"
+><DT
+><B
+>Spis tabel</B
+></DT
+><DT
+>5-1. <A
+HREF="devs.html#tab.reqs.soft"
+>Wymagania dotycz±ce sprzêtu i oprogramowania</A
+></DT
+><DT
+>5-2. <A
+HREF="devs.html#tab.reqs.general"
+>Wymagania ogólne</A
+></DT
+><DT
+>5-3. <A
+HREF="devs.html#tab.reqs.performance"
+>Wymagania dotycz±ce wydajno¶ci</A
+></DT
+><DT
+>5-4. <A
+HREF="devs.html#tab.reqs.security"
+>Wymagania dotycz±ce bezpieczeñstwa</A
+></DT
+><DT
+>5-5. <A
+HREF="architecture.html#tab.architecture.ihsdb.details"
+>Typy danych u¿ywane w bazie IHS</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="LOT"
+><DL
+CLASS="LOT"
+><DT
+><B
+>Spis rysunków</B
+></DT
+><DT
+>3-1. <A
+HREF="users.html#figure.users.loading"
+>£adowanie aplikacji</A
+></DT
+><DT
+>3-2. <A
+HREF="users.html#figure.users.login"
+>Strona logowania</A
+></DT
+><DT
+>3-3. <A
+HREF="users.html#figure.users.lang"
+>Wybór jêzyka</A
+></DT
+><DT
+>3-4. <A
+HREF="users.html#figure.users.login.failed"
+>Strona logowania z komunikatem</A
+></DT
+><DT
+>3-5. <A
+HREF="users.conf.html#figure.users.configuration1"
+>Panel konfiguracyjny</A
+></DT
+><DT
+>3-6. <A
+HREF="users.conf.html#figure.users.configuration2"
+>Panel konfiguracyjny: komunikat b³êdu</A
+></DT
+><DT
+>3-7. <A
+HREF="users.conf.html#figure.users.configuration3"
+>Panel konfiguracyjny: zapisano dane</A
+></DT
+><DT
+>3-8. <A
+HREF="users.admins.html#figure.users.administrators"
+>Lista administratorów</A
+></DT
+><DT
+>3-9. <A
+HREF="users.admins.html#figure.users.administrators.rm1"
+>Usuwanie administratora, krok 1</A
+></DT
+><DT
+>3-10. <A
+HREF="users.admins.html#figure.users.administrators.rm2"
+>Usuwanie administratora, krok 2</A
+></DT
+><DT
+>3-11. <A
+HREF="users.admins.html#figure.users.addAdministrator1"
+>Dodawanie administratora, krok 1</A
+></DT
+><DT
+>3-12. <A
+HREF="users.admins.html#figure.users.addAdministrator2"
+>Dodawanie administratora, krok 2</A
+></DT
+><DT
+>3-13. <A
+HREF="users.admins.html#figure.users.addAdministrator3"
+>Dodawanie administratora, krok 3</A
+></DT
+><DT
+>3-14. <A
+HREF="users.admins.html#figure.users.addAdministrator4"
+>Modyfikowanie administratora</A
+></DT
+><DT
+>3-15. <A
+HREF="users.domains.html#figure.users.domains1"
+>List domen</A
+></DT
+><DT
+>3-16. <A
+HREF="users.domains.html#figure.users.domains.rm1"
+>Usuwanie domeny, krok 1</A
+></DT
+><DT
+>3-17. <A
+HREF="users.domains.html#figure.users.domains.rm2"
+>Usuwanie domeny, krok 2</A
+></DT
+><DT
+>3-18. <A
+HREF="users.domains.html#figure.users.users"
+>Lista u¿ytkowników</A
+></DT
+><DT
+>3-19. <A
+HREF="users.domains.html#figure.users.addUser"
+>Dodawanie u¿ytkownika</A
+></DT
+><DT
+>3-20. <A
+HREF="users.domains.html#figure.users.addUser1"
+>Modyfikacja u¿ytkownika</A
+></DT
+><DT
+>3-21. <A
+HREF="users.logs.html#figure.users.logs"
+>Lista zdarzeñ</A
+></DT
+><DT
+>3-22. <A
+HREF="users.logs.html#figure.users.logs1"
+>Lista zdarzeñ: filtrowanie</A
+></DT
+><DT
+>5-1. <A
+HREF="architecture.html#figure.architecture.overall"
+>Wysokopoziomowa architektura systemu</A
+></DT
+><DT
+>5-2. <A
+HREF="architecture.html#figure.architecture.ihsdb"
+>Architektura bazy IHS</A
+></DT
+><DT
+>5-3. <A
+HREF="architecture.html#figure.architecture.v_q"
+>Architektura Virtual Qmail</A
+></DT
+><DT
+>5-4. <A
+HREF="architecture.html#figure.architecture.ihsdb.details"
+>Logiczny model bazy danych IHS</A
+></DT
+><DT
+>5-5. <A
+HREF="architecture.html#figure.architecture.ihs.details"
+>Architektura IHS</A
+></DT
+><DT
+>5-6. <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs"
+>Pakiet com.foo_baz.ihs</A
+></DT
+><DT
+>5-7. <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs.backing"
+>Pakiet com.foo_baz.ihs.backing</A
+></DT
+><DT
+>5-8. <A
+HREF="imp.html#figure.imp.com.foo_baz.ihs.backing.mailservice"
+>Pakiet com.foo_baz.ihs.backing.mailservice</A
+></DT
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="foreword.html"
+ACCESSKEY="N"
+>Nast&#281;pny</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>S³owo wstêpne</TD
+></TR
+></TABLE
+></DIV
+><DIV id="hosted">Hosted by: <a href="http://developer.berlios.de"><img src="http://developer.berlios.de/bslogo.php?group_id=5279" width="124" height="32" border="0" alt="BerliOS Logo" /></a> <a href="http://www.sourceforge.net"><img src="http://www.sourceforge.net/sflogo.php?group_id=134802&type=1" border="0" alt="SourceForge.net Logo" /></a></DIV>
+</BODY
+></HTML
+>

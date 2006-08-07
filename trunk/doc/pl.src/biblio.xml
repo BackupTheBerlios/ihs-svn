@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<bibliography id="biblio">
+	<title>Bibliografia</title>
+
+	<bibliodiv>	
+		<title>Internet</title>
+
+		<biblioentry id="NIE-2003">
+			<abbrev>NIE-2003</abbrev>
+			<author><firstname>Paweł</firstname><surname>Niewiadomski</surname></author>
+			<title>System poczty darmowej</title>
+			<bibliomisc>
+				<ulink url="http://new.foo-baz.com/me/engineer_work/">http://new.foo-baz.com/me/engineer_work/</ulink>
+			</bibliomisc>
+		</biblioentry>
+	</bibliodiv>
+
+	<bibliodiv>	
+		<title>Książki</title>
+
+		<biblioentry id="GEA-2004">
+			<abbrev>GEA-2004</abbrev>
+			<authorgroup>
+				<author><firstname>David</firstname><surname>Geary</surname></author>
+				<author><firstname>Cay</firstname><surname>Horstmann</surname></author>
+			</authorgroup>
+			<title>Core JavaServer Faces</title>
+		</biblioentry>
+	</bibliodiv>
+</bibliography>

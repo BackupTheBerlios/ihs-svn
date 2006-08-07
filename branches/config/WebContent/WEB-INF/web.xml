@@ -3,6 +3,17 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4" 
 	xmlns="http://java.sun.com/xml/ns/j2ee">
 	
+	<!--
+	  - Location of the XML file that defines the root application context
+	  - Applied by ContextLoaderListener.
+	  -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/applicationContext-acegi-security.xml
+		</param-value>
+	</context-param>
+	
 	<context-param>
 		<param-name>javax.faces.CONFIG_FILES</param-name>
 		<param-value>/WEB-INF/faces-config.xml</param-value>
@@ -12,6 +23,29 @@
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
 		<param-value>server</param-value>
 	</context-param>
+
+    <filter>
+        <filter-name>Acegi Filter Chain Proxy</filter-name>
+        <filter-class>org.acegisecurity.util.FilterToBeanProxy</filter-class>
+        <init-param>
+            <param-name>targetClass</param-name>
+            <param-value>org.acegisecurity.util.FilterChainProxy</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+      <filter-name>Acegi Filter Chain Proxy</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	
+	<!--
+	  - Loads the root application context of this web app at startup.
+	  - The application context is then available via 
+	  - WebApplicationContextUtils.getWebApplicationContext(servletContext).
+    -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
 	<listener>
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
@@ -54,12 +88,13 @@
 	</welcome-file-list>
 	
 	<!-- resources -->
+	<!--
 	<resource-ref>
 		<description>IHS Datasource</description>
 		<res-ref-name>jdbc/ihsDB</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
-	</resource-ref>	
+	</resource-ref>	-->
 	
 	<!-- error handling -->
 	<error-page>
@@ -71,26 +106,4 @@
 		<location>/faces/exception.jsp</location>
 	</error-page>
 	
-	<!-- security -->
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>General protected area</web-resource-name>
-			<url-pattern>/faces/protected/*</url-pattern>
-			<url-pattern>/protected/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>administrator</role-name>
-		</auth-constraint>
-	</security-constraint>
-	<login-config>
-		<auth-method>FORM</auth-method>
-		<realm-name>IhsUserRealm</realm-name>
-		<form-login-config>
-			<form-login-page>/faces/login.jsp</form-login-page>
-			<form-error-page>/faces/login.failed.jsp</form-error-page>
-		</form-login-config>
-	</login-config>
-	<security-role>
-		<role-name>administrator</role-name>
-	</security-role>
 </web-app>

@@ -44,9 +44,16 @@
 <property name="servletapi5.jar" value="${commons.dir}/servletapi5.jar"/>
 
 <!-- Database properties -->
-<property name="database.driver" value="org.postgresql.Driver"/>
+<!-- PostgreSQL -->
+<!-- <property name="database.driver" value="org.postgresql.Driver"/> -->
 <!-- <property name="database.url" value="jdbc:postgresql://users.home/mail?schema=mail&amp;loglevel=2"/> -->
-<property name="database.url" value="jdbc:postgresql://users.home/mail?schema=mail"/>
+<!-- <property name="database.url" value="jdbc:postgresql://users.home/mail?schema=mail"/> -->
+<!-- <property name="database.user" value="mail"/> -->
+<!-- <property name="database.password" value="mail"/> -->
+
+<!-- MySQL -->
+<!-- <property name="database.driver" value="com.mysql.jdbc.Driver"/>
+<property name="database.url" value="jdbc:mysql://enceladus.home/mail"/>
 <property name="database.user" value="mail"/>
-<property name="database.password" value="mail"/>
+<property name="database.password" value="mail"/> -->
 

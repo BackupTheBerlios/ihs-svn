@@ -28,7 +28,7 @@
 	</scm>
 	<developers>
 		<developer>
-			<id>new</id>
+			<id>paweln</id>
 			<name>Pawe&#x142; Niewiadomski</name>
 			<roles>
 				<role>Developer</role>
@@ -64,6 +64,17 @@
 			<version>2.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.myfaces.core</groupId>
+			<artifactId>myfaces-api</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.myfaces.core</groupId>
+			<artifactId>myfaces-impl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>jpox</groupId>
 			<artifactId>jpox</artifactId>
 			<version>1.1.1</version>
@@ -92,6 +103,11 @@
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
 			<version>2.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-j2ee_1.4_spec</artifactId>
+			<version>1.0</version>
 		</dependency>
 		<!-- DEPLOY SCOPE -->
 		<dependency>

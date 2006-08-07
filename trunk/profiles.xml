@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<profilesXml>
+	<profiles>
+		<profile>
+			<id>jboss4x</id>
+			<properties>
+				<installDir>/nfs/home/new/bin/jboss4x</installDir>
+			</properties>
+		</profile>
+		<profile>
+			<id>tomcat5x</id>
+			<properties>
+				<installDir>/nfs/home/new/bin/tomcat5x</installDir>
+			</properties>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>tomcat5x</activeProfile>
+	</activeProfiles>
+</profilesXml>

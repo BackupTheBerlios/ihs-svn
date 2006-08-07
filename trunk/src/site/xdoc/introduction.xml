@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+<document lang="en">
+	<properties>
+		<author email="new@foo-baz.com">Pawel Niewiadomski</author>
+		<title>Introduction</title>
+	</properties>
+
+	<body>
+		<section name="Introduction">
+			<p>
+				Full name of the project is Incredible Hosting System,
+				acronym is IHS. Usually acronym will be used.
+				Main part of IHS is administration panel that allows administrators
+				to manage mail system. It was my master thesis.
+			</p>
+		</section>
+	</body>
+</document>
+

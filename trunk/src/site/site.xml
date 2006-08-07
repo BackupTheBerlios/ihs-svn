@@ -1,0 +1,9 @@
+<site>
+	<body>
+		<menu name="Incredible Hosting System">
+			<item name="Introduction" href="/introduction.html"/>
+		</menu>
+
+		${reports}
+	</body>
+</site>

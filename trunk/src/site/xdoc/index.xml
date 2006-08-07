@@ -1,34 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-2"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-	[
-	<!ENTITY biblio SYSTEM "biblio.xml">
-	<!ENTITY admins SYSTEM "admins.xml">
-	<!ENTITY devs SYSTEM "devs.xml">
-	]
->
-<book lang="en">
-	<bookinfo>
-		<title>Incredible Hosting System</title>
-		<authorgroup>
-			<author>
-				<firstname>Pawel</firstname>
-				<surname>Niewiadomski</surname>
-			</author>
-		</authorgroup>
-		<copyright>
-			<year>2005</year>
-			<holder><ulink url="http://foo-baz.com">foo-baz.com</ulink></holder>
-		</copyright>
-	</bookinfo>
+<document lang="en">
+	<properties>
+		<author email="new@foo-baz.com">Pawel Niewiadomski</author>
+		<title>Introduction</title>
+	</properties>
 
-	<preface id="foreword">
-		<title>Foreword</title>
-
-		<para>
-		</para>
-	</preface>
-
-	<chapter id="intro">
+	<body>
+		<section>
 		<title>Introduction</title>
 
 		<para>
@@ -138,10 +116,6 @@
 			company offers services related with installtion,
 			integration and maitenace of IHS in clients' environments.
 		</para>
-	</chapter>
-	
-	&admins;
-	&devs;
-	&biblio;
-</book>
+	</body>
+</document>
 

@@ -21,6 +21,15 @@
 			</notifier>
 		</notifiers>
 	</ciManagement>
+	<mailingLists>
+		<mailingList>
+			<name>IHS project mailing list</name>
+			<subscribe>https://lists.sourceforge.net/lists/listinfo/ihs-misc</subscribe>
+			<unsubscribe>https://lists.sourceforge.net/lists/listinfo/ihs-misc</unsubscribe>
+			<post>ihs-misc@lists.sourceforge.net</post>
+			<archive>http://sourceforge.net/mailarchive/forum.php?forum_id=45780</archive>
+		</mailingList>
+	</mailingLists>
 	<scm>
 		<connection>scm:svn:http://svn.berlios.de/svnroot/repos/ihs</connection>
 		<developerConnection>scm:svn:https://svn.berlios.de/svnroot/repos/ihs</developerConnection>
@@ -227,6 +236,13 @@
 							<cargo.servlet.port>8280</cargo.servlet.port>
 						</properties>
 					</configuration>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<locales>en,pl</locales>
 				</configuration>
 			</plugin>
 		</plugins>

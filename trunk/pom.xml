@@ -4,7 +4,7 @@
 	<groupId>com.foo_baz</groupId>
 	<artifactId>ihs</artifactId>
 	<packaging>war</packaging>
-	<version>1.0</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>Incredible Hosting System</name>
 	<url>http://ihs.foo-baz.com</url>
 	<description>Generic framework for managing server's services.</description>
@@ -51,6 +51,9 @@
 		<developerConnection>scm:svn:https://svn.berlios.de/svnroot/repos/ihs/trunk</developerConnection>
 		<url>http://svn.berlios.de/svnroot/repos/ihs/</url>
 	</scm>
+	<distributionManagement>
+		<downloadUrl>http://sourceforge.net/project/showfiles.php?group_id=134802&amp;package_id=148010</downloadUrl>
+	</distributionManagement>
 	<developers>
 		<developer>
 			<id>paweln</id>

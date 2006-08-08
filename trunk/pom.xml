@@ -54,8 +54,8 @@
 	<distributionManagement>
 		<downloadUrl>http://sourceforge.net/project/showfiles.php?group_id=134802&amp;package_id=148010</downloadUrl>
 		<site>
-			<id>shell.sourceforge.net</id>
 			<name>shell.sourceforge.net</name>
+			<id>shell.sourceforge.net</id>
 			<url>scp://shell.sourceforge.net/home/groups/i/ih/ihs/htdocs/</url>
 		</site>
 	</distributionManagement>

@@ -29,7 +29,11 @@
 		<notifiers>
 			<notifier>
 				<type>mail</type>
-				<address>11110000b@gmail.com</address>
+				<address>new@foo-baz.com</address>
+			</notifier>
+			<notifier>
+				<type>mail</type>
+				<address>ihs-misc@lists.sourceforge.net</address>
 			</notifier>
 		</notifiers>
 	</ciManagement>
@@ -43,14 +47,16 @@
 		</mailingList>
 	</mailingLists>
 	<scm>
-		<connection>scm:svn:http://svn.berlios.de/svnroot/repos/ihs</connection>
-		<developerConnection>scm:svn:https://svn.berlios.de/svnroot/repos/ihs</developerConnection>
+		<connection>scm:svn:http://svn.berlios.de/svnroot/repos/ihs/trunk</connection>
+		<developerConnection>scm:svn:https://svn.berlios.de/svnroot/repos/ihs/trunk</developerConnection>
 		<url>http://svn.berlios.de/svnroot/repos/ihs/</url>
 	</scm>
 	<developers>
 		<developer>
 			<id>paweln</id>
+			<email>new@foo-baz.com</email>
 			<name>Pawe&#x142; Niewiadomski</name>
+			<url>http://new.foo-baz.com/</url>
 			<roles>
 				<role>Developer</role>
 			</roles>

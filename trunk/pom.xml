@@ -268,7 +268,11 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<configuration>
+					<!--<templateDirectory>${basedir}/src/site/resources</templateDirectory>-->
+					<template>default-site.vm</template>
 					<locales>en,pl</locales>
+					<outputEncoding>UTF-8</outputEncoding>
+					<inputEncoding>UTF-8</inputEncoding>
 				</configuration>
 			</plugin>
 		</plugins>

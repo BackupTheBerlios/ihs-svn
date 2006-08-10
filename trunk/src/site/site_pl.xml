@@ -1,4 +1,5 @@
 <site>
+	<publishDate format="yyyy-MM-dd"/>
 	<body>
 		<menu name="Incredible Hosting System">
 			<item name="Wprowadzenie" href="/introduction.html"/>

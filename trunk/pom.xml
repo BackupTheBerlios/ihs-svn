@@ -29,11 +29,15 @@
 		<notifiers>
 			<notifier>
 				<type>mail</type>
-				<address>new@foo-baz.com</address>
+				<configuration>
+					<address>new@foo-baz.com</address>
+				</configuration>
 			</notifier>
 			<notifier>
 				<type>mail</type>
-				<address>ihs-misc@lists.sourceforge.net</address>
+				<configuration>
+					<address>ihs-misc@lists.sourceforge.net</address>
+				</configuration>
 			</notifier>
 		</notifiers>
 	</ciManagement>
@@ -91,7 +95,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.8</version>
+			<version>1.2.13</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.jdo</groupId>
@@ -108,7 +112,6 @@
 			<artifactId>myfaces-impl</artifactId>
 			<version>1.1.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>jpox</groupId>
 			<artifactId>jpox</artifactId>
@@ -246,16 +249,9 @@
 						</zipUrlInstaller>
 						<output>${project.build.directory}/${containerId}.log</output>
 						<log>${project.build.directory}/cargo.log</log>
-<!--						<dependencies>
-							<dependency>
-								<groupId>xerces</groupId>
-								<artifactId>xercesImpl</artifactId>
-							</dependency>
-							<dependency>
-								<groupId>log4j</groupId>
-								<artifactId>log4j</artifactId>
-							</dependency>
-						</dependencies>-->
+						<systemProperties>
+							<org.apache.commons.logging.Log>org.apache.commons.logging.impl.SimpleLog</org.apache.commons.logging.Log>
+						</systemProperties>
 					</container>
 					<configuration>
 						<properties>
@@ -263,6 +259,13 @@
 						</properties>
 					</configuration>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+						<version>1.2.13</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

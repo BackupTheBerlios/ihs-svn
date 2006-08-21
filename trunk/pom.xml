@@ -67,7 +67,7 @@
 		<developer>
 			<id>paweln</id>
 			<email>new@foo-baz.com</email>
-			<name>Pawe&#x142; Niewiadomski</name>
+			<name>Paweł Niewiadomski</name>
 			<url>http://new.foo-baz.com/</url>
 			<roles>
 				<role>Developer</role>
@@ -190,6 +190,38 @@
 	<build>
 		<finalName>ihs</finalName>
 		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadoc</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-source</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/dep.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -357,4 +389,21 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	<repositories>	
+		<repository>
+			<id>void.no-ip.pl</id>
+			<name>Private repository at void.no-ip.pl</name>
+			<url>http://void.no-ip.pl/maven2/</url>
+		</repository>
+		<repository>
+			<id>ibiblio.org</id>
+			<name>ibiblio.org</name>
+			<url>http://ibiblio.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>maven.org</id>
+			<name>repo1.maven.org</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
 </project>
